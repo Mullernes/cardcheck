@@ -1,0 +1,23 @@
+//
+//  AppPrefixHeader.pch
+//  CardCheck
+//
+//  Created by itnesPro on 12/20/17.
+//  Copyright © 2017 itnesPro. All rights reserved.
+//
+
+#ifndef AppPrefixHeader_pch
+#define AppPrefixHeader_pch
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    //Library
+    #import "JSONKit.h"
+
+    //Header
+    #import "KLBaseHeader.h"
+#endif
+
+#endif /* AppPrefixHeader_pch */

@@ -1,0 +1,710 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */; };
+		7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */; };
+		7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */; };
+		7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC4FB901FEA3D9100CFB4FE /* Assets.xcassets */; };
+		7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC4FB921FEA3D9100CFB4FE /* LaunchScreen.storyboard */; };
+		7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB961FEA3D9100CFB4FE /* main.m */; };
+		7DC4FBA11FEA3D9100CFB4FE /* CardCheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBA01FEA3D9100CFB4FE /* CardCheckTests.m */; };
+		7DC4FBAC1FEA3D9200CFB4FE /* CardCheckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBAB1FEA3D9200CFB4FE /* CardCheckUITests.m */; };
+		7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBC11FEA486800CFB4FE /* database.xcdatamodeld */; };
+		7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBC81FEA491B00CFB4FE /* KLBaseModel.m */; };
+		7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */; };
+		7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7DC4FB9D1FEA3D9100CFB4FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DC4FB7C1FEA3D9100CFB4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DC4FB831FEA3D9100CFB4FE;
+			remoteInfo = CardCheck;
+		};
+		7DC4FBA81FEA3D9100CFB4FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DC4FB7C1FEA3D9100CFB4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DC4FB831FEA3D9100CFB4FE;
+			remoteInfo = CardCheck;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7DC4FB841FEA3D9100CFB4FE /* CardCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC4FB871FEA3D9100CFB4FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7DC4FB8E1FEA3D9100CFB4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7DC4FB901FEA3D9100CFB4FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DC4FB931FEA3D9100CFB4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DC4FB951FEA3D9100CFB4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC4FB961FEA3D9100CFB4FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7DC4FB9C1FEA3D9100CFB4FE /* CardCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC4FBA01FEA3D9100CFB4FE /* CardCheckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCheckTests.m; sourceTree = "<group>"; };
+		7DC4FBA21FEA3D9100CFB4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC4FBA71FEA3D9100CFB4FE /* CardCheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardCheckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC4FBAB1FEA3D9200CFB4FE /* CardCheckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCheckUITests.m; sourceTree = "<group>"; };
+		7DC4FBAD1FEA3D9200CFB4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC4FBC21FEA486800CFB4FE /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
+		7DC4FBC71FEA491B00CFB4FE /* KLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseModel.h; sourceTree = "<group>"; };
+		7DC4FBC81FEA491B00CFB4FE /* KLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBaseModel.m; sourceTree = "<group>"; };
+		7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBaseController.m; sourceTree = "<group>"; };
+		7DC4FBCB1FEA492300CFB4FE /* KLBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseController.h; sourceTree = "<group>"; };
+		7DC4FBCE1FEA4AB500CFB4FE /* KLBaseUiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseUiConstants.h; sourceTree = "<group>"; };
+		7DC4FBCF1FEA4AB500CFB4FE /* KLBaseDebugConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseDebugConstants.h; sourceTree = "<group>"; };
+		7DC4FBD01FEA4AB500CFB4FE /* KLBaseHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseHeader.h; sourceTree = "<group>"; };
+		7DC4FBD11FEA4AB500CFB4FE /* KLBaseSysConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseSysConstants.h; sourceTree = "<group>"; };
+		7DC4FBD21FEA4BEA00CFB4FE /* AppPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppPrefixHeader.pch; sourceTree = "<group>"; };
+		7DC4FBD41FEA4EC200CFB4FE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7DC4FB811FEA3D9100CFB4FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FB991FEA3D9100CFB4FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FBA41FEA3D9100CFB4FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7DC4FB7B1FEA3D9100CFB4FE = {
+			isa = PBXGroup;
+			children = (
+				7DC4FB861FEA3D9100CFB4FE /* CardCheck */,
+				7DC4FB9F1FEA3D9100CFB4FE /* CardCheckTests */,
+				7DC4FBAA1FEA3D9100CFB4FE /* CardCheckUITests */,
+				7DC4FB851FEA3D9100CFB4FE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7DC4FB851FEA3D9100CFB4FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FB841FEA3D9100CFB4FE /* CardCheck.app */,
+				7DC4FB9C1FEA3D9100CFB4FE /* CardCheckTests.xctest */,
+				7DC4FBA71FEA3D9100CFB4FE /* CardCheckUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7DC4FB861FEA3D9100CFB4FE /* CardCheck */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBBD1FEA474600CFB4FE /* Kernel */,
+				7DC4FBBA1FEA462E00CFB4FE /* ViewController */,
+				7DC4FBB91FEA461D00CFB4FE /* UI */,
+				7DC4FBBC1FEA472E00CFB4FE /* Resource */,
+				7DC4FBBB1FEA464A00CFB4FE /* Supporting Files */,
+			);
+			path = CardCheck;
+			sourceTree = "<group>";
+		};
+		7DC4FB9F1FEA3D9100CFB4FE /* CardCheckTests */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBA01FEA3D9100CFB4FE /* CardCheckTests.m */,
+				7DC4FBA21FEA3D9100CFB4FE /* Info.plist */,
+			);
+			path = CardCheckTests;
+			sourceTree = "<group>";
+		};
+		7DC4FBAA1FEA3D9100CFB4FE /* CardCheckUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBAB1FEA3D9200CFB4FE /* CardCheckUITests.m */,
+				7DC4FBAD1FEA3D9200CFB4FE /* Info.plist */,
+			);
+			path = CardCheckUITests;
+			sourceTree = "<group>";
+		};
+		7DC4FBB91FEA461D00CFB4FE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */,
+				7DC4FB921FEA3D9100CFB4FE /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7DC4FBBA1FEA462E00CFB4FE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */,
+				7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DC4FBBB1FEA464A00CFB4FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBD21FEA4BEA00CFB4FE /* AppPrefixHeader.pch */,
+				7DC4FB871FEA3D9100CFB4FE /* AppDelegate.h */,
+				7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */,
+				7DC4FB901FEA3D9100CFB4FE /* Assets.xcassets */,
+				7DC4FB951FEA3D9100CFB4FE /* Info.plist */,
+				7DC4FB961FEA3D9100CFB4FE /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7DC4FBBC1FEA472E00CFB4FE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		7DC4FBBD1FEA474600CFB4FE /* Kernel */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBC41FEA487F00CFB4FE /* Base */,
+				7DC4FBC01FEA482E00CFB4FE /* CoreData */,
+				7DC4FBBF1FEA477400CFB4FE /* Model */,
+				7DC4FBBE1FEA475700CFB4FE /* Library */,
+			);
+			path = Kernel;
+			sourceTree = "<group>";
+		};
+		7DC4FBBE1FEA475700CFB4FE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBD31FEA4EC200CFB4FE /* JSONKit */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		7DC4FBBF1FEA477400CFB4FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DC4FBC01FEA482E00CFB4FE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBC11FEA486800CFB4FE /* database.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		7DC4FBC41FEA487F00CFB4FE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBC51FEA488500CFB4FE /* Model */,
+				7DC4FBC61FEA489000CFB4FE /* Controller */,
+				7DC4FBCD1FEA49EF00CFB4FE /* Supporting Files */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7DC4FBC51FEA488500CFB4FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBC71FEA491B00CFB4FE /* KLBaseModel.h */,
+				7DC4FBC81FEA491B00CFB4FE /* KLBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DC4FBC61FEA489000CFB4FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBCB1FEA492300CFB4FE /* KLBaseController.h */,
+				7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7DC4FBCD1FEA49EF00CFB4FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBD01FEA4AB500CFB4FE /* KLBaseHeader.h */,
+				7DC4FBCE1FEA4AB500CFB4FE /* KLBaseUiConstants.h */,
+				7DC4FBD11FEA4AB500CFB4FE /* KLBaseSysConstants.h */,
+				7DC4FBCF1FEA4AB500CFB4FE /* KLBaseDebugConstants.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7DC4FBD31FEA4EC200CFB4FE /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FBD41FEA4EC200CFB4FE /* JSONKit.h */,
+				7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7DC4FB831FEA3D9100CFB4FE /* CardCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC4FBB01FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheck" */;
+			buildPhases = (
+				7DC4FB801FEA3D9100CFB4FE /* Sources */,
+				7DC4FB811FEA3D9100CFB4FE /* Frameworks */,
+				7DC4FB821FEA3D9100CFB4FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardCheck;
+			productName = CardCheck;
+			productReference = 7DC4FB841FEA3D9100CFB4FE /* CardCheck.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7DC4FB9B1FEA3D9100CFB4FE /* CardCheckTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC4FBB31FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheckTests" */;
+			buildPhases = (
+				7DC4FB981FEA3D9100CFB4FE /* Sources */,
+				7DC4FB991FEA3D9100CFB4FE /* Frameworks */,
+				7DC4FB9A1FEA3D9100CFB4FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7DC4FB9E1FEA3D9100CFB4FE /* PBXTargetDependency */,
+			);
+			name = CardCheckTests;
+			productName = CardCheckTests;
+			productReference = 7DC4FB9C1FEA3D9100CFB4FE /* CardCheckTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7DC4FBA61FEA3D9100CFB4FE /* CardCheckUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC4FBB61FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheckUITests" */;
+			buildPhases = (
+				7DC4FBA31FEA3D9100CFB4FE /* Sources */,
+				7DC4FBA41FEA3D9100CFB4FE /* Frameworks */,
+				7DC4FBA51FEA3D9100CFB4FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7DC4FBA91FEA3D9100CFB4FE /* PBXTargetDependency */,
+			);
+			name = CardCheckUITests;
+			productName = CardCheckUITests;
+			productReference = 7DC4FBA71FEA3D9100CFB4FE /* CardCheckUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7DC4FB7C1FEA3D9100CFB4FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = itnesPro;
+				TargetAttributes = {
+					7DC4FB831FEA3D9100CFB4FE = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					7DC4FB9B1FEA3D9100CFB4FE = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7DC4FB831FEA3D9100CFB4FE;
+					};
+					7DC4FBA61FEA3D9100CFB4FE = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7DC4FB831FEA3D9100CFB4FE;
+					};
+				};
+			};
+			buildConfigurationList = 7DC4FB7F1FEA3D9100CFB4FE /* Build configuration list for PBXProject "CardCheck" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7DC4FB7B1FEA3D9100CFB4FE;
+			productRefGroup = 7DC4FB851FEA3D9100CFB4FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7DC4FB831FEA3D9100CFB4FE /* CardCheck */,
+				7DC4FB9B1FEA3D9100CFB4FE /* CardCheckTests */,
+				7DC4FBA61FEA3D9100CFB4FE /* CardCheckUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7DC4FB821FEA3D9100CFB4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
+				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
+				7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FB9A1FEA3D9100CFB4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FBA51FEA3D9100CFB4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7DC4FB801FEA3D9100CFB4FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
+				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
+				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
+				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
+				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
+				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
+				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FB981FEA3D9100CFB4FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC4FBA11FEA3D9100CFB4FE /* CardCheckTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC4FBA31FEA3D9100CFB4FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC4FBAC1FEA3D9200CFB4FE /* CardCheckUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7DC4FB9E1FEA3D9100CFB4FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DC4FB831FEA3D9100CFB4FE /* CardCheck */;
+			targetProxy = 7DC4FB9D1FEA3D9100CFB4FE /* PBXContainerItemProxy */;
+		};
+		7DC4FBA91FEA3D9100CFB4FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DC4FB831FEA3D9100CFB4FE /* CardCheck */;
+			targetProxy = 7DC4FBA81FEA3D9100CFB4FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DC4FB8E1FEA3D9100CFB4FE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7DC4FB921FEA3D9100CFB4FE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DC4FB931FEA3D9100CFB4FE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7DC4FBAE1FEA3D9200CFB4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7DC4FBAF1FEA3D9200CFB4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7DC4FBB11FEA3D9200CFB4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
+				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7DC4FBB21FEA3D9200CFB4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
+				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7DC4FBB41FEA3D9200CFB4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				INFOPLIST_FILE = CardCheckTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardcheck.home.CardCheckTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardCheck.app/CardCheck";
+			};
+			name = Debug;
+		};
+		7DC4FBB51FEA3D9200CFB4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				INFOPLIST_FILE = CardCheckTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardcheck.home.CardCheckTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardCheck.app/CardCheck";
+			};
+			name = Release;
+		};
+		7DC4FBB71FEA3D9200CFB4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				INFOPLIST_FILE = CardCheckUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardcheck.home.CardCheckUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CardCheck;
+			};
+			name = Debug;
+		};
+		7DC4FBB81FEA3D9200CFB4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				INFOPLIST_FILE = CardCheckUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardcheck.home.CardCheckUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CardCheck;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7DC4FB7F1FEA3D9100CFB4FE /* Build configuration list for PBXProject "CardCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC4FBAE1FEA3D9200CFB4FE /* Debug */,
+				7DC4FBAF1FEA3D9200CFB4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC4FBB01FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC4FBB11FEA3D9200CFB4FE /* Debug */,
+				7DC4FBB21FEA3D9200CFB4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC4FBB31FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheckTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC4FBB41FEA3D9200CFB4FE /* Debug */,
+				7DC4FBB51FEA3D9200CFB4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC4FBB61FEA3D9200CFB4FE /* Build configuration list for PBXNativeTarget "CardCheckUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC4FBB71FEA3D9200CFB4FE /* Debug */,
+				7DC4FBB81FEA3D9200CFB4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7DC4FBC11FEA486800CFB4FE /* database.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7DC4FBC21FEA486800CFB4FE /* database.xcdatamodel */,
+			);
+			currentVersion = 7DC4FBC21FEA486800CFB4FE /* database.xcdatamodel */;
+			path = database.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7DC4FB7C1FEA3D9100CFB4FE /* Project object */;
+}
