@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    CardReader *reader = [CardReader demoReader];
+    AuthRequestModel *request = [AuthRequestModel modelWithLogin: DEMO_LOGIN
+                                                            andReader: reader];
+    [[APIController sharedInstance] sendAuthRequest: request
+                                     withCompletion:^(id responseObj, NSError *error) {
+                                         NSLog(@"");
+                                     }];
 }
 
 
