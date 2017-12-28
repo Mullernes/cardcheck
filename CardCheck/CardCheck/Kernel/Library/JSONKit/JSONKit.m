@@ -16,6 +16,13 @@
 
 @implementation NSDictionary (JSONKitSerializing)
 
+- (NSData *)JSONData
+{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject: self options: 0 error: nil];
+    
+    return jsonData;
+}
+
 - (NSString *)JSONString
 {
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options: 0 error: nil];

@@ -15,13 +15,11 @@
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 
 #pragma mark - Working
+- (NSData *)jsonData;
 - (NSString *)jsonString;
 - (NSDictionary *)parameters;
 
 #pragma mark - Errors
 - (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;
-
-#pragma mark - Debug
-- (NSString *)debugDescription;
 
 @end

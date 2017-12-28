@@ -20,7 +20,18 @@
     
     CardReader *reader = [CardReader demoReader];
     AuthRequestModel *request = [AuthRequestModel modelWithLogin: DEMO_LOGIN
-                                                            andReader: reader];
+                                                       andReader: reader];
+  
+    /*
+    CryptoController *crp = [CryptoController sharedInstance];
+    NSString *key = @"b745ec0fdf5c9e94db10";
+
+    NSInteger value1 = [crp hotpWithText: [request jsonString] andSecret: key];
+    NSInteger value2 = [crp hotpWithData: [request jsonData] andSecret: key];
+    
+    NSLog(@"");
+     */
+    
     [[APIController sharedInstance] sendAuthRequest: request
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          NSLog(@"response - %@", model);

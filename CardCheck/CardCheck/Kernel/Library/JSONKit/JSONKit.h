@@ -9,5 +9,7 @@
 
 @interface NSDictionary (JSONKitSerializing)
 
+- (NSData *)JSONData;
 - (NSString *)JSONString;
+
 @end

@@ -8,6 +8,7 @@
 
 #import "CryptoController.h"
 
+#import "NSString+Extensions.h"
 #include <CommonCrypto/CommonHMAC.h>
 
 @implementation CryptoController
@@ -35,9 +36,11 @@
     return self;
 }
 
+#pragma mark - hmac1
+
 - (NSData *)hmac1WithText:(NSString *)plain andSecret:(NSString *)key
 {
-    const char *cKey  = [key cStringUsingEncoding: NSUTF8StringEncoding];
+    const char *cKey  = [[key hexToBytes] bytes];
     const char *cText = [plain cStringUsingEncoding: NSUTF8StringEncoding];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
@@ -47,6 +50,38 @@
                                           length: sizeof(cHMAC)];
                     
     return HMAC.copy;
+}
+
+- (NSData *)hmac1WithData:(NSData *)plain andSecret:(NSString *)key
+{
+    const char *cKey  = [[key hexToBytes] bytes];
+    const char *cText = [plain bytes];
+    
+    unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
+    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, strlen(cText), cHMAC);
+    
+    NSData *HMAC = [[NSData alloc] initWithBytes: cHMAC
+                                          length: sizeof(cHMAC)];
+    
+    return HMAC.copy;
+}
+
+- (int)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey
+{
+    NSData *data = [self hmac1WithData: plainData andSecret: secretKey];
+    const char *cHMAC = [data bytes];
+    
+    int value = 0;
+    int offset = 0;
+    offset = cHMAC[CC_SHA1_DIGEST_LENGTH - 1] & 0x0f;
+    
+    value = ((cHMAC[offset] & 0x7f) << 24)     |
+    ((cHMAC[offset + 1] & 0xff) << 16) |
+    ((cHMAC[offset + 2] & 0xff) << 8)  |
+    (cHMAC[offset + 3] & 0xff);
+    value = value % 1000000;
+    
+    return value;
 }
 
 - (int)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey
@@ -66,6 +101,5 @@
     
     return value;
 }
-
 
 @end

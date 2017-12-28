@@ -36,7 +36,6 @@
 
 #pragma mark - Debug
 - (NSString *)currentClass;
-- (NSString *)debugDescription;
 
 @end
 

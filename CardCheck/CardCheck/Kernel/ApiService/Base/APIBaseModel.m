@@ -28,6 +28,11 @@
 }
 
 #pragma mark - Working
+
+- (NSData *)jsonData {
+    return [[self parameters] JSONData];
+}
+
 - (NSString *)jsonString {
     return [[self parameters] JSONString];
 }
@@ -43,11 +48,6 @@
     [self setupWithFailed: err];
 
     return err;
-}
-
-#pragma mark - Debug
-- (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"self = %@", self];
 }
 
 @end
