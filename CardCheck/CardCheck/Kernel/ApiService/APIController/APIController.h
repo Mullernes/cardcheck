@@ -8,8 +8,7 @@
 
 #import "KLBaseController.h"
 
-@class AuthRequestModel;
-typedef void(^AuthResponseHandler)(id responseObj, NSError *error);
+typedef void(^AuthResponseHandler)(AuthResponseModel *model, NSError *error);
 
 @interface APIController : KLBaseController
 

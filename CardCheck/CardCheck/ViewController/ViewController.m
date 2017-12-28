@@ -22,11 +22,13 @@
     AuthRequestModel *request = [AuthRequestModel modelWithLogin: DEMO_LOGIN
                                                             andReader: reader];
     [[APIController sharedInstance] sendAuthRequest: request
-                                     withCompletion:^(id responseObj, NSError *error) {
-                                         NSLog(@"");
+                                     withCompletion:^(AuthResponseModel *model, NSError *error) {
+                                         NSLog(@"response - %@", model);
+                                         if (model.isCorrect == NO) {
+                                             NSLog(@"");
+                                         }
                                      }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

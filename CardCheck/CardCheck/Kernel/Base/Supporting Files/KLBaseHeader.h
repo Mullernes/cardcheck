@@ -17,6 +17,7 @@
 //Model
 #import "CardReader.h"
 #import "AuthRequestModel.h"
+#import "AuthResponseModel.h"
 
 //Controller
 #import "APIController.h"

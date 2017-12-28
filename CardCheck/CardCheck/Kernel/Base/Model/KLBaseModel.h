@@ -28,6 +28,12 @@
 - (NSError *)failedInMethod:(NSString *)method
                  withReason:(NSString *)format, ...;
 
+- (NSError *)errorWithCode:(NSNumber *)code
+                    method:(NSString *)method
+                    reason:(NSString *)reason;
+
+- (void)setupWithFailed:(NSError *)error;
+
 #pragma mark - Debug
 - (NSString *)currentClass;
 - (NSString *)debugDescription;

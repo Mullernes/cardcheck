@@ -50,8 +50,6 @@
 
 - (void)sendAuthRequest:(AuthRequestModel *)model withCompletion:(AuthResponseHandler)handler
 {
-    __weak APIController *weakSelf = self;
-    
     //1
     NSInteger signValue = [self.crpController hotpWithText: [model jsonString] andSecret: DEMO_CUSTOM_ID];
     [model setSignature: [NSString stringWithFormat:@"%li", signValue]];
@@ -69,9 +67,10 @@
        parameters: [model parameters]
          progress: nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-              NSLog(@"");
+              AuthResponseModel *model = [AuthResponseModel responseWithRawData: responseObject];
+              handler(model, nil);
           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              NSLog(@"");
+              handler(nil, error);
           }];
 }
 

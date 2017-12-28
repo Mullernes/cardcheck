@@ -8,7 +8,15 @@
 
 #import "APIBaseModel.h"
 
+@interface APIBaseModel()
+@end
+
 @implementation APIBaseModel
+
++ (instancetype)responseWithRawData:(NSDictionary *)data
+{
+    return [APIBaseModel new];
+}
 
 - (id)init
 {
@@ -19,6 +27,7 @@
     return self;
 }
 
+#pragma mark - Working
 - (NSString *)jsonString {
     return [[self parameters] JSONString];
 }
@@ -27,6 +36,16 @@
     return @{};
 }
 
+#pragma mark - Errors
+- (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;
+{
+    NSError *err = [self errorWithCode: @(code) method: name reason: @"Bad request"];
+    [self setupWithFailed: err];
+
+    return err;
+}
+
+#pragma mark - Debug
 - (NSString *)debugDescription {
     return [NSString stringWithFormat:@"self = %@", self];
 }

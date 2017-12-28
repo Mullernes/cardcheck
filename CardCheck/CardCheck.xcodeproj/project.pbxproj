@@ -27,6 +27,7 @@
 		7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */; };
 		7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */; };
 		7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C761FF37B0D00058FD4 /* APIController.m */; };
+		7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		7DDE2C751FF37B0D00058FD4 /* APIController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
 		7DDE2C761FF37B0D00058FD4 /* APIController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
 		7DDE2C781FF37F2700058FD4 /* KLBaseAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseAppConstants.h; sourceTree = "<group>"; };
+		7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthResponseModel.m; sourceTree = "<group>"; };
+		7DDE2CC11FF4CFF300058FD4 /* AuthResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthResponseModel.h; sourceTree = "<group>"; };
 		7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02E562D780509AE0A42E270 /* Pods-CardCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckTests/Pods-CardCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -355,8 +358,7 @@
 		7DDE2C6C1FF37A4B00058FD4 /* APIModel */ = {
 			isa = PBXGroup;
 			children = (
-				7DDE2C6F1FF37A4B00058FD4 /* AuthRequestModel.h */,
-				7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */,
+				7DDE2CBF1FF4CFC500058FD4 /* Auth */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -377,6 +379,17 @@
 				7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		7DDE2CBF1FF4CFC500058FD4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7DDE2C6F1FF37A4B00058FD4 /* AuthRequestModel.h */,
+				7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */,
+				7DDE2CC11FF4CFF300058FD4 /* AuthResponseModel.h */,
+				7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,6 +688,7 @@
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
 				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
+				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,

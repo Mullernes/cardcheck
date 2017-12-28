@@ -43,6 +43,8 @@
 #define XOM_RESPONSE_CREATE_ERROR               510
 #define XOM_RESPONSE_SETUP_ERROR                511
 
+#define API_RESPONSE_INVALID_SIGN_CODE          4
+
 
 #define XOM_ERROR_DESCRIPTION                @{[NSNumber numberWithInteger: XOM_NOT_DEFINED_ERROR]                  : @"Not defined error",   \
                                             [NSNumber numberWithInteger: XOM_DATA_ERROR]                            : @"Bad data",   \
@@ -54,6 +56,7 @@
                                             [NSNumber numberWithInteger: XOM_REQUEST_COMPLETE_ERROR]                : @"Couldn't complete request with reason: ", \
                                             [NSNumber numberWithInteger: XOM_REQUEST_NOT_EXIST_ERROR]               : @"Couldn't find request with response id", \
                                             [NSNumber numberWithInteger: XOM_RESPONSE_CREATE_ERROR]                 : @"Couldn't create response. ResponseId == NULL", \
-                                            [NSNumber numberWithInteger: XOM_RESPONSE_SETUP_ERROR]                  : @"Couldn't setup response. Bad input data: "}
+                                            [NSNumber numberWithInteger: XOM_RESPONSE_SETUP_ERROR]                  : @"Couldn't setup response. Bad input data: ", \
+                                            @(API_RESPONSE_INVALID_SIGN_CODE)                  : @"неверная подпись запроса"}
 
 #endif /* XT_Base_Constants_H */
