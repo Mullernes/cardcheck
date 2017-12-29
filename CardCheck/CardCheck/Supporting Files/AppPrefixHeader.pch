@@ -13,8 +13,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-    //Library
+    //ThirdParty
     #import "JSONKit.h"
+    #import <AFNetworking/AFNetworking.h>
 
     //Header
     #import "KLBaseHeader.h"

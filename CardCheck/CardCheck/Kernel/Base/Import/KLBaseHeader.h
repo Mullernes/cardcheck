@@ -11,7 +11,17 @@
 
 #import "KLBaseUiConstants.h"
 #import "KLBaseSysConstants.h"
+#import "KLBaseAppConstants.h"
 #import "KLBaseDebugConstants.h"
+
+//Model
+#import "CardReader.h"
+#import "AuthRequestModel.h"
+#import "AuthResponseModel.h"
+
+//Controller
+#import "APIController.h"
+#import "CryptoController.h"
 
 /*
 //Extensions
@@ -22,12 +32,6 @@
 #import "CallProtocol.h"
 #import "HandleProtocol.h"
 #import "SignalingChanelProcessor.h"
-
-//Model
-#import "WebRTCData.h"
-#import "WebRTCCallData.h"
-#import "WebRTCConnection.h"
-#import "WebRTCConnectionStore.h"
 
 #import "ServiceCallData.h"
 

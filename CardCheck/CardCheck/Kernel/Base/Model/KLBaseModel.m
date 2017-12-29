@@ -167,6 +167,11 @@
     return error;
 }
 
+- (void)setupWithFailed:(NSError *)error
+{
+    [self setFailErr: error];
+}
+
 #pragma mark - Debug
 
 - (NSString *)currentClass {
