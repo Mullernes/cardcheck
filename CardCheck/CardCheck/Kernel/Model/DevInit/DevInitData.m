@@ -29,4 +29,15 @@
     return self;
 }
 
+#pragma mark - Debug
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
+}
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@; requestID = %li, requestTime = %li, responseTime = %li", self, self.requestID, self.requestTime, self.responseTime];
+}
+
+
 @end

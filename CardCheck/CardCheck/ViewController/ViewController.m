@@ -65,6 +65,7 @@
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          if (model.isCorrect) {
                                              weakSelf.devInit = [[DevInitData alloc] initWithAuthResponse: model];
+                                             NSLog(@"devInit = %@", [weakSelf.devInit debugDescription]);
                                          }
                                          else {
                                              NSLog(@"response = %@", model);
