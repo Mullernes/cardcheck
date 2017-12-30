@@ -10,9 +10,11 @@
 
 @interface AuthResponseModel()
 
-@property (nonatomic) NSUInteger code;
-@property (nonatomic) NSUInteger time;
-@property (nonatomic) NSUInteger requestID;
+@property (nonatomic, readwrite) NSUInteger code;
+@property (nonatomic, readwrite) NSUInteger time;
+@property (nonatomic, readwrite) NSUInteger requestID;
+
+@property (nonatomic, readwrite) AuthRequestModel *request;
 
 @end
 
@@ -43,6 +45,10 @@
     return @{@"time"        :   @(self.time),
              @"code"        :   @(self.code),
              @"auth_req_id" :   @(self.requestID)};
+}
+
+- (void)setupWithRequest:(AuthRequestModel *)request {
+    self.request = request;
 }
 
 - (NSString *)debugDescription {

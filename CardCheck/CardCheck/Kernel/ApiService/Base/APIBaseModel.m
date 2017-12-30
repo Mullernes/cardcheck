@@ -9,13 +9,20 @@
 #import "APIBaseModel.h"
 
 @interface APIBaseModel()
+
+@property (nonatomic, readwrite) NSString *signature;
+
 @end
 
 @implementation APIBaseModel
 
-+ (instancetype)responseWithRawData:(NSDictionary *)data
+- (instancetype)initWithRawData:(NSDictionary *)data
 {
-    return [APIBaseModel new];
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
 }
 
 - (id)init
@@ -39,6 +46,17 @@
 
 - (NSDictionary *)parameters {
     return @{};
+}
+
+- (BOOL)setupWithSignature:(NSNumber *)sign
+{
+    if (sign.intValue) {
+        self.signature = [sign stringValue];
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 #pragma mark - Errors

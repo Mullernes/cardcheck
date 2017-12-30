@@ -15,6 +15,7 @@ typedef void(^AuthResponseHandler)(AuthResponseModel *model, NSError *error);
 #pragma mark - Init
 + (instancetype)sharedInstance;
 
-- (void)sendAuthRequest:(AuthRequestModel *)model withCompletion:(AuthResponseHandler)handler;
+- (void)sendAuthRequest:(AuthRequestModel *)request
+         withCompletion:(AuthResponseHandler)handler;
 
 @end

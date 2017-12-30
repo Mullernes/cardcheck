@@ -13,7 +13,8 @@
 #pragma mark - Init
 + (instancetype)sharedInstance;
 
-- (int)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey;
-- (int)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey;
+- (NSNumber *)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey;
+- (NSNumber *)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey;
+- (NSNumber *)hotpWithValue:(int)plainValue andSecret:(NSString *)secretKey;
 
 @end

@@ -29,6 +29,7 @@
 		7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C761FF37B0D00058FD4 /* APIController.m */; };
 		7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */; };
 		7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */; };
+		7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		7DDE2CC11FF4CFF300058FD4 /* AuthResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthResponseModel.h; sourceTree = "<group>"; };
 		7DDE2CC41FF4E82300058FD4 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		7DDE2D0A1FF6CAA200058FD4 /* DevInitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevInitData.h; sourceTree = "<group>"; };
+		7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevInitData.m; sourceTree = "<group>"; };
 		7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02E562D780509AE0A42E270 /* Pods-CardCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckTests/Pods-CardCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +281,7 @@
 		7DC4FBBF1FEA477400CFB4FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7DDE2D081FF6C04300058FD4 /* DevInit */,
 				7DDE2C681FF2E8E800058FD4 /* CardReader */,
 			);
 			path = Model;
@@ -403,6 +407,15 @@
 				7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7DDE2D081FF6C04300058FD4 /* DevInit */ = {
+			isa = PBXGroup;
+			children = (
+				7DDE2D0A1FF6CAA200058FD4 /* DevInitData.h */,
+				7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */,
+			);
+			path = DevInit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,6 +709,7 @@
 			files = (
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
+				7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */,
 				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
 				7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */,
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,

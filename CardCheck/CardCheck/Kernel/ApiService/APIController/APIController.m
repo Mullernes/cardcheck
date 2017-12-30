@@ -11,6 +11,7 @@
 @interface APIController()
 
 @property (nonatomic, strong) CryptoController *crpController;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
 
@@ -41,6 +42,22 @@
     return self;
 }
 
+- (void)initSessionManager {
+    NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration: cfg];
+    self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self.manager.requestSerializer setValue: @"application/json; charset=utf-8"
+                          forHTTPHeaderField: @"Content-Type"];
+}
+
+- (AFHTTPSessionManager *)manager {
+    if (nil == _manager) {
+        [self initSessionManager];
+    }
+    
+    return _manager;
+}
+
 #pragma mark - Working
 
 - (NSString *)authRequestUrl
@@ -48,37 +65,36 @@
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_AUTH_TARGET];
 }
 
-- (void)sendAuthRequest:(AuthRequestModel *)model withCompletion:(AuthResponseHandler)handler
+- (void)sendAuthRequest:(AuthRequestModel *)request
+         withCompletion:(AuthResponseHandler)handler
 {
     //1
-    NSInteger signValue = [self.crpController hotpWithData: [model jsonData]
-                                                 andSecret: DEMO_CUSTOM_ID];
-    
-    [model setSignature: [NSString stringWithFormat:@"%li", signValue]];
-    
-    //2
-    NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration: cfg];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue: @"application/json; charset=utf-8"
-                     forHTTPHeaderField: @"Content-Type"];
-    [manager.requestSerializer setValue: model.signature
-                     forHTTPHeaderField: @"Content-Hmac"];
-    
-    [manager POST: [self authRequestUrl]
-       parameters: [model parameters]
-         progress: nil
-          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-              AuthResponseModel *model = [AuthResponseModel responseWithRawData: responseObject];
-              if (model.isCorrect) {
-                  handler(model, nil);
-              }
-              else {
-                  handler(nil, model.failErr);
-              }
-          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              handler(nil, error);
-          }];
+    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
+                                            andSecret: DEMO_CUSTOM_ID];
+    if ([request setupWithSignature: sign]) {
+        //2
+        [self.manager.requestSerializer setValue: request.signature
+                              forHTTPHeaderField: @"Content-Hmac"];
+        //3
+        [self.manager POST: [self authRequestUrl]
+                parameters: [request parameters]
+                  progress: nil
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    AuthResponseModel *response = [AuthResponseModel responseWithRawData: responseObject];
+                  if (response.isCorrect) {
+                      [response setupWithRequest: request];
+                      handler(response, nil);
+                  }
+                  else {
+                      handler(nil, response.failErr);
+                  }
+              } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                  handler(nil, error);
+              }];
+    }
+    else {
+        //TODO: make error
+    }
 }
 
 @end

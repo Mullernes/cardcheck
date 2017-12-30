@@ -10,14 +10,16 @@
 
 @interface APIBaseModel : KLBaseModel
 
-@property (nonatomic, strong) NSString *signature;
+@property (nonatomic, strong, readonly) NSString *signature;
 
-+ (instancetype)responseWithRawData:(NSDictionary *)data;
+- (instancetype)initWithRawData:(NSDictionary *)data;
 
 #pragma mark - Working
 - (NSData *)jsonData;
 - (NSString *)jsonString;
 - (NSDictionary *)parameters;
+
+- (BOOL)setupWithSignature:(NSNumber *)sign;
 
 #pragma mark - Errors
 - (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;

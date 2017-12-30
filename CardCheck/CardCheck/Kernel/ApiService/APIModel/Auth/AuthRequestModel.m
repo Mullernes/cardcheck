@@ -10,16 +10,15 @@
 
 @interface AuthRequestModel()
 
-@property (nonatomic) NSUInteger time;
-@property (nonatomic, strong) NSString *login;
-@property (nonatomic, strong) CardReader *reader;
-
+@property (nonatomic, readwrite) NSString *login;
+@property (nonatomic, readwrite) NSUInteger time;
+@property (nonatomic, readwrite) CardReader *reader;
 
 @end
 
 @implementation AuthRequestModel
 
-+ (instancetype)modelWithLogin:(NSString *)login andReader:(CardReader *)reader
++ (instancetype)requestWithLogin:(NSString *)login andReader:(CardReader *)reader
 {
     return [[AuthRequestModel alloc] initWithLogin: login andReader: reader];
 }
