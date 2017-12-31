@@ -102,10 +102,10 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)hotpWithValue:(int)plainValue andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey
 {
-    uint32_t tValue = CFSwapInt32HostToBig(plainValue);
-    NSData *plainData = [NSData dataWithBytes: &tValue length: sizeof(tValue)];
+    //uint64_t tValue = CFSwapInt64HostToBig(plainValue);
+    NSData *plainData = [NSData dataWithBytes: &plainValue length: 6];
     
     NSData *data = [self hmac1WithData: plainData andSecret: secretKey];
     const char *cHMAC = [data bytes];

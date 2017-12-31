@@ -77,7 +77,7 @@
 {
     CryptoController *crp = [CryptoController sharedInstance];
     NSString *key = @"b745ec0fdf5c9e94db10";
-    NSNumber *value = [crp hotpWithValue: (int)self.devInit.responseTime andSecret: key];
+    NSNumber *value = [crp hotpWithValue: self.devInit.responseTime andSecret: key];
     
     [self.calculatedOtp setText: [value stringValue]];
 }

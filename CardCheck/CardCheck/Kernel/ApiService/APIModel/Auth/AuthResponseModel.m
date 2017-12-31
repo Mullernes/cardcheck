@@ -10,8 +10,8 @@
 
 @interface AuthResponseModel()
 
+@property (nonatomic, readwrite) long long time;
 @property (nonatomic, readwrite) NSUInteger code;
-@property (nonatomic, readwrite) NSUInteger time;
 @property (nonatomic, readwrite) NSUInteger requestID;
 
 @property (nonatomic, readwrite) AuthRequestModel *request;
@@ -30,7 +30,7 @@
     self = [super init];
     if (self) {
         self.code = [[data objectForKey: @"code"] integerValue];
-        self.time = [[data objectForKey: @"time"] integerValue];
+        self.time = [[data objectForKey: @"time"] longLongValue];
         self.requestID = [[data objectForKey: @"auth_req_id"] integerValue];
         
         if (self.code > 0) {

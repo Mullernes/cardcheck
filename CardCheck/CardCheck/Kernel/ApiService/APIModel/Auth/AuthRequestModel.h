@@ -10,7 +10,7 @@
 
 @interface AuthRequestModel : APIBaseModel
 
-@property (nonatomic, readonly) NSUInteger time;
+@property (nonatomic, readonly) long long time;
 @property (nonatomic, strong, readonly) NSString *login;
 @property (nonatomic, strong, readonly) CardReader *reader;
 

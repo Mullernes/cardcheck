@@ -12,8 +12,8 @@
 
 @property (nonatomic) NSUInteger calculatedOtp;
 @property (nonatomic, readonly) NSUInteger requestID;
-@property (nonatomic, readonly) NSUInteger requestTime;
-@property (nonatomic, readonly) NSUInteger responseTime;
+@property (nonatomic, readonly) long long requestTime;
+@property (nonatomic, readonly) long long responseTime;
 
 - (instancetype)initWithAuthResponse:(AuthResponseModel *)response;
 

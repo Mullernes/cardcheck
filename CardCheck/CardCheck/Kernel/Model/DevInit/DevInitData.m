@@ -11,8 +11,8 @@
 @interface DevInitData()
 
 @property (nonatomic) NSUInteger requestID;
-@property (nonatomic) NSUInteger requestTime;
-@property (nonatomic) NSUInteger responseTime;
+@property (nonatomic) long long requestTime;
+@property (nonatomic) long long responseTime;
 
 @end
 

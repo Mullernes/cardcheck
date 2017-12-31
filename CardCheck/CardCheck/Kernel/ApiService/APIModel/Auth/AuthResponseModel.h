@@ -10,8 +10,8 @@
 
 @interface AuthResponseModel : APIBaseModel
 
+@property (nonatomic, readonly) long long time;
 @property (nonatomic, readonly) NSUInteger code;
-@property (nonatomic, readonly) NSUInteger time;
 @property (nonatomic, readonly) NSUInteger requestID;
 
 @property (nonatomic, strong, readonly) AuthRequestModel *request;
