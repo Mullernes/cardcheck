@@ -47,7 +47,7 @@
 {
     _devInit = devInit;
     
-    NSString *respTime = [NSString stringWithFormat:@"%li", _devInit.responseTime];
+    NSString *respTime = [NSString stringWithFormat:@"%lli", _devInit.responseTime];
     [self.responseTime setText: respTime];
     
     NSString *reqID = [NSString stringWithFormat:@"%li", _devInit.requestID];
@@ -76,9 +76,7 @@
 - (IBAction)otp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSString *key = @"b745ec0fdf5c9e94db10";
-    NSNumber *value = [crp hotpWithValue: self.devInit.responseTime andSecret: key];
-    
+    NSNumber *value = [crp hotpWithValue: self.devInit.responseTime andSecret: DEMO_CUSTOM_ID];
     [self.calculatedOtp setText: [value stringValue]];
 }
 @end

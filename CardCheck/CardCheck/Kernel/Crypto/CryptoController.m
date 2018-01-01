@@ -58,7 +58,7 @@
     const char *cText = [plain bytes];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, strlen(cText), cHMAC);
+    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, [plain length], cHMAC);
     
     NSData *HMAC = [[NSData alloc] initWithBytes: cHMAC
                                           length: sizeof(cHMAC)];
@@ -104,11 +104,12 @@
 
 - (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey
 {
-    //uint64_t tValue = CFSwapInt64HostToBig(plainValue);
-    NSData *plainData = [NSData dataWithBytes: &plainValue length: 6];
-    
-    NSData *data = [self hmac1WithData: plainData andSecret: secretKey];
-    const char *cHMAC = [data bytes];
+    uint64_t tValue = plainValue;
+    uint64_t tBytes = CFSwapInt64HostToBig(tValue);
+    NSData *tPlainData = [NSData dataWithBytes: &tBytes length: sizeof(tBytes)];
+
+    NSData *hmacData = [self hmac1WithData: tPlainData andSecret: secretKey];
+    const char *cHMAC = [hmacData bytes];
 
     int otp = 0;
     int offset = 0;
