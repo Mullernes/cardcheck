@@ -16,12 +16,16 @@
 
 //Model
 #import "CardReader.h"
-#import "AuthRequestModel.h"
-#import "AuthResponseModel.h"
+#import "DevInitData.h"
 
 //Controller
 #import "APIController.h"
 #import "CryptoController.h"
+
+//Utils
+#import "CurrentDevice.h"
+
+//ThirdParty
 
 /*
 //Extensions

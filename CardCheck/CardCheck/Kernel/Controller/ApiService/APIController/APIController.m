@@ -65,6 +65,11 @@
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_AUTH_TARGET];
 }
 
+- (NSString *)deviceInitRequestUrl
+{
+    return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_DEV_INIT_TARGET];
+}
+
 - (void)sendAuthRequest:(AuthRequestModel *)request
          withCompletion:(AuthResponseHandler)handler
 {
@@ -79,7 +84,8 @@
         [self.manager POST: [self authRequestUrl]
                 parameters: [request parameters]
                   progress: nil
-                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+        {
                     AuthResponseModel *response = [AuthResponseModel responseWithRawData: responseObject];
                   if (response.isCorrect) {
                       [response setupWithRequest: request];
@@ -91,6 +97,39 @@
               } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                   handler(nil, error);
               }];
+    }
+    else {
+        //TODO: make error
+    }
+}
+
+- (void)sendDevInitRequest:(DevInitRequestModel *)request
+            withCompletion:(DevInitResponseHandler)handler
+{
+    //1
+    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
+                                            andSecret: DEMO_CUSTOM_ID];
+    if ([request setupWithSignature: sign]) {
+        //2
+        [self.manager.requestSerializer setValue: request.signature
+                              forHTTPHeaderField: @"Content-Hmac"];
+        //3
+        [self.manager POST: [self deviceInitRequestUrl]
+                parameters: [request parameters]
+                  progress: nil
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+        {
+                       DevInitResponseModel *response = [DevInitResponseModel responseWithRawData: responseObject];
+                       if (response.isCorrect) {
+                           [response setupWithRequest: request];
+                           handler(response, nil);
+                       }
+                       else {
+                           handler(nil, response.failErr);
+                       }
+                   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                       handler(nil, error);
+                   }];
     }
     else {
         //TODO: make error

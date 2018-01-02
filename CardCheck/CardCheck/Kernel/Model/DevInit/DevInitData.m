@@ -10,23 +10,43 @@
 
 @interface DevInitData()
 
-@property (nonatomic) NSUInteger requestID;
-@property (nonatomic) long long requestTime;
-@property (nonatomic) long long responseTime;
+@property (nonatomic, readwrite) int attempts;
+
+@property (nonatomic, readwrite) long authRequestID;
+@property (nonatomic, readwrite) long long authRequestTime;
+@property (nonatomic, readwrite) long long authResponseTime;
+
+@property (nonatomic, readwrite) long long devInitRequestTime;
+@property (nonatomic, readwrite) long long devInitResponseTime;
 
 @end
 
 @implementation DevInitData
 
-- (instancetype)initWithAuthResponse:(AuthResponseModel *)response
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.responseTime = response.time;
-        self.requestID = response.requestID;
-        self.requestTime = response.request.time;
+        self.attempts = 3;
     }
     return self;
+}
+
+- (void)setupWithAuthResponse:(AuthResponseModel *)response
+{
+    self.authResponseTime = response.time;
+    self.authRequestID = response.requestID;
+    self.authRequestTime = response.request.time;
+}
+
+- (void)setupWithDevInitResponse:(DevInitResponseModel *)response
+{
+    self.devInitResponseTime = response.time;
+    self.devInitRequestTime = response.request.time;
+}
+
+- (NSString *)deviceInfo {
+    return [[CurrentDevice sharedInstance] generalInfo];
 }
 
 #pragma mark - Debug
@@ -36,7 +56,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; requestID = %li, requestTime = %li, responseTime = %li", self, self.requestID, self.requestTime, self.responseTime];
+    return [NSString stringWithFormat:@"%@; authRequestID = %li, authRequestTime = %lli, authResponseTime = %lli, devInitRequestTime = %lli, devInitResponseTime = %lli", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime];
 }
 
 
