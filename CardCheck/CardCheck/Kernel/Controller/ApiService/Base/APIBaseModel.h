@@ -10,7 +10,9 @@
 
 @interface APIBaseModel : KLBaseModel
 
+@property (nonatomic, readonly) long long time;
 @property (nonatomic, strong, readonly) NSString *signature;
+@property (nonatomic, strong, readonly) APIBaseModel *request;
 
 - (instancetype)initWithRawData:(NSDictionary *)data;
 
@@ -19,7 +21,9 @@
 - (NSString *)jsonString;
 - (NSDictionary *)parameters;
 
+- (void)setupWithTime:(long long)time;
 - (BOOL)setupWithSignature:(NSNumber *)sign;
+- (void)setupWithRequest:(APIBaseModel *)request;
 
 #pragma mark - Errors
 - (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;

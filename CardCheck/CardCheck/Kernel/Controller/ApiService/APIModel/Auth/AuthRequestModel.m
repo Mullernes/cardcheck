@@ -10,7 +10,6 @@
 
 @interface AuthRequestModel()
 
-@property (nonatomic, readwrite) long long time;
 @property (nonatomic, readwrite) NSString *login;
 @property (nonatomic, readwrite) CardReader *reader;
 
@@ -18,18 +17,22 @@
 
 @implementation AuthRequestModel
 
-+ (instancetype)requestWithLogin:(NSString *)login andReader:(CardReader *)reader
++ (instancetype)requestWithLogin:(NSString *)login
+                       andReader:(CardReader *)reader
 {
     return [[AuthRequestModel alloc] initWithLogin: login andReader: reader];
 }
 
-- (instancetype)initWithLogin:(NSString *)login andReader:(CardReader *)reader
+- (instancetype)initWithLogin:(NSString *)login
+                    andReader:(CardReader *)reader
 {
     self = [super init];
     if (self) {
         self.reader = reader;
         self.login = login.copy;
-        self.time = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+        
+        long long time = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+        [self setupWithTime: time];
     }
     return self;
 }
@@ -44,7 +47,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"self = %@; json = %@", self, self.jsonString];
+    return [NSString stringWithFormat:@"self = %@; json = %@", self, self.parameters];
 }
 
 @end

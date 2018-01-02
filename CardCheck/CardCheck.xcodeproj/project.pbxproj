@@ -10,6 +10,9 @@
 		116E90984996AB46E95EE13B /* libPods-CardCheckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612BE24DB427A35251188050 /* libPods-CardCheckTests.a */; };
 		1B60997856F4E40884808B16 /* libPods-CardCheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */; };
 		302263114FD03EC85589A896 /* libPods-CardCheckUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */; };
+		7D3A42801FFB893D00FFF207 /* DevInitRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A427F1FFB893D00FFF207 /* DevInitRequestModel.m */; };
+		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
+		7D3A42891FFB9AF800FFF207 /* DevInitResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42881FFB9AF700FFF207 /* DevInitResponseModel.m */; };
 		7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50E20E1FF03D4F00705D06 /* CryptoController.m */; };
 		7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */; };
 		7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */; };
@@ -54,6 +57,12 @@
 		135F6F1611C42039A8A4F08A /* Pods-CardCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4954629901196F28C351AC02 /* Pods-CardCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		612BE24DB427A35251188050 /* libPods-CardCheckTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D3A427E1FFB893D00FFF207 /* DevInitRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevInitRequestModel.h; sourceTree = "<group>"; };
+		7D3A427F1FFB893D00FFF207 /* DevInitRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevInitRequestModel.m; sourceTree = "<group>"; };
+		7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDevice.m; sourceTree = "<group>"; };
+		7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDevice.h; sourceTree = "<group>"; };
+		7D3A42871FFB9AF700FFF207 /* DevInitResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevInitResponseModel.h; sourceTree = "<group>"; };
+		7D3A42881FFB9AF700FFF207 /* DevInitResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevInitResponseModel.m; sourceTree = "<group>"; };
 		7D50E20D1FF03D4F00705D06 /* CryptoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoController.h; sourceTree = "<group>"; };
 		7D50E20E1FF03D4F00705D06 /* CryptoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoController.m; sourceTree = "<group>"; };
 		7DC4FB841FEA3D9100CFB4FE /* CardCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +164,35 @@
 				7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D3A427D1FFB88F700FFF207 /* Init */ = {
+			isa = PBXGroup;
+			children = (
+				7D3A427E1FFB893D00FFF207 /* DevInitRequestModel.h */,
+				7D3A427F1FFB893D00FFF207 /* DevInitRequestModel.m */,
+				7D3A42871FFB9AF700FFF207 /* DevInitResponseModel.h */,
+				7D3A42881FFB9AF700FFF207 /* DevInitResponseModel.m */,
+			);
+			path = Init;
+			sourceTree = "<group>";
+		};
+		7D3A42811FFB8D1900FFF207 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7D50E20C1FF03D1A00705D06 /* Crypto */,
+				7DDE2C601FF2E6A600058FD4 /* ApiService */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7D3A42831FFB8D9700FFF207 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
+				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		7D50E20C1FF03D1A00705D06 /* Crypto */ = {
@@ -260,11 +298,11 @@
 			isa = PBXGroup;
 			children = (
 				7DC4FBC41FEA487F00CFB4FE /* Base */,
-				7DDE2C601FF2E6A600058FD4 /* ApiService */,
-				7D50E20C1FF03D1A00705D06 /* Crypto */,
-				7DC4FBC01FEA482E00CFB4FE /* CoreData */,
 				7DC4FBBF1FEA477400CFB4FE /* Model */,
+				7D3A42811FFB8D1900FFF207 /* Controller */,
+				7D3A42831FFB8D9700FFF207 /* Utils */,
 				7DC4FBBE1FEA475700CFB4FE /* Library */,
+				7DC4FBC01FEA482E00CFB4FE /* CoreData */,
 				7DDE2CC31FF4E7D800058FD4 /* Extensions */,
 			);
 			path = Kernel;
@@ -300,7 +338,7 @@
 			children = (
 				7DC4FBC51FEA488500CFB4FE /* Model */,
 				7DC4FBC61FEA489000CFB4FE /* Controller */,
-				7DC4FBCD1FEA49EF00CFB4FE /* Import */,
+				7DC4FBCD1FEA49EF00CFB4FE /* ImportHeaders */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -323,7 +361,7 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		7DC4FBCD1FEA49EF00CFB4FE /* Import */ = {
+		7DC4FBCD1FEA49EF00CFB4FE /* ImportHeaders */ = {
 			isa = PBXGroup;
 			children = (
 				7DC4FBD01FEA4AB500CFB4FE /* KLBaseHeader.h */,
@@ -332,7 +370,7 @@
 				7DDE2C781FF37F2700058FD4 /* KLBaseAppConstants.h */,
 				7DC4FBCF1FEA4AB500CFB4FE /* KLBaseDebugConstants.h */,
 			);
-			path = Import;
+			path = ImportHeaders;
 			sourceTree = "<group>";
 		};
 		7DC4FBD31FEA4EC200CFB4FE /* JSONKit */ = {
@@ -366,6 +404,7 @@
 		7DDE2C6C1FF37A4B00058FD4 /* APIModel */ = {
 			isa = PBXGroup;
 			children = (
+				7D3A427D1FFB88F700FFF207 /* Init */,
 				7DDE2CBF1FF4CFC500058FD4 /* Auth */,
 			);
 			path = APIModel;
@@ -707,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D3A42891FFB9AF800FFF207 /* DevInitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */,
@@ -718,6 +758,8 @@
 				7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
+				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
+				7D3A42801FFB893D00FFF207 /* DevInitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,

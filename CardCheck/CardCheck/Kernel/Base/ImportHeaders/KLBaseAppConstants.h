@@ -13,7 +13,8 @@
 #define DEMO_READER_ID      @"64bc2e5107fe2924"
 #define DEMO_CUSTOM_ID      @"b745ec0fdf5c9e94db10"
 
-#define API_BASE_URL        @"https://ibe.com.ua:64785/"
-#define API_AUTH_TARGET     @"init/auth"
+#define API_BASE_URL            @"https://ibe.com.ua:64785/"
+#define API_AUTH_TARGET         @"init/auth"
+#define API_DEV_INIT_TARGET     @"init/device"
 
 #endif 

@@ -11,14 +11,18 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) DevInitData *devInit;
+@property (nonatomic, strong) DevInitData *devInitData;
+@property (nonatomic, strong) CardReader *currentReader;
 
 @property (weak, nonatomic) IBOutlet UITextField *requestID;
 @property (weak, nonatomic) IBOutlet UITextField *responseTime;
 @property (weak, nonatomic) IBOutlet UITextField *calculatedOtp;
 
+@property (weak, nonatomic) IBOutlet UITextField *typedOtp;
+
 - (IBAction)otp:(id)sender;
 - (IBAction)auth:(id)sender;
+- (IBAction)initialization:(id)sender;
 
 @end
 
@@ -43,29 +47,38 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setDevInit:(DevInitData *)devInit
+- (CardReader *)currentReader {
+    if (_currentReader == nil) {
+        _currentReader = [CardReader demoReader];
+    }
+    
+    return _currentReader;
+}
+
+- (void)setDevInitData:(DevInitData *)devInitData
 {
-    _devInit = devInit;
+    _devInitData = devInitData;
     
-    NSString *respTime = [NSString stringWithFormat:@"%lli", _devInit.responseTime];
-    [self.responseTime setText: respTime];
-    
-    NSString *reqID = [NSString stringWithFormat:@"%li", _devInit.requestID];
+    NSString *reqID = [NSString stringWithFormat:@"%li", _devInitData.authRequestID];
     [self.requestID setText: reqID];
+    
+    NSString *respTime = [NSString stringWithFormat:@"%lli", _devInitData.authResponseTime];
+    [self.responseTime setText: respTime];
 }
 
 - (IBAction)auth:(id)sender
 {
-    CardReader *reader = [CardReader demoReader];
     AuthRequestModel *request = [AuthRequestModel requestWithLogin: DEMO_LOGIN
-                                                         andReader: reader];
-
+                                                         andReader: self.currentReader];
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendAuthRequest: request
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          if (model.isCorrect) {
-                                             weakSelf.devInit = [[DevInitData alloc] initWithAuthResponse: model];
-                                             NSLog(@"devInit = %@", [weakSelf.devInit debugDescription]);
+                                             DevInitData *data = [DevInitData new];
+                                             [data setupWithAuthResponse: model];
+                                             [weakSelf setDevInitData: data];
+                                             
+                                             NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
                                          }
                                          else {
                                              NSLog(@"response = %@", model);
@@ -76,7 +89,33 @@
 - (IBAction)otp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSNumber *value = [crp hotpWithValue: self.devInit.responseTime andSecret: DEMO_CUSTOM_ID];
-    [self.calculatedOtp setText: [value stringValue]];
+    NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
+                               andSecret: DEMO_CUSTOM_ID];
+    [self.devInitData setCalcOtp: [value unsignedIntegerValue]];
+
+    [self.calculatedOtp setText: [NSString stringWithFormat:@"%lu", (unsigned long)self.devInitData.calcOtp]];
+}
+
+- (IBAction)initialization:(id)sender
+{
+    //NSUInteger typedOtp = [self.typedOtp.text integerValue];
+    NSUInteger typedOtp = self.devInitData.calcOtp;
+    if (self.devInitData.calcOtp == typedOtp)
+    {
+        DevInitRequestModel *request = [DevInitRequestModel requestWithData: self.devInitData
+                                                                  andReader: self.currentReader];
+        __weak ViewController *weakSelf = self;
+        [[APIController sharedInstance] sendDevInitRequest: request
+                                            withCompletion:^(DevInitResponseModel *model, NSError *error) {
+                                                if (model.isCorrect) {
+                                                    [weakSelf.devInitData setupWithDevInitResponse: model];
+                                                    
+                                                    NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+                                                }
+                                                else {
+                                                    NSLog(@"response = %@", model);
+                                                }
+                                            }];
+    }
 }
 @end

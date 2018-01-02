@@ -6,6 +6,7 @@ target 'CardCheck' do
   # use_frameworks!
 
   # Pods for CardCheck
+  pod 'SDVersion', '~> 4.2'
   pod 'AFNetworking', '~> 3.0'
 
   target 'CardCheckTests' do

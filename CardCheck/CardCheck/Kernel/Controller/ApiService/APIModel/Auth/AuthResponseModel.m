@@ -10,11 +10,8 @@
 
 @interface AuthResponseModel()
 
-@property (nonatomic, readwrite) long long time;
-@property (nonatomic, readwrite) NSUInteger code;
-@property (nonatomic, readwrite) NSUInteger requestID;
-
-@property (nonatomic, readwrite) AuthRequestModel *request;
+@property (nonatomic, readwrite) int code;
+@property (nonatomic, readwrite) long requestID;
 
 @end
 
@@ -29,9 +26,11 @@
 {
     self = [super init];
     if (self) {
-        self.code = [[data objectForKey: @"code"] integerValue];
-        self.time = [[data objectForKey: @"time"] longLongValue];
-        self.requestID = [[data objectForKey: @"auth_req_id"] integerValue];
+        self.code = [[data objectForKey: @"code"] intValue];
+        self.requestID = [[data objectForKey: @"auth_req_id"] longValue];
+        
+        long long time = [[data objectForKey: @"time"] longLongValue];
+        [self setupWithTime: time];
         
         if (self.code > 0) {
             [self failedInResponse: @"User_Authentication" withCode: self.code];
@@ -47,13 +46,9 @@
              @"auth_req_id" :   @(self.requestID)};
 }
 
-- (void)setupWithRequest:(AuthRequestModel *)request {
-    self.request = request;
-}
-
 - (NSString *)debugDescription {
     if (self.isCorrect) {
-        return [NSString stringWithFormat:@"self = %@; json = %@", self, self.jsonString];
+        return [NSString stringWithFormat:@"self = %@; json = %@", self, self.parameters];
     }
     else if (self.failErr) {
         return self.failErr.debugDescription;

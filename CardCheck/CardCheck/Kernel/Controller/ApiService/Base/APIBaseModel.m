@@ -10,7 +10,9 @@
 
 @interface APIBaseModel()
 
+@property (nonatomic, readwrite) long long time;
 @property (nonatomic, readwrite) NSString *signature;
+@property (nonatomic, readwrite) APIBaseModel *request;
 
 @end
 
@@ -48,6 +50,11 @@
     return @{};
 }
 
+- (void)setupWithTime:(long long)time
+{
+    self.time = time;
+}
+
 - (BOOL)setupWithSignature:(NSNumber *)sign
 {
     if (sign.intValue) {
@@ -57,6 +64,10 @@
     else {
         return NO;
     }
+}
+
+- (void)setupWithRequest:(APIBaseModel *)request {
+    self.request = request;
 }
 
 #pragma mark - Errors
