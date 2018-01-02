@@ -26,6 +26,12 @@
 #import "CurrentDevice.h"
 
 //ThirdParty
+#include <CommonCrypto/CommonHMAC.h>
+
+//Extensions
+#import "NSError+Extensions.h"
+#import "NSString+Extensions.h"
+#import "NSDictionary+ApiKeys.h"
 
 /*
 //Extensions

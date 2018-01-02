@@ -26,6 +26,6 @@
 - (void)setupWithRequest:(APIBaseModel *)request;
 
 #pragma mark - Errors
-- (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;
+- (NSError *)failedInResponse:(NSString *)name withCode:(NSInteger)code;
 
 @end

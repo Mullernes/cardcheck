@@ -113,9 +113,6 @@
 
 - (NSError *)warnedInMethod:(NSString *)method withReason:(NSString *)format, ...
 {
-    //1
-    NSNumber *code = [NSNumber numberWithInteger: MODEL_WARNING_ERROR];
-    
     //2
     va_list ap;
     va_start (ap, format);
@@ -127,7 +124,7 @@
     va_end (ap);
     
     //3
-    NSError *err = [self errorWithCode: code method: method reason: reason];
+    NSError *err = [self errorWithCode: MODEL_WARNING_ERROR method: method reason: reason];
     [self setWarnErr: err];
     
     return err;
@@ -135,9 +132,6 @@
 
 - (NSError *)failedInMethod:(NSString *)method withReason:(NSString *)format, ...
 {
-    //1
-    NSNumber *code = [NSNumber numberWithInteger: MODEL_FAILURE_ERROR];
-    
     //2
     va_list ap;
     va_start (ap, format);
@@ -149,20 +143,20 @@
     va_end (ap);
     
     //3
-    NSError *err = [self errorWithCode: code method: method reason: reason];
+    NSError *err = [self errorWithCode: MODEL_FAILURE_ERROR method: method reason: reason];
     [self setFailErr: err];
     
     return err;
 }
 
-- (NSError *)errorWithCode:(NSNumber *)code method:(NSString *)method reason:(NSString *)reason
+- (NSError *)errorWithCode:(NSInteger)code method:(NSString *)method reason:(NSString *)reason
 {
-    NSString *prefix = [XOM_ERROR_DESCRIPTION objectForKey: code];
+    NSString *prefix = [NSError prefixWithCode: code];
     NSString *localizedInfo = [NSString stringWithFormat:
                                @"Prefix: %@ \n Method: %@ \n Reason: %@", prefix, method, reason];
     
     NSError *error = [NSError errorWithDomain: [self currentClass]
-                                         code: code.integerValue
+                                         code: code
                                      userInfo: @{NSLocalizedDescriptionKey : localizedInfo}];
     return error;
 }

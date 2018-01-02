@@ -28,7 +28,7 @@
 - (NSError *)failedInMethod:(NSString *)method
                  withReason:(NSString *)format, ...;
 
-- (NSError *)errorWithCode:(NSNumber *)code
+- (NSError *)errorWithCode:(NSInteger)code
                     method:(NSString *)method
                     reason:(NSString *)reason;
 

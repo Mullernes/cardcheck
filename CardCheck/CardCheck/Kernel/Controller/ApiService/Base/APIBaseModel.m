@@ -71,9 +71,9 @@
 }
 
 #pragma mark - Errors
-- (NSError *)failedInResponse:(NSString *)name withCode:(NSUInteger)code;
+- (NSError *)failedInResponse:(NSString *)name withCode:(NSInteger)code
 {
-    NSError *err = [self errorWithCode: @(code) method: name reason: @"Bad request"];
+    NSError *err = [self errorWithCode: code method: name reason: @"Bad request"];
     [self setupWithFailed: err];
 
     return err;
