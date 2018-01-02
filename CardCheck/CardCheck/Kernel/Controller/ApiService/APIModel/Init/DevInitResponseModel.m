@@ -27,15 +27,17 @@
 {
     self = [super init];
     if (self) {
-        self.appKeys = [data objectForKey: @"app_keys"];
-        self.code = [[data objectForKey: @"code"] intValue];
-        self.appID = [[data objectForKey: @"app_id"] longValue];
-        
-        long long time = [[data objectForKey: @"time"] longLongValue];;
+        self.appKeys = [data kAppKeys];
+        self.appID = [[data kAppID] longValue];
+        self.code = [[data kResponseCode] intValue];
+        long long time = [[data kResponseTime] longLongValue];;
         [self setupWithTime: time];
 
         if (self.code > 0) {
-            [self failedInResponse: @"User_Authentication" withCode: self.code];
+            [self failedInResponse: @"Dev_Initialization" withCode: self.code];
+        }
+        else if (!time || !self.appKeys || !self.appID) {
+            [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];
         }
     }
     return self;
@@ -43,10 +45,11 @@
 
 - (NSDictionary *)parameters
 {
-    return @{@"time"        :   @(self.time),
-             @"code"        :   @(self.code),
-             @"app_id"      :   @(self.appID),
-             @"app_keys"    :   self.appKeys};
+    return [self.jsonString objectFromJSONString];
+}
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
 }
 
 - (NSString *)debugDescription {

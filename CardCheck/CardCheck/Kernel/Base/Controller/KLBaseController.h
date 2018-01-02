@@ -22,9 +22,6 @@
 
 #pragma mark - Making errors
 - (NSError *)error:(NSString *)info;
-- (NSError *)errorCallStartWithComment:(NSString *)comment;
-- (NSError *)errorCallAnswerWithComment:(NSString *)comment;
-
 - (NSError *)errorWithCode:(NSInteger)code
                     format:(NSString *)format, ...;
 

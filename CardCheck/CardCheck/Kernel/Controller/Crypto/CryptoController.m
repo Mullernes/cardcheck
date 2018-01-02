@@ -8,9 +8,6 @@
 
 #import "CryptoController.h"
 
-#import "NSString+Extensions.h"
-#include <CommonCrypto/CommonHMAC.h>
-
 @implementation CryptoController
 
 #pragma mark - Init

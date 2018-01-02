@@ -11,6 +11,11 @@
 #define LOG_KEY_WARNING @"-WARNING: "
 #define LOG_KEY_FAILURE @"-FAILURE: "
 
+#define CTR_SETUP_ERROR                     401
+#define CTR_COMPLETE_ERROR                  402
+#define CTR_HANDLE_DATA_ERROR               403
+#define REQUEST_CONNECTION_ERROR            500
+
 #import "KLBaseController.h"
 //#import "Logger.h"
 
@@ -97,24 +102,6 @@
     return error;
 }
 
-- (NSError *)errorCallStartWithComment:(NSString *)comment
-{
-    NSInteger code = [comment isEqualToString: @"sraka"]? XOM_NOT_DEFINED_ERROR : XOM_NOT_DEFINED_ERROR;
-    NSString *logInfo = (code == XOM_NOT_DEFINED_ERROR) ? [NSString stringWithFormat: @"Not defined error: %@", comment] : [XOM_ERROR_DESCRIPTION objectForKey: [NSNumber numberWithInteger: code]];
-    
-    NSError *error = [NSError errorWithDomain: [self currentClass] code: code userInfo: @{NSLocalizedDescriptionKey : logInfo?logInfo:@"undefined info"}];
-    return error;
-}
-
-- (NSError *)errorCallAnswerWithComment:(NSString *)comment
-{
-    NSInteger code = [comment isEqualToString: @"sraka"]? XOM_NOT_DEFINED_ERROR : XOM_NOT_DEFINED_ERROR;
-    NSString *logInfo = (code == XOM_NOT_DEFINED_ERROR) ? [NSString stringWithFormat: @"Not defined error: %@", comment] : [XOM_ERROR_DESCRIPTION objectForKey: [NSNumber numberWithInteger: code]];
-    
-    NSError *error = [NSError errorWithDomain: [self currentClass] code: code userInfo: @{NSLocalizedDescriptionKey : logInfo?logInfo:@"undefined info"}];
-    return error;
-}
-
 - (NSError *)errorWithCode:(NSInteger)code format:(NSString *)format, ...
 {
     va_list ap;
@@ -124,7 +111,7 @@
         format = [format stringByAppendingString: @"\n"];
     
     NSString *info = [[NSString alloc] initWithFormat: format arguments: ap];
-    NSString *logInfo = [NSString stringWithFormat:@"%@ %@", [XOM_ERROR_DESCRIPTION objectForKey: [NSNumber numberWithInteger: code]], info];
+    NSString *logInfo = [NSString stringWithFormat:@"%@ %@", [NSError prefixWithCode: code], info];
     va_end (ap);
     
     NSError *error = [NSError errorWithDomain: [self currentClass] code: code userInfo: @{NSLocalizedDescriptionKey : logInfo?logInfo:@"undefined info"}];
@@ -134,8 +121,6 @@
 
 - (NSError *)completionError:(NSString *)method andReason:(NSString *)format, ...
 {
-    NSNumber *code = [NSNumber numberWithInteger: XOM_CTR_COMPLETE_ERROR];
-    
     va_list ap;
     va_start (ap, format);
     
@@ -145,26 +130,25 @@
     NSString *reason = [[NSString alloc] initWithFormat: format arguments: ap];
     va_end (ap);
     
-    return [self errorWithCode: code method: method reason: reason];
+    return [self errorWithCode: CTR_COMPLETE_ERROR method: method reason: reason];
 }
 
 - (NSError *)connectionError:(NSString *)method
 {
-    NSNumber *code = [NSNumber numberWithInteger: XOM_REQUEST_CONNECTION_ERROR];
-    return [self errorWithCode: code method: method reason: nil];
+    return [self errorWithCode: REQUEST_CONNECTION_ERROR method: method reason: nil];
 }
 
-- (NSError *)errorWithCode:(NSNumber *)code method:(NSString *)method reason:(NSString *)reason
+- (NSError *)errorWithCode:(NSInteger)code method:(NSString *)method reason:(NSString *)reason
 {
     //1
-    NSString *prefix = [XOM_ERROR_DESCRIPTION objectForKey: code];
+    NSString *prefix = [NSError prefixWithCode: code];
     
     //3
     NSString *localizedInfo = [NSString stringWithFormat: @"Prefix: %@ \n Method: %@ \n Reason: %@", prefix, method, reason];
     
     //4
     NSError *error = [NSError errorWithDomain: [self currentClass]
-                                         code: code.integerValue
+                                         code: code
                                      userInfo: @{NSLocalizedDescriptionKey : localizedInfo}];
     return error;
 }
