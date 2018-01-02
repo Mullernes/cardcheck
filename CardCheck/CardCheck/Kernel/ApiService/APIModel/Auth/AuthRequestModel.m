@@ -10,16 +10,15 @@
 
 @interface AuthRequestModel()
 
-@property (nonatomic) NSUInteger time;
-@property (nonatomic, strong) NSString *login;
-@property (nonatomic, strong) CardReader *reader;
-
+@property (nonatomic, readwrite) long long time;
+@property (nonatomic, readwrite) NSString *login;
+@property (nonatomic, readwrite) CardReader *reader;
 
 @end
 
 @implementation AuthRequestModel
 
-+ (instancetype)modelWithLogin:(NSString *)login andReader:(CardReader *)reader
++ (instancetype)requestWithLogin:(NSString *)login andReader:(CardReader *)reader
 {
     return [[AuthRequestModel alloc] initWithLogin: login andReader: reader];
 }
@@ -30,14 +29,14 @@
     if (self) {
         self.reader = reader;
         self.login = login.copy;
-        self.time = (NSUInteger)[[NSDate date] timeIntervalSince1970];
+        self.time = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
     }
     return self;
 }
 
 - (NSDictionary *)parameters
 {
-    return @{@"time"            :   @(self.time),
+    return @{@"time"            :   [NSNumber numberWithLongLong:self.time],
              @"cardreader_type" :   @(self.reader.type),
              @"cardreader_id"   :   self.reader.ID,
              @"login"           :   self.login

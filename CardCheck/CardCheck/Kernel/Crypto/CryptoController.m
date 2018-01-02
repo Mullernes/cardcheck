@@ -58,7 +58,7 @@
     const char *cText = [plain bytes];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, strlen(cText), cHMAC);
+    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, [plain length], cHMAC);
     
     NSData *HMAC = [[NSData alloc] initWithBytes: cHMAC
                                           length: sizeof(cHMAC)];
@@ -66,40 +66,63 @@
     return HMAC.copy;
 }
 
-- (int)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey
 {
     NSData *data = [self hmac1WithData: plainData andSecret: secretKey];
     const char *cHMAC = [data bytes];
     
-    int value = 0;
+    int otp = 0;
     int offset = 0;
     offset = cHMAC[CC_SHA1_DIGEST_LENGTH - 1] & 0x0f;
     
-    value = ((cHMAC[offset] & 0x7f) << 24)     |
-    ((cHMAC[offset + 1] & 0xff) << 16) |
-    ((cHMAC[offset + 2] & 0xff) << 8)  |
-    (cHMAC[offset + 3] & 0xff);
-    value = value % 1000000;
+    otp =   ((cHMAC[offset] & 0x7f) << 24)     |
+            ((cHMAC[offset + 1] & 0xff) << 16) |
+            ((cHMAC[offset + 2] & 0xff) << 8)  |
+            (cHMAC[offset + 3] & 0xff);
+    otp = otp % 1000000;
     
-    return value;
+    return [NSNumber numberWithInt: otp];
 }
 
-- (int)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey
 {
     NSData *data = [self hmac1WithText: plainText andSecret: secretKey];
     const char *cHMAC = [data bytes];
     
-    int value = 0;
+    int otp = 0;
     int offset = 0;
     offset = cHMAC[CC_SHA1_DIGEST_LENGTH - 1] & 0x0f;
     
-    value = ((cHMAC[offset] & 0x7f) << 24)     |
+    otp =   ((cHMAC[offset] & 0x7f) << 24)     |
             ((cHMAC[offset + 1] & 0xff) << 16) |
             ((cHMAC[offset + 2] & 0xff) << 8)  |
             (cHMAC[offset + 3] & 0xff);
-    value = value % 1000000;
+    otp = otp % 1000000;
     
-    return value;
+    return [NSNumber numberWithInt: otp];
 }
+
+- (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey
+{
+    uint64_t tValue = plainValue;
+    uint64_t tBytes = CFSwapInt64HostToBig(tValue);
+    NSData *tPlainData = [NSData dataWithBytes: &tBytes length: sizeof(tBytes)];
+
+    NSData *hmacData = [self hmac1WithData: tPlainData andSecret: secretKey];
+    const char *cHMAC = [hmacData bytes];
+
+    int otp = 0;
+    int offset = 0;
+    offset = cHMAC[CC_SHA1_DIGEST_LENGTH - 1] & 0x0f;
+
+    otp =   ((cHMAC[offset] & 0x7f) << 24)     |
+            ((cHMAC[offset + 1] & 0xff) << 16) |
+            ((cHMAC[offset + 2] & 0xff) << 8)  |
+            (cHMAC[offset + 3] & 0xff);
+    otp = otp % 1000000;
+
+    return [NSNumber numberWithInt: otp];
+}
+
 
 @end
