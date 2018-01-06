@@ -15,7 +15,7 @@
 #import "KLBaseDebugConstants.h"
 
 //Model
-#import "CardReader.h"
+#import "CardReaderData.h"
 #import "DevInitData.h"
 
 //Controller

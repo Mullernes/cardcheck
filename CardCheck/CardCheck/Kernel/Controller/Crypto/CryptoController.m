@@ -37,7 +37,7 @@
 
 - (NSData *)hmac1WithText:(NSString *)plain andSecret:(NSString *)key
 {
-    const char *cKey  = [[key hexToBytes] bytes];
+    const char *cKey  = [[key hexToData] bytes];
     const char *cText = [plain cStringUsingEncoding: NSUTF8StringEncoding];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
@@ -51,7 +51,7 @@
 
 - (NSData *)hmac1WithData:(NSData *)plain andSecret:(NSString *)key
 {
-    const char *cKey  = [[key hexToBytes] bytes];
+    const char *cKey  = [[key hexToData] bytes];
     const char *cText = [plain bytes];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
@@ -120,6 +120,20 @@
 
     return [NSNumber numberWithInt: otp];
 }
+
+- (NSNumber *)calcTransportKey:(DevInitData *)data
+{
+    //gen key
+    NSMutableData *keyData = [NSMutableData dataWithCapacity: 14];
+    [keyData appendData: [data.customID hexToData]];
+    
+    NSUInteger otp = data.otp;
+    NSData *otpData = [NSData dataWithBytes: &otp length: sizeof(otp)];
+    [keyData appendBytes: [otpData bytes] length: 4];
+    
+    return nil;
+}
+
 
 
 @end

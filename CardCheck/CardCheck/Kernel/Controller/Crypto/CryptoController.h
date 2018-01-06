@@ -16,5 +16,6 @@
 - (NSNumber *)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey;
 - (NSNumber *)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey;
 - (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey;
+- (NSNumber *)calcTransportKey:(DevInitData *)data;
 
 @end

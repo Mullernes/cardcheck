@@ -3,6 +3,6 @@
 
 @interface NSString (Extensions)
 
-- (NSData *)hexToBytes;
+- (NSData *)hexToData;
 
 @end

@@ -11,19 +11,25 @@
 
 @interface DevInitData : KLBaseModel
 
-@property (nonatomic) NSUInteger calcOtp;
 @property (nonatomic, readonly) int attempts;
+@property (nonatomic, readonly) NSUInteger otp;
 
-@property (nonatomic, readonly) long authRequestID;
-@property (nonatomic, readonly) long long authRequestTime;
-@property (nonatomic, readonly) long long authResponseTime;
+- (instancetype)initDemoData;
 
-@property (nonatomic, readonly) long long devInitRequestTime;
-@property (nonatomic, readonly) long long devInitResponseTime;
-
+- (void)setupWithCalculatedOtp:(NSUInteger)otp;
 - (void)setupWithAuthResponse:(AuthResponseModel *)response;
 - (void)setupWithDevInitResponse:(DevInitResponseModel *)response;
 
+- (long)authRequestID;
+- (long long)authRequestTime;
+- (long long)authResponseTime;
+
+- (long)appID;
+- (long long)devInitRequestTime;
+- (long long)devInitResponseTime;
+
+- (NSString *)customID;
 - (NSString *)deviceInfo;
+- (NSString *)cipherAppKeys;
 
 @end

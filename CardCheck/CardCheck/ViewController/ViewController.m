@@ -7,22 +7,14 @@
 //
 
 #import "ViewController.h"
+
 #import "DevInitData.h"
+#import "ReaderController.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) DevInitData *devInitData;
-@property (nonatomic, strong) CardReader *currentReader;
-
-@property (weak, nonatomic) IBOutlet UITextField *requestID;
-@property (weak, nonatomic) IBOutlet UITextField *responseTime;
-@property (weak, nonatomic) IBOutlet UITextField *calculatedOtp;
-
-@property (weak, nonatomic) IBOutlet UITextField *typedOtp;
-
-- (IBAction)otp:(id)sender;
-- (IBAction)auth:(id)sender;
-- (IBAction)initialization:(id)sender;
+@property (nonatomic, strong) CardReaderData *currentReader;
 
 @end
 
@@ -47,24 +39,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CardReader *)currentReader {
+- (CardReaderData *)currentReader {
     if (_currentReader == nil) {
-        _currentReader = [CardReader demoReader];
+        _currentReader = [CardReaderData demoData];
     }
     
     return _currentReader;
 }
 
-- (void)setDevInitData:(DevInitData *)devInitData
-{
-    _devInitData = devInitData;
-    
-    NSString *reqID = [NSString stringWithFormat:@"%li", _devInitData.authRequestID];
-    [self.requestID setText: reqID];
-    
-    NSString *respTime = [NSString stringWithFormat:@"%lli", _devInitData.authResponseTime];
-    [self.responseTime setText: respTime];
+- (IBAction)readerInit:(id)sender {
+    ReaderController *reader = [ReaderController sharedInstance];
+    [reader initReader];
 }
+
+- (IBAction)readerGetIDs:(id)sender {
+    ReaderController *reader = [ReaderController sharedInstance];
+    [reader getDeviceID];
+}
+
 
 - (IBAction)auth:(id)sender
 {
@@ -86,21 +78,21 @@
                                      }];
 }
 
-- (IBAction)otp:(id)sender
+- (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
     NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
-                               andSecret: DEMO_CUSTOM_ID];
-    [self.devInitData setCalcOtp: [value unsignedIntegerValue]];
+                               andSecret: self.currentReader.customID];
+    [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
 
-    [self.calculatedOtp setText: [NSString stringWithFormat:@"%lu", (unsigned long)self.devInitData.calcOtp]];
+    NSLog(@"otp = %lu", value.unsignedIntegerValue);
 }
 
 - (IBAction)initialization:(id)sender
 {
     //NSUInteger typedOtp = [self.typedOtp.text integerValue];
-    NSUInteger typedOtp = self.devInitData.calcOtp;
-    if (self.devInitData.calcOtp == typedOtp)
+    NSUInteger typedOtp = self.devInitData.otp;
+    if (self.devInitData.otp == typedOtp)
     {
         DevInitRequestModel *request = [DevInitRequestModel requestWithData: self.devInitData
                                                                   andReader: self.currentReader];
@@ -118,4 +110,12 @@
                                             }];
     }
 }
+
+- (IBAction)calcKeys:(id)sender
+{
+    self.devInitData = [[DevInitData alloc] initDemoData];
+    CryptoController *crp = [CryptoController sharedInstance];
+    [crp calcTransportKey: self.devInitData];
+}
+
 @end

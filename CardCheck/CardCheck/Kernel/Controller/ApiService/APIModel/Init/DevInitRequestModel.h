@@ -11,9 +11,9 @@
 @interface DevInitRequestModel : APIBaseModel
 
 @property (nonatomic, strong, readonly) DevInitData *data;
-@property (nonatomic, strong, readonly) CardReader *reader;
+@property (nonatomic, strong, readonly) CardReaderData *reader;
 
 + (instancetype)requestWithData:(DevInitData *)data
-                      andReader:(CardReader *)reader;
+                      andReader:(CardReaderData *)reader;
 
 @end

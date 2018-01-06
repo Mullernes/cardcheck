@@ -2,7 +2,7 @@
 
 @implementation NSString (Extensions)
 
-- (NSData *)hexToBytes
+- (NSData *)hexToData
 {
     NSMutableData* data = [NSMutableData data];
     

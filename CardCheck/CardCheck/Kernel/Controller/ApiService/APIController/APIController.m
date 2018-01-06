@@ -75,7 +75,7 @@
 {
     //1
     NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                            andSecret: DEMO_CUSTOM_ID];
+                                            andSecret: request.reader.customID];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
@@ -108,7 +108,7 @@
 {
     //1
     NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                            andSecret: DEMO_CUSTOM_ID];
+                                            andSecret: request.reader.customID];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
