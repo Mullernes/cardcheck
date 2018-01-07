@@ -23,6 +23,7 @@
 #import "CryptoController.h"
 
 //Utils
+#import "HexCvtr.h"
 #import "CurrentDevice.h"
 
 //ThirdParty
@@ -30,7 +31,6 @@
 
 //Extensions
 #import "NSError+Extensions.h"
-#import "NSString+Extensions.h"
 #import "NSDictionary+ApiKeys.h"
 
 /*

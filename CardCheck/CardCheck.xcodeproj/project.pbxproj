@@ -33,7 +33,6 @@
 		7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */; };
 		7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C761FF37B0D00058FD4 /* APIController.m */; };
 		7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */; };
-		7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */; };
 		7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */; };
 		7DE167EF2000229F00F4A417 /* libAudioJack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167EA2000229E00F4A417 /* libAudioJack.a */; };
 		7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE167F4200022DF00F4A417 /* ReaderController.m */; };
@@ -43,6 +42,7 @@
 		7DE167FD200025B500F4A417 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167FC200025B500F4A417 /* CoreGraphics.framework */; };
 		7DE16802200035D600F4A417 /* AJDHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE16800200035D500F4A417 /* AJDHex.m */; };
 		7DE16803200035D600F4A417 /* dummy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DE16801200035D500F4A417 /* dummy.mm */; };
+		7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE168052002BC0200F4A417 /* HexCvtr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,8 +118,6 @@
 		7DDE2C781FF37F2700058FD4 /* KLBaseAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseAppConstants.h; sourceTree = "<group>"; };
 		7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthResponseModel.m; sourceTree = "<group>"; };
 		7DDE2CC11FF4CFF300058FD4 /* AuthResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthResponseModel.h; sourceTree = "<group>"; };
-		7DDE2CC41FF4E82300058FD4 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
-		7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		7DDE2D0A1FF6CAA200058FD4 /* DevInitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevInitData.h; sourceTree = "<group>"; };
 		7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevInitData.m; sourceTree = "<group>"; };
 		7DE167DE2000229E00F4A417 /* ACRAesTrackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRAesTrackData.h; sourceTree = "<group>"; };
@@ -144,6 +142,8 @@
 		7DE167FF200035D500F4A417 /* AJDHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJDHex.h; sourceTree = "<group>"; };
 		7DE16800200035D500F4A417 /* AJDHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJDHex.m; sourceTree = "<group>"; };
 		7DE16801200035D500F4A417 /* dummy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = dummy.mm; sourceTree = "<group>"; };
+		7DE168042002BC0200F4A417 /* HexCvtr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HexCvtr.h; sourceTree = "<group>"; };
+		7DE168052002BC0200F4A417 /* HexCvtr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HexCvtr.m; sourceTree = "<group>"; };
 		7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02E562D780509AE0A42E270 /* Pods-CardCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckTests/Pods-CardCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +237,8 @@
 			children = (
 				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
 				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
+				7DE168042002BC0200F4A417 /* HexCvtr.h */,
+				7DE168052002BC0200F4A417 /* HexCvtr.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -493,8 +495,6 @@
 				7D3A428E1FFBD29400FFF207 /* NSDictionary+ApiKeys.m */,
 				7D3A428A1FFBCCE200FFF207 /* NSError+Extensions.h */,
 				7D3A428B1FFBCCE200FFF207 /* NSError+Extensions.m */,
-				7DDE2CC41FF4E82300058FD4 /* NSString+Extensions.h */,
-				7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -837,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
 				7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */,
 				7D3A42891FFB9AF800FFF207 /* DevInitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
@@ -849,7 +850,6 @@
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
 				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
-				7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,

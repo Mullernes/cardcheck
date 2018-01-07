@@ -40,12 +40,13 @@
 {
     const char *cText = [plain cStringUsingEncoding: NSUTF8StringEncoding];
     return [self hmac1WithPlainData: [plain dataUsingEncoding: NSUTF8StringEncoding]
-                         andKeyData: [[key hexToData] copy]];
+                         andKeyData: [HexCvtr dataFromHex: key]];
 }
 
 - (NSData *)hmac1WithPlainData:(NSData *)plain andHexKey:(NSString *)key
 {
-    return [self hmac1WithPlainData: plain.copy andKeyData: [[key hexToData] copy]];
+    return [self hmac1WithPlainData: plain.copy
+                         andKeyData: [HexCvtr dataFromHex: key]];
 }
 
 - (NSData *)hmac1WithPlainData:(NSData *)plain andKeyData:(NSData *)key
@@ -124,7 +125,7 @@
 {
     //Gen key - 14 bytes
     NSMutableData *keyBuffer = [NSMutableData dataWithCapacity: 14];
-    [keyBuffer appendData: [data.customID hexToData]];
+    [keyBuffer appendData: [HexCvtr dataFromHex: data.customID]];
     
     NSUInteger otp = data.otp;
     NSData *otpData = [NSData dataWithBytes: &otp length: sizeof(otp)];
@@ -167,7 +168,7 @@
     //transport key
     NSData *transportKey = [hmac1Data subdataWithRange: NSMakeRange(0, 16)];
     
-    return [[AJDHex hexStringFromByteArray: transportKey] copy];
+    return [HexCvtr hexFromData: transportKey];
 }
 
 
