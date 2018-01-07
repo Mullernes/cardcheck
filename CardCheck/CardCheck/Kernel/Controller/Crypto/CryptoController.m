@@ -7,6 +7,7 @@
 //
 
 #import "CryptoController.h"
+#import "AJDHex.h"
 
 @implementation CryptoController
 
@@ -35,23 +36,21 @@
 
 #pragma mark - hmac1
 
-- (NSData *)hmac1WithText:(NSString *)plain andSecret:(NSString *)key
+- (NSData *)hmac1WithPlainText:(NSString *)plain andHexKey:(NSString *)key
 {
-    const char *cKey  = [[key hexToData] bytes];
     const char *cText = [plain cStringUsingEncoding: NSUTF8StringEncoding];
-    
-    unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cText, strlen(cText), cHMAC);
-    
-    NSData *HMAC = [[NSData alloc] initWithBytes: cHMAC
-                                          length: sizeof(cHMAC)];
-                    
-    return HMAC.copy;
+    return [self hmac1WithPlainData: [plain dataUsingEncoding: NSUTF8StringEncoding]
+                         andKeyData: [[key hexToData] copy]];
 }
 
-- (NSData *)hmac1WithData:(NSData *)plain andSecret:(NSString *)key
+- (NSData *)hmac1WithPlainData:(NSData *)plain andHexKey:(NSString *)key
 {
-    const char *cKey  = [[key hexToData] bytes];
+    return [self hmac1WithPlainData: plain.copy andKeyData: [[key hexToData] copy]];
+}
+
+- (NSData *)hmac1WithPlainData:(NSData *)plain andKeyData:(NSData *)key
+{
+    const char *cKey  = [key bytes];
     const char *cText = [plain bytes];
     
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
@@ -63,9 +62,9 @@
     return HMAC.copy;
 }
 
-- (NSNumber *)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithPlainData:(NSData *)plain andHexKey:(NSString *)key
 {
-    NSData *data = [self hmac1WithData: plainData andSecret: secretKey];
+    NSData *data = [self hmac1WithPlainData: plain andHexKey: key];
     const char *cHMAC = [data bytes];
     
     int otp = 0;
@@ -81,9 +80,9 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithPlainText:(NSString *)plain andHexKey:(NSString *)key
 {
-    NSData *data = [self hmac1WithText: plainText andSecret: secretKey];
+    NSData *data = [self hmac1WithPlainText: plain andHexKey: key];
     const char *cHMAC = [data bytes];
     
     int otp = 0;
@@ -99,13 +98,13 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey
+- (NSNumber *)hotpWithPlainValue:(long long)plain andHexKey:(NSString *)key
 {
-    uint64_t tValue = plainValue;
+    uint64_t tValue = plain;
     uint64_t tBytes = CFSwapInt64HostToBig(tValue);
     NSData *tPlainData = [NSData dataWithBytes: &tBytes length: sizeof(tBytes)];
 
-    NSData *hmacData = [self hmac1WithData: tPlainData andSecret: secretKey];
+    NSData *hmacData = [self hmac1WithPlainData: tPlainData andHexKey: key];
     const char *cHMAC = [hmacData bytes];
 
     int otp = 0;
@@ -121,17 +120,54 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)calcTransportKey:(DevInitData *)data
+- (NSString *)calcTransportKey:(DevInitData *)data
 {
-    //gen key
-    NSMutableData *keyData = [NSMutableData dataWithCapacity: 14];
-    [keyData appendData: [data.customID hexToData]];
+    //Gen key - 14 bytes
+    NSMutableData *keyBuffer = [NSMutableData dataWithCapacity: 14];
+    [keyBuffer appendData: [data.customID hexToData]];
     
     NSUInteger otp = data.otp;
     NSData *otpData = [NSData dataWithBytes: &otp length: sizeof(otp)];
-    [keyData appendBytes: [otpData bytes] length: 4];
+    [keyBuffer appendBytes: [otpData bytes] length: 4];
     
-    return nil;
+    //Gen data - 32 bytes
+    NSData *timeD = nil;
+    long long timeT = 0;
+    NSMutableData *dataBuffer = [NSMutableData dataWithCapacity: 32];
+
+    /*
+    timeT = data.authRequestTime;
+    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+    [dataBuffer appendData: timeD];
+    
+    timeT = data.authResponseTime;
+    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+    [dataBuffer appendData: timeD];
+    
+    timeT = data.devInitRequestTime;
+    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+    [dataBuffer appendData: timeD];
+    
+    timeT = data.devInitResponseTime;
+    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+    [dataBuffer appendData: timeD];
+    */
+    
+    timeT = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+    [dataBuffer appendData: timeD];
+    [dataBuffer appendData: timeD];
+    [dataBuffer appendData: timeD];
+    [dataBuffer appendData: timeD];
+    
+    //hmac1
+    NSData *hmac1Data = [self hmac1WithPlainData: dataBuffer.copy
+                                     andKeyData: keyBuffer.copy];
+    
+    //transport key
+    NSData *transportKey = [hmac1Data subdataWithRange: NSMakeRange(0, 16)];
+    
+    return [[AJDHex hexStringFromByteArray: transportKey] copy];
 }
 
 

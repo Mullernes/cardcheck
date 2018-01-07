@@ -13,9 +13,9 @@
 #pragma mark - Init
 + (instancetype)sharedInstance;
 
-- (NSNumber *)hotpWithData:(NSData *)plainData andSecret:(NSString *)secretKey;
-- (NSNumber *)hotpWithText:(NSString *)plainText andSecret:(NSString *)secretKey;
-- (NSNumber *)hotpWithValue:(long long)plainValue andSecret:(NSString *)secretKey;
-- (NSNumber *)calcTransportKey:(DevInitData *)data;
+- (NSNumber *)hotpWithPlainData:(NSData *)plain andHexKey:(NSString *)key;
+- (NSNumber *)hotpWithPlainText:(NSString *)plain andHexKey:(NSString *)key;
+- (NSNumber *)hotpWithPlainValue:(long long)plain andHexKey:(NSString *)key;
+- (NSString *)calcTransportKey:(DevInitData *)data;
 
 @end

@@ -81,8 +81,8 @@
 - (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
-                               andSecret: self.currentReader.customID];
+    NSNumber *value = [crp hotpWithPlainValue: self.devInitData.authResponseTime
+                                    andHexKey: self.currentReader.customID];
     [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
 
     NSLog(@"otp = %lu", value.unsignedIntegerValue);
@@ -115,7 +115,8 @@
 {
     self.devInitData = [[DevInitData alloc] initDemoData];
     CryptoController *crp = [CryptoController sharedInstance];
-    [crp calcTransportKey: self.devInitData];
+    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+    NSLog(@"transportKey = %@", hexTransportKey);
 }
 
 @end
