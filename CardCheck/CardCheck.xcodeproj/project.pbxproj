@@ -28,13 +28,22 @@
 		7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBC81FEA491B00CFB4FE /* KLBaseModel.m */; };
 		7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */; };
 		7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */; };
-		7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6A1FF2E90100058FD4 /* CardReader.m */; };
+		7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */; };
 		7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */; };
 		7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */; };
 		7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C761FF37B0D00058FD4 /* APIController.m */; };
 		7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */; };
-		7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */; };
 		7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */; };
+		7DE167EF2000229F00F4A417 /* libAudioJack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167EA2000229E00F4A417 /* libAudioJack.a */; };
+		7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE167F4200022DF00F4A417 /* ReaderController.m */; };
+		7DE167F72000254500F4A417 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167F62000254500F4A417 /* AudioToolbox.framework */; };
+		7DE167F9200025A500F4A417 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167F8200025A500F4A417 /* UIKit.framework */; };
+		7DE167FB200025AB00F4A417 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167FA200025AB00F4A417 /* Foundation.framework */; };
+		7DE167FD200025B500F4A417 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE167FC200025B500F4A417 /* CoreGraphics.framework */; };
+		7DE16802200035D600F4A417 /* AJDHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE16800200035D500F4A417 /* AJDHex.m */; };
+		7DE16803200035D600F4A417 /* dummy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DE16801200035D500F4A417 /* dummy.mm */; };
+		7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE168052002BC0200F4A417 /* HexCvtr.m */; };
+		7DE1680920036F8900F4A417 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1680720036F8800F4A417 /* NSData+AES.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,8 +108,8 @@
 		7DC4FBD21FEA4BEA00CFB4FE /* AppPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppPrefixHeader.pch; sourceTree = "<group>"; };
 		7DC4FBD41FEA4EC200CFB4FE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		7DDE2C691FF2E90100058FD4 /* CardReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReader.h; sourceTree = "<group>"; };
-		7DDE2C6A1FF2E90100058FD4 /* CardReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReader.m; sourceTree = "<group>"; };
+		7DDE2C691FF2E90100058FD4 /* CardReaderData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReaderData.h; sourceTree = "<group>"; };
+		7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReaderData.m; sourceTree = "<group>"; };
 		7DDE2C6D1FF37A4B00058FD4 /* APIBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIBaseModel.h; sourceTree = "<group>"; };
 		7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIBaseModel.m; sourceTree = "<group>"; };
 		7DDE2C6F1FF37A4B00058FD4 /* AuthRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthRequestModel.h; sourceTree = "<group>"; };
@@ -110,10 +119,34 @@
 		7DDE2C781FF37F2700058FD4 /* KLBaseAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseAppConstants.h; sourceTree = "<group>"; };
 		7DDE2CC01FF4CFF300058FD4 /* AuthResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthResponseModel.m; sourceTree = "<group>"; };
 		7DDE2CC11FF4CFF300058FD4 /* AuthResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthResponseModel.h; sourceTree = "<group>"; };
-		7DDE2CC41FF4E82300058FD4 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
-		7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		7DDE2D0A1FF6CAA200058FD4 /* DevInitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevInitData.h; sourceTree = "<group>"; };
 		7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevInitData.m; sourceTree = "<group>"; };
+		7DE167DE2000229E00F4A417 /* ACRAesTrackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRAesTrackData.h; sourceTree = "<group>"; };
+		7DE167DF2000229E00F4A417 /* ACRAudioJackReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRAudioJackReader.h; sourceTree = "<group>"; };
+		7DE167E02000229E00F4A417 /* ACRCRC16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRCRC16.h; sourceTree = "<group>"; };
+		7DE167E12000229E00F4A417 /* ACRDukptReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRDukptReceiver.h; sourceTree = "<group>"; };
+		7DE167E22000229E00F4A417 /* ACRDukptTrackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRDukptTrackData.h; sourceTree = "<group>"; };
+		7DE167E32000229E00F4A417 /* ACRResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRResult.h; sourceTree = "<group>"; };
+		7DE167E42000229E00F4A417 /* ACRStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRStatus.h; sourceTree = "<group>"; };
+		7DE167E52000229E00F4A417 /* ACRTrack1Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRTrack1Data.h; sourceTree = "<group>"; };
+		7DE167E62000229E00F4A417 /* ACRTrack2Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRTrack2Data.h; sourceTree = "<group>"; };
+		7DE167E72000229E00F4A417 /* ACRTrackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRTrackData.h; sourceTree = "<group>"; };
+		7DE167E82000229E00F4A417 /* AudioJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioJack.h; sourceTree = "<group>"; };
+		7DE167E92000229E00F4A417 /* AudioJackErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioJackErrors.h; sourceTree = "<group>"; };
+		7DE167EA2000229E00F4A417 /* libAudioJack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudioJack.a; sourceTree = "<group>"; };
+		7DE167F3200022DF00F4A417 /* ReaderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReaderController.h; sourceTree = "<group>"; };
+		7DE167F4200022DF00F4A417 /* ReaderController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderController.m; sourceTree = "<group>"; };
+		7DE167F62000254500F4A417 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7DE167F8200025A500F4A417 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7DE167FA200025AB00F4A417 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7DE167FC200025B500F4A417 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7DE167FF200035D500F4A417 /* AJDHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJDHex.h; sourceTree = "<group>"; };
+		7DE16800200035D500F4A417 /* AJDHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJDHex.m; sourceTree = "<group>"; };
+		7DE16801200035D500F4A417 /* dummy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = dummy.mm; sourceTree = "<group>"; };
+		7DE168042002BC0200F4A417 /* HexCvtr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HexCvtr.h; sourceTree = "<group>"; };
+		7DE168052002BC0200F4A417 /* HexCvtr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HexCvtr.m; sourceTree = "<group>"; };
+		7DE1680720036F8800F4A417 /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		7DE1680820036F8800F4A417 /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
 		7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02E562D780509AE0A42E270 /* Pods-CardCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckTests/Pods-CardCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +159,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE167FD200025B500F4A417 /* CoreGraphics.framework in Frameworks */,
+				7DE167FB200025AB00F4A417 /* Foundation.framework in Frameworks */,
+				7DE167F9200025A500F4A417 /* UIKit.framework in Frameworks */,
+				7DE167F72000254500F4A417 /* AudioToolbox.framework in Frameworks */,
 				1B60997856F4E40884808B16 /* libPods-CardCheck.a in Frameworks */,
+				7DE167EF2000229F00F4A417 /* libAudioJack.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +203,10 @@
 		707BFCC96F68F68CE8C3FD39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DE167FC200025B500F4A417 /* CoreGraphics.framework */,
+				7DE167FA200025AB00F4A417 /* Foundation.framework */,
+				7DE167F8200025A500F4A417 /* UIKit.framework */,
+				7DE167F62000254500F4A417 /* AudioToolbox.framework */,
 				89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */,
 				612BE24DB427A35251188050 /* libPods-CardCheckTests.a */,
 				7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */,
@@ -186,6 +228,7 @@
 		7D3A42811FFB8D1900FFF207 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7DE167F2200022B900F4A417 /* Reader */,
 				7D50E20C1FF03D1A00705D06 /* Crypto */,
 				7DDE2C601FF2E6A600058FD4 /* ApiService */,
 			);
@@ -197,6 +240,8 @@
 			children = (
 				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
 				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
+				7DE168042002BC0200F4A417 /* HexCvtr.h */,
+				7DE168052002BC0200F4A417 /* HexCvtr.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -317,6 +362,7 @@
 		7DC4FBBE1FEA475700CFB4FE /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				7DE167DC2000229E00F4A417 /* AudioJack */,
 				7DC4FBD31FEA4EC200CFB4FE /* JSONKit */,
 			);
 			path = Library;
@@ -401,8 +447,8 @@
 		7DDE2C681FF2E8E800058FD4 /* CardReader */ = {
 			isa = PBXGroup;
 			children = (
-				7DDE2C691FF2E90100058FD4 /* CardReader.h */,
-				7DDE2C6A1FF2E90100058FD4 /* CardReader.m */,
+				7DDE2C691FF2E90100058FD4 /* CardReaderData.h */,
+				7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */,
 			);
 			path = CardReader;
 			sourceTree = "<group>";
@@ -448,12 +494,12 @@
 		7DDE2CC31FF4E7D800058FD4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7DE1680820036F8800F4A417 /* NSData+AES.h */,
+				7DE1680720036F8800F4A417 /* NSData+AES.m */,
 				7D3A428D1FFBD29300FFF207 /* NSDictionary+ApiKeys.h */,
 				7D3A428E1FFBD29400FFF207 /* NSDictionary+ApiKeys.m */,
 				7D3A428A1FFBCCE200FFF207 /* NSError+Extensions.h */,
 				7D3A428B1FFBCCE200FFF207 /* NSError+Extensions.m */,
-				7DDE2CC41FF4E82300058FD4 /* NSString+Extensions.h */,
-				7DDE2CC51FF4E82300058FD4 /* NSString+Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,6 +511,46 @@
 				7DDE2D0B1FF6CAA200058FD4 /* DevInitData.m */,
 			);
 			path = DevInit;
+			sourceTree = "<group>";
+		};
+		7DE167DC2000229E00F4A417 /* AudioJack */ = {
+			isa = PBXGroup;
+			children = (
+				7DE167FE200035D500F4A417 /* Support Files */,
+				7DE167DE2000229E00F4A417 /* ACRAesTrackData.h */,
+				7DE167DF2000229E00F4A417 /* ACRAudioJackReader.h */,
+				7DE167E02000229E00F4A417 /* ACRCRC16.h */,
+				7DE167E12000229E00F4A417 /* ACRDukptReceiver.h */,
+				7DE167E22000229E00F4A417 /* ACRDukptTrackData.h */,
+				7DE167E32000229E00F4A417 /* ACRResult.h */,
+				7DE167E42000229E00F4A417 /* ACRStatus.h */,
+				7DE167E52000229E00F4A417 /* ACRTrack1Data.h */,
+				7DE167E62000229E00F4A417 /* ACRTrack2Data.h */,
+				7DE167E72000229E00F4A417 /* ACRTrackData.h */,
+				7DE167E82000229E00F4A417 /* AudioJack.h */,
+				7DE167E92000229E00F4A417 /* AudioJackErrors.h */,
+				7DE167EA2000229E00F4A417 /* libAudioJack.a */,
+			);
+			path = AudioJack;
+			sourceTree = "<group>";
+		};
+		7DE167F2200022B900F4A417 /* Reader */ = {
+			isa = PBXGroup;
+			children = (
+				7DE167F3200022DF00F4A417 /* ReaderController.h */,
+				7DE167F4200022DF00F4A417 /* ReaderController.m */,
+			);
+			path = Reader;
+			sourceTree = "<group>";
+		};
+		7DE167FE200035D500F4A417 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DE167FF200035D500F4A417 /* AJDHex.h */,
+				7DE16800200035D500F4A417 /* AJDHex.m */,
+				7DE16801200035D500F4A417 /* dummy.mm */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -756,20 +842,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
 				7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */,
 				7D3A42891FFB9AF800FFF207 /* DevInitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* DevInitData.m in Sources */,
+				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
+				7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */,
 				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
 				7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */,
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
 				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
-				7DDE2CC61FF4E82300058FD4 /* NSString+Extensions.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
-				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
+				7DE1680920036F8900F4A417 /* NSData+AES.m in Sources */,
+				7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
+				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* DevInitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
@@ -941,10 +1031,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
 				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardCheck/Kernel/Library/AudioJack/**",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -958,10 +1053,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
 				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardCheck/Kernel/Library/AudioJack/**",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

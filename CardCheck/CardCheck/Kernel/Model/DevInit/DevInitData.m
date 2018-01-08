@@ -11,38 +11,79 @@
 @interface DevInitData()
 
 @property (nonatomic, readwrite) int attempts;
+@property (nonatomic, readwrite) NSUInteger otp;
 
-@property (nonatomic, readwrite) long authRequestID;
-@property (nonatomic, readwrite) long long authRequestTime;
-@property (nonatomic, readwrite) long long authResponseTime;
-
-@property (nonatomic, readwrite) long long devInitRequestTime;
-@property (nonatomic, readwrite) long long devInitResponseTime;
+@property (nonatomic, strong) CardReaderData *readerData;
+@property (nonatomic, strong) AuthResponseModel *authResponse;
+@property (nonatomic, strong) DevInitResponseModel *devInitResponse;
 
 @end
 
 @implementation DevInitData
+
+- (instancetype)initDemoData
+{
+    DevInitData *data = [DevInitData new];
+    [data setupWithCalculatedOtp: 124367];
+    
+    return data;
+}
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.attempts = 3;
+        self.readerData = [CardReaderData demoData];
     }
     return self;
 }
 
+- (void)setupWithCalculatedOtp:(NSUInteger)otp
+{
+    self.otp = otp;
+}
+
 - (void)setupWithAuthResponse:(AuthResponseModel *)response
 {
-    self.authResponseTime = response.time;
-    self.authRequestID = response.requestID;
-    self.authRequestTime = response.request.time;
+    [self setAuthResponse: response];
 }
 
 - (void)setupWithDevInitResponse:(DevInitResponseModel *)response
 {
-    self.devInitResponseTime = response.time;
-    self.devInitRequestTime = response.request.time;
+    [self setDevInitResponse: response];
+}
+
+- (long)authRequestID {
+    return self.authResponse.requestID;
+}
+
+- (long long)authRequestTime {
+    return self.authResponse.request.time;
+}
+
+- (long long)authResponseTime {
+    return self.authResponse.time;
+}
+
+- (long)appID {
+    return self.devInitResponse.appID;
+}
+
+- (long long)devInitRequestTime {
+    return self.devInitResponse.request.time;
+}
+
+- (long long)devInitResponseTime {
+    return self.devInitResponse.time;
+}
+
+- (NSString *)customID {
+    return self.readerData.customID;
+}
+
+- (NSString *)cipherAppKeys {
+    return self.devInitResponse.appKeys;
 }
 
 - (NSString *)deviceInfo {
@@ -56,7 +97,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; authRequestID = %li, authRequestTime = %lli, authResponseTime = %lli, devInitRequestTime = %lli, devInitResponseTime = %lli", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime];
+    return [NSString stringWithFormat:@"%@; authRequestID = %li, authRequestTime = %lli, authResponseTime = %lli, devInitRequestTime = %lli, devInitResponseTime = %lli, appID = %li, appKeys = %@", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
 }
 
 

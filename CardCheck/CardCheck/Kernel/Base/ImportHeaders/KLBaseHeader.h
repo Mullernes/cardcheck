@@ -15,7 +15,7 @@
 #import "KLBaseDebugConstants.h"
 
 //Model
-#import "CardReader.h"
+#import "CardReaderData.h"
 #import "DevInitData.h"
 
 //Controller
@@ -23,14 +23,14 @@
 #import "CryptoController.h"
 
 //Utils
+#import "HexCvtr.h"
 #import "CurrentDevice.h"
 
 //ThirdParty
-#include <CommonCrypto/CommonHMAC.h>
+#include <CommonCrypto/CommonCrypto.h>
 
 //Extensions
 #import "NSError+Extensions.h"
-#import "NSString+Extensions.h"
 #import "NSDictionary+ApiKeys.h"
 
 /*

@@ -11,20 +11,20 @@
 @interface DevInitRequestModel()
 
 @property (nonatomic, readwrite) DevInitData *data;
-@property (nonatomic, readwrite) CardReader *reader;
+@property (nonatomic, readwrite) CardReaderData *reader;
 
 @end
 
 @implementation DevInitRequestModel
 
 + (instancetype)requestWithData:(DevInitData *)data
-                      andReader:(CardReader *)reader
+                      andReader:(CardReaderData *)reader
 {
     return [[DevInitRequestModel alloc] initWithData: data andReader: reader];
 }
 
 - (instancetype)initWithData:(DevInitData *)data
-                   andReader:(CardReader *)reader
+                   andReader:(CardReaderData *)reader
 {
     self = [super init];
     if (self) {
@@ -39,9 +39,9 @@
 
 - (NSDictionary *)parameters
 {
-    return @{@"time"                :   [NSNumber numberWithLongLong:self.time],
+    return @{@"time"                :   @(self.time),
              @"cardreader_type"     :   @(self.reader.type),
-             @"cardreader_id"       :   self.reader.ID,
+             @"cardreader_id"       :   self.reader.deviceID,
              @"auth_req_id"         :   @(self.data.authRequestID),
              @"mobile_device_info"  :   [self.data deviceInfo],
              @"last_try_counter"    :   @(3)

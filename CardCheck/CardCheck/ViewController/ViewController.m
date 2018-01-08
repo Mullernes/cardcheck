@@ -7,22 +7,16 @@
 //
 
 #import "ViewController.h"
+
 #import "DevInitData.h"
+#import "ReaderController.h"
+
+#import "NSData+AES.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) DevInitData *devInitData;
-@property (nonatomic, strong) CardReader *currentReader;
-
-@property (weak, nonatomic) IBOutlet UITextField *requestID;
-@property (weak, nonatomic) IBOutlet UITextField *responseTime;
-@property (weak, nonatomic) IBOutlet UITextField *calculatedOtp;
-
-@property (weak, nonatomic) IBOutlet UITextField *typedOtp;
-
-- (IBAction)otp:(id)sender;
-- (IBAction)auth:(id)sender;
-- (IBAction)initialization:(id)sender;
+@property (nonatomic, strong) CardReaderData *currentReader;
 
 @end
 
@@ -47,24 +41,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CardReader *)currentReader {
+- (CardReaderData *)currentReader {
     if (_currentReader == nil) {
-        _currentReader = [CardReader demoReader];
+        _currentReader = [CardReaderData demoData];
     }
     
     return _currentReader;
 }
 
-- (void)setDevInitData:(DevInitData *)devInitData
-{
-    _devInitData = devInitData;
-    
-    NSString *reqID = [NSString stringWithFormat:@"%li", _devInitData.authRequestID];
-    [self.requestID setText: reqID];
-    
-    NSString *respTime = [NSString stringWithFormat:@"%lli", _devInitData.authResponseTime];
-    [self.responseTime setText: respTime];
+- (IBAction)readerInit:(id)sender {
+    ReaderController *reader = [ReaderController sharedInstance];
+    [reader initReader];
 }
+
+- (IBAction)readerGetIDs:(id)sender {
+    ReaderController *reader = [ReaderController sharedInstance];
+    [reader getDeviceID];
+}
+
 
 - (IBAction)auth:(id)sender
 {
@@ -73,10 +67,10 @@
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendAuthRequest: request
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
-                                         if (model.isCorrect) {
-                                             DevInitData *data = [DevInitData new];
-                                             [data setupWithAuthResponse: model];
-                                             [weakSelf setDevInitData: data];
+                                         if (model.isCorrect)
+                                         {
+                                             weakSelf.devInitData = [DevInitData new];
+                                             [weakSelf.devInitData setupWithAuthResponse: model];
                                              
                                              NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
                                          }
@@ -86,28 +80,29 @@
                                      }];
 }
 
-- (IBAction)otp:(id)sender
+- (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
     NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
-                               andSecret: DEMO_CUSTOM_ID];
-    [self.devInitData setCalcOtp: [value unsignedIntegerValue]];
+                                    andHexKey: self.currentReader.customID];
+    [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
 
-    [self.calculatedOtp setText: [NSString stringWithFormat:@"%lu", (unsigned long)self.devInitData.calcOtp]];
+    NSLog(@"otp = %lu", value.unsignedIntegerValue);
 }
 
 - (IBAction)initialization:(id)sender
 {
     //NSUInteger typedOtp = [self.typedOtp.text integerValue];
-    NSUInteger typedOtp = self.devInitData.calcOtp;
-    if (self.devInitData.calcOtp == typedOtp)
+    NSUInteger typedOtp = self.devInitData.otp;
+    if (self.devInitData.otp == typedOtp)
     {
         DevInitRequestModel *request = [DevInitRequestModel requestWithData: self.devInitData
                                                                   andReader: self.currentReader];
         __weak ViewController *weakSelf = self;
         [[APIController sharedInstance] sendDevInitRequest: request
                                             withCompletion:^(DevInitResponseModel *model, NSError *error) {
-                                                if (model.isCorrect) {
+                                                if (model.isCorrect)
+                                                {
                                                     [weakSelf.devInitData setupWithDevInitResponse: model];
                                                     
                                                     NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
@@ -118,4 +113,42 @@
                                             }];
     }
 }
+
+- (IBAction)calcKeys:(id)sender
+{
+    if (DEMO_MODE) {
+        self.devInitData = [[DevInitData alloc] initDemoData];
+    }
+    else {
+        CryptoController *crp = [CryptoController sharedInstance];
+        NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+        NSLog(@"transportKey = %@", hexTransportKey);
+        
+        NSData *appKeys = [crp aes128DecryptHexData: [self.devInitData cipherAppKeys]
+                                         withHexKey: hexTransportKey];
+        NSLog(@"appKeys = %@", [HexCvtr hexFromData: appKeys]);
+        
+        NSData *appDataKey = [appKeys subdataWithRange: NSMakeRange(0, 32)];
+        NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
+        
+        NSLog(@"appDataKey = %@", [HexCvtr hexFromData: appDataKey]);
+        NSLog(@"appCommKey = %@", [HexCvtr hexFromData: appCommKey]);
+    }
+}
+
+- (IBAction)testAes:(id)sender
+{
+    CryptoController *crp = [CryptoController sharedInstance];
+    
+    NSLog(@"input data = %@", DEMO_APP_KEYS);
+    NSLog(@"key = %@", DEMO_TRANSPORT_KEY);
+    
+    NSData *cipherData = [crp aes128EncryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
+    NSLog(@"cipherData = %@", [HexCvtr hexFromData: cipherData]);
+    
+    NSData *plainData = [crp aes128DecryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
+    NSLog(@"plainData = %@", [HexCvtr hexFromData: plainData]);
+}
+
+
 @end

@@ -8,11 +8,12 @@
 
 #import "KLBaseModel.h"
 
-@interface CardReader : KLBaseModel
+@interface CardReaderData : KLBaseModel
 
 @property (nonatomic) NSUInteger type;
-@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, strong) NSString *deviceID;
+@property (nonatomic, strong) NSString *customID;
 
-+ (instancetype)demoReader;
++ (instancetype)demoData;
 
 @end

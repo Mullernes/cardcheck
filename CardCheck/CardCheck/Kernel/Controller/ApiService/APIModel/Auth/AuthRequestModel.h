@@ -11,10 +11,10 @@
 @interface AuthRequestModel : APIBaseModel
 
 @property (nonatomic, strong, readonly) NSString *login;
-@property (nonatomic, strong, readonly) CardReader *reader;
+@property (nonatomic, strong, readonly) CardReaderData *reader;
 
 + (instancetype)requestWithLogin:(NSString *)login
-                       andReader:(CardReader *)reader;
+                       andReader:(CardReaderData *)reader;
 
 @end
 
