@@ -120,7 +120,7 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSString *)calcTransportKey:(DevInitData *)data
+- (NSString *)calcTransportKey:(InitializationData *)data
 {
     //Gen key - 14 bytes
     NSMutableData *keyBuffer = [NSMutableData dataWithCapacity: 14];

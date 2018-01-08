@@ -6,9 +6,9 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "DevInitResponseModel.h"
+#import "InitResponseModel.h"
 
-@interface DevInitResponseModel()
+@interface InitResponseModel()
 
 @property (nonatomic, readwrite) int code;
 @property (nonatomic, readwrite) long appID;
@@ -16,11 +16,11 @@
 
 @end
 
-@implementation DevInitResponseModel
+@implementation InitResponseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data
 {
-    return [[DevInitResponseModel alloc] initWithRawData: data.copy];
+    return [[InitResponseModel alloc] initWithRawData: data.copy];
 }
 
 - (instancetype)initWithRawData:(NSDictionary *)data

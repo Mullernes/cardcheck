@@ -6,24 +6,24 @@
 //  Copyright © 2018 itnesPro. All rights reserved.
 //
 
-#import "DevInitRequestModel.h"
+#import "InitRequestModel.h"
 
-@interface DevInitRequestModel()
+@interface InitRequestModel()
 
-@property (nonatomic, readwrite) DevInitData *data;
+@property (nonatomic, readwrite) InitializationData *data;
 @property (nonatomic, readwrite) CardReaderData *reader;
 
 @end
 
-@implementation DevInitRequestModel
+@implementation InitRequestModel
 
-+ (instancetype)requestWithData:(DevInitData *)data
++ (instancetype)requestWithData:(InitializationData *)data
                       andReader:(CardReaderData *)reader
 {
-    return [[DevInitRequestModel alloc] initWithData: data andReader: reader];
+    return [[InitRequestModel alloc] initWithData: data andReader: reader];
 }
 
-- (instancetype)initWithData:(DevInitData *)data
+- (instancetype)initWithData:(InitializationData *)data
                    andReader:(CardReaderData *)reader
 {
     self = [super init];

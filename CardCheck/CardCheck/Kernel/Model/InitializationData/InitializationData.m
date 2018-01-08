@@ -6,24 +6,24 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "DevInitData.h"
+#import "InitializationData.h"
 
-@interface DevInitData()
+@interface InitializationData()
 
 @property (nonatomic, readwrite) int attempts;
 @property (nonatomic, readwrite) NSUInteger otp;
 
 @property (nonatomic, strong) CardReaderData *readerData;
 @property (nonatomic, strong) AuthResponseModel *authResponse;
-@property (nonatomic, strong) DevInitResponseModel *devInitResponse;
+@property (nonatomic, strong) InitResponseModel *initializationResponse;
 
 @end
 
-@implementation DevInitData
+@implementation InitializationData
 
 - (instancetype)initDemoData
 {
-    DevInitData *data = [DevInitData new];
+    InitializationData *data = [InitializationData new];
     [data setupWithCalculatedOtp: 124367];
     
     return data;
@@ -49,9 +49,9 @@
     [self setAuthResponse: response];
 }
 
-- (void)setupWithDevInitResponse:(DevInitResponseModel *)response
+- (void)setupWithInitResponse:(InitResponseModel *)response
 {
-    [self setDevInitResponse: response];
+    [self setInitializationResponse: response];
 }
 
 - (long)authRequestID {
@@ -67,15 +67,15 @@
 }
 
 - (long)appID {
-    return self.devInitResponse.appID;
+    return self.initializationResponse.appID;
 }
 
 - (long long)devInitRequestTime {
-    return self.devInitResponse.request.time;
+    return self.initializationResponse.request.time;
 }
 
 - (long long)devInitResponseTime {
-    return self.devInitResponse.time;
+    return self.initializationResponse.time;
 }
 
 - (NSString *)customID {
@@ -83,7 +83,7 @@
 }
 
 - (NSString *)cipherAppKeys {
-    return self.devInitResponse.appKeys;
+    return self.initializationResponse.appKeys;
 }
 
 - (NSString *)deviceInfo {

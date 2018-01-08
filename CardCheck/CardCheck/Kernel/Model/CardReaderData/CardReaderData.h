@@ -11,8 +11,8 @@
 @interface CardReaderData : KLBaseModel
 
 @property (nonatomic) NSUInteger type;
-@property (nonatomic, strong) NSString *deviceID;
-@property (nonatomic, strong) NSString *customID;
+@property (nonatomic, strong, readonly) NSString *deviceID;
+@property (nonatomic, strong, readonly) NSString *customID;
 
 + (instancetype)demoData;
 

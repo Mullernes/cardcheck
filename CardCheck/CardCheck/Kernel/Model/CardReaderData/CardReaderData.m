@@ -8,6 +8,13 @@
 
 #import "CardReaderData.h"
 
+@interface CardReaderData()
+
+@property (nonatomic, readwrite) NSString *deviceID;
+@property (nonatomic, readwrite) NSString *customID;
+
+@end
+
 @implementation CardReaderData
 
 + (instancetype)demoData {

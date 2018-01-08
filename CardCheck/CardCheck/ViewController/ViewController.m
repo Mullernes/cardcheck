@@ -8,15 +8,16 @@
 
 #import "ViewController.h"
 
-#import "DevInitData.h"
+#import "InitializationData.h"
 #import "ReaderController.h"
 
 #import "NSData+AES.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) DevInitData *devInitData;
+@property (nonatomic, strong) KeyChainData *keyChain;
 @property (nonatomic, strong) CardReaderData *currentReader;
+@property (nonatomic, strong) InitializationData *devInitData;
 
 @end
 
@@ -34,19 +35,16 @@
     //NSInteger value2 = [crp hotpWithData: [request jsonData] andSecret: key];
     //NSNumber *value3 = [crp hotpWithValue: 1514636766 andSecret: key];
      */
+    
+    self.currentReader = [CardReaderData demoData];
+    
+    self.keyChain = [KeyChainData sharedInstance];
+    [self.keyChain setCustomId: self.currentReader.customID];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (CardReaderData *)currentReader {
-    if (_currentReader == nil) {
-        _currentReader = [CardReaderData demoData];
-    }
-    
-    return _currentReader;
 }
 
 - (IBAction)readerInit:(id)sender {
@@ -69,7 +67,7 @@
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          if (model.isCorrect)
                                          {
-                                             weakSelf.devInitData = [DevInitData new];
+                                             weakSelf.devInitData = [InitializationData new];
                                              [weakSelf.devInitData setupWithAuthResponse: model];
                                              
                                              NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
@@ -84,7 +82,7 @@
 {
     CryptoController *crp = [CryptoController sharedInstance];
     NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
-                                    andHexKey: self.currentReader.customID];
+                                    andHexKey: [[KeyChainData sharedInstance] customId]];
     [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
 
     NSLog(@"otp = %lu", value.unsignedIntegerValue);
@@ -96,14 +94,14 @@
     NSUInteger typedOtp = self.devInitData.otp;
     if (self.devInitData.otp == typedOtp)
     {
-        DevInitRequestModel *request = [DevInitRequestModel requestWithData: self.devInitData
+        InitRequestModel *request = [InitRequestModel requestWithData: self.devInitData
                                                                   andReader: self.currentReader];
         __weak ViewController *weakSelf = self;
         [[APIController sharedInstance] sendDevInitRequest: request
-                                            withCompletion:^(DevInitResponseModel *model, NSError *error) {
+                                            withCompletion:^(InitResponseModel *model, NSError *error) {
                                                 if (model.isCorrect)
                                                 {
-                                                    [weakSelf.devInitData setupWithDevInitResponse: model];
+                                                    [weakSelf.devInitData setupWithInitResponse: model];
                                                     
                                                     NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
                                                 }
@@ -117,22 +115,29 @@
 - (IBAction)calcKeys:(id)sender
 {
     if (DEMO_MODE) {
-        self.devInitData = [[DevInitData alloc] initDemoData];
+        self.devInitData = [[InitializationData alloc] initDemoData];
     }
     else {
         CryptoController *crp = [CryptoController sharedInstance];
-        NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
-        NSLog(@"transportKey = %@", hexTransportKey);
         
+        //Otp
+        [self.keyChain setOtp: self.devInitData.otp];
+        
+        //Transport
+        NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+        [self.keyChain setTransportKey: hexTransportKey];
+        
+        //AppKeys
         NSData *appKeys = [crp aes128DecryptHexData: [self.devInitData cipherAppKeys]
-                                         withHexKey: hexTransportKey];
-        NSLog(@"appKeys = %@", [HexCvtr hexFromData: appKeys]);
+                                         withHexKey: self.keyChain.transportKey];
         
         NSData *appDataKey = [appKeys subdataWithRange: NSMakeRange(0, 32)];
-        NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
+        [self.keyChain setAppDataKey: [HexCvtr hexFromData: appDataKey]];
         
-        NSLog(@"appDataKey = %@", [HexCvtr hexFromData: appDataKey]);
-        NSLog(@"appCommKey = %@", [HexCvtr hexFromData: appCommKey]);
+        NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
+        [self.keyChain setAppCommKey: [HexCvtr hexFromData: appCommKey]];
+        
+        NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     }
 }
 

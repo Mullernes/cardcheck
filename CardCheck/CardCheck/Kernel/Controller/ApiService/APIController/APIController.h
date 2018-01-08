@@ -11,11 +11,11 @@
 #import "AuthRequestModel.h"
 #import "AuthResponseModel.h"
 
-#import "DevInitRequestModel.h"
-#import "DevInitResponseModel.h"
+#import "InitRequestModel.h"
+#import "InitResponseModel.h"
 
 typedef void(^AuthResponseHandler)(AuthResponseModel *model, NSError *error);
-typedef void(^DevInitResponseHandler)(DevInitResponseModel *model, NSError *error);
+typedef void(^DevInitResponseHandler)(InitResponseModel *model, NSError *error);
 
 @interface APIController : KLBaseController
 
@@ -26,7 +26,7 @@ typedef void(^DevInitResponseHandler)(DevInitResponseModel *model, NSError *erro
          withCompletion:(AuthResponseHandler)handler;
 
 
-- (void)sendDevInitRequest:(DevInitRequestModel *)request
+- (void)sendDevInitRequest:(InitRequestModel *)request
             withCompletion:(DevInitResponseHandler)handler;
 
 @end

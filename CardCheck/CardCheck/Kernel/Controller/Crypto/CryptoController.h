@@ -16,7 +16,7 @@
 - (NSNumber *)hotpWithData:(NSData *)plain andHexKey:(NSString *)key;
 - (NSNumber *)hotpWithText:(NSString *)plain andHexKey:(NSString *)key;
 - (NSNumber *)hotpWithValue:(long long)plain andHexKey:(NSString *)key;
-- (NSString *)calcTransportKey:(DevInitData *)data;
+- (NSString *)calcTransportKey:(InitializationData *)data;
 
 - (NSData *)aes128EncryptHexData:(NSString *)data withHexKey:(NSString *)key;
 - (NSData *)aes128DecryptHexData:(NSString *)data withHexKey:(NSString *)key;

@@ -75,7 +75,7 @@
 {
     //1
     NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                                 andHexKey: request.reader.customID];
+                                            andHexKey: [[KeyChainData sharedInstance] customId]];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
@@ -103,12 +103,12 @@
     }
 }
 
-- (void)sendDevInitRequest:(DevInitRequestModel *)request
+- (void)sendDevInitRequest:(InitRequestModel *)request
             withCompletion:(DevInitResponseHandler)handler
 {
     //1
     NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                                 andHexKey: request.reader.customID];
+                                            andHexKey: [[KeyChainData sharedInstance] customId]];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
@@ -119,7 +119,7 @@
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
         {
-                       DevInitResponseModel *response = [DevInitResponseModel responseWithRawData: responseObject];
+                       InitResponseModel *response = [InitResponseModel responseWithRawData: responseObject];
                        if (response.isCorrect) {
                            [response setupWithRequest: request];
                            handler(response, nil);

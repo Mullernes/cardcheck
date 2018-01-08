@@ -8,7 +8,7 @@
 
 #import "APIBaseModel.h"
 
-@interface DevInitResponseModel : APIBaseModel
+@interface InitResponseModel : APIBaseModel
 
 @property (nonatomic, readonly) int code;
 @property (nonatomic, readonly) long appID;
