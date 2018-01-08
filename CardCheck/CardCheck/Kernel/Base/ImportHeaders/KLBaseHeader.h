@@ -27,7 +27,7 @@
 #import "CurrentDevice.h"
 
 //ThirdParty
-#include <CommonCrypto/CommonHMAC.h>
+#include <CommonCrypto/CommonCrypto.h>
 
 //Extensions
 #import "NSError+Extensions.h"

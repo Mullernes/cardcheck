@@ -7,7 +7,7 @@
 //
 
 #import "CryptoController.h"
-#import "AJDHex.h"
+#import "NSData+AES.h"
 
 @implementation CryptoController
 
@@ -38,7 +38,6 @@
 
 - (NSData *)hmac1WithPlainText:(NSString *)plain andHexKey:(NSString *)key
 {
-    const char *cText = [plain cStringUsingEncoding: NSUTF8StringEncoding];
     return [self hmac1WithPlainData: [plain dataUsingEncoding: NSUTF8StringEncoding]
                          andKeyData: [HexCvtr dataFromHex: key]];
 }
@@ -63,7 +62,7 @@
     return HMAC.copy;
 }
 
-- (NSNumber *)hotpWithPlainData:(NSData *)plain andHexKey:(NSString *)key
+- (NSNumber *)hotpWithData:(NSData *)plain andHexKey:(NSString *)key
 {
     NSData *data = [self hmac1WithPlainData: plain andHexKey: key];
     const char *cHMAC = [data bytes];
@@ -81,7 +80,7 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)hotpWithPlainText:(NSString *)plain andHexKey:(NSString *)key
+- (NSNumber *)hotpWithText:(NSString *)plain andHexKey:(NSString *)key
 {
     NSData *data = [self hmac1WithPlainText: plain andHexKey: key];
     const char *cHMAC = [data bytes];
@@ -99,7 +98,7 @@
     return [NSNumber numberWithInt: otp];
 }
 
-- (NSNumber *)hotpWithPlainValue:(long long)plain andHexKey:(NSString *)key
+- (NSNumber *)hotpWithValue:(long long)plain andHexKey:(NSString *)key
 {
     uint64_t tValue = plain;
     uint64_t tBytes = CFSwapInt64HostToBig(tValue);
@@ -136,31 +135,32 @@
     long long timeT = 0;
     NSMutableData *dataBuffer = [NSMutableData dataWithCapacity: 32];
 
-    /*
-    timeT = data.authRequestTime;
-    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
-    [dataBuffer appendData: timeD];
-    
-    timeT = data.authResponseTime;
-    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
-    [dataBuffer appendData: timeD];
-    
-    timeT = data.devInitRequestTime;
-    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
-    [dataBuffer appendData: timeD];
-    
-    timeT = data.devInitResponseTime;
-    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
-    [dataBuffer appendData: timeD];
-    */
-    
-    timeT = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
-    timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
-    [dataBuffer appendData: timeD];
-    [dataBuffer appendData: timeD];
-    [dataBuffer appendData: timeD];
-    [dataBuffer appendData: timeD];
-    
+    if (DEMO_MODE) {
+        timeT = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+        timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+        [dataBuffer appendData: timeD];
+        [dataBuffer appendData: timeD];
+        [dataBuffer appendData: timeD];
+        [dataBuffer appendData: timeD];
+    }
+    else {
+        timeT = data.authRequestTime;
+        timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+        [dataBuffer appendData: timeD];
+        
+        timeT = data.authResponseTime;
+        timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+        [dataBuffer appendData: timeD];
+        
+        timeT = data.devInitRequestTime;
+        timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+        [dataBuffer appendData: timeD];
+        
+        timeT = data.devInitResponseTime;
+        timeD = [NSData dataWithBytes: &timeT length: sizeof(timeT)];
+        [dataBuffer appendData: timeD];
+    }
+
     //hmac1
     NSData *hmac1Data = [self hmac1WithPlainData: dataBuffer.copy
                                      andKeyData: keyBuffer.copy];
@@ -171,6 +171,19 @@
     return [HexCvtr hexFromData: transportKey];
 }
 
+#pragma mark - AES
 
+- (NSData *)aes128EncryptHexData:(NSString *)data withHexKey:(NSString *)key
+{
+    NSData *inputData = [HexCvtr dataFromHex: data];
+    return [inputData AES128EncryptedDataWithKey: key];
+}
+
+- (NSData *)aes128DecryptHexData:(NSString *)data withHexKey:(NSString *)key
+{
+    NSData *inputData = [HexCvtr dataFromHex: data];
+    return [inputData AES128DecryptedDataWithKey: key];
+}
 
 @end
+

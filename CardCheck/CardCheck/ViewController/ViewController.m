@@ -11,6 +11,8 @@
 #import "DevInitData.h"
 #import "ReaderController.h"
 
+#import "NSData+AES.h"
+
 @interface ViewController ()
 
 @property (nonatomic, strong) DevInitData *devInitData;
@@ -65,10 +67,10 @@
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendAuthRequest: request
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
-                                         if (model.isCorrect) {
-                                             DevInitData *data = [DevInitData new];
-                                             [data setupWithAuthResponse: model];
-                                             [weakSelf setDevInitData: data];
+                                         if (model.isCorrect)
+                                         {
+                                             weakSelf.devInitData = [DevInitData new];
+                                             [weakSelf.devInitData setupWithAuthResponse: model];
                                              
                                              NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
                                          }
@@ -81,7 +83,7 @@
 - (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSNumber *value = [crp hotpWithPlainValue: self.devInitData.authResponseTime
+    NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
                                     andHexKey: self.currentReader.customID];
     [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
 
@@ -99,7 +101,8 @@
         __weak ViewController *weakSelf = self;
         [[APIController sharedInstance] sendDevInitRequest: request
                                             withCompletion:^(DevInitResponseModel *model, NSError *error) {
-                                                if (model.isCorrect) {
+                                                if (model.isCorrect)
+                                                {
                                                     [weakSelf.devInitData setupWithDevInitResponse: model];
                                                     
                                                     NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
@@ -113,10 +116,39 @@
 
 - (IBAction)calcKeys:(id)sender
 {
-    self.devInitData = [[DevInitData alloc] initDemoData];
-    CryptoController *crp = [CryptoController sharedInstance];
-    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
-    NSLog(@"transportKey = %@", hexTransportKey);
+    if (DEMO_MODE) {
+        self.devInitData = [[DevInitData alloc] initDemoData];
+    }
+    else {
+        CryptoController *crp = [CryptoController sharedInstance];
+        NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+        NSLog(@"transportKey = %@", hexTransportKey);
+        
+        NSData *appKeys = [crp aes128DecryptHexData: [self.devInitData cipherAppKeys]
+                                         withHexKey: hexTransportKey];
+        NSLog(@"appKeys = %@", [HexCvtr hexFromData: appKeys]);
+        
+        NSData *appDataKey = [appKeys subdataWithRange: NSMakeRange(0, 32)];
+        NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
+        
+        NSLog(@"appDataKey = %@", [HexCvtr hexFromData: appDataKey]);
+        NSLog(@"appCommKey = %@", [HexCvtr hexFromData: appCommKey]);
+    }
 }
+
+- (IBAction)testAes:(id)sender
+{
+    CryptoController *crp = [CryptoController sharedInstance];
+    
+    NSLog(@"input data = %@", DEMO_APP_KEYS);
+    NSLog(@"key = %@", DEMO_TRANSPORT_KEY);
+    
+    NSData *cipherData = [crp aes128EncryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
+    NSLog(@"cipherData = %@", [HexCvtr hexFromData: cipherData]);
+    
+    NSData *plainData = [crp aes128DecryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
+    NSLog(@"plainData = %@", [HexCvtr hexFromData: plainData]);
+}
+
 
 @end

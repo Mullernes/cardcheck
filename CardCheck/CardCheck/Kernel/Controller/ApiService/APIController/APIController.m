@@ -74,7 +74,7 @@
          withCompletion:(AuthResponseHandler)handler
 {
     //1
-    NSNumber *sign = [self.crpController hotpWithPlainData: [request jsonData]
+    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
                                                  andHexKey: request.reader.customID];
     if ([request setupWithSignature: sign]) {
         //2
@@ -107,7 +107,7 @@
             withCompletion:(DevInitResponseHandler)handler
 {
     //1
-    NSNumber *sign = [self.crpController hotpWithPlainData: [request jsonData]
+    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
                                                  andHexKey: request.reader.customID];
     if ([request setupWithSignature: sign]) {
         //2
