@@ -14,7 +14,7 @@
 @property (nonatomic, readonly) int attempts;
 @property (nonatomic, readonly) NSUInteger otp;
 
-- (instancetype)initDemoData;
++ (instancetype)demoData;
 
 - (void)setupWithCalculatedOtp:(NSUInteger)otp;
 - (void)setupWithAuthResponse:(AuthResponseModel *)response;

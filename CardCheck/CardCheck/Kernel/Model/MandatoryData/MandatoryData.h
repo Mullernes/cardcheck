@@ -10,9 +10,16 @@
 
 @interface MandatoryData : KLBaseModel
 
-@property (nonatomic, readonly) long appID;
-@property (nonatomic, strong, readonly) NSString *deviceID;     //MCU
-@property (nonatomic, strong, readonly) NSString *appDataKey;
-@property (nonatomic, strong, readonly) NSString *appCommKey;
+@property (nonatomic, readonly, getter=isExist) BOOL exist;
+
+@property (nonatomic) long appID;
+@property (nonatomic, strong) NSString *deviceID;     //*MCU
+@property (nonatomic, strong) NSString *appDataKey;
+@property (nonatomic, strong) NSString *appCommKey;
+
+#pragma mark - Init
++ (instancetype)sharedInstance;
+
+- (void)save;
 
 @end

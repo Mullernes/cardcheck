@@ -21,7 +21,7 @@
 
 @implementation InitializationData
 
-- (instancetype)initDemoData
++ (instancetype)demoData
 {
     InitializationData *data = [InitializationData new];
     [data setupWithCalculatedOtp: 124367];

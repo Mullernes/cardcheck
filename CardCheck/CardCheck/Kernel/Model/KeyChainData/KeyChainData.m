@@ -26,6 +26,19 @@
     return keyChain;
 }
 
++ (instancetype)demoData {
+    static KeyChainData *keyChain;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        keyChain = [[self alloc] init];
+        
+        [keyChain setCustomId: [[CardReaderData demoData] customID]];
+        [keyChain setAppDataKey: [[MandatoryData sharedInstance] appDataKey]];
+        [keyChain setAppCommKey: [[MandatoryData sharedInstance] appCommKey]];
+    });
+    return keyChain;
+}
+
 - (id)init
 {
     self = [super init];

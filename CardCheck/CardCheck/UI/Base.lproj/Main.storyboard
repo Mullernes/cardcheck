@@ -58,16 +58,8 @@
                                     <action selector="readerGetIDs:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JUR-14-HrK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0e-Jg-fwn">
-                                <rect key="frame" x="16" y="220" width="67" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Calc Keys"/>
-                                <connections>
-                                    <action selector="calcKeys:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lua-Lo-36t"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOq-e7-3IB">
-                                <rect key="frame" x="16" y="265" width="67" height="30"/>
+                                <rect key="frame" x="13" y="226" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Test Aes"/>
                                 <connections>

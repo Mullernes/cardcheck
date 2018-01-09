@@ -10,6 +10,8 @@
 
 @interface CardReaderData()
 
+@property (nonatomic, readwrite) NSUInteger type;
+@property (nonatomic, readwrite) BOOL lowBattery;
 @property (nonatomic, readwrite) NSString *deviceID;
 @property (nonatomic, readwrite) NSString *customID;
 
@@ -18,19 +20,22 @@
 @implementation CardReaderData
 
 + (instancetype)demoData {
-    return [[CardReaderData alloc] initWithDevID: DEMO_READER_ID
-                                        customID: DEMO_CUSTOM_ID
-                                         andType: 1];
-            
+    CardReaderData *reader = [[CardReaderData alloc] initWithDevID: DEMO_READER_ID
+                                                          customID: DEMO_CUSTOM_ID
+                                                           andType: 1];
+    [reader setTrackData: [AesTrackData demoData]];
+    
+    return reader;
 }
 
 - (instancetype)initWithDevID:(NSString *)devID customID:(NSString *)cusID andType:(NSUInteger)type
 {
     self = [super init];
     if (self) {
+        self.type = type;
+        self.lowBattery = NO;
         self.deviceID = devID;
         self.customID = cusID;
-        self.type = type;
     }
     return self;
 }

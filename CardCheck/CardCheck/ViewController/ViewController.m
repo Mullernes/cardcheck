@@ -27,25 +27,59 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    /*
-    CryptoController *crp = [CryptoController sharedInstance];
-    NSString *key = @"b745ec0fdf5c9e94db10";
-
-    //NSInteger value1 = [crp hotpWithText: [request jsonString] andSecret: key];
-    //NSInteger value2 = [crp hotpWithData: [request jsonData] andSecret: key];
-    //NSNumber *value3 = [crp hotpWithValue: 1514636766 andSecret: key];
-     */
-    
+    //Base init
+    self.keyChain = [KeyChainData demoData];
     self.currentReader = [CardReaderData demoData];
-    
-    self.keyChain = [KeyChainData sharedInstance];
-    [self.keyChain setCustomId: self.currentReader.customID];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Working
+
+- (void)completeInitialization
+{
+    if (DEMO_MODE) {
+        self.devInitData = [InitializationData demoData];
+    }
+    
+    CryptoController *crp = [CryptoController sharedInstance];
+    
+    //Otp
+    [self.keyChain setOtp: self.devInitData.otp];
+    
+    //Transport
+    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+    [self.keyChain setTransportKey: hexTransportKey];
+    
+    //AppKeys
+    NSData *appKeys = [crp aes128DecryptHexData: [self.devInitData cipherAppKeys]
+                                     withHexKey: self.keyChain.transportKey];
+    
+    NSData *appDataKey = [appKeys subdataWithRange: NSMakeRange(0, 32)];
+    [self.keyChain setAppDataKey: [HexCvtr hexFromData: appDataKey]];
+    
+    NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
+    [self.keyChain setAppCommKey: [HexCvtr hexFromData: appCommKey]];
+    
+    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+    
+    //Complete
+    MandatoryData *manData = [MandatoryData sharedInstance];
+    [manData setAppID: self.devInitData.appID];
+    [manData setDeviceID: self.currentReader.deviceID];
+    
+    [manData setAppDataKey: self.keyChain.appDataKey];
+    [manData setAppCommKey: self.keyChain.appCommKey];
+    
+    [manData save];
+    
+    NSLog(@"MandatoryData = %@", [manData debugDescription]);
+}
+
+#pragma mark - Actions
 
 - (IBAction)readerInit:(id)sender {
     ReaderController *reader = [ReaderController sharedInstance];
@@ -109,35 +143,6 @@
                                                     NSLog(@"response = %@", model);
                                                 }
                                             }];
-    }
-}
-
-- (IBAction)calcKeys:(id)sender
-{
-    if (DEMO_MODE) {
-        self.devInitData = [[InitializationData alloc] initDemoData];
-    }
-    else {
-        CryptoController *crp = [CryptoController sharedInstance];
-        
-        //Otp
-        [self.keyChain setOtp: self.devInitData.otp];
-        
-        //Transport
-        NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
-        [self.keyChain setTransportKey: hexTransportKey];
-        
-        //AppKeys
-        NSData *appKeys = [crp aes128DecryptHexData: [self.devInitData cipherAppKeys]
-                                         withHexKey: self.keyChain.transportKey];
-        
-        NSData *appDataKey = [appKeys subdataWithRange: NSMakeRange(0, 32)];
-        [self.keyChain setAppDataKey: [HexCvtr hexFromData: appDataKey]];
-        
-        NSData *appCommKey = [appKeys subdataWithRange: NSMakeRange(32, 32)];
-        [self.keyChain setAppCommKey: [HexCvtr hexFromData: appCommKey]];
-        
-        NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     }
 }
 

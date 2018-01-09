@@ -15,7 +15,9 @@
 #import "KLBaseDebugConstants.h"
 
 //Model
+#import "AesTrackData.h"
 #import "KeyChainData.h"
+#import "MandatoryData.h"
 #import "CardReaderData.h"
 #import "InitializationData.h"
 

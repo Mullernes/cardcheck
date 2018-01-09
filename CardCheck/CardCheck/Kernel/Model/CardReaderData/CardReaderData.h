@@ -10,9 +10,12 @@
 
 @interface CardReaderData : KLBaseModel
 
-@property (nonatomic) NSUInteger type;
+@property (nonatomic, readonly) NSUInteger type;
+@property (nonatomic, readonly) BOOL lowBattery;
 @property (nonatomic, strong, readonly) NSString *deviceID;
 @property (nonatomic, strong, readonly) NSString *customID;
+
+@property (nonatomic, strong) AesTrackData *trackData;
 
 + (instancetype)demoData;
 

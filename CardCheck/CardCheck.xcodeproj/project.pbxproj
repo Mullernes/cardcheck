@@ -10,6 +10,9 @@
 		116E90984996AB46E95EE13B /* libPods-CardCheckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612BE24DB427A35251188050 /* libPods-CardCheckTests.a */; };
 		1B60997856F4E40884808B16 /* libPods-CardCheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */; };
 		302263114FD03EC85589A896 /* libPods-CardCheckUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */; };
+		7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */; };
+		7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */; };
+		7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* AesTrackData.m */; };
 		7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */; };
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
 		7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */; };
@@ -70,6 +73,12 @@
 		135F6F1611C42039A8A4F08A /* Pods-CardCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4954629901196F28C351AC02 /* Pods-CardCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		612BE24DB427A35251188050 /* libPods-CardCheckTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckResponseModel.m; sourceTree = "<group>"; };
+		7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckRequestModel.m; sourceTree = "<group>"; };
+		7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckResponseModel.h; sourceTree = "<group>"; };
+		7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckRequestModel.h; sourceTree = "<group>"; };
+		7D0F5EC9200505AC00780CE8 /* AesTrackData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AesTrackData.h; sourceTree = "<group>"; };
+		7D0F5ECA200505AC00780CE8 /* AesTrackData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AesTrackData.m; sourceTree = "<group>"; };
 		7D3A427E1FFB893D00FFF207 /* InitRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitRequestModel.h; sourceTree = "<group>"; };
 		7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitRequestModel.m; sourceTree = "<group>"; };
 		7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDevice.m; sourceTree = "<group>"; };
@@ -218,6 +227,17 @@
 				7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D0F5EC22004B01000780CE8 /* CardCheck */ = {
+			isa = PBXGroup;
+			children = (
+				7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */,
+				7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */,
+				7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */,
+				7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */,
+			);
+			path = CardCheck;
 			sourceTree = "<group>";
 		};
 		7D3A427D1FFB88F700FFF207 /* Init */ = {
@@ -455,6 +475,8 @@
 		7DDE2C681FF2E8E800058FD4 /* CardReaderData */ = {
 			isa = PBXGroup;
 			children = (
+				7D0F5EC9200505AC00780CE8 /* AesTrackData.h */,
+				7D0F5ECA200505AC00780CE8 /* AesTrackData.m */,
 				7DDE2C691FF2E90100058FD4 /* CardReaderData.h */,
 				7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */,
 			);
@@ -466,6 +488,7 @@
 			children = (
 				7D3A427D1FFB88F700FFF207 /* Init */,
 				7DDE2CBF1FF4CFC500058FD4 /* Auth */,
+				7D0F5EC22004B01000780CE8 /* CardCheck */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -870,13 +893,16 @@
 			files = (
 				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
 				7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */,
+				7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */,
 				7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
 				7DE1681120040FD100F4A417 /* KeyChainData.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* InitializationData.m in Sources */,
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
+				7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */,
 				7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */,
+				7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */,
 				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
 				7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */,
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
