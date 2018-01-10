@@ -22,7 +22,7 @@
 - (NSDictionary *)parameters;
 
 - (void)setupWithTime:(long long)time;
-- (BOOL)setupWithSignature:(NSNumber *)sign;
+- (BOOL)setupWithSignature:(NSString *)sign;
 - (void)setupWithRequest:(APIBaseModel *)request;
 
 #pragma mark - Errors

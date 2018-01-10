@@ -48,10 +48,10 @@
         if (data) {
             self.exist = YES;
             
-            self.appID = [[USER_DEFAULTS objectForKey: kAppID] longValue];
-            self.deviceID = [USER_DEFAULTS objectForKey: kDeviceID];
-            self.appDataKey =  [USER_DEFAULTS objectForKey: kAppDataKey];
-            self.appCommKey =  [USER_DEFAULTS objectForKey: kAppCommKey];
+            self.appID = [[data objectForKey: kAppID] longValue];
+            self.deviceID = [data objectForKey: kDeviceID];
+            self.appDataKey =  [data objectForKey: kAppDataKey];
+            self.appCommKey =  [data objectForKey: kAppCommKey];
         }
         else {
             self.exist = NO;
@@ -64,6 +64,8 @@
 
 - (void)save
 {
+    self.exist = YES;
+    
     NSDictionary *data = @{kAppID       : @(self.appID),
                            kDeviceID    : self.deviceID,
                            kAppDataKey  : self.appDataKey,
@@ -80,7 +82,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; data = %@", self, [USER_DEFAULTS objectForKey: kMandatoryData]];
+    return [NSString stringWithFormat:@"%@; \n data = %@", self, [USER_DEFAULTS objectForKey: kMandatoryData]];
 }
 
 @end

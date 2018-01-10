@@ -8,6 +8,8 @@
 
 #import "KeyChainData.h"
 
+static dispatch_once_t onceToken;
+
 @interface KeyChainData()
 
 @property (nonatomic, readwrite) NSString *commKey;
@@ -19,16 +21,7 @@
 + (instancetype)sharedInstance
 {
     static KeyChainData *keyChain;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        keyChain = [[self alloc] init];
-    });
-    return keyChain;
-}
-
-+ (instancetype)demoData {
-    static KeyChainData *keyChain;
-    static dispatch_once_t onceToken;
+    
     dispatch_once(&onceToken, ^{
         keyChain = [[self alloc] init];
         
@@ -65,7 +58,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; appDataKey = %@, appCommKey = %@, commKey = %@, transportKey = %@, otp = %li, customID = %@", self, self.appDataKey, self.appCommKey, self.commKey, self.transportKey, self.otp, self.customId];
+    return [NSString stringWithFormat:@"%@; \n appDataKey = %@, \n appCommKey = %@, \n commKey = %@, \n transportKey = %@, \n otp = %li, \n customID = %@", self, self.appDataKey, self.appCommKey, self.commKey, self.transportKey, self.otp, self.customId];
 }
 
 @end

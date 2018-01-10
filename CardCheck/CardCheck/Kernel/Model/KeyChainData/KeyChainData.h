@@ -34,8 +34,7 @@
 @property (nonatomic, strong) NSString *customId;
 
 /*
- TransportKey: 16 байт,
- AES128 ключ для шифрования ключей приложения,
+ 16 байт, AES128 ключ для шифрования ключей приложения,
  */
 @property (nonatomic, strong) NSString *transportKey;
 
@@ -47,8 +46,6 @@
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
-+ (instancetype)demoData;
-
 
 @end
 

@@ -40,4 +40,14 @@
     return self;
 }
 
+#pragma mark - Debug
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
+}
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@; \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@", self, (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
+}
+
 @end

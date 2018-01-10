@@ -9,7 +9,7 @@
 #ifndef KLBaseDebugConstants_H
 #define KLBaseDebugConstants_H
 
-#if 0
+#if 1
 
 #define XT_MAKE_EXEPTION                            assert(0)
 #define XT_EXEPTION_NULL(condition)                 NSAssert(condition, @"Must not be NULL")

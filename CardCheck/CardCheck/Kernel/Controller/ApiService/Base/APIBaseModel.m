@@ -55,10 +55,10 @@
     self.time = time;
 }
 
-- (BOOL)setupWithSignature:(NSNumber *)sign
+- (BOOL)setupWithSignature:(NSString *)sign
 {
-    if (sign.intValue) {
-        self.signature = [sign stringValue];
+    if ([sign length] == 6) {
+        [self setSignature: sign];
         return YES;
     }
     else {

@@ -36,4 +36,14 @@
     return data;
 }
 
+#pragma mark - Debug
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
+}
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@; \n plainData = %@, \n cipherData = %@", self, self.plainHexData, self.cipherHexData];
+}
+
 @end

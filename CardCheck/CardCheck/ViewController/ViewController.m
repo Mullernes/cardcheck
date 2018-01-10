@@ -28,8 +28,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //Base init
-    self.keyChain = [KeyChainData demoData];
+    self.keyChain = [KeyChainData sharedInstance];
     self.currentReader = [CardReaderData demoData];
+    
+    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
+    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,11 +119,10 @@
 - (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSNumber *value = [crp hotpWithValue: self.devInitData.authResponseTime
-                                    andHexKey: [[KeyChainData sharedInstance] customId]];
-    [self.devInitData setupWithCalculatedOtp: [value unsignedIntegerValue]];
+    NSUInteger value = [crp calcOtp: self.devInitData.authResponseTime];
+    [self.devInitData setupWithCalculatedOtp: value];
 
-    NSLog(@"otp = %lu", value.unsignedIntegerValue);
+    NSLog(@"otp = %lu", value);
 }
 
 - (IBAction)initialization:(id)sender
@@ -136,6 +139,7 @@
                                                 if (model.isCorrect)
                                                 {
                                                     [weakSelf.devInitData setupWithInitResponse: model];
+                                                    [weakSelf completeInitialization];
                                                     
                                                     NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
                                                 }
@@ -146,18 +150,65 @@
     }
 }
 
+- (IBAction)checkCard:(id)sender
+{
+    AesTrackData *trackData = [AesTrackData demoData];
+    
+    CryptoController *crp = [CryptoController sharedInstance];
+    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
+                                        withHexKey: [self.keyChain appDataKey]];
+    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
+    
+    NSLog(@"trackData = %@", [trackData debugDescription]);
+    
+    [self.currentReader setTrackData: trackData];
+    
+    CCheckRequestModel *request = [CCheckRequestModel requestWithReader: self.currentReader];
+    __weak ViewController *weakSelf = self;
+    [[APIController sharedInstance] sendCCheckRequest: request
+                                       withCompletion:^(CCheckResponseModel *model, NSError *error) {
+                                           if (model.isCorrect)
+                                           {
+                                               NSLog(@"");
+                                           }
+                                           else {
+                                               NSLog(@"response = %@", model);
+                                           }
+                                       }];
+}
+
 - (IBAction)testAes:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
     
-    NSLog(@"input data = %@", DEMO_APP_KEYS);
-    NSLog(@"key = %@", DEMO_TRANSPORT_KEY);
+    NSString *key = nil;
+    NSData *cipherData = nil;
+    NSData *decryptData = nil;
     
-    NSData *cipherData = [crp aes128EncryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
-    NSLog(@"cipherData = %@", [HexCvtr hexFromData: cipherData]);
+    NSString *plainData = DEMO_TRACK_DATA;
+    NSLog(@"plain data = %@", plainData);
     
-    NSData *plainData = [crp aes128DecryptHexData: DEMO_APP_KEYS withHexKey: DEMO_TRANSPORT_KEY];
-    NSLog(@"plainData = %@", [HexCvtr hexFromData: plainData]);
+//    key = DEMO_AES128_KEY;
+//    NSLog(@"key128 = %@", key);
+//    cipherData = [crp aes128EncryptHexData: plainData
+//                                withHexKey: key];
+//    NSLog(@"cipherData128 = %@", [HexCvtr hexFromData: cipherData]);
+//
+//    decryptData = [crp aes128DecryptHexData: [HexCvtr hexFromData: cipherData]
+//                                 withHexKey: key];
+//    NSLog(@"decryptData128 = %@", [HexCvtr hexFromData: decryptData]);
+    
+    NSLog(@"________ AES256 ________");
+    
+    key = DEMO_AES256_KEY;
+    NSLog(@"key256 = %@", key);
+    cipherData = [crp aes256EncryptHexData: plainData
+                                withHexKey: key];
+    NSLog(@"cipherData256 = %@", [HexCvtr hexFromData: cipherData]);
+    
+    decryptData = [crp aes256DecryptHexData: [HexCvtr hexFromData: cipherData]
+                                 withHexKey: key];
+    NSLog(@"decryptData256 = %@", [HexCvtr hexFromData: decryptData]);
 }
 
 
