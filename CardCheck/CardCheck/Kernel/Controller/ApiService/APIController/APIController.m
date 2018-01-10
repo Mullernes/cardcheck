@@ -154,7 +154,7 @@
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
-             NSLog(@"");
+             handler(responseObject, nil);
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              handler(nil, error);
          }];

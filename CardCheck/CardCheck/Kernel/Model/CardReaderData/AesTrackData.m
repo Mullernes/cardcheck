@@ -43,7 +43,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n plainData = %@, \n cipherData = %@", self, self.plainHexData, self.cipherHexData];
+    return [NSString stringWithFormat:@"%@; \n plainData = %@, \n cipherData = %@ \n\n", self, self.plainHexData, self.cipherHexData];
 }
 
 @end

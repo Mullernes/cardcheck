@@ -47,7 +47,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@", self, (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
+    return [NSString stringWithFormat:@"%@; \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@ \n\n", self, (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
 }
 
 @end

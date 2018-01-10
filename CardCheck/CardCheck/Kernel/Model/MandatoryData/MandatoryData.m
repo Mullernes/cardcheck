@@ -82,7 +82,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n data = %@", self, [USER_DEFAULTS objectForKey: kMandatoryData]];
+    return [NSString stringWithFormat:@"%@; \n data = %@ \n\n", self, [USER_DEFAULTS objectForKey: kMandatoryData]];
 }
 
 @end

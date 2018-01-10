@@ -95,7 +95,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"self = %@, devUid = %@; devName = %@; osVer = %@;", self, self.uid, self.deviceName, self.osVesrion];
+    return [NSString stringWithFormat:@"self = %@, devUid = %@; devName = %@; osVer = %@; \n\n", self, self.uid, self.deviceName, self.osVesrion];
 }
 
 @end

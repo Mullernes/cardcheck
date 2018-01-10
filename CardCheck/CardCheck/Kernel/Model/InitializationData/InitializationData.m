@@ -97,7 +97,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeys = %@", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
+    return [NSString stringWithFormat:@"%@; \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeys = %@ \n\n", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
 }
 
 
