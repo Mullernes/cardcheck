@@ -43,7 +43,7 @@
 
     size_t numBytesEncrypted = 0;
     CCCryptorStatus cryptStatus = CCCrypt(operation,
-                                          kCCAlgorithmAES128,
+                                          kCCAlgorithmAES,
                                           0,
                                           keyPtr,
                                           kCCBlockSizeAES128,
@@ -101,7 +101,7 @@
     
     size_t numBytesEncrypted = 0;
     CCCryptorStatus cryptStatus = CCCrypt(operation,
-                                          kCCAlgorithmAES128,
+                                          kCCAlgorithmAES,
                                           0,
                                           keyPtr,
                                           kCCBlockSizeAES128,
