@@ -10,8 +10,8 @@
 
 @interface InitializationData()
 
+@property (nonatomic, readwrite) int otp;
 @property (nonatomic, readwrite) int attempts;
-@property (nonatomic, readwrite) NSUInteger otp;
 
 @property (nonatomic, strong) CardReaderData *readerData;
 @property (nonatomic, strong) AuthResponseModel *authResponse;
@@ -24,7 +24,25 @@
 + (instancetype)demoData
 {
     InitializationData *data = [InitializationData new];
-    [data setupWithCalculatedOtp: 124367];
+    [data setupWithCalculatedOtp: 115181];
+    
+    AuthRequestModel *authRequest = [AuthRequestModel new];
+    [authRequest setupWithTime: 1515622537643];
+    
+    AuthResponseModel *authResponse = [AuthResponseModel new];
+    [authResponse setupWithTime: 1515622539242];
+    [authResponse setupWithRequest: authRequest];
+    
+    InitRequestModel *initRequest = [InitRequestModel new];
+    [initRequest setupWithTime: 1515622587342];
+    
+    InitResponseModel *initResponse = [InitResponseModel new];
+    [initResponse setupWithTime: 1515622587612];
+    [initResponse setupWithRequest: initRequest];
+    
+    
+    [data setupWithAuthResponse: authResponse];
+    [data setupWithInitResponse: initResponse];
     
     return data;
 }
@@ -39,7 +57,7 @@
     return self;
 }
 
-- (void)setupWithCalculatedOtp:(NSUInteger)otp
+- (void)setupWithCalculatedOtp:(int)otp
 {
     self.otp = otp;
 }
@@ -97,7 +115,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeys = %@ \n\n", self, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
+    return [NSString stringWithFormat:@"%@; \n otp = %i \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeys = %@ \n\n", self, self.otp, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
 }
 
 

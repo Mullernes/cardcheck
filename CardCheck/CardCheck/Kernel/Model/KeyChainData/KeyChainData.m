@@ -54,7 +54,7 @@ static dispatch_once_t onceToken;
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n appDataKey = %@, \n appCommKey = %@, \n commKey = %@, \n transportKey = %@, \n otp = %li, \n customID = %@ \n\n", self, self.appDataKey, self.appCommKey, self.commKey, self.transportKey, self.otp, self.customId];
+    return [NSString stringWithFormat:@"%@; \n appDataKey = %@, \n appCommKey = %@, \n commKey = %@, \n transportKey = %@, \n otp = %i, \n customID = %@ \n\n", self, self.appDataKey, self.appCommKey, self.commKey, self.transportKey, self.otp, self.customId];
 }
 
 @end

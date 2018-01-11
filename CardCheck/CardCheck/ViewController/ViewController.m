@@ -45,10 +45,6 @@
 
 - (void)completeInitialization
 {
-    if (DEMO_MODE) {
-        self.devInitData = [InitializationData demoData];
-    }
-    
     CryptoController *crp = [CryptoController sharedInstance];
     
     //Otp
@@ -119,10 +115,11 @@
 - (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    NSUInteger value = [crp calcOtp: self.devInitData.authResponseTime];
+    int value = [crp calcOtp: self.devInitData.authResponseTime];
     [self.devInitData setupWithCalculatedOtp: value];
 
-    NSLog(@"otp = %lu", value);
+    NSLog(@"otp = %i", value);
+    NSLog(@"devInitData = %@", [self.devInitData debugDescription]);
 }
 
 - (IBAction)initialization:(id)sender
@@ -174,14 +171,24 @@
 
 - (IBAction)testCrypto:(id)sender
 {
-    CryptoController *crp = [CryptoController sharedInstance];
-    
     //*init
     NSString *key = nil;
     NSString *sign = nil;
     NSData *cipherData = nil;
     NSData *decryptData = nil;
+    CryptoController *crp = [CryptoController sharedInstance];
     
+    //Transport key
+    self.devInitData = [InitializationData demoData];
+    NSLog(@"devInitData = %@", [self.devInitData debugDescription]);
+    
+    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+    
+    [self.keyChain setOtp: self.devInitData.otp];
+    [self.keyChain setTransportKey: hexTransportKey];
+    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+    
+    //AES
     NSString *plainData = DEMO_TRACK_DATA;
     NSLog(@"plain data = %@", plainData);
     
@@ -217,7 +224,6 @@
     NSLog(@"\n\n ________ подпись JSON (алгоритм 2) ________ \n\n");
     sign = [crp calcSignature2: [HexCvtr dataFromHex: plainData]];
     NSLog(@"%@", sign);
-    
 }
 
 

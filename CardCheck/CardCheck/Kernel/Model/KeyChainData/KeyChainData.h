@@ -41,7 +41,7 @@
 /*
  одноразовый пароль / OTP: шестизначное число
  */
-@property (nonatomic) long otp;
+@property (nonatomic) int otp;
 
 
 #pragma mark - Init
