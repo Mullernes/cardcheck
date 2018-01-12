@@ -13,6 +13,12 @@
 
 @interface ReaderController()
 
+@property (nonatomic) BOOL resultReady;
+@property (nonatomic, strong) ACRResult *result;
+
+@property (nonatomic) BOOL customIDReady;
+@property (nonatomic) BOOL deviceIDReady;
+
 @property (nonatomic) BOOL plugged;
 @property (nonatomic, strong)CardReaderData *readerData;
 @property (nonatomic, strong) ACRAudioJackReader *reader;
@@ -40,6 +46,12 @@
     if (self) {
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
+        self.resultReady = NO;
+        self.customIDReady = NO;
+        self.deviceIDReady = NO;
+
+        self.plugged = NO;
+        
         self.readerData = [CardReaderData emptyData];
         
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
@@ -49,6 +61,8 @@
 
 - (void)start
 {
+    [self onInfo: CURRENT_METHOD];
+    
     self.responseCondition = [[NSCondition alloc] init];
     
     self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
@@ -68,41 +82,174 @@
 
 - (void)setPlugged:(BOOL)plugged
 {
+    [self onInfo: CURRENT_METHOD];
+    
     [self.reader setMute: !plugged];
     [self.readerData setPlugged: plugged];
     
     [self.delegate readerController: self didReceiveData: self.readerData];
+    
+    if (self.readerData.isPlugged) {
+        [self requestDeviceIDIfNeeded];
+        [self requestCustomIDIfNeeded];
+    }
 }
 
-- (void)getDeviceID
+- (void)requestCustomIDIfNeeded
 {
-    // Reset the reader.
-    [self.reader resetWithCompletion:^{
-        
-        // Get the device ID.
-        if (![_reader getDeviceId]) {
-            // Show the request queue error.
-            //[self showRequestQueueError];
+    [self onInfo: CURRENT_METHOD];
+    
+    if (self.readerData.customID == nil)
+    {
+        // Reset the reader.
+        [self.reader resetWithCompletion:^{
             
-        } else {
+            self.resultReady = NO;
+            self.customIDReady = NO;
             
-            // Show the device ID.
-            //[self showDeviceId:idViewController];
+            if (NO == [self.reader getCustomId]) {
+                NSLog(@"The request cannot be queued");
+            } else {
+                [self requestCustomID];
+            }
+        }];
+    }
+}
+
+- (void)requestCustomID
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    [self.responseCondition lock];
+    
+    // Wait for the custom ID.
+    while ( (NO == self.customIDReady)  && (NO == self.resultReady) ) {
+        if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
+            break;
         }
+    }
+    
+    if (self.customIDReady) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate readerController: self didReceiveData: self.readerData];
+        });
         
-        // Hide the progress.
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [alert dismissWithClickedButtonIndex:0 animated:YES];
-//        });
-    }];
+    } else if (self.resultReady) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = [self completionError: [self currentClass]
+                                         andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
+            [self onFailure: error];
+        });
+        
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = [self completionError: [self currentClass]
+                                         andReason: @"%@ Timeout", CURRENT_METHOD];
+            [self onFailure: error];
+        });
+    }
+    
+    self.customIDReady = NO;
+    self.resultReady = NO;
+    
+    [self.responseCondition unlock];
+}
+
+- (void)requestDeviceIDIfNeeded
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    if (self.readerData.deviceID == nil)
+    {
+        // Reset the reader.
+        [self.reader resetWithCompletion:^{
+            
+            self.resultReady = NO;
+            self.deviceIDReady = NO;
+            
+            if (NO == [self.reader getDeviceId]) {
+                NSLog(@"The request cannot be queued");
+            } else {
+                [self requestDeviceID];
+            }
+        }];
+    }
+}
+
+- (void)requestDeviceID
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    [self.responseCondition lock];
+    
+    // Wait for the custom ID.
+    while ( (NO == self.deviceIDReady)  && (NO == self.resultReady) ) {
+        if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
+            break;
+        }
+    }
+    
+    if (self.deviceIDReady) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate readerController: self didReceiveData: self.readerData];
+        });
+        
+    } else if (self.resultReady) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = [self completionError: [self currentClass]
+                                         andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
+            [self onFailure: error];
+        });
+        
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = [self completionError: [self currentClass]
+                                         andReason: @"%@ Timeout", CURRENT_METHOD];
+            [self onFailure: error];
+        });
+    }
+    
+    self.deviceIDReady = NO;
+    self.resultReady = NO;
+    
+    [self.responseCondition unlock];
+}
+
+#pragma mark - Audio Jack Reader
+
+- (void)reader:(ACRAudioJackReader *)reader didNotifyResult:(ACRResult *)result
+{
+    [self.responseCondition lock];
+    
+    self.result = result;
+    self.resultReady = YES;
+    
+    [self.responseCondition signal];
+    [self.responseCondition unlock];
+}
+
+- (void)reader:(ACRAudioJackReader *)reader didSendCustomId:(const uint8_t *)customId length:(NSUInteger)length
+{
+    [self.responseCondition lock];
+    
+    self.customIDReady = YES;
+    NSData *data = [NSData dataWithBytes: customId length: length];
+    [self.readerData setupWithCustomID: [HexCvtr hexFromData: data]];
+    
+    [self.responseCondition signal];
+    [self.responseCondition unlock];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendDeviceId:(const uint8_t *)deviceId length:(NSUInteger)length
 {
-    [_responseCondition lock];
-    NSLog(@"");
-    [_responseCondition signal];
-    [_responseCondition unlock];
+    [self.responseCondition lock];
+    
+    self.deviceIDReady = YES;
+    NSData *data = [NSData dataWithBytes: deviceId length: length];
+    [self.readerData setupWithDeviceID: [HexCvtr hexFromData: data]];
+    
+    [self.responseCondition signal];
+    [self.responseCondition unlock];
 }
 
 #pragma mark - Private Functions
@@ -143,5 +290,12 @@ static void AJDAudioRouteChangeListener(void *inClientData,
     // Set mute to YES if the reader is unplugged, otherwise NO.
     [ctr setPlugged: AJDIsReaderPlugged()];
 }
+
+#pragma mark - Debugging
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
+}
+
 
 @end
