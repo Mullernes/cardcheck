@@ -8,12 +8,12 @@
 
 #import "APIBaseModel.h"
 
-@interface DevInitRequestModel : APIBaseModel
+@interface InitRequestModel : APIBaseModel
 
-@property (nonatomic, strong, readonly) DevInitData *data;
+@property (nonatomic, strong, readonly) InitializationData *data;
 @property (nonatomic, strong, readonly) CardReaderData *reader;
 
-+ (instancetype)requestWithData:(DevInitData *)data
++ (instancetype)requestWithData:(InitializationData *)data
                       andReader:(CardReaderData *)reader;
 
 @end

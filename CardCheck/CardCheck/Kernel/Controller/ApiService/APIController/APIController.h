@@ -11,11 +11,15 @@
 #import "AuthRequestModel.h"
 #import "AuthResponseModel.h"
 
-#import "DevInitRequestModel.h"
-#import "DevInitResponseModel.h"
+#import "InitRequestModel.h"
+#import "InitResponseModel.h"
+
+#import "CCheckRequestModel.h"
+#import "CCheckResponseModel.h"
 
 typedef void(^AuthResponseHandler)(AuthResponseModel *model, NSError *error);
-typedef void(^DevInitResponseHandler)(DevInitResponseModel *model, NSError *error);
+typedef void(^DevInitResponseHandler)(InitResponseModel *model, NSError *error);
+typedef void(^CCheckResponseHandler)(CCheckResponseModel *model, NSError *error);
 
 @interface APIController : KLBaseController
 
@@ -25,8 +29,10 @@ typedef void(^DevInitResponseHandler)(DevInitResponseModel *model, NSError *erro
 - (void)sendAuthRequest:(AuthRequestModel *)request
          withCompletion:(AuthResponseHandler)handler;
 
-
-- (void)sendDevInitRequest:(DevInitRequestModel *)request
+- (void)sendDevInitRequest:(InitRequestModel *)request
             withCompletion:(DevInitResponseHandler)handler;
+
+- (void)sendCCheckRequest:(CCheckRequestModel *)request
+           withCompletion:(CCheckResponseHandler)handler;
 
 @end

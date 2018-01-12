@@ -60,28 +60,32 @@
 
 #pragma mark - Working
 
-- (NSString *)authRequestUrl
+- (NSString *)authUrl
 {
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_AUTH_TARGET];
 }
 
-- (NSString *)deviceInitRequestUrl
+- (NSString *)initializationUrl
 {
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_DEV_INIT_TARGET];
+}
+
+- (NSString *)cCheckUrl
+{
+    return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_TARGET];
 }
 
 - (void)sendAuthRequest:(AuthRequestModel *)request
          withCompletion:(AuthResponseHandler)handler
 {
     //1
-    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                                 andHexKey: request.reader.customID];
+    NSString *sign = [self.crpController calcSignature2: [request jsonData]];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
                               forHTTPHeaderField: @"Content-Hmac"];
         //3
-        [self.manager POST: [self authRequestUrl]
+        [self.manager POST: [self authUrl]
                 parameters: [request parameters]
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
@@ -99,27 +103,26 @@
               }];
     }
     else {
-        //TODO: make error
+        XT_MAKE_EXEPTION;
     }
 }
 
-- (void)sendDevInitRequest:(DevInitRequestModel *)request
+- (void)sendDevInitRequest:(InitRequestModel *)request
             withCompletion:(DevInitResponseHandler)handler
 {
     //1
-    NSNumber *sign = [self.crpController hotpWithData: [request jsonData]
-                                                 andHexKey: request.reader.customID];
+    NSString *sign = [self.crpController calcSignature2: [request jsonData]];
     if ([request setupWithSignature: sign]) {
         //2
         [self.manager.requestSerializer setValue: request.signature
                               forHTTPHeaderField: @"Content-Hmac"];
         //3
-        [self.manager POST: [self deviceInitRequestUrl]
+        [self.manager POST: [self initializationUrl]
                 parameters: [request parameters]
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
         {
-                       DevInitResponseModel *response = [DevInitResponseModel responseWithRawData: responseObject];
+                       InitResponseModel *response = [InitResponseModel responseWithRawData: responseObject];
                        if (response.isCorrect) {
                            [response setupWithRequest: request];
                            handler(response, nil);
@@ -132,7 +135,32 @@
                    }];
     }
     else {
-        //TODO: make error
+        XT_MAKE_EXEPTION;
+    }
+}
+
+- (void)sendCCheckRequest:(CCheckRequestModel *)request
+           withCompletion:(CCheckResponseHandler)handler
+{
+    //1
+    NSString *sign = [self.crpController calcSignature1: [request jsonData]];
+    if ([request setupWithSignature: sign]) {
+        //2
+        [self.manager.requestSerializer setValue: request.signature
+                              forHTTPHeaderField: @"Content-Hmac"];
+        //3
+        [self.manager POST: [self cCheckUrl]
+                parameters: [request parameters]
+                  progress: nil
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             handler(responseObject, nil);
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             handler(nil, error);
+         }];
+    }
+    else {
+        XT_MAKE_EXEPTION;
     }
 }
 

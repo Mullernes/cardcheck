@@ -7,18 +7,18 @@
 //
 
 #import "KLBaseModel.h"
-@class AuthResponseModel, DevInitResponseModel;
+@class AuthResponseModel, InitResponseModel;
 
-@interface DevInitData : KLBaseModel
+@interface InitializationData : KLBaseModel
 
+@property (nonatomic, readonly) int otp;
 @property (nonatomic, readonly) int attempts;
-@property (nonatomic, readonly) NSUInteger otp;
 
-- (instancetype)initDemoData;
++ (instancetype)demoData;
 
-- (void)setupWithCalculatedOtp:(NSUInteger)otp;
+- (void)setupWithCalculatedOtp:(int)otp;
 - (void)setupWithAuthResponse:(AuthResponseModel *)response;
-- (void)setupWithDevInitResponse:(DevInitResponseModel *)response;
+- (void)setupWithInitResponse:(InitResponseModel *)response;
 
 - (long)authRequestID;
 - (long long)authRequestTime;
