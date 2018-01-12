@@ -8,12 +8,18 @@
 
 #import "KLBaseController.h"
 
+@protocol ReaderControllerDelegate;
+
 @interface ReaderController : KLBaseController
+
+@property (nonatomic, weak) id<ReaderControllerDelegate>delegate;
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
+- (void)start;
 
-- (void)initReader;
-- (void)getDeviceID;
+@end
 
+@protocol ReaderControllerDelegate <NSObject>
+- (void)readerController:(ReaderController *)controller didReceiveData:(CardReaderData *)data;
 @end

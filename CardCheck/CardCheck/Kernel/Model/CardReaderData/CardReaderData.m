@@ -28,6 +28,14 @@
     return reader;
 }
 
++ (instancetype)emptyData
+{
+    CardReaderData *reader = [CardReaderData new];
+    [reader setPlugged: NO];
+    
+    return reader;
+}
+
 - (instancetype)initWithDevID:(NSString *)devID customID:(NSString *)cusID andType:(NSUInteger)type
 {
     self = [super init];
@@ -40,6 +48,23 @@
     return self;
 }
 
+- (BOOL)isReady
+{
+    return (self.isPlugged && self.deviceID && self.customID)? YES : NO;
+}
+
+- (void)setupWithDeviceID:(NSString *)deviceID
+{
+    //TODO: check input data
+    [self setDeviceID: deviceID];
+}
+
+- (void)setupWithCustomID:(NSString *)customID
+{
+    //TODO: check input data
+    [self setCustomID: customID];
+}
+
 #pragma mark - Debug
 
 - (NSString *)currentClass {
@@ -47,7 +72,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@ \n\n", self, (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
+    return [NSString stringWithFormat:@"%@; \n plugged = %@ \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@ \n\n", self, (self.isPlugged? @"YES" : @"NO"), (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
 }
 
 @end

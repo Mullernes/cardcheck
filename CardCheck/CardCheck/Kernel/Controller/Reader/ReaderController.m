@@ -13,6 +13,8 @@
 
 @interface ReaderController()
 
+@property (nonatomic) BOOL plugged;
+@property (nonatomic, strong)CardReaderData *readerData;
 @property (nonatomic, strong) ACRAudioJackReader *reader;
 @property (nonatomic, strong) NSCondition *responseCondition;
 
@@ -38,23 +40,38 @@
     if (self) {
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
+        self.readerData = [CardReaderData emptyData];
+        
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
     }
     return self;
 }
 
-- (void)initReader
+- (void)start
 {
     self.responseCondition = [[NSCondition alloc] init];
     
     self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
-    [self.reader setDelegate:self];
+    [self.reader setDelegate: self];
     
     // Set mute to YES if the reader is unplugged, otherwise NO.
     self.reader.mute = !AJDIsReaderPlugged();
     
     // Listen the audio route change.
-    AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, AJDAudioRouteChangeListener, (__bridge void *) self);
+    AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,
+                                    AJDAudioRouteChangeListener,
+                                    (__bridge void *) self);
+}
+
+
+#pragma mark - Accessors
+
+- (void)setPlugged:(BOOL)plugged
+{
+    [self.reader setMute: !plugged];
+    [self.readerData setPlugged: plugged];
+    
+    [self.delegate readerController: self didReceiveData: self.readerData];
 }
 
 - (void)getDeviceID
@@ -116,12 +133,15 @@ static BOOL AJDIsReaderPlugged() {
  * @param inDataSize   the property size.
  * @param inData       the property.
  */
-static void AJDAudioRouteChangeListener(void *inClientData, AudioSessionPropertyID inID, UInt32 inDataSize, const void *inData) {
+static void AJDAudioRouteChangeListener(void *inClientData,
+                                        AudioSessionPropertyID inID,
+                                        UInt32 inDataSize,
+                                        const void *inData) {
     
-//    AJDMasterViewController *viewController = (__bridge AJDMasterViewController *) inClientData;
-//
-//    // Set mute to YES if the reader is unplugged, otherwise NO.
-//    viewController->_reader.mute = !AJDIsReaderPlugged();
+    ReaderController *ctr = (__bridge ReaderController *) inClientData;
+
+    // Set mute to YES if the reader is unplugged, otherwise NO.
+    [ctr setPlugged: AJDIsReaderPlugged()];
 }
 
 @end

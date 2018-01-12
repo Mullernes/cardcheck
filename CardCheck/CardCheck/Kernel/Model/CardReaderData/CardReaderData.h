@@ -12,11 +12,19 @@
 
 @property (nonatomic, readonly) NSUInteger type;
 @property (nonatomic, readonly) BOOL lowBattery;
+
 @property (nonatomic, strong, readonly) NSString *deviceID;
 @property (nonatomic, strong, readonly) NSString *customID;
+
+@property (nonatomic, getter=isPlugged) BOOL plugged;
 
 @property (nonatomic, strong) AesTrackData *trackData;
 
 + (instancetype)demoData;
++ (instancetype)emptyData;
+
+- (BOOL)isReady;
+- (void)setupWithDeviceID:(NSString *)deviceID;
+- (void)setupWithCustomID:(NSString *)customID;
 
 @end

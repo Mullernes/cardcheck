@@ -13,11 +13,12 @@
 
 #import "NSData+AES.h"
 
-@interface ViewController ()
+@interface ViewController ()<ReaderControllerDelegate>
 
 @property (nonatomic, strong) KeyChainData *keyChain;
 @property (nonatomic, strong) CardReaderData *currentReader;
 @property (nonatomic, strong) InitializationData *devInitData;
+@property (nonatomic, strong) ReaderController *readerController;
 
 @end
 
@@ -28,12 +29,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //Base init
-    self.keyChain = [KeyChainData sharedInstance];
-    self.currentReader = [CardReaderData demoData];
-    
-    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
-    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
-    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
+//    self.keyChain = [KeyChainData sharedInstance];
+//    self.currentReader = [CardReaderData demoData];
+//
+//    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+//    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
+//    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,16 +82,12 @@
 
 #pragma mark - Actions
 
-- (IBAction)readerInit:(id)sender {
-    ReaderController *reader = [ReaderController sharedInstance];
-    [reader initReader];
+- (IBAction)start:(id)sender {
+    self.readerController = [ReaderController sharedInstance];
+    [self.readerController setDelegate: self];
+    
+    [self.readerController start];
 }
-
-- (IBAction)readerGetIDs:(id)sender {
-    ReaderController *reader = [ReaderController sharedInstance];
-    [reader getDeviceID];
-}
-
 
 - (IBAction)auth:(id)sender
 {
@@ -224,6 +221,13 @@
     NSLog(@"\n\n ________ подпись JSON (алгоритм 2) ________ \n\n");
     sign = [crp calcSignature2: [HexCvtr dataFromHex: plainData]];
     NSLog(@"%@", sign);
+}
+
+#pragma mark - ReaderControllerDelegate
+
+- (void)readerController:(ReaderController *)controller didReceiveData:(CardReaderData *)data
+{
+    NSLog(@"%@: data => %@", CURRENT_METHOD, [data debugDescription]);
 }
 
 
