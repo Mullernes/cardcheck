@@ -228,6 +228,21 @@
     [self.responseCondition unlock];
 }
 
+- (void)readerDidNotifyTrackData:(ACRAudioJackReader *)reader
+{
+    NSLog(@"");
+}
+
+- (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
+{
+    NSLog(@"");
+}
+
+- (void)reader:(ACRAudioJackReader *)reader didSendRawData:(const uint8_t *)rawData length:(NSUInteger)length
+{
+    NSLog(@"");
+}
+
 - (void)reader:(ACRAudioJackReader *)reader didSendCustomId:(const uint8_t *)customId length:(NSUInteger)length
 {
     [self.responseCondition lock];
