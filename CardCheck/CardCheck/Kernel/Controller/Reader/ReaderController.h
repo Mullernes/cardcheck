@@ -17,6 +17,7 @@
 #pragma mark - Init
 + (instancetype)sharedInstance;
 - (void)start;
+- (void)reset;
 
 @end
 

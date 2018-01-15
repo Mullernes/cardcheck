@@ -77,6 +77,24 @@
                                     (__bridge void *) self);
 }
 
+- (void)reset
+{
+    // Show the progress.
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@"Resetting the reader..."
+                                                   delegate:nil
+                                          cancelButtonTitle:nil otherButtonTitles:nil];
+    [alert show];
+    
+    // Reset the reader.
+    [self.reader resetWithCompletion:^{
+        
+        // Hide the progress.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+        });
+    }];
+}
 
 #pragma mark - Accessors
 

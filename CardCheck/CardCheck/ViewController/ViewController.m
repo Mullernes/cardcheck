@@ -89,6 +89,11 @@
     [self.readerController start];
 }
 
+- (IBAction)reset:(id)sender {
+    self.readerController = [ReaderController sharedInstance];
+    [self.readerController reset];
+}
+
 - (IBAction)auth:(id)sender
 {
     AuthRequestModel *request = [AuthRequestModel requestWithLogin: DEMO_LOGIN
