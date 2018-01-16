@@ -248,12 +248,61 @@
 
 - (void)readerDidNotifyTrackData:(ACRAudioJackReader *)reader
 {
-    NSLog(@"");
+    NSLog(@"Processing the track data...");
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
 {
-    NSLog(@"");
+    NSLog(@"didSendTrackData");
+    
+    NSString *errorString = nil;
+    
+    if ((trackData.track1ErrorCode == ACRTrackErrorSuccess) &&
+        (trackData.track2ErrorCode == ACRTrackErrorSuccess))
+    {
+        if ([trackData isKindOfClass:[ACRAesTrackData class]])
+        {
+            ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
+            
+            NSLog(@"Success");
+            
+            NSLog(@"trackData.track1Length = %li", trackData.track1Length);
+            NSLog(@"trackData.track2Length = %li", trackData.track2Length);
+            NSLog(@"trackData = %@", [HexCvtr hexFromData: aesTrackData.trackData]);
+        }
+        else {
+            XT_MAKE_EXEPTION;
+        }
+
+    }
+    else if ((trackData.track1ErrorCode != ACRTrackErrorSuccess) &&
+             (trackData.track2ErrorCode != ACRTrackErrorSuccess))
+    {
+        errorString = @"The track 1 and track 2 data";
+    }
+    else
+    {
+        if (trackData.track1ErrorCode != ACRTrackErrorSuccess) {
+            errorString = @"The track 1 data";
+        }
+        
+        if (trackData.track2ErrorCode != ACRTrackErrorSuccess) {
+            errorString = @"The track 2 data";
+        }
+    }
+    
+    if (errorString) {
+        errorString = [errorString stringByAppendingString:@" may be corrupted. Please swipe the card again!"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorString
+                                                            message: nil
+                                                           delegate: nil
+                                                  cancelButtonTitle: @"OK" otherButtonTitles: nil];
+            [alert show];
+        });
+    }
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendRawData:(const uint8_t *)rawData length:(NSUInteger)length

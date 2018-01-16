@@ -29,12 +29,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //Base init
-//    self.keyChain = [KeyChainData sharedInstance];
-//    self.currentReader = [CardReaderData demoData];
-//
-//    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
-//    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
-//    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
+    self.keyChain = [KeyChainData sharedInstance];
+    self.currentReader = [CardReaderData demoData];
+
+    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
+    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -180,15 +180,15 @@
     NSData *decryptData = nil;
     CryptoController *crp = [CryptoController sharedInstance];
     
-    //Transport key
-    self.devInitData = [InitializationData demoData];
-    NSLog(@"devInitData = %@", [self.devInitData debugDescription]);
-    
-    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
-    
-    [self.keyChain setOtp: self.devInitData.otp];
-    [self.keyChain setTransportKey: hexTransportKey];
-    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
+//    //Transport key
+//    self.devInitData = [InitializationData demoData];
+//    NSLog(@"devInitData = %@", [self.devInitData debugDescription]);
+//    
+//    NSString *hexTransportKey = [crp calcTransportKey: self.devInitData];
+//    
+//    [self.keyChain setOtp: self.devInitData.otp];
+//    [self.keyChain setTransportKey: hexTransportKey];
+//    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     
     //AES
     NSString *plainData = DEMO_TRACK_DATA;
@@ -196,36 +196,36 @@
     
     //*go
     NSLog(@"\n\n ________ AES128 ________ \n\n");
-    
+
     key = DEMO_AES128_KEY;
-    NSLog(@"key128 = %@", key);
+    NSLog(@"key128 = \n%@", key);
     cipherData = [crp aes128EncryptHexData: plainData
                                 withHexKey: key];
-    NSLog(@"cipherData128 = %@", [HexCvtr hexFromData: cipherData]);
+    NSLog(@"cipherData128 = \n%@", [HexCvtr hexFromData: cipherData]);
 
     decryptData = [crp aes128DecryptHexData: [HexCvtr hexFromData: cipherData]
                                  withHexKey: key];
-    NSLog(@"decryptData128 = %@", [HexCvtr hexFromData: decryptData]);
+    NSLog(@"decryptData128 = \n%@", [HexCvtr hexFromData: decryptData]);
     
     NSLog(@"\n\n ________ AES256 ________ \n\n");
     
     key = DEMO_AES256_KEY;
-    NSLog(@"key256 = %@", key);
+    NSLog(@"key256 = \n%@", key);
     cipherData = [crp aes256EncryptHexData: plainData
                                 withHexKey: key];
-    NSLog(@"cipherData256 = %@", [HexCvtr hexFromData: cipherData]);
+    NSLog(@"cipherData256 = \n%@", [HexCvtr hexFromData: cipherData]);
     
     decryptData = [crp aes256DecryptHexData: [HexCvtr hexFromData: cipherData]
                                  withHexKey: key];
-    NSLog(@"decryptData256 = %@", [HexCvtr hexFromData: decryptData]);
+    NSLog(@"decryptData256 = \n%@", [HexCvtr hexFromData: decryptData]);
     
-    NSLog(@"\n\n ________ подпись JSON (алгоритм 1) ________ \n\n");
-    sign = [crp calcSignature1: [HexCvtr dataFromHex: plainData]];
-    NSLog(@"%@", sign);
-    
-    NSLog(@"\n\n ________ подпись JSON (алгоритм 2) ________ \n\n");
-    sign = [crp calcSignature2: [HexCvtr dataFromHex: plainData]];
-    NSLog(@"%@", sign);
+//    NSLog(@"\n\n ________ подпись JSON (алгоритм 1) ________ \n\n");
+//    sign = [crp calcSignature1: [HexCvtr dataFromHex: plainData]];
+//    NSLog(@"%@", sign);
+//
+//    NSLog(@"\n\n ________ подпись JSON (алгоритм 2) ________ \n\n");
+//    sign = [crp calcSignature2: [HexCvtr dataFromHex: plainData]];
+//    NSLog(@"%@", sign);
 }
 
 #pragma mark - ReaderControllerDelegate

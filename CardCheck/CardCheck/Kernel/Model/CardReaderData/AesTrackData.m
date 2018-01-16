@@ -26,10 +26,12 @@
 + (instancetype)demoData {
     AesTrackData *data = [AesTrackData new];
     [data setTr1Code: 0];
-    [data setTr1Length: 79];
+    //[data setTr1Length: 79];
+    [data setTr1Length: 69];
     
     [data setTr2Code: 0];
-    [data setTr2Length: 40];
+    //[data setTr2Length: 40];
+    [data setTr2Length: 37];
     
     [data setPlainHexData: DEMO_TRACK_DATA];
     
