@@ -30,7 +30,7 @@
     char keyPtr[kCCKeySizeAES128 + 1];
     bzero(keyPtr, sizeof(keyPtr));
     memcpy(keyPtr, [[HexCvtr dataFromHex: key] bytes], kCCKeySizeAES128);
-    
+
     char ivPtr[kCCBlockSizeAES128 + 1];
     bzero(ivPtr, sizeof(ivPtr));
     if (iv) {
@@ -46,7 +46,7 @@
                                           kCCAlgorithmAES,
                                           0,
                                           keyPtr,
-                                          kCCBlockSizeAES128,
+                                          kCCKeySizeAES128,
                                           ivPtr,
                                           [self bytes],
                                           dataLength,
@@ -104,8 +104,8 @@
                                           kCCAlgorithmAES,
                                           0,
                                           keyPtr,
-                                          kCCBlockSizeAES128,
-                                          ivPtr,
+                                          kCCKeySizeAES256,
+                                          0,
                                           [self bytes],
                                           dataLength,
                                           buffer,
