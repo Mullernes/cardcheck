@@ -11,7 +11,10 @@
 @interface CCheckResponseModel()
 
 @property (nonatomic, readwrite) int code;
-@property (nonatomic, readwrite) long requestID;
+@property (nonatomic, readwrite) long reportID;
+@property (nonatomic, readwrite) BOOL fakeCard;
+@property (nonatomic, readwrite) NSString *reportDate;
+@property (nonatomic, readwrite) CCheckReportData *report;
 
 @end
 
@@ -24,18 +27,18 @@
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
-    self = [super init];
+    self = [super initWithRawData: data];
     if (self) {
+        self.reportDate = [data kReportDate];
         self.code = [[data kResponseCode] intValue];
-        self.requestID = [[data kRequestID] longValue];
-        
-        long long time = [[data kResponseTime] longLongValue];
-        [self setupWithTime: time];
+        self.reportID = [[data kReportID] longValue];
+        self.fakeCard = [[data kFakeCard] boolValue];
+        self.report = [[CCheckReportData alloc] initWithRawData: [[data kReportColumns] firstObject]];
         
         if (self.code > 0) {
-            [self failedInResponse: @"User_Authorization" withCode: self.code];
+            [self failedInResponse: @"CCheck_Response" withCode: self.code];
         }
-        else if (!time || !self.requestID) {
+        else if (!self.time) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];
         }
     }
@@ -67,3 +70,4 @@
 }
 
 @end
+

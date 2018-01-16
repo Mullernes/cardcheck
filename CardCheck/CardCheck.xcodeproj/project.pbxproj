@@ -31,6 +31,7 @@
 		7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBC81FEA491B00CFB4FE /* KLBaseModel.m */; };
 		7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */; };
 		7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */; };
+		7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8F06A200DF497005C6B92 /* CCheckReportData.m */; };
 		7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */; };
 		7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */; };
 		7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */; };
@@ -119,6 +120,8 @@
 		7DC4FBD21FEA4BEA00CFB4FE /* AppPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppPrefixHeader.pch; sourceTree = "<group>"; };
 		7DC4FBD41FEA4EC200CFB4FE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		7DC8F069200DF496005C6B92 /* CCheckReportData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckReportData.h; sourceTree = "<group>"; };
+		7DC8F06A200DF497005C6B92 /* CCheckReportData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckReportData.m; sourceTree = "<group>"; };
 		7DDE2C691FF2E90100058FD4 /* CardReaderData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReaderData.h; sourceTree = "<group>"; };
 		7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReaderData.m; sourceTree = "<group>"; };
 		7DDE2C6D1FF37A4B00058FD4 /* APIBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIBaseModel.h; sourceTree = "<group>"; };
@@ -232,10 +235,8 @@
 		7D0F5EC22004B01000780CE8 /* CardCheck */ = {
 			isa = PBXGroup;
 			children = (
-				7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */,
-				7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */,
-				7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */,
-				7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */,
+				7DC8F066200DE968005C6B92 /* Check */,
+				7DC8F067200DE974005C6B92 /* Complete */,
 			);
 			path = CardCheck;
 			sourceTree = "<group>";
@@ -460,6 +461,26 @@
 				7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */,
 			);
 			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		7DC8F066200DE968005C6B92 /* Check */ = {
+			isa = PBXGroup;
+			children = (
+				7DC8F069200DF496005C6B92 /* CCheckReportData.h */,
+				7DC8F06A200DF497005C6B92 /* CCheckReportData.m */,
+				7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */,
+				7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */,
+				7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */,
+				7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */,
+			);
+			path = Check;
+			sourceTree = "<group>";
+		};
+		7DC8F067200DE974005C6B92 /* Complete */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Complete;
 			sourceTree = "<group>";
 		};
 		7DDE2C601FF2E6A600058FD4 /* ApiService */ = {
@@ -913,6 +934,7 @@
 				7DE1680920036F8900F4A417 /* NSData+AES.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
+				7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */,
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,

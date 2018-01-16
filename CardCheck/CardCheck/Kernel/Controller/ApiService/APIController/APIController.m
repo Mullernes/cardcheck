@@ -154,7 +154,14 @@
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
-             handler(responseObject, nil);
+             CCheckResponseModel *response = [CCheckResponseModel responseWithRawData: responseObject];
+             if (response.isCorrect) {
+                 [response setupWithRequest: request];
+                 handler(response, nil);
+             }
+             else {
+                 handler(nil, response.failErr);
+             }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              handler(nil, error);
          }];

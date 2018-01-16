@@ -24,13 +24,10 @@
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
-    self = [super init];
+    self = [super initWithRawData: data];
     if (self) {
         self.code = [[data kResponseCode] intValue];
         self.requestID = [[data kRequestID] longValue];
-        
-        long long time = [[data kResponseTime] longLongValue];
-        [self setupWithTime: time];
         
         if (self.code > 0) {
             [self failedInResponse: @"User_Authorization" withCode: self.code];

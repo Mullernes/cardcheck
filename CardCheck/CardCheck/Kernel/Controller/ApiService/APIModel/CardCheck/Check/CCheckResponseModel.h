@@ -7,11 +7,15 @@
 //
 
 #import "APIBaseModel.h"
+#import "CCheckReportData.h"
 
 @interface CCheckResponseModel : APIBaseModel
 
 @property (nonatomic, readonly) int code;
-@property (nonatomic, readonly) long requestID;
+@property (nonatomic, readonly) long reportID;
+@property (nonatomic, readonly) BOOL fakeCard;
+@property (nonatomic, readonly) NSString *reportDate;
+@property (nonatomic, readonly) CCheckReportData *report;
 
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 
