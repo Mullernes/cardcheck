@@ -6,28 +6,25 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "CCheckRequestModel.h"
+#import "CFinishCheckRequestModel.h"
 
-@interface CCheckRequestModel()
+@interface CFinishCheckRequestModel()
 
 @property (nonatomic) long appId;
-@property (nonatomic, strong) NSString *appVersion;
 
 @property (nonatomic, strong) CardReaderData *reader;
 @property (nonatomic, strong) AesTrackData *trackData;
 
 @end
 
-@implementation CCheckRequestModel
+@implementation CFinishCheckRequestModel
 
 + (instancetype)requestWithReader:(CardReaderData *)reader
 {
-    CCheckRequestModel *model = [CCheckRequestModel new];
-    
-    [model setAppId: [[MandatoryData sharedInstance] appID]];
-    [model setAppVersion: [[CurrentDevice sharedInstance] appVersion]];
+    CFinishCheckRequestModel *model = [CFinishCheckRequestModel new];
     
     [model setReader: reader];
+    [model setAppId: [[MandatoryData sharedInstance] appID]];
     
     return model;
 }
@@ -56,9 +53,15 @@
              @"track1_code"     :   @(self.trackData.tr1Code),
              @"track2_length"   :   @(self.trackData.tr2Length),
              @"track2_code"     :   @(self.trackData.tr2Code),
-             @"battery_low"     :   @(self.reader.lowBattery),
-             @"app_version"     :   self.appVersion,
-             @"data"            :   self.trackData.cipherHexData
+             @"data"            :   self.trackData.cipherHexData,
+             
+             @"report_id"       :    @(self.checkResponse.reportID),
+             @"fake_card"       :    @(self.checkResponse.fakeCard),
+             @"front_image_id"  :    @(0),
+             @"back_image_id"   :    @(0),
+             @"pan3_length"     :    @(16),
+             @"pan3_manual"     :    @(YES),
+             @"notes"           :    @"notes"
              };
 }
 

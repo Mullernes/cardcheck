@@ -41,11 +41,6 @@
     return self;
 }
 
-- (NSDictionary *)parameters
-{
-    return [self.jsonString objectFromJSONString];
-}
-
 - (NSString *)currentClass {
     return CURRENT_CLASS;
 }

@@ -47,7 +47,7 @@
 }
 
 - (NSDictionary *)parameters {
-    return @{};
+    return [self.jsonString objectFromJSONString];
 }
 
 - (void)setupWithTime:(long long)time

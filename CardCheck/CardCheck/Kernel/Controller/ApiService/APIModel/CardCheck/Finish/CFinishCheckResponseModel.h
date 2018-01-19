@@ -8,9 +8,11 @@
 
 #import "APIBaseModel.h"
 
-@interface CCheckRequestModel : APIBaseModel
+@interface CFinishCheckResponseModel : APIBaseModel
 
-+ (instancetype)requestWithReader:(CardReaderData *)reader;
+@property (nonatomic, readonly) int code;
+
++ (instancetype)responseWithRawData:(NSDictionary *)data;
 
 @end
 

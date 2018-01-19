@@ -13,6 +13,8 @@
 		7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */; };
 		7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */; };
 		7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* AesTrackData.m */; };
+		7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */; };
+		7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */; };
 		7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */; };
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
 		7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */; };
@@ -80,6 +82,10 @@
 		7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckRequestModel.h; sourceTree = "<group>"; };
 		7D0F5EC9200505AC00780CE8 /* AesTrackData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AesTrackData.h; sourceTree = "<group>"; };
 		7D0F5ECA200505AC00780CE8 /* AesTrackData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AesTrackData.m; sourceTree = "<group>"; };
+		7D13E6A320122BD7002B2625 /* CFinishCheckRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckRequestModel.h; sourceTree = "<group>"; };
+		7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckRequestModel.m; sourceTree = "<group>"; };
+		7D13E6A520122BD7002B2625 /* CFinishCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckResponseModel.h; sourceTree = "<group>"; };
+		7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckResponseModel.m; sourceTree = "<group>"; };
 		7D3A427E1FFB893D00FFF207 /* InitRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitRequestModel.h; sourceTree = "<group>"; };
 		7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitRequestModel.m; sourceTree = "<group>"; };
 		7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDevice.m; sourceTree = "<group>"; };
@@ -235,10 +241,23 @@
 		7D0F5EC22004B01000780CE8 /* CardCheck */ = {
 			isa = PBXGroup;
 			children = (
+				7DC8F069200DF496005C6B92 /* CCheckReportData.h */,
+				7DC8F06A200DF497005C6B92 /* CCheckReportData.m */,
 				7DC8F066200DE968005C6B92 /* Check */,
-				7DC8F067200DE974005C6B92 /* Complete */,
+				7D13E6A220122BD7002B2625 /* Finish */,
 			);
 			path = CardCheck;
+			sourceTree = "<group>";
+		};
+		7D13E6A220122BD7002B2625 /* Finish */ = {
+			isa = PBXGroup;
+			children = (
+				7D13E6A320122BD7002B2625 /* CFinishCheckRequestModel.h */,
+				7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */,
+				7D13E6A520122BD7002B2625 /* CFinishCheckResponseModel.h */,
+				7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */,
+			);
+			path = Finish;
 			sourceTree = "<group>";
 		};
 		7D3A427D1FFB88F700FFF207 /* Init */ = {
@@ -466,21 +485,12 @@
 		7DC8F066200DE968005C6B92 /* Check */ = {
 			isa = PBXGroup;
 			children = (
-				7DC8F069200DF496005C6B92 /* CCheckReportData.h */,
-				7DC8F06A200DF497005C6B92 /* CCheckReportData.m */,
 				7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */,
 				7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */,
 				7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */,
 				7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */,
 			);
 			path = Check;
-			sourceTree = "<group>";
-		};
-		7DC8F067200DE974005C6B92 /* Complete */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Complete;
 			sourceTree = "<group>";
 		};
 		7DDE2C601FF2E6A600058FD4 /* ApiService */ = {
@@ -913,6 +923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
+				7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */,
 				7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */,
 				7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */,
 				7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */,
@@ -935,6 +946,7 @@
 				7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
 				7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */,
+				7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */,
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,

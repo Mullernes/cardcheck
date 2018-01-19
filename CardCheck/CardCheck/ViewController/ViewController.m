@@ -20,6 +20,8 @@
 @property (nonatomic, strong) InitializationData *devInitData;
 @property (nonatomic, strong) ReaderController *readerController;
 
+@property (nonatomic, strong) NSArray *stackOfResponse;
+
 @end
 
 @implementation ViewController
@@ -29,6 +31,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //Base init
+    self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
     self.currentReader = [CardReaderData demoData];
 
@@ -134,41 +137,68 @@
                                                                   andReader: self.currentReader];
         __weak ViewController *weakSelf = self;
         [[APIController sharedInstance] sendDevInitRequest: request
-                                            withCompletion:^(InitResponseModel *model, NSError *error) {
-                                                if (model.isCorrect)
-                                                {
-                                                    [weakSelf.devInitData setupWithInitResponse: model];
-                                                    [weakSelf completeInitialization];
-                                                    
-                                                    NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
-                                                }
-                                                else {
-                                                    NSLog(@"response = %@", model);
-                                                }
-                                            }];
+                                            withCompletion:^(InitResponseModel *model, NSError *error)
+        {
+            if (model.isCorrect)
+            {
+                [weakSelf.devInitData setupWithInitResponse: model];
+                [weakSelf completeInitialization];
+                
+                NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+            }
+            else {
+                NSLog(@"response = %@", model);
+            }
+        }];
     }
 }
 
 - (IBAction)checkCard:(id)sender
 {
+    self.stackOfResponse = @[];
+    
     AesTrackData *trackData = [AesTrackData demoData];
     
     CryptoController *crp = [CryptoController sharedInstance];
     NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
                                         withHexKey: [self.keyChain appDataKey]];
     [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
-    
-    NSLog(@"trackData = %@", [trackData debugDescription]);
-    
     [self.currentReader setTrackData: trackData];
     
     CCheckRequestModel *request = [CCheckRequestModel requestWithReader: self.currentReader];
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendCCheckRequest: request
-                                       withCompletion:^(CCheckResponseModel *model, NSError *error) {
-                                           NSLog(@" response = %@", [model debugDescription]);
-                                           NSLog(@"stop!!!");
-                                       }];
+                                       withCompletion:^(CCheckResponseModel *model, NSError *error)
+    {
+        NSLog(@" response = %@", [model debugDescription]);
+        weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
+    }];
+}
+
+- (CCheckResponseModel *)lastCheckResponse
+{
+    __block CCheckResponseModel *target = nil;
+    [self.stackOfResponse enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass: [CCheckResponseModel class]]) {
+            target = obj;
+            *stop = YES;
+        }
+    }];
+    
+    return target;
+}
+
+- (IBAction)completeCheckCard:(id)sender
+{
+    CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
+    [request setCheckResponse: [self lastCheckResponse]];
+    
+    __weak ViewController *weakSelf = self;
+    [[APIController sharedInstance] sendCFinishCheckRequest: request
+                                             withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
+    {
+        NSLog(@" response = %@", [model debugDescription]);
+    }];
 }
 
 - (IBAction)testCrypto:(id)sender

@@ -19,7 +19,6 @@
 @property (nonatomic, readwrite) NSString *issuerName;
 @property (nonatomic, readwrite) NSString *issuerCountry;
 
-
 @end
 
 @implementation CCheckReportData
