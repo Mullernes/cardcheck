@@ -12,13 +12,13 @@
 
 @property (nonatomic, readonly) long long time;
 @property (nonatomic, strong, readonly) NSString *signature;
+@property (nonatomic, strong, readonly) NSString *jsonString;
 @property (nonatomic, strong, readonly) APIBaseModel *request;
 
 - (instancetype)initWithRawData:(NSDictionary *)data;
 
 #pragma mark - Working
 - (NSData *)jsonData;
-- (NSString *)jsonString;
 - (NSDictionary *)parameters;
 
 - (void)setupWithTime:(long long)time;

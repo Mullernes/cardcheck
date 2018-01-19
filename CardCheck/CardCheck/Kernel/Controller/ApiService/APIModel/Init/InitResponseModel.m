@@ -25,13 +25,11 @@
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
-    self = [super init];
+    self = [super initWithRawData: data];
     if (self) {
         self.appKeys = [data kAppKeys];
         self.appID = [[data kAppID] longValue];
         self.code = [[data kResponseCode] intValue];
-        long long time = [[data kResponseTime] longLongValue];;
-        [self setupWithTime: time];
 
         if (self.code > 0) {
             [self failedInResponse: @"Dev_Initialization" withCode: self.code];
@@ -41,11 +39,6 @@
         }
     }
     return self;
-}
-
-- (NSDictionary *)parameters
-{
-    return [self.jsonString objectFromJSONString];
 }
 
 - (NSString *)currentClass {

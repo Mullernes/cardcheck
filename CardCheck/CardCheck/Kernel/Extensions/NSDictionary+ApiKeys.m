@@ -25,6 +25,23 @@
     return [self numberValueForKey: @"code"];
 }
 
+- (NSString *)kAppKeys
+{
+    return [self valueForKey: @"app_keys"];
+}
+
+#pragma mark - CCheck
+
+- (NSNumber *)kReportID
+{
+    return [self numberValueForKey: @"report_id"];
+}
+
+- (NSNumber *)kFakeCard
+{
+    return [self numberValueForKey: @"fake_card"];
+}
+
 - (NSNumber *)numberValueForKey:(NSString *)key
 {
     id value = [self valueForKey: key];
@@ -35,10 +52,51 @@
     return value;
 }
 
-#pragma mark - String
-- (NSString *)kAppKeys
+- (NSString *)kReportDate
 {
-    return [self valueForKey: @"app_keys"];
+    return [self valueForKey: @"report_datetime"];
+}
+
+#pragma mark - CReport
+
+- (NSString *)kCardType
+{
+    return [self valueForKey: @"card_type"];
+}
+
+- (NSString *)kHolderName
+{
+    return [self valueForKey: @"cardholder_name"];
+}
+
+- (NSString *)kIssuerCountry
+{
+    return [self valueForKey: @"issuer_country"];
+}
+
+- (NSString *)kIssuerName
+{
+    return [self valueForKey: @"issuer_name"];
+}
+
+- (NSString *)kCardTitle
+{
+    return [self valueForKey: @"title"];
+}
+
+- (NSString *)kTruncatedPan
+{
+    return [self valueForKey: @"truncated_pan"];
+}
+
+- (NSArray<NSString *> *)kCardBlackLists
+{
+    return [self valueForKey: @"in_blacklists"];
+}
+
+- (NSArray<NSDictionary*> *)kReportColumns
+{
+    return [self valueForKey: @"report_columns"];
 }
 
 @end

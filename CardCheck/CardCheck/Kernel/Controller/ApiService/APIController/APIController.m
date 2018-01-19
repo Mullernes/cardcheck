@@ -75,6 +75,11 @@
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_TARGET];
 }
 
+- (NSString *)cFinishCheckUrl
+{
+    return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_COMPLETE_TARGET];
+}
+
 - (void)sendAuthRequest:(AuthRequestModel *)request
          withCompletion:(AuthResponseHandler)handler
 {
@@ -154,7 +159,46 @@
                   progress: nil
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
-             handler(responseObject, nil);
+             CCheckResponseModel *response = [CCheckResponseModel responseWithRawData: responseObject];
+             if (response.isCorrect) {
+                 [response setupWithRequest: request];
+                 handler(response, nil);
+             }
+             else {
+                 handler(nil, response.failErr);
+             }
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             handler(nil, error);
+         }];
+    }
+    else {
+        XT_MAKE_EXEPTION;
+    }
+}
+
+- (void)sendCFinishCheckRequest:(CFinishCheckRequestModel *)request
+                 withCompletion:(CFinishCheckResponseHandler)handler
+{
+    //1
+    NSString *sign = [self.crpController calcSignature1: [request jsonData]];
+    if ([request setupWithSignature: sign]) {
+        //2
+        [self.manager.requestSerializer setValue: request.signature
+                              forHTTPHeaderField: @"Content-Hmac"];
+        //3
+        [self.manager POST: [self cFinishCheckUrl]
+                parameters: [request parameters]
+                  progress: nil
+                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             CFinishCheckResponseModel *response = [CFinishCheckResponseModel responseWithRawData: responseObject];
+             if (response.isCorrect) {
+                 [response setupWithRequest: request];
+                 handler(response, nil);
+             }
+             else {
+                 handler(nil, response.failErr);
+             }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              handler(nil, error);
          }];

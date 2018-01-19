@@ -6,20 +6,19 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "AuthResponseModel.h"
+#import "CFinishCheckResponseModel.h"
 
-@interface AuthResponseModel()
+@interface CFinishCheckResponseModel()
 
 @property (nonatomic, readwrite) int code;
-@property (nonatomic, readwrite) long requestID;
 
 @end
 
-@implementation AuthResponseModel
+@implementation CFinishCheckResponseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data
 {
-    return [[AuthResponseModel alloc] initWithRawData: data.copy];
+    return [[CFinishCheckResponseModel alloc] initWithRawData: data.copy];
 }
 
 - (instancetype)initWithRawData:(NSDictionary *)data
@@ -27,12 +26,11 @@
     self = [super initWithRawData: data];
     if (self) {
         self.code = [[data kResponseCode] intValue];
-        self.requestID = [[data kRequestID] longValue];
         
         if (self.code > 0) {
-            [self failedInResponse: @"User_Authorization" withCode: self.code];
+            [self failedInResponse: @"CFinishCheck_Response" withCode: self.code];
         }
-        else if (!time || !self.requestID) {
+        else if (!self.time) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];
         }
     }
@@ -59,3 +57,4 @@
 }
 
 @end
+

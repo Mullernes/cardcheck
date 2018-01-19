@@ -8,10 +8,9 @@
 
 #import "APIBaseModel.h"
 
-@interface CCheckResponseModel : APIBaseModel
+@interface CFinishCheckResponseModel : APIBaseModel
 
 @property (nonatomic, readonly) int code;
-@property (nonatomic, readonly) long requestID;
 
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 

@@ -12,6 +12,7 @@
 
 @property (nonatomic, readwrite) long long time;
 @property (nonatomic, readwrite) NSString *signature;
+@property (nonatomic, readwrite) NSString *jsonString;
 @property (nonatomic, readwrite) APIBaseModel *request;
 
 @end
@@ -22,7 +23,10 @@
 {
     self = [super init];
     if (self) {
+        [self setJsonString: [data JSONString]];
         
+        long long time = [[data kResponseTime] longLongValue];
+        [self setupWithTime: time];
     }
     return self;
 }
@@ -42,12 +46,8 @@
     return [[self parameters] JSONData];
 }
 
-- (NSString *)jsonString {
-    return [[self parameters] JSONString];
-}
-
 - (NSDictionary *)parameters {
-    return @{};
+    return [self.jsonString objectFromJSONString];
 }
 
 - (void)setupWithTime:(long long)time
