@@ -61,6 +61,10 @@
         [self setSignature: sign];
         return YES;
     }
+    else if ([sign length] == 5) {
+        [self setSignature: [NSString stringWithFormat:@"0%@",sign]];
+        return YES;
+    }
     else {
         return NO;
     }

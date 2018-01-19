@@ -188,12 +188,26 @@
     return target;
 }
 
+- (IBAction)uploadCardImage:(id)sender
+{
+    [[APIController sharedInstance] uploadImageRequest: [self lastCheckResponse]];
+}
+
 - (IBAction)completeCheckCard:(id)sender
 {
+    AesTrackData *trackData = [AesTrackData demoData];
+    trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
+    
+    CryptoController *crp = [CryptoController sharedInstance];
+    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
+                                        withHexKey: [self.keyChain appDataKey]];
+    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
+    [self.currentReader setTrackData: trackData];
+    
     CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
     [request setCheckResponse: [self lastCheckResponse]];
     
-    __weak ViewController *weakSelf = self;
+    //__weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendCFinishCheckRequest: request
                                              withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
     {
@@ -205,7 +219,7 @@
 {
     //*init
     NSString *key = nil;
-    NSString *sign = nil;
+    //NSString *sign = nil;
     NSData *cipherData = nil;
     NSData *decryptData = nil;
     CryptoController *crp = [CryptoController sharedInstance];

@@ -11,7 +11,9 @@
 @interface APIController()
 
 @property (nonatomic, strong) CryptoController *crpController;
+
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
+@property (nonatomic, strong) AFHTTPSessionManager *uploadManager;
 
 @end
 
@@ -42,17 +44,24 @@
     return self;
 }
 
-- (void)initSessionManager {
-    NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration: cfg];
-    self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [self.manager.requestSerializer setValue: @"application/json; charset=utf-8"
-                          forHTTPHeaderField: @"Content-Type"];
-}
-
 - (AFHTTPSessionManager *)manager {
     if (nil == _manager) {
-        [self initSessionManager];
+        NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration: cfg];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [_manager.requestSerializer setValue: @"application/json; charset=utf-8"
+                          forHTTPHeaderField: @"Content-Type"];
+    }
+    
+    return _manager;
+}
+
+- (AFHTTPSessionManager *)uploadManager {
+    if (nil == _uploadManager) {
+        NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _uploadManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration: cfg];
+        [_uploadManager.requestSerializer setValue: @"multipart/form-data"
+                                forHTTPHeaderField: @"Content-Type"];
     }
     
     return _manager;
@@ -78,6 +87,11 @@
 - (NSString *)cFinishCheckUrl
 {
     return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_COMPLETE_TARGET];
+}
+
+- (NSString *)cUploadImagekUrl
+{
+    return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_UPLOAD_IMAGE_TARGET];
 }
 
 - (void)sendAuthRequest:(AuthRequestModel *)request
@@ -147,6 +161,8 @@
 - (void)sendCCheckRequest:(CCheckRequestModel *)request
            withCompletion:(CCheckResponseHandler)handler
 {
+    NSLog(@"request = %@", request.parameters);
+    
     //1
     NSString *sign = [self.crpController calcSignature1: [request jsonData]];
     if ([request setupWithSignature: sign]) {
@@ -179,6 +195,8 @@
 - (void)sendCFinishCheckRequest:(CFinishCheckRequestModel *)request
                  withCompletion:(CFinishCheckResponseHandler)handler
 {
+    NSLog(@"request = %@", request.parameters);
+    
     //1
     NSString *sign = [self.crpController calcSignature1: [request jsonData]];
     if ([request setupWithSignature: sign]) {
@@ -206,6 +224,61 @@
     else {
         XT_MAKE_EXEPTION;
     }
+}
+
+- (void)uploadImageRequest:(CCheckResponseModel *)model
+{
+    NSString *fPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"upload_card.jpg"];
+    NSData *fData = [NSData dataWithContentsOfFile: fPath];
+    
+    //parameters
+    NSDictionary *parameters = @{@"report_id"   : @(model.reportID),
+                                 @"report_time" : @(model.time)};
+                                 
+    
+    //Handlers
+    void (^constructionHandler)(id <AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData: fData
+                                    name: @"image"
+                                fileName: @"image_name"
+                                mimeType: @"image/jpeg"];
+    };
+
+    void (^uploadProgressHandler)(NSProgress *) = ^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"completed fraction = %f", uploadProgress.fractionCompleted);
+    };
+
+    void (^completionHandler)(NSURLResponse *, id, NSError *) = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error)
+    {
+        if (error) {
+            //uploadHandler(nil, error);
+        } else {
+//            NSDictionary *fileDictionary = [responseObject firstObject];
+//            ItemFileMap *fileMap = [[ItemFileMap alloc] initWithDictionary: fileDictionary];
+//            if (fileMap.isCorrect) {
+//                uploadHandler(@[fileMap], nil);
+//            }
+//            else {
+//                uploadHandler(nil, fileMap.err);
+//            }
+        }
+    };
+
+
+    NSError *err = nil;
+
+    //Request
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
+                                    multipartFormRequestWithMethod: @"POST"
+                                    URLString: [self cUploadImagekUrl]
+                                    parameters: parameters
+                                    constructingBodyWithBlock: constructionHandler
+                                    error: &err];
+
+    NSURLSessionUploadTask *task = [self.uploadManager uploadTaskWithStreamedRequest: request
+                                                                            progress: uploadProgressHandler
+                                                                   completionHandler: completionHandler];
+    [task resume];
 }
 
 @end

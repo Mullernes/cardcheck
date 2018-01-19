@@ -34,7 +34,7 @@
                                     <action selector="initialization:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBB-YK-fTB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-rm-6Eh">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-rm-6Eh">
                                 <rect key="frame" x="33" y="301" width="81" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Check Card"/>
@@ -42,12 +42,12 @@
                                     <action selector="checkCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gGj-RB-dln"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-0o-uwF">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-0o-uwF">
                                 <rect key="frame" x="33" y="345" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Complete Check Card"/>
+                                <state key="normal" title="Upload Card Image"/>
                                 <connections>
-                                    <action selector="completeCheckCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zKk-2J-Cxu"/>
+                                    <action selector="uploadCardImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FZJ-1g-0bb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stQ-Gj-LQG">
@@ -80,6 +80,14 @@
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rtb-oq-aix"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-Oc-twd">
+                                <rect key="frame" x="33" y="383" width="151" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Complete Check Card"/>
+                                <connections>
+                                    <action selector="completeCheckCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QxU-tC-Ha2"/>
                                 </connections>
                             </button>
                         </subviews>

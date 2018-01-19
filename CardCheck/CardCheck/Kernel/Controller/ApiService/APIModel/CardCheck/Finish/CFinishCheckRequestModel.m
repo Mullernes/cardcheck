@@ -59,7 +59,7 @@
              @"fake_card"       :    @(self.checkResponse.fakeCard),
              @"front_image_id"  :    @(0),
              @"back_image_id"   :    @(0),
-             @"pan3_length"     :    @(16),
+             @"pan3_length"     :    @(0),
              @"pan3_manual"     :    @(YES),
              @"notes"           :    @"notes"
              };

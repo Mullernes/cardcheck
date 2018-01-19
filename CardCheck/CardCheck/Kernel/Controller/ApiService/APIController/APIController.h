@@ -42,4 +42,6 @@ typedef void(^CFinishCheckResponseHandler)(CFinishCheckResponseModel *model, NSE
 - (void)sendCFinishCheckRequest:(CFinishCheckRequestModel *)request
                  withCompletion:(CFinishCheckResponseHandler)handler;
 
+- (void)uploadImageRequest:(CCheckResponseModel *)model;
+
 @end
