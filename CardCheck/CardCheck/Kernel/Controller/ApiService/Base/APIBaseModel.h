@@ -10,7 +10,9 @@
 
 @interface APIBaseModel : KLBaseModel
 
+@property (nonatomic, readonly) int code;
 @property (nonatomic, readonly) long long time;
+
 @property (nonatomic, strong, readonly) NSString *signature;
 @property (nonatomic, strong, readonly) NSString *jsonString;
 @property (nonatomic, strong, readonly) APIBaseModel *request;
@@ -21,6 +23,7 @@
 - (NSData *)jsonData;
 - (NSDictionary *)parameters;
 
+- (void)setupWithCode:(int)code;
 - (void)setupWithTime:(long long)time;
 - (BOOL)setupWithSignature:(NSString *)sign;
 - (void)setupWithRequest:(APIBaseModel *)request;

@@ -15,6 +15,7 @@
 #import "KLBaseDebugConstants.h"
 
 //Model
+#import "CardImage.h"
 #import "AesTrackData.h"
 #import "KeyChainData.h"
 #import "MandatoryData.h"
@@ -23,7 +24,9 @@
 
 //Controller
 #import "APIController.h"
+#import "CardImagePicker.h"
 #import "CryptoController.h"
+#import "ReaderController.h"
 
 //Utils
 #import "HexCvtr.h"

@@ -6,37 +6,25 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "CCheckResponseModel.h"
+#import "CFinishCheckResponseModel.h"
 
-@interface CCheckResponseModel()
-
-@property (nonatomic, readwrite) int code;
-@property (nonatomic, readwrite) long reportID;
-@property (nonatomic, readwrite) BOOL fakeCard;
-@property (nonatomic, readwrite) NSString *reportDate;
-@property (nonatomic, readwrite) CCheckReportData *report;
+@interface CFinishCheckResponseModel()
 
 @end
 
-@implementation CCheckResponseModel
+@implementation CFinishCheckResponseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data
 {
-    return [[CCheckResponseModel alloc] initWithRawData: data.copy];
+    return [[CFinishCheckResponseModel alloc] initWithRawData: data.copy];
 }
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
     self = [super initWithRawData: data];
     if (self) {
-        self.reportDate = [data kReportDate];
-        self.code = [[data kResponseCode] intValue];
-        self.reportID = [[data kReportID] longValue];
-        self.fakeCard = [[data kFakeCard] boolValue];
-        self.report = [[CCheckReportData alloc] initWithRawData: [[data kReportColumns] firstObject]];
-        
         if (self.code > 0) {
-            [self failedInResponse: @"CCheck_Response" withCode: self.code];
+            [self failedInResponse: @"CFinishCheck_Response" withCode: self.code];
         }
         else if (!self.time) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];

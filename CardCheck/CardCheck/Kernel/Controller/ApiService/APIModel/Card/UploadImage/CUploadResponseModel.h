@@ -8,9 +8,11 @@
 
 #import "APIBaseModel.h"
 
-@interface CFinishCheckResponseModel : APIBaseModel
+@interface CUploadResponseModel : APIBaseModel
 
-@property (nonatomic, readonly) int code;
+@property (nonatomic, readonly) long imgID;
+@property (nonatomic, readonly) long imgSize;
+@property (nonatomic, readonly) long imgCRC32;
 
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 

@@ -226,22 +226,15 @@
     }
 }
 
-- (void)uploadImageRequest:(CCheckResponseModel *)model
+- (void)uploadImageRequest:(CUploadRequestModel *)model
+            withCompletion:(CUploadResponseHandler)handler
 {
-    NSString *fPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"upload_card.jpg"];
-    NSData *fData = [NSData dataWithContentsOfFile: fPath];
-    
-    //parameters
-    NSDictionary *parameters = @{@"report_id"   : @(model.reportID),
-                                 @"report_time" : @(model.time)};
-                                 
-    
     //Handlers
     void (^constructionHandler)(id <AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData: fData
-                                    name: @"image"
-                                fileName: @"image_name"
-                                mimeType: @"image/jpeg"];
+        [formData appendPartWithFileData: model.cardImg.data
+                                    name: model.name
+                                fileName: model.fileName
+                                mimeType: model.mimeType];
     };
 
     void (^uploadProgressHandler)(NSProgress *) = ^(NSProgress * _Nonnull uploadProgress) {
@@ -271,7 +264,7 @@
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
                                     multipartFormRequestWithMethod: @"POST"
                                     URLString: [self cUploadImagekUrl]
-                                    parameters: parameters
+                                    parameters: model.parameters
                                     constructingBodyWithBlock: constructionHandler
                                     error: &err];
 

@@ -8,10 +8,7 @@
 
 #import "APIBaseModel.h"
 
-@interface InitResponseModel : APIBaseModel
-
-@property (nonatomic, readonly) long appID;
-@property (nonatomic, readonly) NSString *appKeys;
+@interface CFinishCheckResponseModel : APIBaseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 

@@ -6,29 +6,34 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "CFinishCheckResponseModel.h"
+#import "CUploadResponseModel.h"
 
-@interface CFinishCheckResponseModel()
+@interface CUploadResponseModel()
 
-@property (nonatomic, readwrite) int code;
+@property (nonatomic, readwrite) long imgID;
+@property (nonatomic, readwrite) long imgSize;
+@property (nonatomic, readwrite) long imgCRC32;
 
 @end
 
-@implementation CFinishCheckResponseModel
+@implementation CUploadResponseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data
 {
-    return [[CFinishCheckResponseModel alloc] initWithRawData: data.copy];
+    return [[CUploadResponseModel alloc] initWithRawData: data.copy];
 }
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
     self = [super initWithRawData: data];
     if (self) {
-        self.code = [[data kResponseCode] intValue];
+        
+        self.imgID = [[data objectForKey: @"image_id"] longValue];
+        self.imgSize = [[data objectForKey: @"image_size"] longValue];
+        self.imgCRC32 = [[data objectForKey: @"image_crc32"] longValue];
         
         if (self.code > 0) {
-            [self failedInResponse: @"CFinishCheck_Response" withCode: self.code];
+            [self failedInResponse: @"CUpload_Response" withCode: self.code];
         }
         else if (!self.time) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];

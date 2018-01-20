@@ -10,7 +10,6 @@
 
 @interface AuthResponseModel()
 
-@property (nonatomic, readwrite) int code;
 @property (nonatomic, readwrite) long requestID;
 
 @end
@@ -26,7 +25,6 @@
 {
     self = [super initWithRawData: data];
     if (self) {
-        self.code = [[data kResponseCode] intValue];
         self.requestID = [[data kRequestID] longValue];
         
         if (self.code > 0) {

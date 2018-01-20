@@ -20,10 +20,14 @@
 #import "CFinishCheckRequestModel.h"
 #import "CFinishCheckResponseModel.h"
 
+#import "CUploadRequestModel.h"
+#import "CUploadResponseModel.h"
+
 typedef void(^AuthResponseHandler)(AuthResponseModel *model, NSError *error);
 typedef void(^DevInitResponseHandler)(InitResponseModel *model, NSError *error);
 typedef void(^CCheckResponseHandler)(CCheckResponseModel *model, NSError *error);
 typedef void(^CFinishCheckResponseHandler)(CFinishCheckResponseModel *model, NSError *error);
+typedef void(^CUploadResponseHandler)(CUploadResponseModel *model, NSError *error);
 
 @interface APIController : KLBaseController
 
@@ -42,6 +46,7 @@ typedef void(^CFinishCheckResponseHandler)(CFinishCheckResponseModel *model, NSE
 - (void)sendCFinishCheckRequest:(CFinishCheckRequestModel *)request
                  withCompletion:(CFinishCheckResponseHandler)handler;
 
-- (void)uploadImageRequest:(CCheckResponseModel *)model;
+- (void)uploadImageRequest:(CUploadRequestModel *)model
+            withCompletion:(CUploadResponseHandler)handler;
 
 @end

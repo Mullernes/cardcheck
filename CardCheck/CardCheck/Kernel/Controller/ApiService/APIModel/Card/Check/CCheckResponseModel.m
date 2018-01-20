@@ -6,33 +6,37 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "InitResponseModel.h"
+#import "CCheckResponseModel.h"
 
-@interface InitResponseModel()
+@interface CCheckResponseModel()
 
-@property (nonatomic, readwrite) long appID;
-@property (nonatomic, readwrite) NSString *appKeys;
+@property (nonatomic, readwrite) long reportID;
+@property (nonatomic, readwrite) BOOL fakeCard;
+@property (nonatomic, readwrite) NSString *reportDate;
+@property (nonatomic, readwrite) CCheckReportData *report;
 
 @end
 
-@implementation InitResponseModel
+@implementation CCheckResponseModel
 
 + (instancetype)responseWithRawData:(NSDictionary *)data
 {
-    return [[InitResponseModel alloc] initWithRawData: data.copy];
+    return [[CCheckResponseModel alloc] initWithRawData: data.copy];
 }
 
 - (instancetype)initWithRawData:(NSDictionary *)data
 {
     self = [super initWithRawData: data];
     if (self) {
-        self.appKeys = [data kAppKeys];
-        self.appID = [[data kAppID] longValue];
-
+        self.reportDate = [data kReportDate];
+        self.reportID = [[data kReportID] longValue];
+        self.fakeCard = [[data kFakeCard] boolValue];
+        self.report = [[CCheckReportData alloc] initWithRawData: [[data kReportColumns] firstObject]];
+        
         if (self.code > 0) {
-            [self failedInResponse: @"Dev_Initialization" withCode: self.code];
+            [self failedInResponse: @"CCheck_Response" withCode: self.code];
         }
-        else if (!time || !self.appKeys || !self.appID) {
+        else if (!self.time) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];
         }
     }
@@ -59,3 +63,4 @@
 }
 
 @end
+

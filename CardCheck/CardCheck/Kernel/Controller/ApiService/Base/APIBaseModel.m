@@ -10,6 +10,7 @@
 
 @interface APIBaseModel()
 
+@property (nonatomic, readwrite) int code;
 @property (nonatomic, readwrite) long long time;
 @property (nonatomic, readwrite) NSString *signature;
 @property (nonatomic, readwrite) NSString *jsonString;
@@ -24,6 +25,9 @@
     self = [super init];
     if (self) {
         [self setJsonString: [data JSONString]];
+        
+        int code = [[data kResponseCode] intValue];
+        [self setupWithCode: code];
         
         long long time = [[data kResponseTime] longLongValue];
         [self setupWithTime: time];
@@ -53,6 +57,11 @@
 - (void)setupWithTime:(long long)time
 {
     self.time = time;
+}
+
+- (void)setupWithCode:(int)code
+{
+    self.code = code;
 }
 
 - (BOOL)setupWithSignature:(NSString *)sign

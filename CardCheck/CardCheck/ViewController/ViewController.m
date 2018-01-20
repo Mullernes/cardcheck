@@ -13,12 +13,14 @@
 
 #import "NSData+AES.h"
 
-@interface ViewController ()<ReaderControllerDelegate>
+@interface ViewController ()<ReaderControllerDelegate, CardImagePickerDelegate>
 
 @property (nonatomic, strong) KeyChainData *keyChain;
 @property (nonatomic, strong) CardReaderData *currentReader;
 @property (nonatomic, strong) InitializationData *devInitData;
+
 @property (nonatomic, strong) ReaderController *readerController;
+@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
 
 @property (nonatomic, strong) NSArray *stackOfResponse;
 
@@ -188,11 +190,6 @@
     return target;
 }
 
-- (IBAction)uploadCardImage:(id)sender
-{
-    [[APIController sharedInstance] uploadImageRequest: [self lastCheckResponse]];
-}
-
 - (IBAction)completeCheckCard:(id)sender
 {
     AesTrackData *trackData = [AesTrackData demoData];
@@ -213,6 +210,26 @@
     {
         NSLog(@" response = %@", [model debugDescription]);
     }];
+}
+
+- (IBAction)uploadCardImage:(id)sender
+{
+    [self.cardImagePickerController presentInView: self];
+}
+
+- (void)uploadImage:(CardImage *)image
+{
+    CCheckResponseModel *report = [self lastCheckResponse];
+    
+    CUploadRequestModel *request = [CUploadRequestModel requestWithReportID: report.reportID
+                                                                 reportTime: report.time
+                                                                  cardImage: image];
+    
+    [[APIController sharedInstance] uploadImageRequest: request
+                                        withCompletion:^(CUploadResponseModel *model, NSError *error)
+     {
+         NSLog(@" response = %@", [model debugDescription]);
+     }];
 }
 
 - (IBAction)testCrypto:(id)sender
@@ -277,6 +294,19 @@
 - (void)readerController:(ReaderController *)controller didReceiveData:(CardReaderData *)data
 {
     NSLog(@"%@: data => %@", CURRENT_METHOD, [data debugDescription]);
+}
+
+#pragma mark - CardImagePickerDelegate
+
+- (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
+{
+    [picker dismissInView: self];
+    [self uploadImage: image];
+}
+
+- (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
+{
+    [picker dismissInView: self];
 }
 
 

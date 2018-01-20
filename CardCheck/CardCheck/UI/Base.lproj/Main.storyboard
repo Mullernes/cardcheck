@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-0o-uwF">
-                                <rect key="frame" x="33" y="345" width="151" height="30"/>
+                                <rect key="frame" x="30" y="391" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload Card Image"/>
                                 <connections>
@@ -58,14 +58,6 @@
                                     <action selector="auth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qyZ-7C-Z1a"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOq-e7-3IB">
-                                <rect key="frame" x="28" y="428" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Crypto test"/>
-                                <connections>
-                                    <action selector="testCrypto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XTX-Y2-EpX"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Xz-0x-pjS">
                                 <rect key="frame" x="71" y="61" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-1o-Evf">
-                                <rect key="frame" x="226" y="61" width="74" height="30"/>
+                                <rect key="frame" x="225" y="61" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
@@ -83,11 +75,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-Oc-twd">
-                                <rect key="frame" x="33" y="383" width="151" height="30"/>
+                                <rect key="frame" x="33" y="339" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Complete Check Card"/>
                                 <connections>
                                     <action selector="completeCheckCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QxU-tC-Ha2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOq-e7-3IB">
+                                <rect key="frame" x="30" y="518" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Crypto test"/>
+                                <connections>
+                                    <action selector="testCrypto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XTX-Y2-EpX"/>
                                 </connections>
                             </button>
                         </subviews>

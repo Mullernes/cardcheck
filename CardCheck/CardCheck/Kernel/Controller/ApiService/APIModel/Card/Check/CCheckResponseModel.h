@@ -11,7 +11,6 @@
 
 @interface CCheckResponseModel : APIBaseModel
 
-@property (nonatomic, readonly) int code;
 @property (nonatomic, readonly) long reportID;
 @property (nonatomic, readonly) BOOL fakeCard;
 @property (nonatomic, readonly) NSString *reportDate;
