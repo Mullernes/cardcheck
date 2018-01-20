@@ -36,17 +36,12 @@
 
 #pragma mark - Working methods
 
-- (int)calcOtp:(long long)plain
+- (NSString *)calcOtp:(long long)plain
 {
-    NSNumber *value = [self hotpWithValue: plain
+    NSNumber *otp = [self hotpWithValue: plain
                                 andHexKey: [[KeyChainData sharedInstance] customId]];
     
-    if ([[value stringValue] length] < 6)
-    {
-        XT_MAKE_EXEPTION;
-    }
-    
-    return [value intValue];
+    return [self semanticOtp: [otp stringValue]];
 }
 
 - (NSString *)calcSignature1:(NSData *)plain
@@ -54,7 +49,7 @@
     NSString *key = [[KeyChainData sharedInstance] commKey];
     NSNumber *otp = [self hotpWithData: plain andHexKey: key];
     
-    return [otp stringValue];
+    return [self semanticOtp: [otp stringValue]];
 }
 
 - (NSString *)calcSignature2:(NSData *)plain
@@ -62,7 +57,20 @@
     NSString *key = [[KeyChainData sharedInstance] customId];
     NSNumber *otp = [self hotpWithData: plain andHexKey: key];
     
-    return [otp stringValue];
+    return [self semanticOtp: [otp stringValue]];
+}
+
+- (NSString *)semanticOtp:(NSString *)value
+{
+    if ([value length] == 6) {
+        return value;
+    }
+    else if ([value length] == 5) {
+        return [NSString stringWithFormat:@"0%@",value];
+    }
+    else {
+        XT_MAKE_EXEPTION;
+    }
 }
 
 - (NSData *)swapInt32HostToBig:(int)value

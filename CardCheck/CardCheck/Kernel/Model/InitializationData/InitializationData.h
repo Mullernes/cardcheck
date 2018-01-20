@@ -11,12 +11,12 @@
 
 @interface InitializationData : KLBaseModel
 
-@property (nonatomic, readonly) int otp;
 @property (nonatomic, readonly) int attempts;
+@property (nonatomic, readonly) NSString *otp;
 
 + (instancetype)demoData;
 
-- (void)setupWithCalculatedOtp:(int)otp;
+- (void)setupWithCalculatedOtp:(NSString *)otp;
 - (void)setupWithAuthResponse:(AuthResponseModel *)response;
 - (void)setupWithInitResponse:(InitResponseModel *)response;
 

@@ -43,5 +43,7 @@
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Hello World</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Requires access to Camera on Your device</string>
 </dict>
 </plist>

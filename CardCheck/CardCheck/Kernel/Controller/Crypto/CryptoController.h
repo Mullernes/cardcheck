@@ -13,7 +13,7 @@
 #pragma mark - Init
 + (instancetype)sharedInstance;
 
-- (int)calcOtp:(long long)plain;
+- (NSString *)calcOtp:(long long)plain;
 - (NSString *)calcSignature1:(NSData *)plain;
 - (NSString *)calcSignature2:(NSData *)plain;
 - (NSString *)calcTransportKey:(InitializationData *)data;

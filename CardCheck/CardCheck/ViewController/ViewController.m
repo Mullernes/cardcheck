@@ -36,6 +36,7 @@
     self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
     self.currentReader = [CardReaderData demoData];
+    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
 
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
@@ -122,18 +123,18 @@
 - (IBAction)calcOtp:(id)sender
 {
     CryptoController *crp = [CryptoController sharedInstance];
-    int value = [crp calcOtp: self.devInitData.authResponseTime];
+    NSString *value = [crp calcOtp: self.devInitData.authResponseTime];
     [self.devInitData setupWithCalculatedOtp: value];
 
-    NSLog(@"otp = %i", value);
+    NSLog(@"otp = %@", value);
     NSLog(@"devInitData = %@", [self.devInitData debugDescription]);
 }
 
 - (IBAction)initialization:(id)sender
 {
     //NSUInteger typedOtp = [self.typedOtp.text integerValue];
-    NSUInteger typedOtp = self.devInitData.otp;
-    if (self.devInitData.otp == typedOtp)
+    NSString *typedOtp = self.devInitData.otp;
+    if ([self.devInitData.otp isEqualToString: typedOtp])
     {
         InitRequestModel *request = [InitRequestModel requestWithData: self.devInitData
                                                                   andReader: self.currentReader];

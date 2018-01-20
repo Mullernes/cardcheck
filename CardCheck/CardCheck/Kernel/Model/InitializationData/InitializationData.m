@@ -10,8 +10,8 @@
 
 @interface InitializationData()
 
-@property (nonatomic, readwrite) int otp;
 @property (nonatomic, readwrite) int attempts;
+@property (nonatomic, readwrite) NSString *otp;
 
 @property (nonatomic, strong) CardReaderData *readerData;
 @property (nonatomic, strong) AuthResponseModel *authResponse;
@@ -24,7 +24,7 @@
 + (instancetype)demoData
 {
     InitializationData *data = [InitializationData new];
-    [data setupWithCalculatedOtp: 115181];
+    [data setupWithCalculatedOtp: @"115181"];
     
     AuthRequestModel *authRequest = [AuthRequestModel new];
     [authRequest setupWithTime: 1515622537643];
@@ -57,7 +57,7 @@
     return self;
 }
 
-- (void)setupWithCalculatedOtp:(int)otp
+- (void)setupWithCalculatedOtp:(NSString *)otp
 {
     self.otp = otp;
 }
