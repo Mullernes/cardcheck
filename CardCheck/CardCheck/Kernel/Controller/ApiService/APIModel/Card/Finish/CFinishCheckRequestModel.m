@@ -12,6 +12,9 @@
 
 @property (nonatomic) long appId;
 
+@property (nonatomic) CardImage *backImage;
+@property (nonatomic) CardImage *frontImage;
+
 @property (nonatomic, strong) CardReaderData *reader;
 @property (nonatomic, strong) AesTrackData *trackData;
 
@@ -29,6 +32,12 @@
     return model;
 }
 
+- (void)setupFakeCardWithImages:(NSArray<CardImage *> *)images
+{
+    self.backImage = [images lastObject];
+    self.frontImage = [images firstObject];
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -41,6 +50,10 @@
 
 - (AesTrackData *)trackData {
     return self.reader.trackData;
+}
+
+- (BOOL)isFakeCard {
+    return (self.backImage && self.frontImage)? YES : self.checkResponse.fakeCard;
 }
 
 - (NSDictionary *)parameters
@@ -56,9 +69,9 @@
              @"data"            :   self.trackData.cipherHexData,
              
              @"report_id"       :    @(self.checkResponse.reportID),
-             @"fake_card"       :    @(self.checkResponse.fakeCard),
-             @"front_image_id"  :    @(0),
-             @"back_image_id"   :    @(0),
+             @"fake_card"       :    @(self.isFakeCard),
+             @"front_image_id"  :    @(self.frontImage.ID),
+             @"back_image_id"   :    @(self.backImage.ID),
              @"pan3_length"     :    @(0),
              @"pan3_manual"     :    @(YES),
              @"notes"           :    @"notes"

@@ -41,7 +41,7 @@
 /*
  одноразовый пароль / OTP: шестизначное число
  */
-@property (nonatomic) int otp;
+@property (nonatomic) NSString *otp;
 
 
 #pragma mark - Init

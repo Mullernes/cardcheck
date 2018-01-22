@@ -32,7 +32,7 @@
         if (self.code > 0) {
             [self failedInResponse: @"Dev_Initialization" withCode: self.code];
         }
-        else if (!time || !self.appKeys || !self.appID) {
+        else if (!self.time || !self.appKeys || !self.appID) {
             [self failedInMethod: CURRENT_METHOD withReason: @"Invalid response - %@", data];
         }
     }

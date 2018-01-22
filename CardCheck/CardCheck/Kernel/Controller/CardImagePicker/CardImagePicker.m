@@ -28,23 +28,29 @@
 
 - (void)setup
 {
-    self.picker = [UIImagePickerController new];
-    self.picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
-    self.picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
-    self.picker.videoMaximumDuration = 30.0;
-    self.picker.delegate = self;
-    
-    self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    self.picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    if (NO == TARGET_IPHONE_SIMULATOR) {
+        self.picker = [UIImagePickerController new];
+        self.picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
+        self.picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
+        self.picker.videoMaximumDuration = 30.0;
+        self.picker.delegate = self;
+        
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    }
 }
 
 - (void)presentInView:(UIViewController *)vc
 {
+    if (nil == vc) return;
+    
     [vc presentViewController: self.picker animated: YES completion: nil];
 }
 
 - (void)dismissInView:(UIViewController *)vc
 {
+    if (nil == vc) return;
+    
     [vc dismissViewControllerAnimated: YES completion:nil];
 }
 

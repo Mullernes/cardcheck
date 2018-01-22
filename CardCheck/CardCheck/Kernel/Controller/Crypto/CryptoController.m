@@ -68,6 +68,9 @@
     else if ([value length] == 5) {
         return [NSString stringWithFormat:@"0%@",value];
     }
+    else if ([value length] == 4) {
+        return [NSString stringWithFormat:@"00%@",value];
+    }
     else {
         XT_MAKE_EXEPTION;
     }
@@ -96,7 +99,7 @@
     //Gen key - 14 bytes
     NSMutableData *keyBuffer = [NSMutableData dataWithCapacity: 14];
     [keyBuffer appendData: [HexCvtr dataFromHex: data.customID]];
-    [keyBuffer appendData: [self swapInt32HostToBig: data.otp]];
+    [keyBuffer appendData: [self swapInt32HostToBig: [data.otp intValue]]];
     
     //Gen data - 32 bytes
     NSMutableData *dataBuffer = [NSMutableData dataWithCapacity: 32];

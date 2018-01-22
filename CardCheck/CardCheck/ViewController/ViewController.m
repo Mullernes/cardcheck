@@ -145,9 +145,9 @@
             if (model.isCorrect)
             {
                 [weakSelf.devInitData setupWithInitResponse: model];
-                [weakSelf completeInitialization];
-                
                 NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+                
+                [weakSelf completeInitialization];
             }
             else {
                 NSLog(@"response = %@", model);
@@ -191,6 +191,12 @@
     return target;
 }
 
+- (NSArray<CardImage *> *)fakeCardImages
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", [self lastCheckResponse]];
+    return [self.stackOfResponse filteredArrayUsingPredicate: predicate];
+}
+
 - (IBAction)completeCheckCard:(id)sender
 {
     AesTrackData *trackData = [AesTrackData demoData];
@@ -204,6 +210,7 @@
     
     CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
     [request setCheckResponse: [self lastCheckResponse]];
+    [request setupFakeCardWithImages: [self fakeCardImages]];
     
     //__weak ViewController *weakSelf = self;
     [[APIController sharedInstance] sendCFinishCheckRequest: request
@@ -221,15 +228,18 @@
 - (void)uploadImage:(CardImage *)image
 {
     CCheckResponseModel *report = [self lastCheckResponse];
-    
     CUploadRequestModel *request = [CUploadRequestModel requestWithReportID: report.reportID
                                                                  reportTime: report.time
                                                                   cardImage: image];
-    
+
+    __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] uploadImageRequest: request
                                         withCompletion:^(CUploadResponseModel *model, NSError *error)
      {
          NSLog(@" response = %@", [model debugDescription]);
+         
+         [image setID: model.imgID];
+         weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: image];
      }];
 }
 

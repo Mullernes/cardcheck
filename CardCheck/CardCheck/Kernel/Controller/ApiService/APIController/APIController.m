@@ -244,23 +244,20 @@
     void (^completionHandler)(NSURLResponse *, id, NSError *) = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error)
     {
         if (error) {
-            //uploadHandler(nil, error);
+            handler(nil, error);
         } else {
-//            NSDictionary *fileDictionary = [responseObject firstObject];
-//            ItemFileMap *fileMap = [[ItemFileMap alloc] initWithDictionary: fileDictionary];
-//            if (fileMap.isCorrect) {
-//                uploadHandler(@[fileMap], nil);
-//            }
-//            else {
-//                uploadHandler(nil, fileMap.err);
-//            }
+            CUploadResponseModel *response = [CUploadResponseModel responseWithRawData: responseObject];
+            if (response.isCorrect) {
+                handler(response, nil);
+            }
+            else {
+                handler(nil, response.failErr);
+            }
         }
     };
 
-
-    NSError *err = nil;
-
     //Request
+    NSError *err = nil;
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
                                     multipartFormRequestWithMethod: @"POST"
                                     URLString: [self cUploadImagekUrl]
