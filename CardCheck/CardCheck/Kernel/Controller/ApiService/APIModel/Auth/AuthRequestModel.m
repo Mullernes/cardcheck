@@ -11,20 +11,20 @@
 @interface AuthRequestModel()
 
 @property (nonatomic, readwrite) NSString *login;
-@property (nonatomic, readwrite) CardReaderData *reader;
+@property (nonatomic, readwrite) CardReader *reader;
 
 @end
 
 @implementation AuthRequestModel
 
 + (instancetype)requestWithLogin:(NSString *)login
-                       andReader:(CardReaderData *)reader
+                       andReader:(CardReader *)reader
 {
     return [[AuthRequestModel alloc] initWithLogin: login andReader: reader];
 }
 
 - (instancetype)initWithLogin:(NSString *)login
-                    andReader:(CardReaderData *)reader
+                    andReader:(CardReader *)reader
 {
     self = [super init];
     if (self) {

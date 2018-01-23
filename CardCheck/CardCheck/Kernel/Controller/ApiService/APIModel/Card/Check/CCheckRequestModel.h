@@ -10,7 +10,7 @@
 
 @interface CCheckRequestModel : APIBaseModel
 
-+ (instancetype)requestWithReader:(CardReaderData *)reader;
++ (instancetype)requestWithReader:(CardReader *)reader;
 
 @end
 

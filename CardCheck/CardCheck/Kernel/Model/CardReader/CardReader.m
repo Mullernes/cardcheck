@@ -6,9 +6,9 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "CardReaderData.h"
+#import "CardReader.h"
 
-@interface CardReaderData()
+@interface CardReader()
 
 @property (nonatomic, readwrite) NSUInteger type;
 @property (nonatomic, readwrite) BOOL lowBattery;
@@ -17,10 +17,10 @@
 
 @end
 
-@implementation CardReaderData
+@implementation CardReader
 
 + (instancetype)demoData {
-    CardReaderData *reader = [[CardReaderData alloc] initWithDevID: DEMO_READER_ID
+    CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
                                                           customID: DEMO_CUSTOM_ID
                                                            andType: 1];
     [reader setTrackData: [AesTrackData demoData]];
@@ -30,7 +30,7 @@
 
 + (instancetype)emptyData
 {
-    CardReaderData *reader = [CardReaderData new];
+    CardReader *reader = [CardReader new];
     [reader setPlugged: NO];
     
     return reader;

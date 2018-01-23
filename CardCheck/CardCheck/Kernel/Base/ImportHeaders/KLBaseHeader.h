@@ -19,7 +19,7 @@
 #import "AesTrackData.h"
 #import "KeyChainData.h"
 #import "MandatoryData.h"
-#import "CardReaderData.h"
+#import "CardReader.h"
 #import "InitializationData.h"
 
 //Controller

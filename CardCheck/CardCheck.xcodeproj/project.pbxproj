@@ -10,13 +10,17 @@
 		116E90984996AB46E95EE13B /* libPods-CardCheckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612BE24DB427A35251188050 /* libPods-CardCheckTests.a */; };
 		1B60997856F4E40884808B16 /* libPods-CardCheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FABC5FC3A019D88AA486A0 /* libPods-CardCheck.a */; };
 		302263114FD03EC85589A896 /* libPods-CardCheckUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */; };
+		7D0105C320173D770080E63A /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0105C120173D760080E63A /* Root.storyboard */; };
+		7D0105C82017507D0080E63A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105C52017507C0080E63A /* RootViewController.m */; };
+		7D0105C92017507D0080E63A /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105C72017507D0080E63A /* LoadingViewController.m */; };
+		7D0105D3201751790080E63A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105CC201751780080E63A /* BaseViewController.m */; };
+		7D0105D4201751790080E63A /* UIViewController+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105CE201751780080E63A /* UIViewController+Extensions.m */; };
 		7D0D572E2013A9F000CC250C /* CardImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D572D2013A9F000CC250C /* CardImagePicker.m */; };
 		7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */; };
 		7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */; };
 		7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* AesTrackData.m */; };
 		7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */; };
 		7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */; };
-		7D13E6AA20123ACC002B2625 /* upload_card.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D13E6A920123ACC002B2625 /* upload_card.jpg */; };
 		7D33B7CD20132CD9006004BD /* CardImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D33B7CC20132CD9006004BD /* CardImage.m */; };
 		7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */; };
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
@@ -39,7 +43,7 @@
 		7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBCA1FEA492300CFB4FE /* KLBaseController.m */; };
 		7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */; };
 		7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8F06A200DF497005C6B92 /* CCheckReportData.m */; };
-		7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */; };
+		7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6A1FF2E90100058FD4 /* CardReader.m */; };
 		7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */; };
 		7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C701FF37A4B00058FD4 /* AuthRequestModel.m */; };
 		7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE2C761FF37B0D00058FD4 /* APIController.m */; };
@@ -81,6 +85,15 @@
 		135F6F1611C42039A8A4F08A /* Pods-CardCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4954629901196F28C351AC02 /* Pods-CardCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardCheckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardCheckUITests/Pods-CardCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		612BE24DB427A35251188050 /* libPods-CardCheckTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardCheckTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D0105C220173D770080E63A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
+		7D0105C42017507C0080E63A /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		7D0105C52017507C0080E63A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		7D0105C62017507D0080E63A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		7D0105C72017507D0080E63A /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		7D0105CB201751780080E63A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		7D0105CC201751780080E63A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		7D0105CD201751780080E63A /* UIViewController+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extensions.h"; sourceTree = "<group>"; };
+		7D0105CE201751780080E63A /* UIViewController+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extensions.m"; sourceTree = "<group>"; };
 		7D0D572C2013A9F000CC250C /* CardImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImagePicker.h; sourceTree = "<group>"; };
 		7D0D572D2013A9F000CC250C /* CardImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardImagePicker.m; sourceTree = "<group>"; };
 		7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckResponseModel.m; sourceTree = "<group>"; };
@@ -93,7 +106,6 @@
 		7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckRequestModel.m; sourceTree = "<group>"; };
 		7D13E6A520122BD7002B2625 /* CFinishCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckResponseModel.h; sourceTree = "<group>"; };
 		7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckResponseModel.m; sourceTree = "<group>"; };
-		7D13E6A920123ACC002B2625 /* upload_card.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = upload_card.jpg; sourceTree = "<group>"; };
 		7D33B7CB20132CD9006004BD /* CardImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardImage.h; sourceTree = "<group>"; };
 		7D33B7CC20132CD9006004BD /* CardImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardImage.m; sourceTree = "<group>"; };
 		7D3A427E1FFB893D00FFF207 /* InitRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitRequestModel.h; sourceTree = "<group>"; };
@@ -142,8 +154,8 @@
 		7DC4FBD51FEA4EC200CFB4FE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		7DC8F069200DF496005C6B92 /* CCheckReportData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckReportData.h; sourceTree = "<group>"; };
 		7DC8F06A200DF497005C6B92 /* CCheckReportData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckReportData.m; sourceTree = "<group>"; };
-		7DDE2C691FF2E90100058FD4 /* CardReaderData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReaderData.h; sourceTree = "<group>"; };
-		7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReaderData.m; sourceTree = "<group>"; };
+		7DDE2C691FF2E90100058FD4 /* CardReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReader.h; sourceTree = "<group>"; };
+		7DDE2C6A1FF2E90100058FD4 /* CardReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReader.m; sourceTree = "<group>"; };
 		7DDE2C6D1FF37A4B00058FD4 /* APIBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIBaseModel.h; sourceTree = "<group>"; };
 		7DDE2C6E1FF37A4B00058FD4 /* APIBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIBaseModel.m; sourceTree = "<group>"; };
 		7DDE2C6F1FF37A4B00058FD4 /* AuthRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthRequestModel.h; sourceTree = "<group>"; };
@@ -250,6 +262,26 @@
 				7EB175EF11254AC5BA94C784 /* libPods-CardCheckUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D0105CA201751780080E63A /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D0105CB201751780080E63A /* BaseViewController.h */,
+				7D0105CC201751780080E63A /* BaseViewController.m */,
+				7D0105CD201751780080E63A /* UIViewController+Extensions.h */,
+				7D0105CE201751780080E63A /* UIViewController+Extensions.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		7D0105D6201751830080E63A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */,
+				7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		7D0D572B2013A9F000CC250C /* CardImagePicker */ = {
@@ -403,6 +435,7 @@
 			children = (
 				7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */,
 				7DC4FB921FEA3D9100CFB4FE /* LaunchScreen.storyboard */,
+				7D0105C120173D760080E63A /* Root.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -410,8 +443,12 @@
 		7DC4FBBA1FEA462E00CFB4FE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */,
-				7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */,
+				7D0105CA201751780080E63A /* BaseViewController */,
+				7D0105D6201751830080E63A /* Main */,
+				7D0105C42017507C0080E63A /* LoadingViewController.h */,
+				7D0105C72017507D0080E63A /* LoadingViewController.m */,
+				7D0105C62017507D0080E63A /* RootViewController.h */,
+				7D0105C52017507C0080E63A /* RootViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -432,7 +469,6 @@
 		7DC4FBBC1FEA472E00CFB4FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				7D13E6A920123ACC002B2625 /* upload_card.jpg */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -464,7 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				7D33B7C920132CB4006004BD /* CardImage */,
-				7DDE2C681FF2E8E800058FD4 /* CardReaderData */,
+				7DDE2C681FF2E8E800058FD4 /* CardReader */,
 				7DDE2D081FF6C04300058FD4 /* InitializationData */,
 				7DE1680A2004081400F4A417 /* KeyChainData */,
 				7DE1680B20040A5F00F4A417 /* MandatoryData */,
@@ -550,15 +586,15 @@
 			path = ApiService;
 			sourceTree = "<group>";
 		};
-		7DDE2C681FF2E8E800058FD4 /* CardReaderData */ = {
+		7DDE2C681FF2E8E800058FD4 /* CardReader */ = {
 			isa = PBXGroup;
 			children = (
 				7D0F5EC9200505AC00780CE8 /* AesTrackData.h */,
 				7D0F5ECA200505AC00780CE8 /* AesTrackData.m */,
-				7DDE2C691FF2E90100058FD4 /* CardReaderData.h */,
-				7DDE2C6A1FF2E90100058FD4 /* CardReaderData.m */,
+				7DDE2C691FF2E90100058FD4 /* CardReader.h */,
+				7DDE2C6A1FF2E90100058FD4 /* CardReader.m */,
 			);
-			path = CardReaderData;
+			path = CardReader;
 			sourceTree = "<group>";
 		};
 		7DDE2C6C1FF37A4B00058FD4 /* APIModel */ = {
@@ -797,8 +833,8 @@
 			files = (
 				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
+				7D0105C320173D770080E63A /* Root.storyboard in Resources */,
 				7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */,
-				7D13E6AA20123ACC002B2625 /* upload_card.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +1013,7 @@
 				7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
+				7D0105C92017507D0080E63A /* LoadingViewController.m in Sources */,
 				7DE1681120040FD100F4A417 /* KeyChainData.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* InitializationData.m in Sources */,
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
@@ -985,19 +1022,22 @@
 				7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */,
 				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
 				7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */,
+				7D0105D4201751790080E63A /* UIViewController+Extensions.m in Sources */,
 				7DC4FBC31FEA486800CFB4FE /* database.xcdatamodeld in Sources */,
 				7DB705B12013AAF500782CF1 /* CUploadResponseModel.m in Sources */,
 				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
 				7DE1680E20040A8E00F4A417 /* MandatoryData.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
+				7D0105D3201751790080E63A /* BaseViewController.m in Sources */,
 				7DE1680920036F8900F4A417 /* NSData+AES.m in Sources */,
-				7DDE2C6B1FF2E90100058FD4 /* CardReaderData.m in Sources */,
+				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
 				7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */,
 				7D33B7CD20132CD9006004BD /* CardImage.m in Sources */,
 				7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */,
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
+				7D0105C82017507D0080E63A /* RootViewController.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
@@ -1041,6 +1081,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7D0105C120173D760080E63A /* Root.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D0105C220173D770080E63A /* Base */,
+			);
+			name = Root.storyboard;
+			sourceTree = "<group>";
+		};
 		7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

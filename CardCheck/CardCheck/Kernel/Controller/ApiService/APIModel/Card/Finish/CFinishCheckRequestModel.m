@@ -15,14 +15,14 @@
 @property (nonatomic) CardImage *backImage;
 @property (nonatomic) CardImage *frontImage;
 
-@property (nonatomic, strong) CardReaderData *reader;
+@property (nonatomic, strong) CardReader *reader;
 @property (nonatomic, strong) AesTrackData *trackData;
 
 @end
 
 @implementation CFinishCheckRequestModel
 
-+ (instancetype)requestWithReader:(CardReaderData *)reader
++ (instancetype)requestWithReader:(CardReader *)reader
 {
     CFinishCheckRequestModel *model = [CFinishCheckRequestModel new];
     

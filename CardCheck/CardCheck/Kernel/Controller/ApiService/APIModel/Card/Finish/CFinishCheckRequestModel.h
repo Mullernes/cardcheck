@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) CCheckResponseModel *checkResponse;
 
-+ (instancetype)requestWithReader:(CardReaderData *)reader;
++ (instancetype)requestWithReader:(CardReader *)reader;
 - (void)setupFakeCardWithImages:(NSArray<CardImage *> *)images;
 
 @end

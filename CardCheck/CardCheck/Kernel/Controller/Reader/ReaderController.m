@@ -20,7 +20,7 @@
 @property (nonatomic) BOOL deviceIDReady;
 
 @property (nonatomic) BOOL plugged;
-@property (nonatomic, strong)CardReaderData *readerData;
+@property (nonatomic, strong) CardReader *cardReader;
 @property (nonatomic, strong) ACRAudioJackReader *reader;
 @property (nonatomic, strong) NSCondition *responseCondition;
 
@@ -52,7 +52,7 @@
 
         self.plugged = NO;
         
-        self.readerData = [CardReaderData emptyData];
+        self.cardReader = [CardReader emptyData];
         
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
     }
@@ -103,11 +103,11 @@
     [self onInfo: CURRENT_METHOD];
     
     [self.reader setMute: !plugged];
-    [self.readerData setPlugged: plugged];
+    [self.cardReader setPlugged: plugged];
     
-    [self.delegate readerController: self didReceiveData: self.readerData];
+    [self.delegate readerController: self didUpdateWithReader: self.cardReader];
     
-    if (self.readerData.isPlugged) {
+    if (self.cardReader.isPlugged) {
         [self requestDeviceIDIfNeeded];
         [self requestCustomIDIfNeeded];
     }
@@ -117,7 +117,7 @@
 {
     [self onInfo: CURRENT_METHOD];
     
-    if (self.readerData.customID == nil)
+    if (self.cardReader.customID == nil)
     {
         // Reset the reader.
         [self.reader resetWithCompletion:^{
@@ -149,7 +149,7 @@
     
     if (self.customIDReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didReceiveData: self.readerData];
+            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
         });
         
     } else if (self.resultReady) {
@@ -177,7 +177,7 @@
 {
     [self onInfo: CURRENT_METHOD];
     
-    if (self.readerData.deviceID == nil)
+    if (self.cardReader.deviceID == nil)
     {
         // Reset the reader.
         [self.reader resetWithCompletion:^{
@@ -209,7 +209,7 @@
     
     if (self.deviceIDReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didReceiveData: self.readerData];
+            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
         });
         
     } else if (self.resultReady) {
@@ -316,7 +316,7 @@
     
     self.customIDReady = YES;
     NSData *data = [NSData dataWithBytes: customId length: length];
-    [self.readerData setupWithCustomID: [HexCvtr hexFromData: data]];
+    [self.cardReader setupWithCustomID: [HexCvtr hexFromData: data]];
     
     [self.responseCondition signal];
     [self.responseCondition unlock];
@@ -328,7 +328,7 @@
     
     self.deviceIDReady = YES;
     NSData *data = [NSData dataWithBytes: deviceId length: length];
-    [self.readerData setupWithDeviceID: [HexCvtr hexFromData: data]];
+    [self.cardReader setupWithDeviceID: [HexCvtr hexFromData: data]];
     
     [self.responseCondition signal];
     [self.responseCondition unlock];

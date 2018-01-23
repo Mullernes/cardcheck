@@ -8,7 +8,7 @@
 
 #import "KLBaseModel.h"
 
-@interface CardReaderData : KLBaseModel
+@interface CardReader : KLBaseModel
 
 @property (nonatomic, readonly) NSUInteger type;
 @property (nonatomic, readonly) BOOL lowBattery;
