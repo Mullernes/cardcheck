@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) ReaderController *readerController;
 
-- (IBAction)next:(id)sender;
+- (IBAction)start:(id)sender;
 
 @end
 
@@ -71,9 +71,27 @@
     [self.readerController start];
 }
 
+- (void)checkAndContinue:(CardReader *)reader
+{
+    NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
+    
+    if (reader.isReady) {
+        [self.activityView stopAnimating];
+        MandatoryData *data = [MandatoryData sharedInstance];
+        if (data.isExist && [data.deviceID isEqualToString: reader.deviceID]) {
+            NSLog(@"showMain");
+            //[self.rootViewController showMain: nil];
+        }
+        else {
+            NSLog(@"showAuth");
+            [self.rootViewController showAuth: nil];
+        }
+    }
+}
+
 #pragma mark - Actions
 
-- (IBAction)next:(id)sender
+- (IBAction)start:(id)sender
 {
     [self.activityView startAnimating];
     [self setupReaderController];
@@ -83,7 +101,7 @@
 
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data
 {
-    NSLog(@"%@: data => %@", CURRENT_METHOD, [data debugDescription]);
+    [self checkAndContinue: data];
 }
 
 

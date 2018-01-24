@@ -79,11 +79,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrf-PD-N1A">
-                                        <rect key="frame" x="109" y="445" width="102" height="33"/>
+                                        <rect key="frame" x="117.5" y="445" width="85" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Продовжити"/>
+                                        <state key="normal" title="Розпочати"/>
                                         <connections>
-                                            <action selector="next:" destination="EAH-eo-M1m" eventType="touchUpInside" id="v0c-Kz-Cwy"/>
+                                            <action selector="start:" destination="EAH-eo-M1m" eventType="touchUpInside" id="gle-zZ-R4N"/>
                                         </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ADU-sy-46M">
@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnJ-3w-3Km" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103.125" y="2136.9718309859154"/>
+            <point key="canvasLocation" x="-364" y="2139"/>
         </scene>
     </scenes>
     <resources>

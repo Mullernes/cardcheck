@@ -23,7 +23,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Requires access to Camera on Your device</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Hello World</string>
+	<string>CardCheck - потребує доступу до мікрофону для коректної роботи зі зчитувачем</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
