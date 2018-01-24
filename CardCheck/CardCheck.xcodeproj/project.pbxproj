@@ -28,6 +28,26 @@
 		7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A428B1FFBCCE200FFF207 /* NSError+Extensions.m */; };
 		7D3A428F1FFBD29400FFF207 /* NSDictionary+ApiKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A428E1FFBD29400FFF207 /* NSDictionary+ApiKeys.m */; };
 		7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50E20E1FF03D4F00705D06 /* CryptoController.m */; };
+		7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2B842018740000BE6950 /* Auth.storyboard */; };
+		7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B892018744F00BE6950 /* AuthViewController.m */; };
+		7D7E2B992018744F00BE6950 /* AuthLoginIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B8C2018744F00BE6950 /* AuthLoginIDView.m */; };
+		7D7E2B9D2018744F00BE6950 /* AuthSignUpPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B942018744F00BE6950 /* AuthSignUpPasswordView.m */; };
+		7D7E2B9E2018744F00BE6950 /* AuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B972018744F00BE6950 /* AuthView.m */; };
+		7D7E2BAC2018782A00BE6950 /* AuthLoginIDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BA22018782A00BE6950 /* AuthLoginIDView.xib */; };
+		7D7E2BB02018782A00BE6950 /* AuthSignUpPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BAA2018782A00BE6950 /* AuthSignUpPasswordView.xib */; };
+		7D7E2BD3201879D100BE6950 /* SFLoginIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BB8201879D100BE6950 /* SFLoginIDTextField.m */; };
+		7D7E2BD5201879D100BE6950 /* SFPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BBC201879D100BE6950 /* SFPasswordTextField.m */; };
+		7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BBE201879D100BE6950 /* SFTextField.m */; };
+		7D7E2BD9201879D100BE6950 /* ITLoginIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BC5201879D100BE6950 /* ITLoginIDTextField.m */; };
+		7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BC9201879D100BE6950 /* ITPasswordTextField.m */; };
+		7D7E2BDC201879D100BE6950 /* ITTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BCB201879D100BE6950 /* ITTextField.m */; };
+		7D7E2BDD201879D100BE6950 /* ITTextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BCE201879D100BE6950 /* ITTextFieldDelegate.m */; };
+		7D7E2BDE201879D100BE6950 /* ITTextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BD0201879D100BE6950 /* ITTextFieldValidator.m */; };
+		7D7E2BE220187A1200BE6950 /* ActivityIndicatorColored.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BE120187A1200BE6950 /* ActivityIndicatorColored.m */; };
+		7D7E2BEC20187AD900BE6950 /* ITKeyValueObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BE620187AD900BE6950 /* ITKeyValueObserver.m */; };
+		7D7E2BED20187AD900BE6950 /* NSObject+ITKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BE820187AD900BE6950 /* NSObject+ITKVO.m */; };
+		7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */; };
+		7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */; };
 		7DB705B12013AAF500782CF1 /* CUploadResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */; };
 		7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705B02013AAF500782CF1 /* CUploadRequestModel.m */; };
 		7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */; };
@@ -120,6 +140,43 @@
 		7D3A428E1FFBD29400FFF207 /* NSDictionary+ApiKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ApiKeys.m"; sourceTree = "<group>"; };
 		7D50E20D1FF03D4F00705D06 /* CryptoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoController.h; sourceTree = "<group>"; };
 		7D50E20E1FF03D4F00705D06 /* CryptoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoController.m; sourceTree = "<group>"; };
+		7D7E2B852018740000BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
+		7D7E2B882018744F00BE6950 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
+		7D7E2B892018744F00BE6950 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		7D7E2B8B2018744F00BE6950 /* AuthLoginIDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthLoginIDView.h; sourceTree = "<group>"; };
+		7D7E2B8C2018744F00BE6950 /* AuthLoginIDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthLoginIDView.m; sourceTree = "<group>"; };
+		7D7E2B932018744F00BE6950 /* AuthSignUpPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSignUpPasswordView.h; sourceTree = "<group>"; };
+		7D7E2B942018744F00BE6950 /* AuthSignUpPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSignUpPasswordView.m; sourceTree = "<group>"; };
+		7D7E2B962018744F00BE6950 /* AuthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthView.h; sourceTree = "<group>"; };
+		7D7E2B972018744F00BE6950 /* AuthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthView.m; sourceTree = "<group>"; };
+		7D7E2BA32018782A00BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthLoginIDView.xib; sourceTree = "<group>"; };
+		7D7E2BAB2018782A00BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthSignUpPasswordView.xib; sourceTree = "<group>"; };
+		7D7E2BB7201879D100BE6950 /* SFLoginIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLoginIDTextField.h; sourceTree = "<group>"; };
+		7D7E2BB8201879D100BE6950 /* SFLoginIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFLoginIDTextField.m; sourceTree = "<group>"; };
+		7D7E2BBB201879D100BE6950 /* SFPasswordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPasswordTextField.h; sourceTree = "<group>"; };
+		7D7E2BBC201879D100BE6950 /* SFPasswordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPasswordTextField.m; sourceTree = "<group>"; };
+		7D7E2BBD201879D100BE6950 /* SFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTextField.h; sourceTree = "<group>"; };
+		7D7E2BBE201879D100BE6950 /* SFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTextField.m; sourceTree = "<group>"; };
+		7D7E2BC4201879D100BE6950 /* ITLoginIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITLoginIDTextField.h; sourceTree = "<group>"; };
+		7D7E2BC5201879D100BE6950 /* ITLoginIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITLoginIDTextField.m; sourceTree = "<group>"; };
+		7D7E2BC8201879D100BE6950 /* ITPasswordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPasswordTextField.h; sourceTree = "<group>"; };
+		7D7E2BC9201879D100BE6950 /* ITPasswordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPasswordTextField.m; sourceTree = "<group>"; };
+		7D7E2BCA201879D100BE6950 /* ITTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTextField.h; sourceTree = "<group>"; };
+		7D7E2BCB201879D100BE6950 /* ITTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTextField.m; sourceTree = "<group>"; };
+		7D7E2BCD201879D100BE6950 /* ITTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTextFieldDelegate.h; sourceTree = "<group>"; };
+		7D7E2BCE201879D100BE6950 /* ITTextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTextFieldDelegate.m; sourceTree = "<group>"; };
+		7D7E2BCF201879D100BE6950 /* ITTextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTextFieldValidator.h; sourceTree = "<group>"; };
+		7D7E2BD0201879D100BE6950 /* ITTextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTextFieldValidator.m; sourceTree = "<group>"; };
+		7D7E2BE020187A1200BE6950 /* ActivityIndicatorColored.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorColored.h; sourceTree = "<group>"; };
+		7D7E2BE120187A1200BE6950 /* ActivityIndicatorColored.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorColored.m; sourceTree = "<group>"; };
+		7D7E2BE520187AD900BE6950 /* ITKeyValueObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITKeyValueObserver.h; sourceTree = "<group>"; };
+		7D7E2BE620187AD900BE6950 /* ITKeyValueObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITKeyValueObserver.m; sourceTree = "<group>"; };
+		7D7E2BE720187AD900BE6950 /* NSObject+ITKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ITKVO.h"; sourceTree = "<group>"; };
+		7D7E2BE820187AD900BE6950 /* NSObject+ITKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ITKVO.m"; sourceTree = "<group>"; };
+		7D7E2BEA20187AD900BE6950 /* ITKeyboardObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITKeyboardObserver.h; sourceTree = "<group>"; };
+		7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITKeyboardObserver.m; sourceTree = "<group>"; };
+		7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthInfoView.m; sourceTree = "<group>"; };
+		7D7E2BF020187B7100BE6950 /* AuthInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthInfoView.h; sourceTree = "<group>"; };
 		7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploadResponseModel.m; sourceTree = "<group>"; };
 		7DB705AE2013AAF500782CF1 /* CUploadRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadRequestModel.h; sourceTree = "<group>"; };
 		7DB705AF2013AAF500782CF1 /* CUploadResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadResponseModel.h; sourceTree = "<group>"; };
@@ -350,10 +407,12 @@
 		7D3A42831FFB8D9700FFF207 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
-				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
 				7DE168042002BC0200F4A417 /* HexCvtr.h */,
 				7DE168052002BC0200F4A417 /* HexCvtr.m */,
+				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
+				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
+				7D7E2BE420187AD900BE6950 /* Key Value Observer */,
+				7D7E2BE920187AD900BE6950 /* Keyboard Observer */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -365,6 +424,125 @@
 				7D50E20E1FF03D4F00705D06 /* CryptoController.m */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		7D7E2B872018744F00BE6950 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2B882018744F00BE6950 /* AuthViewController.h */,
+				7D7E2B892018744F00BE6950 /* AuthViewController.m */,
+				7D7E2B8A2018744F00BE6950 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		7D7E2B8A2018744F00BE6950 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2B8B2018744F00BE6950 /* AuthLoginIDView.h */,
+				7D7E2B8C2018744F00BE6950 /* AuthLoginIDView.m */,
+				7D7E2B932018744F00BE6950 /* AuthSignUpPasswordView.h */,
+				7D7E2B942018744F00BE6950 /* AuthSignUpPasswordView.m */,
+				7D7E2B952018744F00BE6950 /* Base */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D7E2B952018744F00BE6950 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2B962018744F00BE6950 /* AuthView.h */,
+				7D7E2B972018744F00BE6950 /* AuthView.m */,
+				7D7E2BF020187B7100BE6950 /* AuthInfoView.h */,
+				7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7D7E2B9F2018782A00BE6950 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BA22018782A00BE6950 /* AuthLoginIDView.xib */,
+				7D7E2BAA2018782A00BE6950 /* AuthSignUpPasswordView.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		7D7E2BB1201879D100BE6950 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BB2201879D100BE6950 /* TextField */,
+				7D7E2BDF20187A1200BE6950 /* ActivityIndicatorColored */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		7D7E2BB2201879D100BE6950 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BB7201879D100BE6950 /* SFLoginIDTextField.h */,
+				7D7E2BB8201879D100BE6950 /* SFLoginIDTextField.m */,
+				7D7E2BBB201879D100BE6950 /* SFPasswordTextField.h */,
+				7D7E2BBC201879D100BE6950 /* SFPasswordTextField.m */,
+				7D7E2BBD201879D100BE6950 /* SFTextField.h */,
+				7D7E2BBE201879D100BE6950 /* SFTextField.m */,
+				7D7E2BBF201879D100BE6950 /* Super Class */,
+				7D7E2BCC201879D100BE6950 /* Validator */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		7D7E2BBF201879D100BE6950 /* Super Class */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BC4201879D100BE6950 /* ITLoginIDTextField.h */,
+				7D7E2BC5201879D100BE6950 /* ITLoginIDTextField.m */,
+				7D7E2BC8201879D100BE6950 /* ITPasswordTextField.h */,
+				7D7E2BC9201879D100BE6950 /* ITPasswordTextField.m */,
+				7D7E2BCA201879D100BE6950 /* ITTextField.h */,
+				7D7E2BCB201879D100BE6950 /* ITTextField.m */,
+			);
+			path = "Super Class";
+			sourceTree = "<group>";
+		};
+		7D7E2BCC201879D100BE6950 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BCD201879D100BE6950 /* ITTextFieldDelegate.h */,
+				7D7E2BCE201879D100BE6950 /* ITTextFieldDelegate.m */,
+				7D7E2BCF201879D100BE6950 /* ITTextFieldValidator.h */,
+				7D7E2BD0201879D100BE6950 /* ITTextFieldValidator.m */,
+			);
+			path = Validator;
+			sourceTree = "<group>";
+		};
+		7D7E2BDF20187A1200BE6950 /* ActivityIndicatorColored */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BE020187A1200BE6950 /* ActivityIndicatorColored.h */,
+				7D7E2BE120187A1200BE6950 /* ActivityIndicatorColored.m */,
+			);
+			path = ActivityIndicatorColored;
+			sourceTree = "<group>";
+		};
+		7D7E2BE420187AD900BE6950 /* Key Value Observer */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BE520187AD900BE6950 /* ITKeyValueObserver.h */,
+				7D7E2BE620187AD900BE6950 /* ITKeyValueObserver.m */,
+				7D7E2BE720187AD900BE6950 /* NSObject+ITKVO.h */,
+				7D7E2BE820187AD900BE6950 /* NSObject+ITKVO.m */,
+			);
+			path = "Key Value Observer";
+			sourceTree = "<group>";
+		};
+		7D7E2BE920187AD900BE6950 /* Keyboard Observer */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E2BEA20187AD900BE6950 /* ITKeyboardObserver.h */,
+				7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */,
+			);
+			path = "Keyboard Observer";
 			sourceTree = "<group>";
 		};
 		7DB705AC2013AAB700782CF1 /* UploadImage */ = {
@@ -403,9 +581,9 @@
 		7DC4FB861FEA3D9100CFB4FE /* CardCheck */ = {
 			isa = PBXGroup;
 			children = (
+				7DC4FBB91FEA461D00CFB4FE /* UI */,
 				7DC4FBBD1FEA474600CFB4FE /* Kernel */,
 				7DC4FBBA1FEA462E00CFB4FE /* ViewController */,
-				7DC4FBB91FEA461D00CFB4FE /* UI */,
 				7DC4FBBC1FEA472E00CFB4FE /* Resource */,
 				7DC4FBBB1FEA464A00CFB4FE /* Supporting Files */,
 			);
@@ -433,9 +611,11 @@
 		7DC4FBB91FEA461D00CFB4FE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7D7E2B842018740000BE6950 /* Auth.storyboard */,
 				7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */,
 				7DC4FB921FEA3D9100CFB4FE /* LaunchScreen.storyboard */,
 				7D0105C120173D760080E63A /* Root.storyboard */,
+				7D7E2B9F2018782A00BE6950 /* Xibs */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -443,7 +623,9 @@
 		7DC4FBBA1FEA462E00CFB4FE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				7D7E2BB1201879D100BE6950 /* BaseView */,
 				7D0105CA201751780080E63A /* BaseViewController */,
+				7D7E2B872018744F00BE6950 /* Auth */,
 				7D0105D6201751830080E63A /* Main */,
 				7D0105C42017507C0080E63A /* LoadingViewController.h */,
 				7D0105C72017507D0080E63A /* LoadingViewController.m */,
@@ -459,7 +641,6 @@
 				7DC4FBD21FEA4BEA00CFB4FE /* AppPrefixHeader.pch */,
 				7DC4FB871FEA3D9100CFB4FE /* AppDelegate.h */,
 				7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */,
-				7DC4FB901FEA3D9100CFB4FE /* Assets.xcassets */,
 				7DC4FB951FEA3D9100CFB4FE /* Info.plist */,
 				7DC4FB961FEA3D9100CFB4FE /* main.m */,
 			);
@@ -469,6 +650,7 @@
 		7DC4FBBC1FEA472E00CFB4FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				7DC4FB901FEA3D9100CFB4FE /* Assets.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -832,9 +1014,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
+				7D7E2BB02018782A00BE6950 /* AuthSignUpPasswordView.xib in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
+				7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */,
 				7D0105C320173D770080E63A /* Root.storyboard in Resources */,
 				7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */,
+				7D7E2BAC2018782A00BE6950 /* AuthLoginIDView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,18 +1192,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
+				7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */,
+				7D7E2BED20187AD900BE6950 /* NSObject+ITKVO.m in Sources */,
 				7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */,
 				7D3A428C1FFBCCE200FFF207 /* NSError+Extensions.m in Sources */,
 				7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */,
 				7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */,
 				7DDE2C771FF37B0D00058FD4 /* APIController.m in Sources */,
+				7D7E2BD9201879D100BE6950 /* ITLoginIDTextField.m in Sources */,
 				7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */,
+				7D7E2B9E2018744F00BE6950 /* AuthView.m in Sources */,
 				7D0105C92017507D0080E63A /* LoadingViewController.m in Sources */,
 				7DE1681120040FD100F4A417 /* KeyChainData.m in Sources */,
+				7D7E2B992018744F00BE6950 /* AuthLoginIDView.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* InitializationData.m in Sources */,
+				7D7E2BE220187A1200BE6950 /* ActivityIndicatorColored.m in Sources */,
+				7D7E2BDC201879D100BE6950 /* ITTextField.m in Sources */,
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
+				7D7E2BD5201879D100BE6950 /* SFPasswordTextField.m in Sources */,
 				7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */,
 				7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */,
+				7D7E2B9D2018744F00BE6950 /* AuthSignUpPasswordView.m in Sources */,
 				7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */,
 				7DC4FB971FEA3D9100CFB4FE /* main.m in Sources */,
 				7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */,
@@ -1027,15 +1221,22 @@
 				7DB705B12013AAF500782CF1 /* CUploadResponseModel.m in Sources */,
 				7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */,
 				7DE1680E20040A8E00F4A417 /* MandatoryData.m in Sources */,
+				7D7E2BDE201879D100BE6950 /* ITTextFieldValidator.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
+				7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */,
 				7D0105D3201751790080E63A /* BaseViewController.m in Sources */,
 				7DE1680920036F8900F4A417 /* NSData+AES.m in Sources */,
+				7D7E2BD3201879D100BE6950 /* SFLoginIDTextField.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
+				7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
+				7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */,
 				7DC8F06B200DF497005C6B92 /* CCheckReportData.m in Sources */,
 				7D33B7CD20132CD9006004BD /* CardImage.m in Sources */,
+				7D7E2BEC20187AD900BE6950 /* ITKeyValueObserver.m in Sources */,
 				7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */,
+				7D7E2BDD201879D100BE6950 /* ITTextFieldDelegate.m in Sources */,
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
 				7D0105C82017507D0080E63A /* RootViewController.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
@@ -1043,6 +1244,7 @@
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
 				7D3A428F1FFBD29400FFF207 /* NSDictionary+ApiKeys.m in Sources */,
+				7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */,
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
 				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
 				7D0D572E2013A9F000CC250C /* CardImagePicker.m in Sources */,
@@ -1087,6 +1289,30 @@
 				7D0105C220173D770080E63A /* Base */,
 			);
 			name = Root.storyboard;
+			sourceTree = "<group>";
+		};
+		7D7E2B842018740000BE6950 /* Auth.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D7E2B852018740000BE6950 /* Base */,
+			);
+			name = Auth.storyboard;
+			sourceTree = "<group>";
+		};
+		7D7E2BA22018782A00BE6950 /* AuthLoginIDView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D7E2BA32018782A00BE6950 /* Base */,
+			);
+			name = AuthLoginIDView.xib;
+			sourceTree = "<group>";
+		};
+		7D7E2BAA2018782A00BE6950 /* AuthSignUpPasswordView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D7E2BAB2018782A00BE6950 /* Base */,
+			);
+			name = AuthSignUpPasswordView.xib;
 			sourceTree = "<group>";
 		};
 		7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */ = {
