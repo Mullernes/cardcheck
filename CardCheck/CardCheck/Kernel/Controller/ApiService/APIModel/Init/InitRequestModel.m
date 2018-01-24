@@ -11,20 +11,20 @@
 @interface InitRequestModel()
 
 @property (nonatomic, readwrite) InitializationData *data;
-@property (nonatomic, readwrite) CardReaderData *reader;
+@property (nonatomic, readwrite) CardReader *reader;
 
 @end
 
 @implementation InitRequestModel
 
 + (instancetype)requestWithData:(InitializationData *)data
-                      andReader:(CardReaderData *)reader
+                      andReader:(CardReader *)reader
 {
     return [[InitRequestModel alloc] initWithData: data andReader: reader];
 }
 
 - (instancetype)initWithData:(InitializationData *)data
-                   andReader:(CardReaderData *)reader
+                   andReader:(CardReader *)reader
 {
     self = [super init];
     if (self) {

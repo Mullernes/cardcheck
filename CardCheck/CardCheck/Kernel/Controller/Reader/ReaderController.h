@@ -22,5 +22,5 @@
 @end
 
 @protocol ReaderControllerDelegate <NSObject>
-- (void)readerController:(ReaderController *)controller didReceiveData:(CardReaderData *)data;
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data;
 @end

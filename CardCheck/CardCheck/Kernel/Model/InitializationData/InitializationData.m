@@ -13,7 +13,7 @@
 @property (nonatomic, readwrite) int attempts;
 @property (nonatomic, readwrite) NSString *otp;
 
-@property (nonatomic, strong) CardReaderData *readerData;
+@property (nonatomic, strong) CardReader *readerData;
 @property (nonatomic, strong) AuthResponseModel *authResponse;
 @property (nonatomic, strong) InitResponseModel *initializationResponse;
 
@@ -52,7 +52,7 @@
     self = [super init];
     if (self) {
         self.attempts = 3;
-        self.readerData = [CardReaderData demoData];
+        self.readerData = [CardReader demoData];
     }
     return self;
 }

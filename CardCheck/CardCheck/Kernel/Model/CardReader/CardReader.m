@@ -6,9 +6,11 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
-#import "CardReaderData.h"
+static dispatch_once_t onceToken;
 
-@interface CardReaderData()
+#import "CardReader.h"
+
+@interface CardReader()
 
 @property (nonatomic, readwrite) NSUInteger type;
 @property (nonatomic, readwrite) BOOL lowBattery;
@@ -17,22 +19,29 @@
 
 @end
 
-@implementation CardReaderData
+@implementation CardReader
 
 + (instancetype)demoData {
-    CardReaderData *reader = [[CardReaderData alloc] initWithDevID: DEMO_READER_ID
-                                                          customID: DEMO_CUSTOM_ID
-                                                           andType: 1];
+    CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
+                                                  customID: DEMO_CUSTOM_ID
+                                                   andType: 1];
     [reader setTrackData: [AesTrackData demoData]];
     
     return reader;
 }
 
-+ (instancetype)emptyData
++ (instancetype)sharedInstance
 {
-    CardReaderData *reader = [CardReaderData new];
-    [reader setPlugged: NO];
+    static CardReader *reader;
     
+    dispatch_once(&onceToken, ^{
+        if (DEMO_MODE) {
+            reader = [CardReader demoData];
+        }
+        else {
+            reader = [[self alloc] initWithDevID: nil customID: nil andType: 1];
+        }
+    });
     return reader;
 }
 
@@ -40,10 +49,14 @@
 {
     self = [super init];
     if (self) {
+        [self onInfo: @"%@ initing...", CURRENT_CLASS];
+        
         self.type = type;
         self.lowBattery = NO;
         self.deviceID = devID;
         self.customID = cusID;
+        
+        [self onSuccess: @"%@ inited with %@", CURRENT_CLASS, [self debugDescription]];
     }
     return self;
 }

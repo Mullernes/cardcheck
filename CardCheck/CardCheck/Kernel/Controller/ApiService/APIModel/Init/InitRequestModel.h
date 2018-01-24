@@ -11,9 +11,9 @@
 @interface InitRequestModel : APIBaseModel
 
 @property (nonatomic, strong, readonly) InitializationData *data;
-@property (nonatomic, strong, readonly) CardReaderData *reader;
+@property (nonatomic, strong, readonly) CardReader *reader;
 
 + (instancetype)requestWithData:(InitializationData *)data
-                      andReader:(CardReaderData *)reader;
+                      andReader:(CardReader *)reader;
 
 @end

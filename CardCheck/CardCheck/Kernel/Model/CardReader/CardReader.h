@@ -8,7 +8,7 @@
 
 #import "KLBaseModel.h"
 
-@interface CardReaderData : KLBaseModel
+@interface CardReader : KLBaseModel
 
 @property (nonatomic, readonly) NSUInteger type;
 @property (nonatomic, readonly) BOOL lowBattery;
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) AesTrackData *trackData;
 
 + (instancetype)demoData;
-+ (instancetype)emptyData;
++ (instancetype)sharedInstance;
 
 - (BOOL)isReady;
 - (void)setupWithDeviceID:(NSString *)deviceID;

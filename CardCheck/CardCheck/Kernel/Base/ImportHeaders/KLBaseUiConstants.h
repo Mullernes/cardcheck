@@ -9,9 +9,15 @@
 #ifndef KLBaseUiConstants_H
 #define KLBaseUiConstants_H
 
+#define SIZE_REGULAR                    600.0
+
+#define STORYBOARD_MAIN                 @"Main"
+#define STORYBOARD_AUTH                 @"Auth"
+
 #define DEMO_STORYBOARD_MAIN            @"STDemoStoryboard"
 #define DEMO_MAIN_TARGET                @"DemoMainTarget"
 #define DEMO_CALL_TARGET                @"DemoCallTarget"
+
 
 #endif /* XT_UI_Constants_H */
 

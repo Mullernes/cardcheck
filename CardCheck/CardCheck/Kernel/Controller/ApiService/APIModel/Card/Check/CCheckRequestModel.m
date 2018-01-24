@@ -13,14 +13,14 @@
 @property (nonatomic) long appId;
 @property (nonatomic, strong) NSString *appVersion;
 
-@property (nonatomic, strong) CardReaderData *reader;
+@property (nonatomic, strong) CardReader *reader;
 @property (nonatomic, strong) AesTrackData *trackData;
 
 @end
 
 @implementation CCheckRequestModel
 
-+ (instancetype)requestWithReader:(CardReaderData *)reader
++ (instancetype)requestWithReader:(CardReader *)reader
 {
     CCheckRequestModel *model = [CCheckRequestModel new];
     

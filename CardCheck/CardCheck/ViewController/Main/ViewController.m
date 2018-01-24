@@ -16,7 +16,7 @@
 @interface ViewController ()<ReaderControllerDelegate, CardImagePickerDelegate>
 
 @property (nonatomic, strong) KeyChainData *keyChain;
-@property (nonatomic, strong) CardReaderData *currentReader;
+@property (nonatomic, strong) CardReader *currentReader;
 @property (nonatomic, strong) InitializationData *devInitData;
 
 @property (nonatomic, strong) ReaderController *readerController;
@@ -35,7 +35,7 @@
     //Base init
     self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
-    self.currentReader = [CardReaderData demoData];
+    self.currentReader = [CardReader demoData];
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
 
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
@@ -302,7 +302,7 @@
 
 #pragma mark - ReaderControllerDelegate
 
-- (void)readerController:(ReaderController *)controller didReceiveData:(CardReaderData *)data
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data
 {
     NSLog(@"%@: data => %@", CURRENT_METHOD, [data debugDescription]);
 }

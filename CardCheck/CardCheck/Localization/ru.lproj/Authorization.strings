@@ -1,0 +1,50 @@
+/* Info View */
+"auth_loginID_info_default_text"    = "Welcome to mobile card checking application";
+"dev_initialize_info_default_text"   = "Please, check your mail and enter the password";
+
+/* LoginID Alerts */
+"auth_loginID_phone_alert_message_text"             = "Пожалуйста, проверьте введенный номер телефона и нажмите ОТПРАВИТЬ СМС";
+"auth_loginID_phone_alert_button_change_title"      = "Изменить";
+"auth_loginID_phone_alert_button_sendsms_title"     = "OТПРАВИТЬ СМС";
+
+"auth_loginID_email_alert_message_text"             = "Пожалуйста, проверьте введенный адрес электронной почты и нажмите ОТПРАВИТЬ КОД";
+"auth_loginID_email_alert_button_change_title"      = "Изменить";
+"auth_loginID_email_alert_button_sendsms_title"     = "OТПРАВИТЬ КОД";
+
+
+"auth_loginID_signUpLogin_alert_message_text"       = "Пожалуйста, проверьте введенный логин и нажмите Регистрация";
+"auth_loginID_signUpEmail_alert_message_text"       = "Пожалуйста, проверьте введенный адрес электронной почты и нажмите Регистрация";
+"auth_loginID_signUpPhone_alert_message_text"       = "Пожалуйста, проверьте введенный номер телефона и нажмите Регистрация";
+"auth_loginID_signUp_alert_button_cancel_title"     = "Отмена";
+"auth_loginID_signUp_alert_button_continue_title"   = "Регистрация";
+
+/* Input View */
+"login_default_validation_text" = "Логин должен быть не менее 4 символов (латинские буквы, цифры, точка) или номер телефона или email";
+
+/* Input View */
+"password_default_validation_text" = "Пароль должен содержать не менее 4 символов";
+
+/* Input View */
+"password_equality_validation_text" = "Пароли должны совпадать";
+
+/* Input View */
+"password_invalid_validation_text" = "Неверный пароль. Пожалуйста попробуйте еще раз";
+
+/* Authorization Errors */
+"not_defined_signin_error_{%@}" = "SIGNIN ERROR {%@}";
+
+/* Authorization Errors */
+"not_defined_signup_error_{%@}" = "SIGNUP ERROR {%@}";
+
+/* Authorization Errors */
+"login_is_not_exists" = "Ошибка авторизации. Неверный логин";
+
+/* Authorization Errors */
+"password_is_not_exists" = "Ошибка авторизации. Неверный пароль";
+
+/* Authorization Errors */
+"login_is_already_exists" = "Ошибка регистрации. Логин уже занят";
+
+/* Authorization Errors */
+"dealer_word_is_not_exists" = "Ошибка регистрации. Неверное приглашение";
+
