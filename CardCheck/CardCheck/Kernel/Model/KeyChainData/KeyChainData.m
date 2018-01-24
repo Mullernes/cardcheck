@@ -25,7 +25,7 @@ static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         keyChain = [[self alloc] init];
         
-        [keyChain setCustomId: [[CardReader demoData] customID]];
+        [keyChain setCustomId: [[CardReader sharedInstance] customID]];
         [keyChain setAppDataKey: [[MandatoryData sharedInstance] appDataKey]];
         [keyChain setAppCommKey: [[MandatoryData sharedInstance] appCommKey]];
     });
@@ -38,7 +38,7 @@ static dispatch_once_t onceToken;
     if (self) {
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
-        [self onSuccess: @"%@ inited", CURRENT_CLASS];
+        [self onSuccess: @"%@ inited with %@", CURRENT_CLASS, [self debugDescription]];
     }
     return self;
 }

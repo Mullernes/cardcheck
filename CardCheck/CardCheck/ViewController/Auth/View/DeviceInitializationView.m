@@ -1,14 +1,14 @@
-#import "AuthSignUpPasswordView.h"
+#import "DeviceInitializationView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_signUpPassword_text", @"Authorization", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"dev_initialize_info_default_text", @"Authorization", @"Info View")
 
-@interface AuthSignUpPasswordView ()
+@interface DeviceInitializationView ()
 
-- (IBAction)signUpWithLogin:(id)sender;
+- (IBAction)next:(id)sender;
     
 @end
 
-@implementation AuthSignUpPasswordView
+@implementation DeviceInitializationView
 
 #pragma mark - Accessors
 - (void)setDelegate:(id<AuthViewDelegate>)delegate
@@ -18,9 +18,6 @@
     id<UITextFieldDelegate> textFieldDelegate = [delegate textFieldDelegate];
     self.passwordTextField.delegate = textFieldDelegate;
     self.retypePasswordTextField.delegate = textFieldDelegate;
-    
-    self.retypePasswordTextField.dependencyEqual = @[self.passwordTextField];
-    self.retypePasswordTextField.dependencyOrder = @[self.passwordTextField];
 }
 
 - (void)setCorrect:(BOOL)correct
@@ -57,13 +54,13 @@
     [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
-- (IBAction)signUpWithLogin:(id)sender
+- (IBAction)next:(id)sender
 {
     if ([self.passwordTextField validate]) {
         if ([self.passwordTextField validate]) {
             if ([self.retypePasswordTextField validate]) {
                 [self.retypePasswordTextField resignFirstResponder];
-                [self.delegate authView: self signUpWithLoginIDDidEnter: self.retypePasswordTextField];
+                [self.delegate authView: self checkPasswordDidEnter: self.retypePasswordTextField];
             }
         }
     }

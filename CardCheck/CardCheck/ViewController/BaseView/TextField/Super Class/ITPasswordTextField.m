@@ -30,10 +30,12 @@
 
 - (BOOL)isValid
 {
-    BOOL isValid = (self.text.length >= MIN_LEN);
-    self.validationWarning = (!isValid)? lValidationWarning : nil;
+    return YES;
     
-    return isValid;
+//    BOOL isValid = (self.text.length >= MIN_LEN);
+//    self.validationWarning = (!isValid)? lValidationWarning : nil;
+//    
+//    return isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string

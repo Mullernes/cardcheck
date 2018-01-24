@@ -26,12 +26,7 @@
 - (id<UITextFieldDelegate>)textFieldDelegate;
 
 @optional
-- (void)authView:(AuthView *)view sendMoneyDidEnter:(ITTextField *)textField;
-- (void)authView:(AuthView *)view checkLoginIDDidEnter:(ITTextField *)textField;
-- (void)authView:(AuthView *)view signInWithLoginIDDidEnter:(ITTextField *)textField;
-- (void)authView:(AuthView *)view signUpWithLoginIDDidEnter:(ITTextField *)textField;
-- (void)authView:(AuthView *)view checkPinDidEnter:(NSString *)pinText;
-- (void)authView:(AuthView *)view changePhoneDidEnter:(id)sender;
-- (void)authView:(AuthView *)view changeEmailDidEnter:(id)sender;
+- (void)authView:(AuthView *)view checkLoginDidEnter:(ITTextField *)textField;
+- (void)authView:(AuthView *)view checkPasswordDidEnter:(ITTextField *)textField;
 
 @end

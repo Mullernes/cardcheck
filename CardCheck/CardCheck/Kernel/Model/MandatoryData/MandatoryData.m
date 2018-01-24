@@ -57,7 +57,7 @@
             self.exist = NO;
         }
         
-        [self onSuccess: @"%@ inited", CURRENT_CLASS];
+        [self onSuccess: @"%@ inited with %@", CURRENT_CLASS, [self debugDescription]];
     }
     return self;
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2017 itnesPro. All rights reserved.
 //
 
+static dispatch_once_t onceToken;
+
 #import "CardReader.h"
 
 @interface CardReader()
@@ -21,18 +23,25 @@
 
 + (instancetype)demoData {
     CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
-                                                          customID: DEMO_CUSTOM_ID
-                                                           andType: 1];
+                                                  customID: DEMO_CUSTOM_ID
+                                                   andType: 1];
     [reader setTrackData: [AesTrackData demoData]];
     
     return reader;
 }
 
-+ (instancetype)emptyData
++ (instancetype)sharedInstance
 {
-    CardReader *reader = [CardReader new];
-    [reader setPlugged: NO];
+    static CardReader *reader;
     
+    dispatch_once(&onceToken, ^{
+        if (DEMO_MODE) {
+            reader = [CardReader demoData];
+        }
+        else {
+            reader = [[self alloc] initWithDevID: nil customID: nil andType: 1];
+        }
+    });
     return reader;
 }
 
@@ -40,10 +49,14 @@
 {
     self = [super init];
     if (self) {
+        [self onInfo: @"%@ initing...", CURRENT_CLASS];
+        
         self.type = type;
         self.lowBattery = NO;
         self.deviceID = devID;
         self.customID = cusID;
+        
+        [self onSuccess: @"%@ inited with %@", CURRENT_CLASS, [self debugDescription]];
     }
     return self;
 }

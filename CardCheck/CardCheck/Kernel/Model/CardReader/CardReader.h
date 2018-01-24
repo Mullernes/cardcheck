@@ -21,7 +21,7 @@
 @property (nonatomic, strong) AesTrackData *trackData;
 
 + (instancetype)demoData;
-+ (instancetype)emptyData;
++ (instancetype)sharedInstance;
 
 - (BOOL)isReady;
 - (void)setupWithDeviceID:(NSString *)deviceID;

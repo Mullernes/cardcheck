@@ -40,9 +40,9 @@
 {
     [super viewDidAppear: YES];
 
-#if 0
+#if 1
     dispatch_after(0.0, dispatch_get_main_queue(), ^{
-        [self.rootViewController showMain: nil];
+        [self.rootViewController showAuth: nil];
     });
 #endif
 }

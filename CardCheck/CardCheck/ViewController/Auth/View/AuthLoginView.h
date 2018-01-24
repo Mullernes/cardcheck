@@ -2,7 +2,7 @@
 #import "AuthView.h"
 #import "SFLoginIDTextField.h"
 
-@interface AuthLoginIDView : AuthView
+@interface AuthLoginView : AuthView
 
 @property (weak, nonatomic) IBOutlet SFLoginIDTextField *loginIDTextField;
 

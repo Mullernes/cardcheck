@@ -1,0 +1,51 @@
+/* Info View */
+"auth_loginID_info_default_text"    = "Welcome to mobile card checking application";
+"dev_initialize_info_default_text"   = "Please, check your mail and enter the password";
+
+/* LoginID Alerts */
+"auth_loginID_phone_alert_message_text"             = "Будь ласка, перевірте введений вами номер телефону та натисніть ВІДПРАВИТИ СМС";
+"auth_loginID_phone_alert_button_change_title"      = "Змінити";
+"auth_loginID_phone_alert_button_sendsms_title"     = "ВІДПРАВИТИ SMS";
+
+"auth_loginID_email_alert_message_text"             = "Будь-ласка, перевірте введену адресу електронної пошти та натисніть ВІДПРАВИТИ КОД";
+"auth_loginID_email_alert_button_change_title"      = "Змінити";
+"auth_loginID_email_alert_button_sendsms_title"     = "ВІДПРАВИТИ КОД";
+
+
+"auth_loginID_signUpLogin_alert_message_text"       = "Будь-ласка, перевірте логін, який ви ввели, і натисніть Реєстрація";
+"auth_loginID_signUpEmail_alert_message_text"       = "Будь-ласка, перевірте введену адресу електронної пошти і натисніть Реєстрація";
+"auth_loginID_signUpPhone_alert_message_text"       = "Будь ласка, перевірте введений вами номер телефону та натисніть Реєстрація";
+
+"auth_loginID_signUp_alert_button_cancel_title"     = "Відміна";
+"auth_loginID_signUp_alert_button_continue_title"   = "Реєстрація";
+
+
+/* Input View */
+"login_default_validation_text" = "Логін повинен містити щонайменше 4 символи (латинські літери, цифри, точка), або номер телефону або email";
+
+/* Input View */
+"password_default_validation_text" = "Пароль повинен містити принаймні 4 символи";
+
+/* Input View */
+"password_equality_validation_text" = "Паролі повинні бути однаковими";
+
+/* Input View */
+"password_invalid_validation_text" = "Невірний пароль. Будь ласка спробуйте ще раз";
+
+/* Authorization Errors */
+"not_defined_signin_error_{%@}" = "ПОМИЛКА АВТОРИЗАЦІЇ {%@}";
+
+/* Authorization Errors */
+"not_defined_signup_error_{%@}" = "ПОМИЛКА РЕЄСТРАЦІЇ {%@}";
+
+/* Authorization Errors */
+"login_is_not_exists" = "Помилка авторизації. Невірний логін";
+
+/* Authorization Errors */
+"password_is_not_exists" = "Помилка авторизації. Невірний пароль";
+
+/* Authorization Errors */
+"login_is_already_exists" = "Помилка реєстрації. Логін вже зайнятий";
+
+/* Authorization Errors */
+"dealer_word_is_not_exists" = "Помилка реєстрації. Невірне запрошення";

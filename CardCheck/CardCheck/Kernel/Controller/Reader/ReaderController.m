@@ -52,7 +52,7 @@
 
         self.plugged = NO;
         
-        self.cardReader = [CardReader emptyData];
+        self.cardReader = [CardReader sharedInstance];
         
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
     }

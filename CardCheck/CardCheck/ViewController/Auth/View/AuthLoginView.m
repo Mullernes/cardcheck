@@ -1,21 +1,17 @@
 
 
-#import "AuthLoginIDView.h"
+#import "AuthLoginView.h"
 
 #define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_default_text", @"Authorization", @"Info View")
 
-//#define lPhoneInfoText              NSLocalizedStringFromTable(@"auth_loginID_info_phone_text", @"Authorization", @"Info View")
-//#define lEmailInfoText              NSLocalizedStringFromTable(@"auth_loginID_info_email_text", @"Authorization", @"Info View")
-//#define lLoginInfoText              NSLocalizedStringFromTable(@"auth_loginID_info_login_text", @"Authorization", @"Info View")
-
-@interface AuthLoginIDView ()
+@interface AuthLoginView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
-- (IBAction)checkLoginID:(id)sender;
+- (IBAction)next:(id)sender;
 
 @end
 
-@implementation AuthLoginIDView
+@implementation AuthLoginView
 
 #pragma mark - Accessors
 - (void)setDelegate:(id<AuthViewDelegate>)delegate
@@ -54,18 +50,16 @@
     [super resetState];
     
     self.loginIDTextField.loading = NO;
-    
-    NSString *info = [NSString stringWithFormat: lInfoText, [UIColor blueColor]];
-    [self.infoView setState: InfoStateLogin withText: info animated: NO];
+    [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
 #pragma mark - Actions
 
-- (IBAction)checkLoginID:(id)sender
+- (IBAction)next:(id)sender
 {
     if ([self.loginIDTextField isValid]) {
         [self.loginIDTextField resignFirstResponder];
-        [self.delegate authView: self checkLoginIDDidEnter: self.loginIDTextField];
+        [self.delegate authView: self checkLoginDidEnter: self.loginIDTextField];
     }
     else {
         [self failedStateWithText: self.loginIDTextField.validationWarning];

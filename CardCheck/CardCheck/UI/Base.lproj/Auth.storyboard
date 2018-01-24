@@ -50,7 +50,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmF-ZO-mMG" userLabel="Header View" customClass="SignInHeaderView">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Duj-nd-cQN">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Duj-nd-cQN">
                                                                 <rect key="frame" x="145" y="6" width="84" height="86"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="86" id="Nod-eY-WIn"/>
@@ -125,6 +125,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_logo" width="84" height="86"/>
+        <image name="app_logo_icon" width="84" height="86"/>
     </resources>
 </document>
