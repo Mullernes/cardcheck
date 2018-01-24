@@ -41,7 +41,7 @@
     [super viewDidAppear: YES];
 
 #if 1
-    dispatch_after(0.0, dispatch_get_main_queue(), ^{
+    dispatch_after(3.0, dispatch_get_main_queue(), ^{
         [self.rootViewController showAuth: nil];
     });
 #endif
