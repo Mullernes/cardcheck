@@ -169,7 +169,8 @@
     [self.authView setLoading: YES];
     
     //2
-    NSString *login = DEMO_MODE? DEMO_LOGIN : loginID.text;
+    //NSString *login = DEMO_LOGIN; //DEMO_MODE? DEMO_LOGIN : loginID.text;
+    NSString *login = loginID.text;
     
     //3
     AuthRequestModel *request = [AuthRequestModel requestWithLogin: login
@@ -197,13 +198,15 @@
 - (void)checkPassword:(NSString *)password
 {
     //1 - check requestID
-    long typedRequestID = DEMO_MODE? self.devInitData.authRequestID : [self.devInitView.passwordTextField.text longLongValue];
+    //long typedRequestID = DEMO_MODE? self.devInitData.authRequestID : [self.devInitView.passwordTextField.text longLongValue];
+    long typedRequestID = self.devInitData.authRequestID;
     if (typedRequestID == self.devInitData.authRequestID)
     {
         [self calcOtp];
         
         //2 - check password
-        NSString *typedOtp = DEMO_MODE? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
+        //NSString *typedOtp = DEMO_MODE? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
+        NSString *typedOtp = self.devInitData.otp;
         if ([self.devInitData.otp isEqualToString: typedOtp])
         {
             [self.devInitView setLoading: YES];
@@ -283,6 +286,8 @@
     [manData save];
     
     NSLog(@"MandatoryData = %@", [manData debugDescription]);
+    
+    [self.rootViewController showMain: nil];
 }
 
 #pragma mark - ITValidationDelegate

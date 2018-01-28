@@ -59,9 +59,11 @@
     return self;
 }
 
-- (void)start
+- (void)startIfNeeded
 {
     [self onInfo: CURRENT_METHOD];
+    
+    if (self.reader) return;
     
     self.responseCondition = [[NSCondition alloc] init];
     
@@ -253,7 +255,7 @@
 
 - (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
 {
-    NSLog(@"didSendTrackData");
+    NSLog(@"didSendTrackData...");
     
     NSString *errorString = nil;
     
@@ -264,11 +266,18 @@
         {
             ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
             
-            NSLog(@"Success");
+            AesTrackData *trackData = [AesTrackData emptyData];
+            [trackData setTr1Code: 0];
+            [trackData setTr2Code: 0];
+            [trackData setTr1Length: (int)(aesTrackData.track1Length)];
+            [trackData setTr2Length: (int)(aesTrackData.track2Length)];
+            [trackData setPlainHexData: [HexCvtr hexFromData: aesTrackData.trackData]];
             
-            NSLog(@"trackData.track1Length = %li", trackData.track1Length);
-            NSLog(@"trackData.track2Length = %li", trackData.track2Length);
-            NSLog(@"trackData = %@", [HexCvtr hexFromData: aesTrackData.trackData]);
+            NSLog(@"Generate trackData with Success: %@", [trackData debugDescription]);
+            [self.cardReader setTrackData: trackData];
+            
+            //
+            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
         }
         else {
             XT_MAKE_EXEPTION;

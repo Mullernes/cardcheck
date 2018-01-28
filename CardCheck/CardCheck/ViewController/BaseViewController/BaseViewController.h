@@ -11,6 +11,7 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)updatePluggedStatus:(CardReader *)reader;
 - (IBAction)navBack:(id)sender;
 
 @end

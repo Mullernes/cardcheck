@@ -16,11 +16,11 @@
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
-- (void)start;
+- (void)startIfNeeded;
 - (void)reset;
 
 @end
 
 @protocol ReaderControllerDelegate <NSObject>
-- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data;
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader;
 @end

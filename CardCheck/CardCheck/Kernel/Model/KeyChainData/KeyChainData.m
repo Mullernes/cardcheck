@@ -43,6 +43,13 @@ static dispatch_once_t onceToken;
     return self;
 }
 
+- (void)reset
+{
+    [self setCustomId: [[CardReader sharedInstance] customID]];
+    [self setAppDataKey: [[MandatoryData sharedInstance] appDataKey]];
+    [self setAppCommKey: [[MandatoryData sharedInstance] appCommKey]];
+}
+
 - (NSString *)commKey {
     return [NSString stringWithFormat:@"%@%@", self.customId, self.appCommKey];
 }

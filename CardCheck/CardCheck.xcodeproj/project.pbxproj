@@ -51,6 +51,9 @@
 		7D7E2C1B2018953500BE6950 /* Authorization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BF32018953500BE6950 /* Authorization.strings */; };
 		7DB705B12013AAF500782CF1 /* CUploadResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */; };
 		7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705B02013AAF500782CF1 /* CUploadRequestModel.m */; };
+		7DBC744E201CD27700D925CB /* CheckingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC744D201CD27600D925CB /* CheckingViewController.m */; };
+		7DBC7452201CD43200D925CB /* CWStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC7451201CD43200D925CB /* CWStatusBarNotification.m */; };
+		7DBC7455201CD58B00D925CB /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC7453201CD58B00D925CB /* Common.strings */; };
 		7DC4FB891FEA3D9100CFB4FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */; };
 		7DC4FB8C1FEA3D9100CFB4FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */; };
 		7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */; };
@@ -185,6 +188,13 @@
 		7DB705AE2013AAF500782CF1 /* CUploadRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadRequestModel.h; sourceTree = "<group>"; };
 		7DB705AF2013AAF500782CF1 /* CUploadResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadResponseModel.h; sourceTree = "<group>"; };
 		7DB705B02013AAF500782CF1 /* CUploadRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploadRequestModel.m; sourceTree = "<group>"; };
+		7DBC744C201CD27600D925CB /* CheckingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckingViewController.h; sourceTree = "<group>"; };
+		7DBC744D201CD27600D925CB /* CheckingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckingViewController.m; sourceTree = "<group>"; };
+		7DBC7450201CD43200D925CB /* CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStatusBarNotification.h; sourceTree = "<group>"; };
+		7DBC7451201CD43200D925CB /* CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStatusBarNotification.m; sourceTree = "<group>"; };
+		7DBC7454201CD58B00D925CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
+		7DBC7456201CD59100D925CB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Common.strings; sourceTree = "<group>"; };
+		7DBC7457201CD59700D925CB /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Common.strings; sourceTree = "<group>"; };
 		7DC4FB841FEA3D9100CFB4FE /* CardCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4FB871FEA3D9100CFB4FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7DC4FB881FEA3D9100CFB4FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -341,6 +351,8 @@
 			children = (
 				7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */,
 				7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */,
+				7DBC744C201CD27600D925CB /* CheckingViewController.h */,
+				7DBC744D201CD27600D925CB /* CheckingViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -417,6 +429,7 @@
 				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
 				7D7E2BE420187AD900BE6950 /* Key Value Observer */,
 				7D7E2BE920187AD900BE6950 /* Keyboard Observer */,
+				7DBC744F201CD43200D925CB /* CWStatusBarNotification */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -552,6 +565,7 @@
 		7D7E2BF22018953500BE6950 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				7DBC7453201CD58B00D925CB /* Common.strings */,
 				7D7E2BF32018953500BE6950 /* Authorization.strings */,
 			);
 			path = Localization;
@@ -566,6 +580,15 @@
 				7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */,
 			);
 			path = UploadImage;
+			sourceTree = "<group>";
+		};
+		7DBC744F201CD43200D925CB /* CWStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC7450201CD43200D925CB /* CWStatusBarNotification.h */,
+				7DBC7451201CD43200D925CB /* CWStatusBarNotification.m */,
+			);
+			path = CWStatusBarNotification;
 			sourceTree = "<group>";
 		};
 		7DC4FB7B1FEA3D9100CFB4FE = {
@@ -1030,6 +1053,7 @@
 			files = (
 				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
 				7D7E2BB02018782A00BE6950 /* DeviceInitializationView.xib in Resources */,
+				7DBC7455201CD58B00D925CB /* Common.strings in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
 				7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */,
 				7D0105C320173D770080E63A /* Root.storyboard in Resources */,
@@ -1239,6 +1263,7 @@
 				7DE1680E20040A8E00F4A417 /* MandatoryData.m in Sources */,
 				7D7E2BDE201879D100BE6950 /* ITTextFieldValidator.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
+				7DBC744E201CD27700D925CB /* CheckingViewController.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
 				7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */,
 				7D0105D3201751790080E63A /* BaseViewController.m in Sources */,
@@ -1260,6 +1285,7 @@
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
 				7D3A428F1FFBD29400FFF207 /* NSDictionary+ApiKeys.m in Sources */,
+				7DBC7452201CD43200D925CB /* CWStatusBarNotification.m in Sources */,
 				7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */,
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
 				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
@@ -1339,6 +1365,16 @@
 				7D7E2C162018953500BE6950 /* uk */,
 			);
 			name = Authorization.strings;
+			sourceTree = "<group>";
+		};
+		7DBC7453201CD58B00D925CB /* Common.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DBC7454201CD58B00D925CB /* Base */,
+				7DBC7456201CD59100D925CB /* ru */,
+				7DBC7457201CD59700D925CB /* uk */,
+			);
+			name = Common.strings;
 			sourceTree = "<group>";
 		};
 		7DC4FB8D1FEA3D9100CFB4FE /* Main.storyboard */ = {
@@ -1470,7 +1506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				DEVELOPMENT_TEAM = 4U7Z4TPBSF;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
 				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
@@ -1480,7 +1516,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CardCheck/Kernel/Library/AudioJack/**",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.card.check;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1492,7 +1528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6379JJ3FB6;
+				DEVELOPMENT_TEAM = 4U7Z4TPBSF;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "CardCheck/Supporting Files/AppPrefixHeader.pch";
 				INFOPLIST_FILE = "CardCheck/Supporting Files/Info.plist";
@@ -1502,7 +1538,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CardCheck/Kernel/Library/AudioJack/**",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.home.CardCheck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.card.check;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -20,5 +20,8 @@
 @property (nonatomic, strong) NSString *cipherHexData;   //aes256
 
 + (instancetype)demoData;
++ (instancetype)emptyData;
+
+- (BOOL)isExist;
 
 @end

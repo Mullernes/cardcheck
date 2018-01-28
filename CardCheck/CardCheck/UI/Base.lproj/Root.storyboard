@@ -72,37 +72,36 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="На цьому етапі підєднайте, будьласка, зчитувач карток до вашого телефону та натисніть ПРОДОВЖИТИ" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8T-5K-1YR">
-                                        <rect key="frame" x="12" y="362.5" width="296" height="50.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="На цьому етапі підєднайте, будьласка, зчитувач карток до вашого телефону" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8T-5K-1YR">
+                                        <rect key="frame" x="12" y="362.5" width="296" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrf-PD-N1A">
-                                        <rect key="frame" x="117.5" y="445" width="85" height="33"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Розпочати"/>
-                                        <connections>
-                                            <action selector="start:" destination="EAH-eo-M1m" eventType="touchUpInside" id="gle-zZ-R4N"/>
-                                        </connections>
-                                    </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ADU-sy-46M">
-                                        <rect key="frame" x="150" y="486" width="20" height="20"/>
+                                        <rect key="frame" x="150" y="428" width="20" height="20"/>
                                         <color key="color" red="0.22965973615646362" green="0.52968615293502808" blue="0.75306618213653564" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGm-fV-5Dt">
+                                        <rect key="frame" x="113.5" y="464" width="93" height="30"/>
+                                        <state key="normal" title="Clean all data"/>
+                                        <connections>
+                                            <action selector="clean:" destination="EAH-eo-M1m" eventType="touchUpInside" id="luP-pp-OuC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="b8T-5K-1YR" secondAttribute="trailing" constant="12" id="3b0-kG-Bb6"/>
+                                    <constraint firstItem="QGm-fV-5Dt" firstAttribute="centerX" secondItem="jpY-Yu-c1P" secondAttribute="centerX" id="EWn-gO-EJ9"/>
                                     <constraint firstItem="lF1-f0-k34" firstAttribute="top" secondItem="4FI-00-ePa" secondAttribute="bottom" constant="16" id="JwH-3H-iTL"/>
-                                    <constraint firstItem="rrf-PD-N1A" firstAttribute="top" secondItem="b8T-5K-1YR" secondAttribute="bottom" constant="32" id="LGd-b2-g9p"/>
                                     <constraint firstItem="b8T-5K-1YR" firstAttribute="leading" secondItem="jpY-Yu-c1P" secondAttribute="leading" constant="12" id="RhN-3K-mf2"/>
-                                    <constraint firstItem="ADU-sy-46M" firstAttribute="top" secondItem="rrf-PD-N1A" secondAttribute="bottom" constant="8" id="SJP-BL-cCf"/>
                                     <constraint firstItem="4FI-00-ePa" firstAttribute="top" secondItem="jpY-Yu-c1P" secondAttribute="top" id="TqG-u8-DGW"/>
                                     <constraint firstItem="b8T-5K-1YR" firstAttribute="top" secondItem="lF1-f0-k34" secondAttribute="bottom" constant="12" id="XEh-hg-qCX"/>
                                     <constraint firstAttribute="trailing" secondItem="4FI-00-ePa" secondAttribute="trailing" id="aQ8-v6-2IM"/>
-                                    <constraint firstItem="rrf-PD-N1A" firstAttribute="centerX" secondItem="jpY-Yu-c1P" secondAttribute="centerX" id="poe-EN-r5b"/>
+                                    <constraint firstItem="QGm-fV-5Dt" firstAttribute="top" secondItem="ADU-sy-46M" secondAttribute="bottom" constant="16" id="dy7-aF-om6"/>
                                     <constraint firstItem="lF1-f0-k34" firstAttribute="centerX" secondItem="jpY-Yu-c1P" secondAttribute="centerX" id="qgv-AZ-uLJ"/>
+                                    <constraint firstItem="ADU-sy-46M" firstAttribute="top" secondItem="b8T-5K-1YR" secondAttribute="bottom" constant="32" id="uES-Xa-CCv"/>
                                     <constraint firstItem="4FI-00-ePa" firstAttribute="leading" secondItem="jpY-Yu-c1P" secondAttribute="leading" id="y3Y-b4-z0N"/>
                                 </constraints>
                             </view>
@@ -124,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnJ-3w-3Km" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="2138"/>
+            <point key="canvasLocation" x="36" y="2138"/>
         </scene>
     </scenes>
     <resources>
