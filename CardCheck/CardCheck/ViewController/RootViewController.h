@@ -15,7 +15,4 @@
 - (void)showAuth:(id)sender;
 - (void)showMain:(id)sender;
 
-- (void)showStatusConnecting;
-- (void)showStatusConnected;
-
 @end

@@ -61,6 +61,13 @@ static dispatch_once_t onceToken;
     return self;
 }
 
+- (void)setupDemo
+{
+    [self setDeviceID: DEMO_READER_ID];
+    [self setCustomID: DEMO_CUSTOM_ID];
+    [self setTrackData: [AesTrackData demoData]];
+}
+
 - (BOOL)isReady
 {
     return (self.isPlugged && self.deviceID && self.customID)? YES : NO;

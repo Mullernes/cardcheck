@@ -9,15 +9,19 @@
 #import "KLBaseController.h"
 
 @protocol ReaderControllerDelegate;
+typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 @interface ReaderController : KLBaseController
 
+@property (nonatomic) ReaderPluggedHandler pluggedHandler;
 @property (nonatomic, weak) id<ReaderControllerDelegate>delegate;
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
 - (void)startIfNeeded;
 - (void)reset;
+
+- (void)test;
 
 @end
 

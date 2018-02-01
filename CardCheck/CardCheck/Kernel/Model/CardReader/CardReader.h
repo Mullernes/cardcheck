@@ -22,6 +22,7 @@
 
 + (instancetype)demoData;
 + (instancetype)sharedInstance;
+- (void)setupDemo;
 
 - (BOOL)isReady;
 - (void)setupWithDeviceID:(NSString *)deviceID;

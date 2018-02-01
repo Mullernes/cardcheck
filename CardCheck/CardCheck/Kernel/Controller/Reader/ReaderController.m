@@ -69,9 +69,8 @@
     
     self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
     [self.reader setDelegate: self];
-    
-    // Set mute to YES if the reader is unplugged, otherwise NO.
-    self.reader.mute = !AJDIsReaderPlugged();
+
+    [self setPlugged: AJDIsReaderPlugged()];
     
     // Listen the audio route change.
     AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,
@@ -98,7 +97,23 @@
     }];
 }
 
+- (void)test
+{
+    [self.cardReader setupDemo];
+    
+    [self setPlugged: YES];
+    [self didUpdateReader];
+}
+
 #pragma mark - Accessors
+
+- (void)setDelegate:(id<ReaderControllerDelegate>)delegate
+{
+    _delegate = delegate;
+    if (_delegate) {
+        [self didUpdateReader];
+    }
+}
 
 - (void)setPlugged:(BOOL)plugged
 {
@@ -107,12 +122,23 @@
     [self.reader setMute: !plugged];
     [self.cardReader setPlugged: plugged];
     
-    [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-    
     if (self.cardReader.isPlugged) {
-        [self requestDeviceIDIfNeeded];
         [self requestCustomIDIfNeeded];
+        [self requestDeviceIDIfNeeded];
     }
+    
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+}
+
+#pragma mark - Working methods
+
+- (void)didUpdateReader
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate readerController: self didUpdateWithReader: self.cardReader];
+    });
 }
 
 - (void)requestCustomIDIfNeeded
@@ -149,12 +175,11 @@
         }
     }
     
-    if (self.customIDReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-        });
-        
-    } else if (self.resultReady) {
+    if (self.customIDReady)
+    {
+        [self didUpdateReader];
+    }
+    else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = [self completionError: [self currentClass]
                                          andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
@@ -209,12 +234,11 @@
         }
     }
     
-    if (self.deviceIDReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-        });
-        
-    } else if (self.resultReady) {
+    if (self.deviceIDReady)
+    {
+        [self didUpdateReader];
+    }
+    else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = [self completionError: [self currentClass]
                                          andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
@@ -277,7 +301,7 @@
             [self.cardReader setTrackData: trackData];
             
             //
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
+            [self didUpdateReader];
         }
         else {
             XT_MAKE_EXEPTION;

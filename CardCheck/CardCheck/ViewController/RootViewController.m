@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     
-    [self setupUi];
+    [self baseSetup];
     
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -98,6 +98,20 @@
 }
 
 #pragma mark - Working
+
+- (void)baseSetup
+{
+    [self setupUi];
+    
+    [[ReaderController sharedInstance] setPluggedHandler:^(CardReader *reader) {
+        if (reader.isPlugged) {
+            [self showStatusConnected];
+        }
+        else {
+            [self showStatusConnecting];
+        }
+    }];
+}
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender
 {

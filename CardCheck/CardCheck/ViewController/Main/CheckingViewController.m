@@ -29,7 +29,6 @@
 
     self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
-    [self.readerController startIfNeeded];
     
     [self.textView setHidden: YES];
     
@@ -173,18 +172,14 @@
 
 - (void)handleReader:(CardReader *)reader
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
-        
-        [self updatePluggedStatus: reader];
-        
-        if ([reader.trackData isExist]) {
-            [self checkCardData: reader.trackData];
-        }
-        else {
-            NSLog(@"trackData NOT EXIST");
-        }
-    });
+    NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
+    
+    if ([reader.trackData isExist]) {
+        [self checkCardData: reader.trackData];
+    }
+    else {
+        NSLog(@"trackData NOT EXIST");
+    }
 }
 
 #pragma mark - ReaderControllerDelegate

@@ -46,20 +46,6 @@
     return NO;
 }
 
-#pragma mark - Working
-
-- (void)updatePluggedStatus:(CardReader *)reader
-{
-    NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
-    
-    if (reader.isPlugged) {
-        [self.rootViewController showStatusConnected];
-    }
-    else {
-        [self.rootViewController showStatusConnecting];
-    }
-}
-
 #pragma mark - Actions
 
 - (IBAction)navBack:(id)sender

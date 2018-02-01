@@ -26,6 +26,7 @@
 #define API_AUTH_TARGET         @"init/auth"
 #define API_DEV_INIT_TARGET     @"init/device"
 
+#define API_CARD_TEST_TARGET                @"card/test"
 #define API_CARD_CHECK_TARGET               @"card/check"
 #define API_CARD_CHECK_COMPLETE_TARGET      @"card/checkComplete"
 #define API_CARD_UPLOAD_IMAGE_TARGET        @"card/image"

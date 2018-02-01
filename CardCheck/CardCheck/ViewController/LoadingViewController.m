@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) ReaderController *readerController;
 
-- (IBAction)start:(id)sender;
-
 @end
 
 
@@ -84,8 +82,6 @@
 {
     NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
     
-    [self updatePluggedStatus: reader];
-    
     if (reader.isReady)
     {
         //1
@@ -110,6 +106,11 @@
 - (IBAction)clean:(id)sender
 {
     [[MandatoryData sharedInstance] clean];
+}
+
+- (IBAction)test:(id)sender
+{
+    [self.readerController test];
 }
 
 #pragma mark - ReaderControllerDelegate
