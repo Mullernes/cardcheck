@@ -19,15 +19,8 @@
 "auth_loginID_signUp_alert_button_continue_title"   = "Регистрация";
 
 /* Input View */
-"login_default_validation_text" = "Логин должен быть не менее 4 символов (латинские буквы, цифры, точка) или номер телефона или email";
-
-/* Input View */
+"login_default_validation_text" = "Логин должен быть не менее 4 символов (латинские буквы, цифры, точка)";
 "password_default_validation_text" = "Пароль должен содержать не менее 4 символов";
-
-/* Input View */
-"password_equality_validation_text" = "Пароли должны совпадать";
-
-/* Input View */
 "password_invalid_validation_text" = "Неверный пароль. Пожалуйста попробуйте еще раз";
 
 /* Authorization Errors */

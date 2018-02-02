@@ -81,8 +81,7 @@
 
 - (AuthLoginView *)loginIDView
 {
-    if (!_loginIDView)
-    {
+    if (!_loginIDView) {
         _loginIDView = [AuthLoginView viewWithDelegate: self];
         _loginIDView.frame = self.contentView.bounds;
     }
@@ -92,13 +91,21 @@
 
 - (DeviceInitializationView *)devInitView
 {
-    if (!_devInitView)
-    {
+    if (!_devInitView) {
         _devInitView = [DeviceInitializationView viewWithDelegate: self];
         _devInitView.frame = self.contentView.bounds;
     }
     
     return _devInitView;
+}
+
+- (InitializationData *)devInitData
+{
+    if (!_devInitData) {
+        _devInitData = [InitializationData new];
+    }
+    
+    return _devInitData;
 }
 
 #pragma mark - Brand
@@ -128,6 +135,8 @@
 - (void)showInitializationView
 {
     [self.devInitView prepareUi];
+    [self.devInitView setupWithRequestID: self.devInitData.authRequestID];
+    
     [self showView: self.devInitView reverse: NO];
 }
 
@@ -169,8 +178,7 @@
     [self.authView setLoading: YES];
     
     //2
-    //NSString *login = DEMO_LOGIN; //DEMO_MODE? DEMO_LOGIN : loginID.text;
-    NSString *login = loginID.text;
+    NSString *login = (DEMO_AUTH && !loginID.text.length)? DEMO_LOGIN : loginID.text;
     
     //3
     AuthRequestModel *request = [AuthRequestModel requestWithLogin: login
@@ -180,17 +188,14 @@
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          if (model.isCorrect)
                                          {
-                                             [weakSelf.authView setCorrect: YES];
-                                             [weakSelf showInitializationView];
-                                             
-                                             weakSelf.devInitData = [InitializationData new];
                                              [weakSelf.devInitData setupWithAuthResponse: model];
                                              NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+                                             
+                                             [weakSelf.authView setCorrect: YES];
+                                             [weakSelf showInitializationView];
                                          }
                                          else {
-                                             [weakSelf.authView setLoading: NO];
-
-                                             NSLog(@"response = %@", model);
+                                             [weakSelf.authView failedStateWithError: error];
                                          }
                                      }];
 }
