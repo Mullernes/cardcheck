@@ -101,7 +101,10 @@
 {
     [self.cardReader setupDemo];
     
-    [self setPlugged: YES];
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+    
     [self didUpdateReader];
 }
 

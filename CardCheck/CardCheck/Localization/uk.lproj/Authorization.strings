@@ -21,15 +21,9 @@
 
 
 /* Input View */
-"login_default_validation_text" = "Логін повинен містити щонайменше 4 символи (латинські літери, цифри, точка), або номер телефону або email";
-
-/* Input View */
+"login_default_validation_text" = "Логін повинен містити щонайменше 4 символи (латинські літери, цифри, точка)";
 "password_default_validation_text" = "Пароль повинен містити принаймні 4 символи";
-
-/* Input View */
 "password_equality_validation_text" = "Паролі повинні бути однаковими";
-
-/* Input View */
 "password_invalid_validation_text" = "Невірний пароль. Будь ласка спробуйте ще раз";
 
 /* Authorization Errors */

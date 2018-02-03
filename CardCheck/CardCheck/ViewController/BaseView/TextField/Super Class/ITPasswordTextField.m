@@ -11,7 +11,6 @@
 
 #define lValidationWarning      NSLocalizedStringFromTable(@"password_default_validation_text",  @"Authorization", @"Input View")
 #define lEqualityWarning        NSLocalizedStringFromTable(@"password_equality_validation_text", @"Authorization", @"Input View")
-#define lInvalidPassword        NSLocalizedStringFromTable(@"password_invalid_validation_text",  @"Authorization", @"Input View")
 
 
 #import "ITPasswordTextField.h"
@@ -23,24 +22,31 @@
     [super awakeFromNib];
     
     self.keyboardType = UIKeyboardTypeDefault;
-    //self.textContentType = UITextContentTypePassword;
 }
 
 #pragma mark - Accessors
 
 - (BOOL)isValid
 {
-    return YES;
+    BOOL isValid = [self isGeneralPassword: self.text];
     
-//    BOOL isValid = (self.text.length >= MIN_LEN);
-//    self.validationWarning = (!isValid)? lValidationWarning : nil;
-//    
-//    return isValid;
+    self.validationWarning = (!isValid)? lValidationWarning : nil;
+    
+    return isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
 {
     return YES;
+}
+
+- (BOOL)isGeneralPassword:(NSString *)login
+{
+    NSString *regex = @"^([0-9]{6})$";
+    NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isValid = [predTest evaluateWithObject: self];
+    
+    return isValid;
 }
 
 - (BOOL)isDependencyEqual

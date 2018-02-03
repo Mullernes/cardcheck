@@ -54,6 +54,12 @@
     [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
+- (void)setupWithRequestID:(long)rID
+{
+    [self.passwordTextField setEnabled: NO];
+    [self.passwordTextField setText: [NSString stringWithFormat:@"%li", rID]];
+}
+
 - (IBAction)next:(id)sender
 {
     if ([self.passwordTextField validate]) {

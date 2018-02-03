@@ -44,40 +44,6 @@
         [self.delegate validatorCheckingTextField: (ITTextField*)textField withResult: isValid];
     }
     
-    return YES;
-    
-//    if (isValid && textField.tag == 201)
-//    {
-//        NSString *newText = [textField.text stringByReplacingCharactersInRange: range withString: string];
-//        if ([[newText XTSemanticPhone] isEqualToString: [textField.text XTSemanticPhone]] == NO) {
-//            NSString *formatedPhone = [[RMPhoneFormat instance] format: newText implicitPlus: YES];
-//            [textField setText: formatedPhone];
-//
-//            return NO;
-//        }
-//    }
-//    else if (isValid && textField.tag == 300 && [(ITTextField*)textField isMightPhone])
-//    {
-//        NSString *newText = [textField.text stringByReplacingCharactersInRange: range withString: string];
-//        if ([[newText XTSemanticPhone] isEqualToString: [textField.text XTSemanticPhone]] == NO)
-//        {
-//            [(ITTextField*)textField setPhone: YES];
-//
-//            NSString *formatedPhone = [[RMPhoneFormat instance] format: newText implicitPlus: YES];
-//            [textField setText: formatedPhone];
-//
-//            return NO;
-//        }
-//        else if (newText.length > textField.text.length)
-//        {
-//            [(ITTextField*)textField setPhone: NO];
-//
-//            [textField setText: [newText XTSemanticLoginID]];
-//
-//            return NO;
-//        }
-//    }
-    
     return isValid;
 }
 

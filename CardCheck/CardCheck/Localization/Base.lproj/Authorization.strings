@@ -12,8 +12,7 @@
 "dev_initialize_info_default_text"   = "Please, check your mail and enter the password";
 
 /* Input View */
-"login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers), or phone number, or email";
-"password_equality_validation_text"     = "Passwords must be the same";
+"login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers)";
 "password_invalid_validation_text"      = "Invalid password. please, try again";
 "password_default_validation_text"      = "Password must contain at least 4 symbols";
 

@@ -63,6 +63,7 @@ static dispatch_once_t onceToken;
 
 - (void)setupDemo
 {
+    [self setPlugged: YES];
     [self setDeviceID: DEMO_READER_ID];
     [self setCustomID: DEMO_CUSTOM_ID];
     [self setTrackData: [AesTrackData demoData]];
