@@ -32,7 +32,7 @@
     
     self.validationWarning = (!isValid)? lValidationWarning : nil;
     
-    return isValid;
+    return DEMO_AUTH? YES : isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
@@ -40,11 +40,11 @@
     return YES;
 }
 
-- (BOOL)isGeneralPassword:(NSString *)login
+- (BOOL)isGeneralPassword:(NSString *)password
 {
     NSString *regex = @"^([0-9]{6})$";
     NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValid = [predTest evaluateWithObject: self];
+    BOOL isValid = [predTest evaluateWithObject: password];
     
     return isValid;
 }

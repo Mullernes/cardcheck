@@ -97,7 +97,7 @@
     }];
 }
 
-- (void)test
+- (void)demoMode
 {
     [self.cardReader setupDemo];
     

@@ -69,13 +69,13 @@
                     <rect key="frame" x="400" y="169.5" width="20" height="20"/>
                     <color key="color" red="1" green="0.40784313729999999" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
-                <textField opaque="NO" clipsSubviews="YES" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Request ID" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nNt-nI-IHc" customClass="SFPasswordTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Request ID" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nNt-nI-IHc" customClass="SFPasswordTextField">
                     <rect key="frame" x="200" y="159.5" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="rrU-kt-zJS"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                     <connections>
                         <outlet property="activityIndicator" destination="wfA-dR-6ch" id="2Xo-j7-YYG"/>
                         <outlet property="markView" destination="CRX-cn-4Ez" id="19B-nd-xjK"/>

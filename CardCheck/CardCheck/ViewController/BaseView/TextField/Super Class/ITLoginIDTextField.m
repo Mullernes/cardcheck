@@ -24,13 +24,11 @@
 
 - (BOOL)isValid
 {
-    return YES;
-    
     BOOL isValid = [self isGeneralLogin: self.text];
 
     self.validationWarning = (!isValid)? lValidationWarning : nil;
 
-    return isValid;
+    return DEMO_AUTH? YES : isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string

@@ -195,6 +195,8 @@
                                              [weakSelf showInitializationView];
                                          }
                                          else {
+                                             NSLog(@"response = %@", model);
+                                             
                                              [weakSelf.authView failedStateWithError: error];
                                          }
                                      }];
@@ -202,16 +204,15 @@
 
 - (void)checkPassword:(NSString *)password
 {
-    //1 - check requestID
-    //long typedRequestID = DEMO_MODE? self.devInitData.authRequestID : [self.devInitView.passwordTextField.text longLongValue];
+    //1
     long typedRequestID = self.devInitData.authRequestID;
     if (typedRequestID == self.devInitData.authRequestID)
     {
         [self calcOtp];
         
         //2 - check password
-        //NSString *typedOtp = DEMO_MODE? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
-        NSString *typedOtp = self.devInitData.otp;
+        BOOL demoAuth = (DEMO_AUTH && !self.devInitView.retypePasswordTextField.text.length)?YES:NO;
+        NSString *typedOtp =  demoAuth? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
         if ([self.devInitData.otp isEqualToString: typedOtp])
         {
             [self.devInitView setLoading: YES];
@@ -231,18 +232,18 @@
                                                         [weakSelf completeInitialization];
                                                     }
                                                     else {
-                                                        [self.devInitView setLoading: YES];
-                                                        
                                                         NSLog(@"response = %@", model);
+                                                        
+                                                        [weakSelf.devInitView failedStateWithError: error];
                                                     }
                                                 }];
         }
         else {
-            //TODO: incorrect password
+            [self.devInitView failedStateWithError: nil];
         }
     }
     else {
-        //TODO: incorrect requestID
+        [self.devInitView failedStateWithError: nil];
     }
 }
 

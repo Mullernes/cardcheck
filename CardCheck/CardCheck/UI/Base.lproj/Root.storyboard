@@ -90,8 +90,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-uB-pMZ">
-                                        <rect key="frame" x="144.5" y="494" width="30" height="30"/>
-                                        <state key="normal" title="Test"/>
+                                        <rect key="frame" x="113" y="494" width="93" height="30"/>
+                                        <state key="normal" title="Demo Reader"/>
                                         <connections>
                                             <action selector="test:" destination="EAH-eo-M1m" eventType="touchUpInside" id="OWY-uI-3fu"/>
                                         </connections>

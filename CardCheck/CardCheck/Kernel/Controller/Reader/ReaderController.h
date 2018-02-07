@@ -21,7 +21,7 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 - (void)startIfNeeded;
 - (void)reset;
 
-- (void)test;
+- (void)demoMode;
 
 @end
 

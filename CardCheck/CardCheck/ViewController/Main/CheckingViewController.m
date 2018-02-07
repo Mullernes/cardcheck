@@ -1,7 +1,10 @@
 
 #import "CheckingViewController.h"
+#import "CardCheckedView.h"
 
 @interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (nonatomic, strong) KeyChainData *keyChain;
 @property (nonatomic, strong) CardReader *currentReader;
@@ -10,9 +13,8 @@
 @property (nonatomic, strong) ReaderController *readerController;
 @property (nonatomic, strong) CardImagePicker *cardImagePickerController;
 
+@property (nonatomic, strong) CardCheckedView *cardView;
 @property (nonatomic, strong) NSArray *stackOfResponse;
-
-@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -29,8 +31,6 @@
 
     self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
-    
-    [self.textView setHidden: YES];
     
     //Base init
     self.stackOfResponse = @[];
@@ -55,6 +55,30 @@
     [super viewDidDisappear:animated];
 }
 
+#pragma mark - Accessors
+
+- (CardCheckedView *)cardView
+{
+    if (!_cardView) {
+        _cardView = [CardCheckedView viewWithDelegate: self];
+        _cardView.frame = self.contentView.bounds;
+    }
+    
+    return _cardView;
+}
+
+
+#pragma mark - Ui
+
+- (void)showCardCheckedView:(CCheckResponseModel *)response
+{
+    [self.devInitView prepareUi];
+    [self.devInitView setupWithRequestID: self.devInitData.authRequestID];
+    
+    [self showView: self.devInitView reverse: NO];
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)reset:(id)sender
@@ -62,9 +86,6 @@
     [self.readerController reset];
     
     [self.currentReader setTrackData: nil];
-    
-    [self.textView setText: @""];
-    [self.textView setHidden: YES];
 }
 
 - (IBAction)checkDemoCard:(id)sender {
@@ -95,9 +116,6 @@
                                        withCompletion:^(CCheckResponseModel *model, NSError *error)
      {
          NSLog(@" response = %@", [model debugDescription]);
-         
-         [weakSelf.textView setHidden: NO];
-         [weakSelf.textView setText: [model debugDescription]];
          
          weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
          

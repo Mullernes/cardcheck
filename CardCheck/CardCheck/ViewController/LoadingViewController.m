@@ -110,7 +110,7 @@
 
 - (IBAction)test:(id)sender
 {
-    [self.readerController test];
+    [self.readerController demoMode];
 }
 
 #pragma mark - ReaderControllerDelegate

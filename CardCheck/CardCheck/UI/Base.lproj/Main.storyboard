@@ -165,15 +165,6 @@
                                                                     <constraint firstAttribute="width" secondItem="BdF-k9-nrc" secondAttribute="height" multiplier="358/342" id="XaR-k8-Q7R"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Перевірка картки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwA-zA-tbE">
-                                                                <rect key="frame" x="91" y="200" width="192" height="29"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="29" id="4Ya-98-ctT"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="1. Переконайтеся, що пристирій зчитування карток підєднанно налаженим чином до Вашого телефону " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IKH-0Q-XKK">
                                                                 <rect key="frame" x="32" y="245" width="311" height="50.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -206,17 +197,11 @@
                                                                     <action selector="checkDemoCard:" destination="fbm-SK-nu5" eventType="touchUpInside" id="Jiy-K6-ONE"/>
                                                                 </connections>
                                                             </button>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="DemoCard" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BXS-5P-uoa">
-                                                                <rect key="frame" x="8" y="237" width="359" height="133"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="QwA-zA-tbE" firstAttribute="centerX" secondItem="uX7-rv-6aA" secondAttribute="centerX" id="63i-LN-UEV"/>
                                                             <constraint firstAttribute="trailing" secondItem="IKH-0Q-XKK" secondAttribute="trailing" constant="32" id="C0R-n9-bdQ"/>
+                                                            <constraint firstItem="IKH-0Q-XKK" firstAttribute="top" secondItem="BdF-k9-nrc" secondAttribute="bottom" constant="53" id="DMe-Aa-PrF"/>
                                                             <constraint firstItem="BdF-k9-nrc" firstAttribute="top" secondItem="uX7-rv-6aA" secondAttribute="top" id="FH8-Bq-Siw"/>
                                                             <constraint firstItem="IKH-0Q-XKK" firstAttribute="leading" secondItem="uX7-rv-6aA" secondAttribute="leading" constant="32" id="HdD-7f-ibp"/>
                                                             <constraint firstItem="IeP-9h-d1Y" firstAttribute="top" secondItem="Ad9-Ed-sjG" secondAttribute="bottom" constant="8" id="JDX-k9-dDY"/>
@@ -224,18 +209,11 @@
                                                             <constraint firstItem="XId-Ub-pjp" firstAttribute="leading" secondItem="uX7-rv-6aA" secondAttribute="leading" constant="32" id="MsY-hL-upE"/>
                                                             <constraint firstItem="XId-Ub-pjp" firstAttribute="top" secondItem="IKH-0Q-XKK" secondAttribute="bottom" constant="16" id="N2i-jg-vyC"/>
                                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IeP-9h-d1Y" secondAttribute="bottom" constant="8" id="P6U-4L-OHl"/>
-                                                            <constraint firstItem="Ad9-Ed-sjG" firstAttribute="top" secondItem="BXS-5P-uoa" secondAttribute="bottom" constant="8" id="QXu-Jm-S2p"/>
                                                             <constraint firstAttribute="trailing" secondItem="XId-Ub-pjp" secondAttribute="trailing" constant="32" id="Toj-1s-3gX"/>
-                                                            <constraint firstItem="QwA-zA-tbE" firstAttribute="top" secondItem="BdF-k9-nrc" secondAttribute="bottom" constant="8" id="Wps-4E-RuL"/>
                                                             <constraint firstItem="BdF-k9-nrc" firstAttribute="centerX" secondItem="uX7-rv-6aA" secondAttribute="centerX" id="YIb-Ww-eTK"/>
-                                                            <constraint firstItem="BXS-5P-uoa" firstAttribute="leading" secondItem="uX7-rv-6aA" secondAttribute="leading" constant="8" id="YcL-u2-ZD8"/>
-                                                            <constraint firstItem="IKH-0Q-XKK" firstAttribute="top" secondItem="QwA-zA-tbE" secondAttribute="bottom" constant="16" id="e5C-SQ-Q7m"/>
                                                             <constraint firstItem="Ad9-Ed-sjG" firstAttribute="centerX" secondItem="uX7-rv-6aA" secondAttribute="centerX" id="elR-lp-BQg"/>
-                                                            <constraint firstItem="QwA-zA-tbE" firstAttribute="centerX" secondItem="IKH-0Q-XKK" secondAttribute="centerX" id="jOk-hL-hbh"/>
                                                             <constraint firstItem="IeP-9h-d1Y" firstAttribute="centerX" secondItem="uX7-rv-6aA" secondAttribute="centerX" id="lEf-54-zle"/>
                                                             <constraint firstItem="Ad9-Ed-sjG" firstAttribute="top" secondItem="XId-Ub-pjp" secondAttribute="bottom" constant="16" id="nui-Tw-ruM"/>
-                                                            <constraint firstAttribute="trailing" secondItem="BXS-5P-uoa" secondAttribute="trailing" constant="8" id="oia-Sa-sAg"/>
-                                                            <constraint firstItem="BXS-5P-uoa" firstAttribute="top" secondItem="QwA-zA-tbE" secondAttribute="bottom" constant="8" id="qtD-4M-0VC"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -283,9 +261,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Invitation" id="ES5-2P-6Jb"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="textView" destination="BXS-5P-uoa" id="kcp-tw-gwx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7NU-Wq-z4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
