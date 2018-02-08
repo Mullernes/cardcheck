@@ -18,6 +18,8 @@
 		7D0D572E2013A9F000CC250C /* CardImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D572D2013A9F000CC250C /* CardImagePicker.m */; };
 		7D0E4128202A30360026F7B0 /* CardCheckedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0E4126202A30360026F7B0 /* CardCheckedView.xib */; };
 		7D0E412E202A34E90026F7B0 /* CardCheckedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E412D202A34E90026F7B0 /* CardCheckedView.m */; };
+		7D0E4132202B89200026F7B0 /* CardDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E4131202B89200026F7B0 /* CardDefaultView.m */; };
+		7D0E4135202B89B70026F7B0 /* CardDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */; };
 		7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */; };
 		7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */; };
 		7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* AesTrackData.m */; };
@@ -125,6 +127,9 @@
 		7D0E4127202A30360026F7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardCheckedView.xib; sourceTree = "<group>"; };
 		7D0E412C202A34E80026F7B0 /* CardCheckedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCheckedView.h; sourceTree = "<group>"; };
 		7D0E412D202A34E90026F7B0 /* CardCheckedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCheckedView.m; sourceTree = "<group>"; };
+		7D0E4130202B891F0026F7B0 /* CardDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDefaultView.h; sourceTree = "<group>"; };
+		7D0E4131202B89200026F7B0 /* CardDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDefaultView.m; sourceTree = "<group>"; };
+		7D0E4134202B89B60026F7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardDefaultView.xib; sourceTree = "<group>"; };
 		7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckResponseModel.m; sourceTree = "<group>"; };
 		7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckRequestModel.m; sourceTree = "<group>"; };
 		7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckResponseModel.h; sourceTree = "<group>"; };
@@ -354,6 +359,7 @@
 		7D0105D6201751830080E63A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7D0E412F202B34880026F7B0 /* View */,
 				7DC4FB8A1FEA3D9100CFB4FE /* ViewController.h */,
 				7DC4FB8B1FEA3D9100CFB4FE /* ViewController.m */,
 				7DBC744C201CD27600D925CB /* CheckingViewController.h */,
@@ -369,6 +375,17 @@
 				7D0D572D2013A9F000CC250C /* CardImagePicker.m */,
 			);
 			path = CardImagePicker;
+			sourceTree = "<group>";
+		};
+		7D0E412F202B34880026F7B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D0E4130202B891F0026F7B0 /* CardDefaultView.h */,
+				7D0E4131202B89200026F7B0 /* CardDefaultView.m */,
+				7D0E412C202A34E80026F7B0 /* CardCheckedView.h */,
+				7D0E412D202A34E90026F7B0 /* CardCheckedView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7D0F5EC22004B01000780CE8 /* Card */ = {
@@ -463,8 +480,6 @@
 			children = (
 				7D7E2B8B2018744F00BE6950 /* AuthLoginView.h */,
 				7D7E2B8C2018744F00BE6950 /* AuthLoginView.m */,
-				7D0E412C202A34E80026F7B0 /* CardCheckedView.h */,
-				7D0E412D202A34E90026F7B0 /* CardCheckedView.m */,
 				7D7E2B932018744F00BE6950 /* DeviceInitializationView.h */,
 				7D7E2B942018744F00BE6950 /* DeviceInitializationView.m */,
 				7D7E2B952018744F00BE6950 /* Base */,
@@ -487,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				7D7E2BA22018782A00BE6950 /* AuthLoginView.xib */,
+				7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */,
 				7D0E4126202A30360026F7B0 /* CardCheckedView.xib */,
 				7D7E2BAA2018782A00BE6950 /* DeviceInitializationView.xib */,
 			);
@@ -1061,6 +1077,7 @@
 			files = (
 				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
 				7D7E2BB02018782A00BE6950 /* DeviceInitializationView.xib in Resources */,
+				7D0E4135202B89B70026F7B0 /* CardDefaultView.xib in Resources */,
 				7DBC7455201CD58B00D925CB /* Common.strings in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
 				7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */,
@@ -1260,6 +1277,7 @@
 				7D7E2BDC201879D100BE6950 /* ITTextField.m in Sources */,
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
 				7D7E2BD5201879D100BE6950 /* SFPasswordTextField.m in Sources */,
+				7D0E4132202B89200026F7B0 /* CardDefaultView.m in Sources */,
 				7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */,
 				7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */,
 				7D7E2B9D2018744F00BE6950 /* DeviceInitializationView.m in Sources */,
@@ -1349,6 +1367,14 @@
 				7D0E4127202A30360026F7B0 /* Base */,
 			);
 			name = CardCheckedView.xib;
+			sourceTree = "<group>";
+		};
+		7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D0E4134202B89B60026F7B0 /* Base */,
+			);
+			name = CardDefaultView.xib;
 			sourceTree = "<group>";
 		};
 		7D7E2B842018740000BE6950 /* Auth.storyboard */ = {

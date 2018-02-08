@@ -10,10 +10,9 @@
 
 typedef enum {
     InfoStateLogin,
-    InfoStatePhone,
-    InfoStatePin,
-    InfoStateSendMoney,
+    InfoStateCard,
     InfoStateWaring
+    
 } AuthInfoState;
 
 

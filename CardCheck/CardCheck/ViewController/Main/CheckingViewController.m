@@ -1,8 +1,10 @@
 
 #import "CheckingViewController.h"
-#import "CardCheckedView.h"
 
-@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate>
+#import "CardCheckedView.h"
+#import "CardDefaultView.h"
+
+@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate, CardDefaultViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -13,8 +15,10 @@
 @property (nonatomic, strong) ReaderController *readerController;
 @property (nonatomic, strong) CardImagePicker *cardImagePickerController;
 
-@property (nonatomic, strong) CardCheckedView *cardView;
 @property (nonatomic, strong) NSArray *stackOfResponse;
+
+@property (nonatomic, strong) CardCheckedView *cardCheckedView;
+@property (nonatomic, strong) CardDefaultView *cardDefaultView;
 
 @end
 
@@ -39,10 +43,6 @@
     
     self.currentReader = [CardReader sharedInstance];
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
-    
-    NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
-    NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
-    NSLog(@"manData = %@", [[MandatoryData sharedInstance] debugDescription]);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,39 +57,58 @@
 
 #pragma mark - Accessors
 
-- (CardCheckedView *)cardView
+- (CardCheckedView *)cardCheckedView
 {
-    if (!_cardView) {
-        _cardView = [CardCheckedView viewWithDelegate: self];
-        _cardView.frame = self.contentView.bounds;
+    if (!_cardCheckedView) {
+        _cardCheckedView = [CardCheckedView viewWithDelegate: self];
+        _cardCheckedView.frame = self.contentView.bounds;
     }
     
-    return _cardView;
+    return _cardCheckedView;
 }
 
+- (CardDefaultView *)cardDefaultView
+{
+    if (!_cardDefaultView) {
+        _cardDefaultView = [CardDefaultView viewWithDelegate: self];
+        _cardDefaultView.frame = self.contentView.bounds;
+    }
+    
+    return _cardDefaultView;
+}
 
 #pragma mark - Ui
 
 - (void)showCardCheckedView:(CCheckResponseModel *)response
 {
-    [self.devInitView prepareUi];
-    [self.devInitView setupWithRequestID: self.devInitData.authRequestID];
+    [self.cardCheckedView prepareUi];
+    [self.cardCheckedView setupWith: response];
     
-    [self showView: self.devInitView reverse: NO];
+    [self showView: self.cardCheckedView reverse: NO];
 }
 
-
-#pragma mark - Actions
-
-- (IBAction)reset:(id)sender
+- (void)showCardDefaultView
 {
-    [self.readerController reset];
-    
-    [self.currentReader setTrackData: nil];
+    [self showView: self.cardDefaultView reverse: YES];
 }
 
-- (IBAction)checkDemoCard:(id)sender {
-    [self checkCardData: [AesTrackData demoData]];
+- (void)showView:(UIView *)view reverse:(BOOL)reverse
+{
+    CGFloat offset = reverse? -(self.view.bounds.size.width) : +(self.view.bounds.size.width);
+    UIView *oldView = self.contentView.subviews.firstObject;
+    
+    view.frame = CGRectOffset(self.contentView.bounds, offset, 0.0);
+    view.alpha = 0.0;
+    
+    [self.contentView addSubview: view];
+    [UIView animateWithDuration:0.25 animations:^{
+        oldView.frame = CGRectOffset(oldView.frame, -offset, 0.0);
+        view.frame = self.contentView.bounds;
+        oldView.alpha = 0.0;
+        view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [oldView removeFromSuperview];
+    }];
 }
 
 #pragma mark - Working
@@ -118,8 +137,9 @@
          NSLog(@" response = %@", [model debugDescription]);
          
          weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
-         
          [alert dismissWithClickedButtonIndex:0 animated:YES];
+         
+         [weakSelf showCardCheckedView: model];
      }];
 }
 
@@ -196,7 +216,7 @@
         [self checkCardData: reader.trackData];
     }
     else {
-        NSLog(@"trackData NOT EXIST");
+        [self showCardDefaultView];
     }
 }
 
@@ -219,6 +239,26 @@
 - (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
 {
     [picker dismissInView: self];
+}
+
+#pragma mark - AuthViewDelegate
+
+- (void)continueCardChecking:(CardCheckedView *)view
+{
+    [self showCardDefaultView];
+}
+
+#pragma mark - CardDefaultViewDelegate
+
+- (void)cardViewResetPressed:(CardDefaultView *)view
+{
+    [self.readerController reset];
+    [self.currentReader setTrackData: nil];
+}
+
+- (void)cardViewCheckDemoPressed:(CardDefaultView *)view
+{
+    [self checkCardData: [AesTrackData demoData]];
 }
 
 @end

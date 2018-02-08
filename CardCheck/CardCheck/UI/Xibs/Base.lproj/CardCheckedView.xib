@@ -25,7 +25,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZQ-nx-3aR" userLabel="Info View" customClass="AuthInfoView">
                     <rect key="frame" x="171.5" y="59.5" width="258.5" height="18"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_info_login_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-0K-85G">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_checking_info_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-0K-85G">
                             <rect key="frame" x="0.0" y="-11" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="vGe-mH-6Ue"/>
@@ -92,8 +92,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAP-fz-xy8">
                                     <rect key="frame" x="0.0" y="37.5" width="320" height="37.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="557810****1212" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-1y-buE">
-                                            <rect key="frame" x="99" y="8.5" width="122" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="557810****1212" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-1y-buE">
+                                            <rect key="frame" x="0.0" y="8.5" width="320" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -102,14 +102,16 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="8Jh-1y-buE" firstAttribute="centerX" secondItem="CAP-fz-xy8" secondAttribute="centerX" id="0KL-El-bh9"/>
+                                        <constraint firstItem="8Jh-1y-buE" firstAttribute="leading" secondItem="CAP-fz-xy8" secondAttribute="leading" id="9Ab-8X-kiS"/>
                                         <constraint firstItem="8Jh-1y-buE" firstAttribute="centerY" secondItem="CAP-fz-xy8" secondAttribute="centerY" id="NM2-X6-Jus"/>
+                                        <constraint firstAttribute="trailing" secondItem="8Jh-1y-buE" secondAttribute="trailing" id="SvE-C5-XKZ"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-2b-6fK">
                                     <rect key="frame" x="0.0" y="75" width="320" height="37.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ivan Martynov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLv-AH-ptU">
-                                            <rect key="frame" x="106" y="8.5" width="108" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ivan Martynov" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLv-AH-ptU">
+                                            <rect key="frame" x="0.0" y="8.5" width="320" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -117,6 +119,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="eLv-AH-ptU" firstAttribute="leading" secondItem="hN4-2b-6fK" secondAttribute="leading" id="CD0-Yu-a6I"/>
+                                        <constraint firstAttribute="trailing" secondItem="eLv-AH-ptU" secondAttribute="trailing" id="Eik-yt-dlj"/>
                                         <constraint firstItem="eLv-AH-ptU" firstAttribute="centerX" secondItem="hN4-2b-6fK" secondAttribute="centerX" id="L7S-Gf-YOi"/>
                                         <constraint firstItem="eLv-AH-ptU" firstAttribute="centerY" secondItem="hN4-2b-6fK" secondAttribute="centerY" id="vhR-EY-rMQ"/>
                                     </constraints>
@@ -124,8 +128,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wz-bz-tMS">
                                     <rect key="frame" x="0.0" y="112.5" width="320" height="37.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Master Card (Mastero Currius)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mn-aZ-p2K">
-                                            <rect key="frame" x="43.5" y="8.5" width="233" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Master Card (Mastero Currius)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7mn-aZ-p2K">
+                                            <rect key="frame" x="0.0" y="8.5" width="320" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -135,6 +139,8 @@
                                     <constraints>
                                         <constraint firstItem="7mn-aZ-p2K" firstAttribute="centerX" secondItem="0wz-bz-tMS" secondAttribute="centerX" id="7Zc-kc-gIo"/>
                                         <constraint firstItem="7mn-aZ-p2K" firstAttribute="centerY" secondItem="0wz-bz-tMS" secondAttribute="centerY" id="AHT-UA-GWO"/>
+                                        <constraint firstAttribute="trailing" secondItem="7mn-aZ-p2K" secondAttribute="trailing" id="PbO-ib-eb7"/>
+                                        <constraint firstItem="7mn-aZ-p2K" firstAttribute="leading" secondItem="0wz-bz-tMS" secondAttribute="leading" id="i86-gt-Pbg"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -221,8 +227,8 @@
         </view>
     </objects>
     <resources>
-        <image name="auth_info_login_icon" width="35" height="35"/>
         <image name="button_enabled_icon" width="484" height="86"/>
         <image name="button_highlighted_bg" width="242" height="43"/>
+        <image name="card_checking_info_icon" width="497" height="497"/>
     </resources>
 </document>

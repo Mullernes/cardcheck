@@ -7,7 +7,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *holder;
 @property (weak, nonatomic) IBOutlet UILabel *paymentSystem;
 
-- (void)setupWith;
+- (void)setupWith:(CCheckResponseModel *)response;
     
 @end
 
