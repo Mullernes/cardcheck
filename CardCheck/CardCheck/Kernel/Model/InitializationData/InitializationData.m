@@ -52,7 +52,7 @@
     self = [super init];
     if (self) {
         self.attempts = 3;
-        self.readerData = [CardReader demoData];
+        self.readerData = [CardReader sharedInstance];
     }
     return self;
 }
@@ -115,8 +115,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n otp = %@ \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeys = %@ \n\n", self, self.otp, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
+    return [NSString stringWithFormat:@"%@; \n otp = %@ \n authRequestID = %li, \n authRequestTime = %lli, \n authResponseTime = %lli, \n devInitRequestTime = %lli, \n devInitResponseTime = %lli, \n appID = %li, \n appKeysCipher = %@ \n\n", self, self.otp, self.authRequestID, self.authRequestTime, self.authResponseTime, self.devInitRequestTime, self.devInitResponseTime, self.appID, self.cipherAppKeys];
 }
-
 
 @end

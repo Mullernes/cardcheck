@@ -58,7 +58,7 @@
 #pragma mark - Working Methods
 
 - (NSString *)generalInfo {
-    return [NSString stringWithFormat:@"%@,%@, OS: %@", self.deviceName, self.deviceModel, self.osVesrion];
+    return [NSString stringWithFormat:@"%@,%@, OS: %@, UUID: %@", self.deviceName, self.deviceModel, self.osVesrion, self.uid];
 }
 
 #pragma mark - Utils

@@ -25,7 +25,7 @@
     CCheckRequestModel *model = [CCheckRequestModel new];
     
     [model setAppId: [[MandatoryData sharedInstance] appID]];
-    [model setAppVersion: [[CurrentDevice sharedInstance] appVersion]];
+    [model setAppVersion: [NSString stringWithFormat:@"%@i", [[CurrentDevice sharedInstance] appVersion]]];
     
     [model setReader: reader];
     

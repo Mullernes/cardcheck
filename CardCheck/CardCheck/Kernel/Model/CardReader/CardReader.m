@@ -61,12 +61,16 @@ static dispatch_once_t onceToken;
     return self;
 }
 
-- (void)setupDemo
+- (void)setupDemoIfNeeded
 {
     [self setPlugged: YES];
-    [self setDeviceID: DEMO_READER_ID];
-    [self setCustomID: DEMO_CUSTOM_ID];
     [self setTrackData: [AesTrackData demoData]];
+    
+    if (!self.deviceID || !self.customID)
+    {
+        [self setDeviceID: DEMO_READER_ID];
+        [self setCustomID: DEMO_CUSTOM_ID];
+    }
 }
 
 - (BOOL)isReady

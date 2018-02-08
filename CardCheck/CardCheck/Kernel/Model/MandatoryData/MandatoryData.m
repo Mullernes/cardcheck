@@ -18,11 +18,6 @@
 
 @property (nonatomic, readwrite) BOOL exist;
 
-//@property (nonatomic, readwrite) long appID;
-//@property (nonatomic, readwrite) NSString *deviceID;    
-//@property (nonatomic, readwrite) NSString *appDataKey;
-//@property (nonatomic, readwrite) NSString *appCommKey;
-
 @end
 
 @implementation MandatoryData

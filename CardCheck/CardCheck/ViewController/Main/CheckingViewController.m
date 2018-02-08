@@ -113,6 +113,15 @@
 
 #pragma mark - Working
 
+- (void)showAlertWithError:(NSError *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"ERROR"
+                                                    message: error.localizedDescription
+                                                   delegate:nil
+                                          cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)checkCardData:(AesTrackData *)trackData
 {
     self.stackOfResponse = @[];
@@ -134,12 +143,16 @@
     [[APIController sharedInstance] sendCCheckRequest: request
                                        withCompletion:^(CCheckResponseModel *model, NSError *error)
      {
-         NSLog(@" response = %@", [model debugDescription]);
+         if (model.isCorrect) {
+             weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
+             [weakSelf showCardCheckedView: model];
+         }
+         else {
+             [weakSelf showAlertWithError: error];
+         }
          
-         weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
          [alert dismissWithClickedButtonIndex:0 animated:YES];
-         
-         [weakSelf showCardCheckedView: model];
+         NSLog(@" response = %@", [model debugDescription]);
      }];
 }
 
@@ -201,10 +214,15 @@
     [[APIController sharedInstance] uploadImageRequest: request
                                         withCompletion:^(CUploadResponseModel *model, NSError *error)
      {
-         NSLog(@" response = %@", [model debugDescription]);
+         if (model.isCorrect) {
+             [image setID: model.imgID];
+             weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: image];
+         }
+         else {
+             [weakSelf showAlertWithError: error];
+         }
          
-         [image setID: model.imgID];
-         weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: image];
+         NSLog(@" response = %@", [model debugDescription]);
      }];
 }
 

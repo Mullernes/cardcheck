@@ -99,7 +99,7 @@
 
 - (void)demoMode
 {
-    [self.cardReader setupDemo];
+    [self.cardReader setupDemoIfNeeded];
     
     if (self.pluggedHandler) {
         self.pluggedHandler(self.cardReader);

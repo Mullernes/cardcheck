@@ -48,7 +48,7 @@
 {
     NSString *key = [[KeyChainData sharedInstance] commKey];
     NSNumber *otp = [self hotpWithData: plain andHexKey: key];
-    
+
     return [self semanticOtp: [otp stringValue]];
 }
 
@@ -62,18 +62,19 @@
 
 - (NSString *)semanticOtp:(NSString *)value
 {
-    if ([value length] == 6) {
-        return value;
-    }
-    else if ([value length] == 5) {
-        return [NSString stringWithFormat:@"0%@",value];
+    if ([value length] == 5) {
+        value = [NSString stringWithFormat:@"0%@",value];
     }
     else if ([value length] == 4) {
-        return [NSString stringWithFormat:@"00%@",value];
+        value = [NSString stringWithFormat:@"00%@",value];
     }
-    else {
+    else if ([value length] != 6) {
         XT_MAKE_EXEPTION;
     }
+    
+    NSLog(@"Signature = %@", value);
+    
+    return value;
 }
 
 - (NSData *)swapInt32HostToBig:(int)value
@@ -96,10 +97,20 @@
 
 - (NSString *)calcTransportKey:(InitializationData *)data
 {
+    NSLog(@"calcTransportKey:");
+    
+    NSLog(@"############################################################");
+    
     //Gen key - 14 bytes
     NSMutableData *keyBuffer = [NSMutableData dataWithCapacity: 14];
     [keyBuffer appendData: [HexCvtr dataFromHex: data.customID]];
     [keyBuffer appendData: [self swapInt32HostToBig: [data.otp intValue]]];
+    
+    NSLog(@"data.customID = %@", data.customID);
+    NSLog(@"data.otp = %i", [data.otp intValue]);
+    NSLog(@"keyBuffer = %@", [HexCvtr hexFromData: keyBuffer]);
+    
+    NSLog(@"############################################################");
     
     //Gen data - 32 bytes
     NSMutableData *dataBuffer = [NSMutableData dataWithCapacity: 32];
@@ -109,12 +120,29 @@
     [dataBuffer appendData: [self swapInt64HostToBig: data.devInitRequestTime]];
     [dataBuffer appendData: [self swapInt64HostToBig: data.devInitResponseTime]];
     
+    NSLog(@"data.authRequestTime = %lli", data.authRequestTime);
+    NSLog(@"data.authResponseTime = %lli", data.authResponseTime);
+    NSLog(@"data.devInitRequestTime = %lli", data.devInitRequestTime);
+    NSLog(@"data.devInitResponseTime = %lli", data.devInitResponseTime);
+    
+    NSLog(@"dataBuffer = %@", [HexCvtr hexFromData: dataBuffer]);
+    
+    NSLog(@"############################################################");
+    
     //hmac1
     NSData *hmac1Data = [self hmac1WithPlainData: dataBuffer.copy
                                       andKeyData: keyBuffer.copy];
     
+    NSLog(@"hmac1Data = %@", [HexCvtr hexFromData: hmac1Data]);
+    
+    NSLog(@"############################################################");
+    
     //transport key
     NSData *transportKey = [hmac1Data subdataWithRange: NSMakeRange(0, 16)];
+    
+    NSLog(@"transportKey = %@", [HexCvtr hexFromData: transportKey]);
+    
+    NSLog(@"############################################################");
     
     return [HexCvtr hexFromData: transportKey];
 }
@@ -141,11 +169,11 @@
 
 - (NSNumber *)hotpWithData:(NSData *)plain andHexKey:(NSString *)key
 {
-    /* for debug
+    //for debug
     NSLog(@"==== hotp =====");
-    NSLog(@"data = %@, length = %li", [HexCvtr hexFromData: plain], [plain length]);
-    NSLog(@"key = %@, length = %li", key, [[HexCvtr dataFromHex: key] length]);
-     */
+    NSLog(@"data = %@, length = %li", [HexCvtr hexFromData: plain], (unsigned long)[plain length]);
+    NSLog(@"key = %@, length = %li", key, (unsigned long)[[HexCvtr dataFromHex: key] length]);
+     
     
     NSData *data = [self hmac1WithPlainData: plain andHexKey: key];
     const char *cHMAC = [data bytes];
