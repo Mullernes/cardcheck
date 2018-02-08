@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) ReaderController *readerController;
 
-- (IBAction)start:(id)sender;
-
 @end
 
 
@@ -22,7 +20,6 @@
 + (instancetype)loadingController
 {
     LoadingViewController *controller = [[LoadingViewController alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
-    
     return controller;
 }
 
@@ -33,18 +30,27 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewWillAppear: animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: YES];
+    
+    [self baseSetup];
 
-#if 1
+#if 0
     dispatch_after(3.0, dispatch_get_main_queue(), ^{
         [self.rootViewController showAuth: nil];
     });
 #endif
+    
+#if 0
+    dispatch_after(3.0, dispatch_get_main_queue(), ^{
+        [self.rootViewController showMain: nil];
+    });
+#endif
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -59,31 +65,37 @@
 
 #pragma mark - Working
 
-- (void)baseStup
+- (void)baseSetup
 {
-    [self.activityView stopAnimating];
+    [self setupReaderController];
+    [self.activityView startAnimating];
 }
 
 - (void)setupReaderController
 {
     self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
-    [self.readerController start];
+    [self.readerController startIfNeeded];
 }
 
-- (void)checkAndContinue:(CardReader *)reader
+- (void)handleReader:(CardReader *)reader
 {
     NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
     
-    if (reader.isReady) {
+    if (reader.isReady)
+    {
+        //1
         [self.activityView stopAnimating];
+        
+        //2
+        [[KeyChainData sharedInstance] reset];
         MandatoryData *data = [MandatoryData sharedInstance];
+        
+        //3
         if (data.isExist && [data.deviceID isEqualToString: reader.deviceID]) {
-            NSLog(@"showMain");
-            //[self.rootViewController showMain: nil];
+            [self.rootViewController showMain: nil];
         }
         else {
-            NSLog(@"showAuth");
             [self.rootViewController showAuth: nil];
         }
     }
@@ -91,17 +103,21 @@
 
 #pragma mark - Actions
 
-- (IBAction)start:(id)sender
+- (IBAction)clean:(id)sender
 {
-    [self.activityView startAnimating];
-    [self setupReaderController];
+    [[MandatoryData sharedInstance] clean];
+}
+
+- (IBAction)test:(id)sender
+{
+    [self.readerController demoMode];
 }
 
 #pragma mark - ReaderControllerDelegate
 
-- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader
 {
-    [self checkAndContinue: data];
+    [self handleReader: reader];
 }
 
 

@@ -6,11 +6,17 @@
 //  Copyright © 2015 Ivan Tkachenko. All rights reserved.
 //
 
+#define lConnectingStatus           NSLocalizedStringFromTable(@"connecting_bar_status", @"Common", @"Animation View")
+
+
 #import "RootViewController.h"
+#import "CWStatusBarNotification.h"
+
 
 @interface RootViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) CWStatusBarNotification *barNotification;
 
 @end
 
@@ -25,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self baseSetup];
     
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -60,7 +68,50 @@
     }
 }
 
+#pragma mark - Ui
+
+- (void)setupUi
+{
+    if (nil == self.barNotification) {
+        self.barNotification = [CWStatusBarNotification new];
+        self.barNotification.notificationAnimationInStyle = CWNotificationAnimationStyleTop;
+        self.barNotification.notificationAnimationOutStyle = CWNotificationAnimationStyleBottom;
+        self.barNotification.notificationAnimationType = CWNotificationAnimationTypeReplace;
+        self.barNotification.notificationStyle = CWNotificationStyleStatusBarNotification;
+    }
+}
+
+#pragma mark - Status Bar
+
+- (void)showStatusConnecting
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    [self.barNotification displayNotificationWithMessage: lConnectingStatus completion: nil];
+}
+
+- (void)showStatusConnected
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    [self.barNotification dismissNotification];
+}
+
 #pragma mark - Working
+
+- (void)baseSetup
+{
+    [self setupUi];
+    
+    [[ReaderController sharedInstance] setPluggedHandler:^(CardReader *reader) {
+        if (reader.isPlugged) {
+            [self showStatusConnected];
+        }
+        else {
+            [self showStatusConnecting];
+        }
+    }];
+}
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender
 {

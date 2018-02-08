@@ -83,6 +83,7 @@
 - (void)logged:(NSString *)log
 {
     //[[Logger sharedInstance] loggedAll: log];
+    NSLog(@"%@", log);
 }
 
 #pragma mark - Making errors

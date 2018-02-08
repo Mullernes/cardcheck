@@ -54,15 +54,20 @@
     [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
+- (void)setupWithRequestID:(long)rID
+{
+    [self.passwordTextField setEnabled: NO];
+    [self.passwordTextField setText: [NSString stringWithFormat:@"Request ID: %li", rID]];
+}
+
 - (IBAction)next:(id)sender
 {
-    if ([self.passwordTextField validate]) {
-        if ([self.passwordTextField validate]) {
-            if ([self.retypePasswordTextField validate]) {
-                [self.retypePasswordTextField resignFirstResponder];
-                [self.delegate authView: self checkPasswordDidEnter: self.retypePasswordTextField];
-            }
-        }
+    if ([self.retypePasswordTextField validate]) {
+        [self.retypePasswordTextField resignFirstResponder];
+        [self.delegate authView: self checkPasswordDidEnter: self.retypePasswordTextField];
+    }
+    else {
+        [self failedStateWithText: self.retypePasswordTextField.validationWarning];
     }
 }
     

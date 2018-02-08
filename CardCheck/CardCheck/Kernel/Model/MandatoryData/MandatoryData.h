@@ -21,6 +21,7 @@
 + (instancetype)sharedInstance;
 
 - (void)save;
+- (void)clean;
 
 
 @end

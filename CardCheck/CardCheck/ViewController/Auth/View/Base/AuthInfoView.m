@@ -8,11 +8,9 @@
 
 #import "AuthInfoView.h"
 
-#define IMAGE_LOGIN         [UIImage imageNamed:@"auth_info_login_icon.png"]
-#define IMAGE_PHONE         [UIImage imageNamed:@"auth_info_phone_icon.png"]
-#define IMAGE_PIN           [UIImage imageNamed:@"auth_info_phone_icon.png"]
-#define IMAGE_SEND_MONEY    [UIImage imageNamed:@"send_money_icon2"]
-#define IMAGE_WARNING       [UIImage imageNamed:@"auth_info_warning_icon.png"]
+#define IMAGE_LOGIN         [UIImage imageNamed:@"auth_info_login_icon"]
+#define IMAGE_CARD          [UIImage imageNamed:@"card_checking_info_icon"]
+#define IMAGE_WARNING       [UIImage imageNamed:@"auth_info_warning_icon"]
 
 #define COLOR_DEFAULT       [UIColor colorWithRed:0.55 green:0.543 blue:0.56 alpha:1.0]
 
@@ -47,16 +45,8 @@
             [self setImage:IMAGE_LOGIN warning:NO];
             break;
             
-        case InfoStatePhone:
-            [self setImage:IMAGE_PHONE warning:NO];
-            break;
-        
-        case InfoStatePin:
-            [self setImage:IMAGE_PIN warning:NO];
-            break;
-            
-        case InfoStateSendMoney:
-            [self setImage:IMAGE_SEND_MONEY warning:NO];
+        case InfoStateCard:
+            [self setImage:IMAGE_CARD warning:NO];
             break;
         
         case InfoStateWaring:

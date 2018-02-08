@@ -75,6 +75,16 @@
     [USER_DEFAULTS synchronize];
 }
 
+- (void)clean
+{
+    self.exist = NO;
+    
+    [USER_DEFAULTS removeObjectForKey: kMandatoryData];
+    [USER_DEFAULTS synchronize];
+    
+    [self onSuccess: @"%@ => %@", CURRENT_CLASS, [self debugDescription]];
+}
+
 #pragma mark - Debug
 
 - (NSString *)currentClass {

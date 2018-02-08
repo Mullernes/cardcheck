@@ -61,6 +61,14 @@ static dispatch_once_t onceToken;
     return self;
 }
 
+- (void)setupDemo
+{
+    [self setPlugged: YES];
+    [self setDeviceID: DEMO_READER_ID];
+    [self setCustomID: DEMO_CUSTOM_ID];
+    [self setTrackData: [AesTrackData demoData]];
+}
+
 - (BOOL)isReady
 {
     return (self.isPlugged && self.deviceID && self.customID)? YES : NO;
@@ -69,13 +77,13 @@ static dispatch_once_t onceToken;
 - (void)setupWithDeviceID:(NSString *)deviceID
 {
     //TODO: check input data
-    [self setDeviceID: deviceID];
+    [self setDeviceID: [deviceID lowercaseString]];
 }
 
 - (void)setupWithCustomID:(NSString *)customID
 {
     //TODO: check input data
-    [self setCustomID: customID];
+    [self setCustomID: [customID lowercaseString]];
 }
 
 #pragma mark - Debug
@@ -85,7 +93,7 @@ static dispatch_once_t onceToken;
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@; \n plugged = %@ \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@ \n\n", self, (self.isPlugged? @"YES" : @"NO"), (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID];
+    return [NSString stringWithFormat:@"%@; \n plugged = %@ \n type = %lu, \n lowBattery = %i, \n deviceID = %@, \n customID = %@ \n\n, \n trackData = %@ \n\n", self, (self.isPlugged? @"YES" : @"NO"), (unsigned long)self.type, self.lowBattery, self.deviceID, self.customID, [self.trackData debugDescription]];
 }
 
 @end

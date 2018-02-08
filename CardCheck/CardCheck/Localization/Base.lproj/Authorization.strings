@@ -10,10 +10,10 @@
 /* Info View */
 "auth_loginID_info_default_text"    = "Welcome to mobile card checking application";
 "dev_initialize_info_default_text"   = "Please, check your mail and enter the password";
+"card_checked_info_success_text"   = "Your card has been checked with success";
 
 /* Input View */
-"login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers), or phone number, or email";
-"password_equality_validation_text"     = "Passwords must be the same";
+"login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers)";
 "password_invalid_validation_text"      = "Invalid password. please, try again";
 "password_default_validation_text"      = "Password must contain at least 4 symbols";
 
@@ -43,5 +43,6 @@
 
 "login_is_already_exists" = "COULDN'T SIGNUP. SUCH LOGIN ALREADY EXISTS";
 "dealer_word_is_not_exists" = "COULDN'T SIGNUP. INCORRECT INVITATION";
+
 
 

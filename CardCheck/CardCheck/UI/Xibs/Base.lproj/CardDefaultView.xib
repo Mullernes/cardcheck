@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CardDefaultView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXg-2T-gEA">
+                    <rect key="frame" x="280" y="364.5" width="39" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="fsp-e0-cbO"/>
+                    </constraints>
+                    <state key="normal" title="Reset"/>
+                    <connections>
+                        <action selector="reset:" destination="iN0-l3-epB" eventType="touchUpInside" id="MVL-nA-r2m"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="1. Переконайтеся, що пристирій зчитування карток підєднанно налаженим чином до Вашого телефону " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LMQ-G1-nx8">
+                    <rect key="frame" x="32" y="210.5" width="536" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Bd1-Xp-o0F"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Для успішного зчитування проведіть картку з рівномірною швидкістю через зчитувач" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7Df-cy-fkb">
+                    <rect key="frame" x="32" y="288.5" width="536" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="6Y8-V5-Jxp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8r-ib-IY2">
+                    <rect key="frame" x="239" y="410.5" width="121" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="leB-5T-kSy"/>
+                    </constraints>
+                    <state key="normal" title="Check DemoCard"/>
+                    <connections>
+                        <action selector="checkDemo:" destination="iN0-l3-epB" eventType="touchUpInside" id="m9Y-SL-Qr9"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="acr32_promo" translatesAutoresizingMaskIntoConstraints="NO" id="745-v7-Xtx">
+                    <rect key="frame" x="199" y="0.0" width="201" height="192.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="201" id="Pqc-Ml-iOr"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="745-v7-Xtx" firstAttribute="width" secondItem="745-v7-Xtx" secondAttribute="height" multiplier="358/342" id="9hK-9Y-6Vk"/>
+                <constraint firstItem="s8r-ib-IY2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Awq-14-6rD"/>
+                <constraint firstItem="LMQ-G1-nx8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="CVK-De-2dX"/>
+                <constraint firstItem="LMQ-G1-nx8" firstAttribute="top" secondItem="745-v7-Xtx" secondAttribute="bottom" constant="18" id="Hs7-QI-GtS"/>
+                <constraint firstItem="745-v7-Xtx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IDQ-v7-YiF"/>
+                <constraint firstItem="745-v7-Xtx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IS4-Sw-Ip8"/>
+                <constraint firstItem="FXg-2T-gEA" firstAttribute="top" secondItem="7Df-cy-fkb" secondAttribute="bottom" constant="16" id="L6M-GI-fCs"/>
+                <constraint firstItem="FXg-2T-gEA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LrI-Ex-yaQ"/>
+                <constraint firstItem="s8r-ib-IY2" firstAttribute="top" secondItem="FXg-2T-gEA" secondAttribute="bottom" constant="16" id="MQZ-Lf-mkv"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s8r-ib-IY2" secondAttribute="bottom" id="PWq-qQ-j4d"/>
+                <constraint firstAttribute="trailing" secondItem="7Df-cy-fkb" secondAttribute="trailing" constant="32" id="ZEB-jR-CeT"/>
+                <constraint firstAttribute="trailing" secondItem="LMQ-G1-nx8" secondAttribute="trailing" constant="32" id="flv-TL-gLu"/>
+                <constraint firstItem="7Df-cy-fkb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="ijD-dk-YbA"/>
+                <constraint firstItem="7Df-cy-fkb" firstAttribute="top" secondItem="LMQ-G1-nx8" secondAttribute="bottom" constant="18" id="spW-fX-m06"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-290" y="-159"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="acr32_promo" width="358" height="342"/>
+    </resources>
+</document>

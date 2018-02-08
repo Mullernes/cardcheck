@@ -92,7 +92,7 @@
     self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
     
-    [self.readerController start];
+    [self.readerController startIfNeeded];
 }
 
 - (IBAction)reset:(id)sender {
@@ -302,9 +302,9 @@
 
 #pragma mark - ReaderControllerDelegate
 
-- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader
 {
-    NSLog(@"%@: data => %@", CURRENT_METHOD, [data debugDescription]);
+    NSLog(@"%@: data => %@", CURRENT_METHOD, [reader debugDescription]);
 }
 
 #pragma mark - CardImagePickerDelegate

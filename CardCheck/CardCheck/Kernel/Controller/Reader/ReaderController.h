@@ -9,18 +9,22 @@
 #import "KLBaseController.h"
 
 @protocol ReaderControllerDelegate;
+typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 @interface ReaderController : KLBaseController
 
+@property (nonatomic) ReaderPluggedHandler pluggedHandler;
 @property (nonatomic, weak) id<ReaderControllerDelegate>delegate;
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
-- (void)start;
+- (void)startIfNeeded;
 - (void)reset;
+
+- (void)demoMode;
 
 @end
 
 @protocol ReaderControllerDelegate <NSObject>
-- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)data;
+- (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader;
 @end

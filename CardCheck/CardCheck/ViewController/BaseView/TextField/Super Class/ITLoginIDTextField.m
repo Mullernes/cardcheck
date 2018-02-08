@@ -24,24 +24,25 @@
 
 - (BOOL)isValid
 {
-    return YES;
-//    BOOL isValid = NO;
-//
-//    if (self.isPhone) {
-//        isValid = [[self.text XTSemanticPhone] XTIsPhoneLogin];
-//    }
-//    else {
-//        isValid = ([self.text XTIsGeneralLogin] || [self.text XTIsEmailLogin]);
-//    }
-//
-//    self.validationWarning = (!isValid)? lValidationWarning : nil;
-//
-//    return isValid;
+    BOOL isValid = [self isGeneralLogin: self.text];
+
+    self.validationWarning = (!isValid)? lValidationWarning : nil;
+
+    return DEMO_AUTH? YES : isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
 {
     return YES;
+}
+
+- (BOOL)isGeneralLogin:(NSString *)login
+{
+    NSString *regex = @"^([a-z]{1}[a-z0-9-.]{3,31})$";
+    NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isValid = [predTest evaluateWithObject: [login lowercaseString]];
+    
+    return isValid;
 }
 
 @end

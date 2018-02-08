@@ -9,8 +9,11 @@
 #ifndef KLBaseAppConstants_H
 #define KLBaseAppConstants_H
 
-#define DEMO_MODE           1
+#define DEMO_MODE           0
+
+#define DEMO_AUTH           0
 #define DEMO_LOGIN          @"vlad57981"
+
 #define DEMO_READER_ID      @"64bc2e5107fe2924"
 #define DEMO_CUSTOM_ID      @"b745ec0fdf5c9e94db10"
 
@@ -26,6 +29,7 @@
 #define API_AUTH_TARGET         @"init/auth"
 #define API_DEV_INIT_TARGET     @"init/device"
 
+#define API_CARD_TEST_TARGET                @"card/test"
 #define API_CARD_CHECK_TARGET               @"card/check"
 #define API_CARD_CHECK_COMPLETE_TARGET      @"card/checkComplete"
 #define API_CARD_UPLOAD_IMAGE_TARGET        @"card/image"

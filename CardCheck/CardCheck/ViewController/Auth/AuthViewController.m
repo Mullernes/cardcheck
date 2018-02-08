@@ -81,8 +81,7 @@
 
 - (AuthLoginView *)loginIDView
 {
-    if (!_loginIDView)
-    {
+    if (!_loginIDView) {
         _loginIDView = [AuthLoginView viewWithDelegate: self];
         _loginIDView.frame = self.contentView.bounds;
     }
@@ -92,13 +91,21 @@
 
 - (DeviceInitializationView *)devInitView
 {
-    if (!_devInitView)
-    {
+    if (!_devInitView) {
         _devInitView = [DeviceInitializationView viewWithDelegate: self];
         _devInitView.frame = self.contentView.bounds;
     }
     
     return _devInitView;
+}
+
+- (InitializationData *)devInitData
+{
+    if (!_devInitData) {
+        _devInitData = [InitializationData new];
+    }
+    
+    return _devInitData;
 }
 
 #pragma mark - Brand
@@ -128,6 +135,8 @@
 - (void)showInitializationView
 {
     [self.devInitView prepareUi];
+    [self.devInitView setupWithRequestID: self.devInitData.authRequestID];
+    
     [self showView: self.devInitView reverse: NO];
 }
 
@@ -169,7 +178,7 @@
     [self.authView setLoading: YES];
     
     //2
-    NSString *login = DEMO_MODE? DEMO_LOGIN : loginID.text;
+    NSString *login = (DEMO_AUTH && !loginID.text.length)? DEMO_LOGIN : loginID.text;
     
     //3
     AuthRequestModel *request = [AuthRequestModel requestWithLogin: login
@@ -179,31 +188,31 @@
                                      withCompletion:^(AuthResponseModel *model, NSError *error) {
                                          if (model.isCorrect)
                                          {
-                                             [weakSelf.authView setCorrect: YES];
-                                             [weakSelf showInitializationView];
-                                             
-                                             weakSelf.devInitData = [InitializationData new];
                                              [weakSelf.devInitData setupWithAuthResponse: model];
                                              NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+                                             
+                                             [weakSelf.authView setCorrect: YES];
+                                             [weakSelf showInitializationView];
                                          }
                                          else {
-                                             [weakSelf.authView setLoading: NO];
-
                                              NSLog(@"response = %@", model);
+                                             
+                                             [weakSelf.authView failedStateWithError: error];
                                          }
                                      }];
 }
 
 - (void)checkPassword:(NSString *)password
 {
-    //1 - check requestID
-    long typedRequestID = DEMO_MODE? self.devInitData.authRequestID : [self.devInitView.passwordTextField.text longLongValue];
+    //1
+    long typedRequestID = self.devInitData.authRequestID;
     if (typedRequestID == self.devInitData.authRequestID)
     {
         [self calcOtp];
         
         //2 - check password
-        NSString *typedOtp = DEMO_MODE? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
+        BOOL demoAuth = (DEMO_AUTH && !self.devInitView.retypePasswordTextField.text.length)?YES:NO;
+        NSString *typedOtp =  demoAuth? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
         if ([self.devInitData.otp isEqualToString: typedOtp])
         {
             [self.devInitView setLoading: YES];
@@ -223,18 +232,18 @@
                                                         [weakSelf completeInitialization];
                                                     }
                                                     else {
-                                                        [self.devInitView setLoading: YES];
-                                                        
                                                         NSLog(@"response = %@", model);
+                                                        
+                                                        [weakSelf.devInitView failedStateWithError: error];
                                                     }
                                                 }];
         }
         else {
-            //TODO: incorrect password
+            [self.devInitView failedStateWithError: nil];
         }
     }
     else {
-        //TODO: incorrect requestID
+        [self.devInitView failedStateWithError: nil];
     }
 }
 
@@ -283,6 +292,8 @@
     [manData save];
     
     NSLog(@"MandatoryData = %@", [manData debugDescription]);
+    
+    [self.rootViewController showMain: nil];
 }
 
 #pragma mark - ITValidationDelegate

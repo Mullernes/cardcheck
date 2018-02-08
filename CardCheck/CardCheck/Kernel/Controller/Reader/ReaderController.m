@@ -59,17 +59,18 @@
     return self;
 }
 
-- (void)start
+- (void)startIfNeeded
 {
     [self onInfo: CURRENT_METHOD];
+    
+    if (self.reader) return;
     
     self.responseCondition = [[NSCondition alloc] init];
     
     self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
     [self.reader setDelegate: self];
-    
-    // Set mute to YES if the reader is unplugged, otherwise NO.
-    self.reader.mute = !AJDIsReaderPlugged();
+
+    [self setPlugged: AJDIsReaderPlugged()];
     
     // Listen the audio route change.
     AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,
@@ -96,7 +97,26 @@
     }];
 }
 
+- (void)demoMode
+{
+    [self.cardReader setupDemo];
+    
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+    
+    [self didUpdateReader];
+}
+
 #pragma mark - Accessors
+
+- (void)setDelegate:(id<ReaderControllerDelegate>)delegate
+{
+    _delegate = delegate;
+    if (_delegate) {
+        [self didUpdateReader];
+    }
+}
 
 - (void)setPlugged:(BOOL)plugged
 {
@@ -105,12 +125,23 @@
     [self.reader setMute: !plugged];
     [self.cardReader setPlugged: plugged];
     
-    [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-    
     if (self.cardReader.isPlugged) {
-        [self requestDeviceIDIfNeeded];
         [self requestCustomIDIfNeeded];
+        [self requestDeviceIDIfNeeded];
     }
+    
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+}
+
+#pragma mark - Working methods
+
+- (void)didUpdateReader
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate readerController: self didUpdateWithReader: self.cardReader];
+    });
 }
 
 - (void)requestCustomIDIfNeeded
@@ -147,12 +178,11 @@
         }
     }
     
-    if (self.customIDReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-        });
-        
-    } else if (self.resultReady) {
+    if (self.customIDReady)
+    {
+        [self didUpdateReader];
+    }
+    else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = [self completionError: [self currentClass]
                                          andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
@@ -207,12 +237,11 @@
         }
     }
     
-    if (self.deviceIDReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
-        });
-        
-    } else if (self.resultReady) {
+    if (self.deviceIDReady)
+    {
+        [self didUpdateReader];
+    }
+    else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = [self completionError: [self currentClass]
                                          andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
@@ -253,7 +282,7 @@
 
 - (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
 {
-    NSLog(@"didSendTrackData");
+    NSLog(@"didSendTrackData...");
     
     NSString *errorString = nil;
     
@@ -264,11 +293,18 @@
         {
             ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
             
-            NSLog(@"Success");
+            AesTrackData *trackData = [AesTrackData emptyData];
+            [trackData setTr1Code: 0];
+            [trackData setTr2Code: 0];
+            [trackData setTr1Length: (int)(aesTrackData.track1Length)];
+            [trackData setTr2Length: (int)(aesTrackData.track2Length)];
+            [trackData setPlainHexData: [HexCvtr hexFromData: aesTrackData.trackData]];
             
-            NSLog(@"trackData.track1Length = %li", trackData.track1Length);
-            NSLog(@"trackData.track2Length = %li", trackData.track2Length);
-            NSLog(@"trackData = %@", [HexCvtr hexFromData: aesTrackData.trackData]);
+            NSLog(@"Generate trackData with Success: %@", [trackData debugDescription]);
+            [self.cardReader setTrackData: trackData];
+            
+            //
+            [self didUpdateReader];
         }
         else {
             XT_MAKE_EXEPTION;
