@@ -78,7 +78,7 @@
                                     (__bridge void *) self);
 }
 
-- (void)reset
+- (void)resetReaderController
 {
     // Show the progress.
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
@@ -97,9 +97,9 @@
     }];
 }
 
-- (void)demoMode
+- (void)startDemoMode
 {
-    [self.cardReader setupDemoIfNeeded];
+    [self.cardReader setupDemoReaderIfNeeded];
     
     if (self.pluggedHandler) {
         self.pluggedHandler(self.cardReader);
@@ -116,6 +116,8 @@
     if (_delegate) {
         [self didUpdateReader];
     }
+    
+    [self startIfNeeded];
 }
 
 - (void)setPlugged:(BOOL)plugged
@@ -293,7 +295,7 @@
         {
             ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
             
-            AesTrackData *trackData = [AesTrackData emptyData];
+            AesTrackData *trackData = [AesTrackData emptyTrack];
             [trackData setTr1Code: 0];
             [trackData setTr2Code: 0];
             [trackData setTr1Length: (int)(aesTrackData.track1Length)];

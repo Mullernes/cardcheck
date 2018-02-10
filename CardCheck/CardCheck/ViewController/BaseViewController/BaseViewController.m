@@ -24,6 +24,40 @@
     [super viewWillAppear: animated];
 }
 
+#pragma mark - Accessors
+
+- (KeyChainData *)keyChain {
+    if (_keyChain == nil) {
+        _keyChain = [KeyChainData sharedInstance];
+    }
+    
+    return _keyChain;
+}
+
+- (CardReader *)currentReader {
+    if (_currentReader == nil) {
+        _currentReader = [CardReader sharedInstance];
+    }
+    
+    return _currentReader;
+}
+
+- (MandatoryData *)mandatoryData {
+    if (_mandatoryData == nil) {
+        _mandatoryData = [MandatoryData sharedInstance];
+    }
+    
+    return _mandatoryData;
+}
+
+- (ReaderController *)readerController {
+    if (_readerController == nil) {
+        _readerController = [ReaderController sharedInstance];
+    }
+    
+    return _readerController;
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if ([self respondsToSelector:@selector(traitCollection)])

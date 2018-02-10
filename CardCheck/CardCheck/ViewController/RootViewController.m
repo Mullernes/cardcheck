@@ -110,7 +110,21 @@
         else {
             [self showStatusConnecting];
         }
+        [self checkReaderCompatibility: reader];
     }];
+}
+
+- (void)checkReaderCompatibility:(CardReader *)reader
+{
+    if (reader.isReady) {
+        MandatoryData *data = [MandatoryData sharedInstance];
+        if (data.isExist && (NO == [data.deviceID isEqualToString: reader.deviceID])) {
+            [self showAuth: nil];
+        }
+        else {
+            [[KeyChainData sharedInstance] resetKeys];
+        }
+    }
 }
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender

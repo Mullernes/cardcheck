@@ -21,22 +21,13 @@ static dispatch_once_t onceToken;
 
 @implementation CardReader
 
-+ (instancetype)demoData {
-    CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
-                                                  customID: DEMO_CUSTOM_ID
-                                                   andType: 1];
-    [reader setTrackData: [AesTrackData demoData]];
-    
-    return reader;
-}
-
 + (instancetype)sharedInstance
 {
     static CardReader *reader;
     
     dispatch_once(&onceToken, ^{
         if (DEMO_MODE) {
-            reader = [CardReader demoData];
+            reader = [CardReader demoReader];
         }
         else {
             reader = [[self alloc] initWithDevID: nil customID: nil andType: 1];
@@ -61,10 +52,19 @@ static dispatch_once_t onceToken;
     return self;
 }
 
-- (void)setupDemoIfNeeded
++ (instancetype)demoReader {
+    CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
+                                                  customID: DEMO_CUSTOM_ID
+                                                   andType: 1];
+    [reader setTrackData: [AesTrackData demoTrack]];
+    
+    return reader;
+}
+
+- (void)setupDemoReaderIfNeeded
 {
     [self setPlugged: YES];
-    [self setTrackData: [AesTrackData demoData]];
+    [self setTrackData: [AesTrackData demoTrack]];
     
     if (!self.deviceID || !self.customID)
     {

@@ -10,20 +10,11 @@
 
 @interface AesTrackData()
 
-//@property (nonatomic, readwrite) int tr1Code;
-//@property (nonatomic, readwrite) int tr1Length;
-//
-//@property (nonatomic, readwrite) int tr2Code;
-//@property (nonatomic, readwrite) int tr2Length;
-//
-//@property (nonatomic, readwrite) NSString *plainHexData;
-//@property (nonatomic, readwrite) NSString *cipherHexData;   //aes256
-
 @end
 
 @implementation AesTrackData
 
-+ (instancetype)demoData {
++ (instancetype)demoTrack {
     AesTrackData *data = [AesTrackData new];
     [data setTr1Code: 0];
     [data setTr1Length: 69];
@@ -36,7 +27,7 @@
     return data;
 }
 
-+ (instancetype)emptyData {
++ (instancetype)emptyTrack {
     AesTrackData *data = [AesTrackData new];
     return data;
 }

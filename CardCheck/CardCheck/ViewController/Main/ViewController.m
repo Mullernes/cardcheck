@@ -35,7 +35,7 @@
     //Base init
     self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
-    self.currentReader = [CardReader demoData];
+    self.currentReader = [CardReader demoReader];
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
 
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
@@ -91,13 +91,11 @@
 - (IBAction)start:(id)sender {
     self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
-    
-    [self.readerController startIfNeeded];
 }
 
 - (IBAction)reset:(id)sender {
     self.readerController = [ReaderController sharedInstance];
-    [self.readerController reset];
+    [self.readerController resetReaderController];
 }
 
 - (IBAction)auth:(id)sender
@@ -160,7 +158,7 @@
 {
     self.stackOfResponse = @[];
     
-    AesTrackData *trackData = [AesTrackData demoData];
+    AesTrackData *trackData = [AesTrackData demoTrack];
     
     CryptoController *crp = [CryptoController sharedInstance];
     NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
@@ -199,7 +197,7 @@
 
 - (IBAction)completeCheckCard:(id)sender
 {
-    AesTrackData *trackData = [AesTrackData demoData];
+    AesTrackData *trackData = [AesTrackData demoTrack];
     trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
     
     CryptoController *crp = [CryptoController sharedInstance];

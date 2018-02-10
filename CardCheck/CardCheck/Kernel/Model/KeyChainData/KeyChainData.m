@@ -43,7 +43,7 @@ static dispatch_once_t onceToken;
     return self;
 }
 
-- (void)reset
+- (void)resetKeys
 {
     [self setCustomId: [[CardReader sharedInstance] customID]];
     [self setAppDataKey: [[MandatoryData sharedInstance] appDataKey]];

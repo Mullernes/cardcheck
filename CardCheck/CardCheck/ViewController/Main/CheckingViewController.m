@@ -8,17 +8,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-@property (nonatomic, strong) KeyChainData *keyChain;
-@property (nonatomic, strong) CardReader *currentReader;
-@property (nonatomic, strong) InitializationData *devInitData;
-
-@property (nonatomic, strong) ReaderController *readerController;
-@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
-
-@property (nonatomic, strong) NSArray *stackOfResponse;
-
 @property (nonatomic, strong) CardCheckedView *cardCheckedView;
 @property (nonatomic, strong) CardDefaultView *cardDefaultView;
+
+@property (nonatomic, strong) NSArray *stackOfResponse;
+@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
 
 @end
 
@@ -33,16 +27,7 @@
 {
     [super viewWillAppear: animated];
 
-    self.readerController = [ReaderController sharedInstance];
-    [self.readerController setDelegate: self];
-    
-    //Base init
-    self.stackOfResponse = @[];
-    self.keyChain = [KeyChainData sharedInstance];
-    [self.keyChain reset];
-    
-    self.currentReader = [CardReader sharedInstance];
-    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    [self baseDataSetup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -53,6 +38,13 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+}
+
+- (void)baseDataSetup
+{
+    self.stackOfResponse = @[];
+    [self.readerController setDelegate: self];
+    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
 }
 
 #pragma mark - Accessors
@@ -177,7 +169,7 @@
 
 - (void)completeCheckCard
 {
-    AesTrackData *trackData = [AesTrackData demoData];
+    AesTrackData *trackData = [AesTrackData demoTrack];
     trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
     
     CryptoController *crp = [CryptoController sharedInstance];
@@ -270,13 +262,13 @@
 
 - (void)cardViewResetPressed:(CardDefaultView *)view
 {
-    [self.readerController reset];
+    [self.readerController resetReaderController];
     [self.currentReader setTrackData: nil];
 }
 
 - (void)cardViewCheckDemoPressed:(CardDefaultView *)view
 {
-    [self checkCardData: [AesTrackData demoData]];
+    [self checkCardData: [AesTrackData demoTrack]];
 }
 
 @end

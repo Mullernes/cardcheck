@@ -46,7 +46,7 @@
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
-- (void)reset;
+- (void)resetKeys;
 
 @end
 

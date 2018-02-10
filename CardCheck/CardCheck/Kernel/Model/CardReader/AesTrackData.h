@@ -19,8 +19,8 @@
 @property (nonatomic, strong) NSString *plainHexData;
 @property (nonatomic, strong) NSString *cipherHexData;   //aes256
 
-+ (instancetype)demoData;
-+ (instancetype)emptyData;
++ (instancetype)demoTrack;
++ (instancetype)emptyTrack;
 
 - (BOOL)isExist;
 

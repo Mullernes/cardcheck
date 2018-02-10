@@ -39,8 +39,6 @@
 @property (nonatomic, strong) ITKeyboardObserver *keyboardObserver;
 @property (nonatomic, strong) ITTextFieldValidator *textFieldValidator;
 
-@property (nonatomic, strong) KeyChainData *keyChain;
-@property (nonatomic, strong) CardReader *currentReader;
 @property (nonatomic, strong) InitializationData *devInitData;
 
 
@@ -53,7 +51,6 @@
     [super viewDidLoad];
  
     [self baseUISetup];
-    [self baseDataSetup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -166,12 +163,6 @@
 
 #pragma mark - Working
 
-- (void)baseDataSetup
-{
-    self.keyChain = [KeyChainData sharedInstance];
-    self.currentReader = [CardReader sharedInstance];
-}
-
 - (void)checkLogin:(ITTextField *)loginID
 {
     //1
@@ -282,17 +273,19 @@
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     
     //Complete
-    MandatoryData *manData = [MandatoryData sharedInstance];
-    [manData setAppID: self.devInitData.appID];
-    [manData setDeviceID: self.currentReader.deviceID];
+    [self.mandatoryData setAppID: self.devInitData.appID];
+    [self.mandatoryData setDeviceID: self.currentReader.deviceID];
     
-    [manData setAppDataKey: self.keyChain.appDataKey];
-    [manData setAppCommKey: self.keyChain.appCommKey];
+    [self.mandatoryData setAppDataKey: self.keyChain.appDataKey];
+    [self.mandatoryData setAppCommKey: self.keyChain.appCommKey];
     
-    [manData save];
+    [self.mandatoryData save];
+    NSLog(@"MandatoryData = %@", [self.mandatoryData debugDescription]);
     
-    NSLog(@"MandatoryData = %@", [manData debugDescription]);
-    
+    //Keys
+    [[KeyChainData sharedInstance] resetKeys];
+
+    //Finish
     [self.rootViewController showMain: nil];
 }
 

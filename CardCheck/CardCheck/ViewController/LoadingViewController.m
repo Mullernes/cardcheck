@@ -10,8 +10,6 @@
 
 @interface LoadingViewController ()<ReaderControllerDelegate>
 
-@property (nonatomic, strong) ReaderController *readerController;
-
 @end
 
 
@@ -73,9 +71,7 @@
 
 - (void)setupReaderController
 {
-    self.readerController = [ReaderController sharedInstance];
     [self.readerController setDelegate: self];
-    [self.readerController startIfNeeded];
 }
 
 - (void)handleReader:(CardReader *)reader
@@ -88,11 +84,7 @@
         [self.activityView stopAnimating];
         
         //2
-        [[KeyChainData sharedInstance] reset];
-        MandatoryData *data = [MandatoryData sharedInstance];
-        
-        //3
-        if (data.isExist && [data.deviceID isEqualToString: reader.deviceID]) {
+        if (self.mandatoryData.isExist && [self.mandatoryData.deviceID isEqualToString: reader.deviceID]) {
             [self.rootViewController showMain: nil];
         }
         else {
@@ -110,7 +102,7 @@
 
 - (IBAction)test:(id)sender
 {
-    [self.readerController demoMode];
+    [self.readerController startDemoMode];
 }
 
 #pragma mark - ReaderControllerDelegate

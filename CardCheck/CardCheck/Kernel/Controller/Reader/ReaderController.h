@@ -18,10 +18,9 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 #pragma mark - Init
 + (instancetype)sharedInstance;
-- (void)startIfNeeded;
-- (void)reset;
+- (void)resetReaderController;
 
-- (void)demoMode;
+- (void)startDemoMode;
 
 @end
 
