@@ -128,8 +128,7 @@
     [self.cardReader setPlugged: plugged];
     
     if (self.cardReader.isPlugged) {
-        [self requestCustomIDIfNeeded];
-        [self requestDeviceIDIfNeeded];
+        [self requestPrimaryDataIdNeeded];
     }
     
     if (self.pluggedHandler) {
@@ -146,31 +145,41 @@
     });
 }
 
-- (void)requestCustomIDIfNeeded
+- (void)requestPrimaryDataIdNeeded
 {
     [self onInfo: CURRENT_METHOD];
     
-    if (self.cardReader.customID == nil)
-    {
-        // Reset the reader.
-        [self.reader resetWithCompletion:^{
-            
-            self.resultReady = NO;
-            self.customIDReady = NO;
-            
-            if (NO == [self.reader getCustomId]) {
-                NSLog(@"The request cannot be queued");
-            } else {
-                [self requestCustomID];
-            }
-        }];
+    if (self.cardReader.customID == nil) {
+        [self tryRequestCustomID];
     }
+    else if (self.cardReader.deviceID == nil) {
+        [self tryRequestDeviceID];
+    }
+    else {
+        [self didUpdateReader];
+    }
+}
+
+- (void)tryRequestCustomID
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    // Reset the reader.
+    [self.reader resetWithCompletion:^{
+        
+        self.resultReady = NO;
+        self.customIDReady = NO;
+        
+        if (NO == [self.reader getCustomId]) {
+            NSLog(@"The request cannot be queued");
+        } else {
+            [self requestCustomID];
+        }
+    }];
 }
 
 - (void)requestCustomID
 {
-    [self onInfo: CURRENT_METHOD];
-    
     [self.responseCondition lock];
     
     // Wait for the custom ID.
@@ -182,7 +191,7 @@
     
     if (self.customIDReady)
     {
-        [self didUpdateReader];
+        [self requestPrimaryDataIdNeeded];
     }
     else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -205,25 +214,22 @@
     [self.responseCondition unlock];
 }
 
-- (void)requestDeviceIDIfNeeded
+- (void)tryRequestDeviceID
 {
     [self onInfo: CURRENT_METHOD];
     
-    if (self.cardReader.deviceID == nil)
-    {
-        // Reset the reader.
-        [self.reader resetWithCompletion:^{
-            
-            self.resultReady = NO;
-            self.deviceIDReady = NO;
-            
-            if (NO == [self.reader getDeviceId]) {
-                NSLog(@"The request cannot be queued");
-            } else {
-                [self requestDeviceID];
-            }
-        }];
-    }
+    // Reset the reader.
+    [self.reader resetWithCompletion:^{
+        
+        self.resultReady = NO;
+        self.deviceIDReady = NO;
+        
+        if (NO == [self.reader getDeviceId]) {
+            NSLog(@"The request cannot be queued");
+        } else {
+            [self requestDeviceID];
+        }
+    }];
 }
 
 - (void)requestDeviceID
@@ -241,7 +247,7 @@
     
     if (self.deviceIDReady)
     {
-        [self didUpdateReader];
+        [self requestPrimaryDataIdNeeded];
     }
     else if (self.resultReady) {
         dispatch_async(dispatch_get_main_queue(), ^{

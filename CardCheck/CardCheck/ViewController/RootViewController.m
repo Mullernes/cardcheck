@@ -122,7 +122,7 @@
             [self showAuth: nil];
         }
         else {
-            [[KeyChainData sharedInstance] resetKeys];
+            [[KeyChainData sharedInstance] updateKeys];
         }
     }
 }
