@@ -283,7 +283,7 @@
     NSLog(@"MandatoryData = %@", [self.mandatoryData debugDescription]);
     
     //Keys
-    [[KeyChainData sharedInstance] resetKeys];
+    [[KeyChainData sharedInstance] updateKeys];
 
     //Finish
     [self.rootViewController showMain: nil];

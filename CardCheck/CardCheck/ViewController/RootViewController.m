@@ -12,6 +12,8 @@
 #import "RootViewController.h"
 #import "CWStatusBarNotification.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface RootViewController ()
 
@@ -81,8 +83,6 @@
     }
 }
 
-#pragma mark - Status Bar
-
 - (void)showStatusConnecting
 {
     XT_EXEPTION_NOT_MAIN_THREAD;
@@ -103,13 +103,19 @@
 {
     [self setupUi];
     
-    [[ReaderController sharedInstance] setPluggedHandler:^(CardReader *reader) {
-        if (reader.isPlugged) {
+    [[ReaderController sharedInstance] setPluggedHandler:^(CardReader *reader)
+    {
+        if (reader.isPlugged)
+        {
+            [self setVolume: 1.0f];
             [self showStatusConnected];
         }
-        else {
+        else
+        {
+            [self setVolume: 0.5f];
             [self showStatusConnecting];
         }
+        
         [self checkReaderCompatibility: reader];
     }];
 }
@@ -162,5 +168,42 @@
 {
     [self showViewController:[[UIStoryboard storyboardWithName: STORYBOARD_MAIN bundle:nil] instantiateInitialViewController] sender:sender];
 }
+
+#pragma mark - Utils
+
+- (BOOL)setVolume:(float)volume
+{
+    BOOL rez = NO;
+    
+    if ((volume >= 0.0f) && (volume <= 1.0f))
+    {
+        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+        UISlider *volumeViewSlider = nil;
+        
+        for (UIView *subview in [volumeView subviews])
+        {
+            if ([subview isKindOfClass:[UISlider class]])
+            {
+                volumeViewSlider = (UISlider*)subview;
+                volumeViewSlider.continuous = true;
+                break;
+            }
+        }
+        
+        if (volumeViewSlider)
+        {
+            [volumeViewSlider setValue:volume animated:YES];
+            [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+            
+            rez = YES;
+        }
+    }
+    
+    float currentVolume = [[AVAudioSession sharedInstance] outputVolume];
+    NSLog(@"Plugged: output volume = %1.2f", currentVolume);
+    
+    return rez;
+}
+
 
 @end

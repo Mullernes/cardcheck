@@ -9,7 +9,9 @@
 #import "ReaderController.h"
 
 #import "AudioJack.h"
-#import <AudioToolbox/AudioToolbox.h>
+
+#import <AudioToolbox/AudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface ReaderController()
 
@@ -72,10 +74,16 @@
 
     [self setPlugged: AJDIsReaderPlugged()];
     
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(routeChange:)
+                                                 name: AVAudioSessionRouteChangeNotification
+                                               object: nil];
     // Listen the audio route change.
+    /* Legacy
     AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,
                                     AJDAudioRouteChangeListener,
                                     (__bridge void *) self);
+    */
 }
 
 - (void)resetReaderController
@@ -125,11 +133,10 @@
     [self onInfo: CURRENT_METHOD];
     
     [self.reader setMute: !plugged];
+    
     [self.cardReader setPlugged: plugged];
     
-    if (self.cardReader.isPlugged) {
-        [self requestPrimaryDataIdNeeded];
-    }
+    [self tryRequestPrimaryDataIdNeeded: YES];
     
     if (self.pluggedHandler) {
         self.pluggedHandler(self.cardReader);
@@ -145,129 +152,142 @@
     });
 }
 
-- (void)requestPrimaryDataIdNeeded
+- (void)tryRequestPrimaryDataIdNeeded:(BOOL)shouldReset
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    if ([self.cardReader isReady]) {
+        [self didUpdateReader];
+    }
+    else if (self.cardReader.isPlugged) {
+        if (shouldReset) {
+            [self.reader resetWithCompletion:^{
+                [self requestPrimaryData];
+            }];
+        }
+        else {
+            [self requestPrimaryData];
+        }
+    }
+}
+
+- (void)requestPrimaryData
 {
     [self onInfo: CURRENT_METHOD];
     
     if (self.cardReader.customID == nil) {
-        [self tryRequestCustomID];
+        [self requestCustomID];
     }
     else if (self.cardReader.deviceID == nil) {
-        [self tryRequestDeviceID];
+        [self requestDeviceID];
     }
     else {
         [self didUpdateReader];
     }
 }
 
-- (void)tryRequestCustomID
-{
-    [self onInfo: CURRENT_METHOD];
-    
-    // Reset the reader.
-    [self.reader resetWithCompletion:^{
-        
-        self.resultReady = NO;
-        self.customIDReady = NO;
-        
-        if (NO == [self.reader getCustomId]) {
-            NSLog(@"The request cannot be queued");
-        } else {
-            [self requestCustomID];
-        }
-    }];
-}
-
 - (void)requestCustomID
 {
-    [self.responseCondition lock];
-    
-    // Wait for the custom ID.
-    while ( (NO == self.customIDReady)  && (NO == self.resultReady) ) {
-        if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
-            break;
-        }
-    }
-    
-    if (self.customIDReady)
-    {
-        [self requestPrimaryDataIdNeeded];
-    }
-    else if (self.resultReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error = [self completionError: [self currentClass]
-                                         andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
-            [self onFailure: error];
-        });
-        
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error = [self completionError: [self currentClass]
-                                         andReason: @"%@ Timeout", CURRENT_METHOD];
-            [self onFailure: error];
-        });
-    }
-    
-    self.customIDReady = NO;
-    self.resultReady = NO;
-    
-    [self.responseCondition unlock];
-}
-
-- (void)tryRequestDeviceID
-{
     [self onInfo: CURRENT_METHOD];
     
-    // Reset the reader.
-    [self.reader resetWithCompletion:^{
+    // Init
+    NSError *error = nil;
+    self.resultReady = NO;
+    self.customIDReady = NO;
+    
+    if (NO == [self.reader getCustomId])  {
+        error = [self completionError: [self currentClass]
+                            andReason: @"%@ The request cannot be queued", CURRENT_METHOD];
+    }
+    else {
+        [self.responseCondition lock];
         
-        self.resultReady = NO;
-        self.deviceIDReady = NO;
-        
-        if (NO == [self.reader getDeviceId]) {
-            NSLog(@"The request cannot be queued");
-        } else {
-            [self requestDeviceID];
+        // Wait for the custom ID.
+        while ( (NO == self.customIDReady)  && (NO == self.resultReady) ) {
+            if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
+                break;
+            }
         }
-    }];
+        
+        // Check
+        if (NO == self.customIDReady )
+        {
+            if (self.resultReady) {
+                error = [self completionError: [self currentClass]
+                                    andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
+            }
+            else {
+                error = [self completionError: [self currentClass]
+                                    andReason: @"%@ Timeout", CURRENT_METHOD];
+            }
+        }
+        
+        // Complete
+        self.customIDReady = NO;
+        self.resultReady = NO;
+        
+        [self.responseCondition unlock];
+    }
+    
+    if (error) {
+        [self onFailure: error];
+        [self tryRequestPrimaryDataIdNeeded: YES];
+    }
+    else {
+        [self requestPrimaryData];
+    }
 }
 
 - (void)requestDeviceID
 {
     [self onInfo: CURRENT_METHOD];
     
-    [self.responseCondition lock];
-    
-    // Wait for the custom ID.
-    while ( (NO == self.deviceIDReady)  && (NO == self.resultReady) ) {
-        if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
-            break;
-        }
-    }
-    
-    if (self.deviceIDReady)
-    {
-        [self requestPrimaryDataIdNeeded];
-    }
-    else if (self.resultReady) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error = [self completionError: [self currentClass]
-                                         andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
-            [self onFailure: error];
-        });
-        
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error = [self completionError: [self currentClass]
-                                         andReason: @"%@ Timeout", CURRENT_METHOD];
-            [self onFailure: error];
-        });
-    }
-    
-    self.deviceIDReady = NO;
+    // Init
+    NSError *error = nil;
     self.resultReady = NO;
+    self.deviceIDReady = NO;
     
-    [self.responseCondition unlock];
+    if (NO == [self.reader getDeviceId])  {
+        error = [self completionError: [self currentClass]
+                            andReason: @"%@ The request cannot be queued", CURRENT_METHOD];
+    }
+    else {
+        [self.responseCondition lock];
+        
+        // Wait for the custom ID.
+        while ( (NO == self.deviceIDReady)  && (NO == self.resultReady) ) {
+            if (NO == [self.responseCondition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]]) {
+                break;
+            }
+        }
+        
+        // Check
+        if (NO == self.deviceIDReady )
+        {
+            if (self.resultReady) {
+                error = [self completionError: [self currentClass]
+                                    andReason: @"%@ resultCode = %ui", CURRENT_METHOD, self.result.errorCode];
+            }
+            else {
+                error = [self completionError: [self currentClass]
+                                    andReason: @"%@ Timeout", CURRENT_METHOD];
+            }
+        }
+        
+        // Complete
+        self.deviceIDReady = NO;
+        self.resultReady = NO;
+        
+        [self.responseCondition unlock];
+    }
+    
+    if (error) {
+        [self onFailure: error];
+        [self tryRequestPrimaryDataIdNeeded: YES];
+    }
+    else {
+        [self requestPrimaryData];
+    }
 }
 
 #pragma mark - Audio Jack Reader
@@ -378,25 +398,31 @@
     [self.responseCondition unlock];
 }
 
+#pragma mark - Debugging
+
+- (NSString *)currentClass {
+    return CURRENT_CLASS;
+}
+
 #pragma mark - Private Functions
 
 /**
  * Returns <code>YES</code> if the reader is plugged, otherwise <code>NO</code>.
  */
-static BOOL AJDIsReaderPlugged() {
-    
-    BOOL plugged = NO;
-    CFStringRef route = NULL;
-    UInt32 routeSize = sizeof(route);
-    
-    if (AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &routeSize, &route) == kAudioSessionNoError) {
-        if (CFStringCompare(route, CFSTR("HeadsetInOut"), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
-            plugged = YES;
-        }
-    }
-    
-    return plugged;
-}
+//static BOOL AJDIsReaderPlugged() {
+//
+//    BOOL plugged = NO;
+//    CFStringRef route = NULL;
+//    UInt32 routeSize = sizeof(route);
+//
+//    if (AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &routeSize, &route) == kAudioSessionNoError) {
+//        if (CFStringCompare(route, CFSTR("HeadsetInOut"), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
+//            plugged = YES;
+//        }
+//    }
+//
+//    return plugged;
+//}
 
 /**
  * Listens the audio route change.
@@ -406,22 +432,74 @@ static BOOL AJDIsReaderPlugged() {
  * @param inDataSize   the property size.
  * @param inData       the property.
  */
-static void AJDAudioRouteChangeListener(void *inClientData,
-                                        AudioSessionPropertyID inID,
-                                        UInt32 inDataSize,
-                                        const void *inData) {
+//static void AJDAudioRouteChangeListener(void *inClientData,
+//                                        AudioSessionPropertyID inID,
+//                                        UInt32 inDataSize,
+//                                        const void *inData) {
+//
+//    ReaderController *ctr = (__bridge ReaderController *) inClientData;
+//
+//    // Set mute to YES if the reader is unplugged, otherwise NO.
+//    [ctr setPlugged: AJDIsReaderPlugged()];
+//}
+
+static BOOL AJDIsReaderPlugged() {
+    AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
+    for (AVAudioSessionPortDescription* input in [route inputs])
+    {
+        if ([[input portType] isEqualToString:AVAudioSessionPortHeadsetMic])
+        {
+            for (AVAudioSessionPortDescription* output in [route outputs])
+            {
+                if ([[output portType] isEqualToString:AVAudioSessionPortHeadphones])
+                    return YES;
+            }
+            break;
+        }
+    }
+    return NO;
+}
+
+- (void)routeChange:(NSNotification*)notification
+{
+    NSDictionary *interuptionDict = notification.userInfo;
     
-    ReaderController *ctr = (__bridge ReaderController *) inClientData;
-
-    // Set mute to YES if the reader is unplugged, otherwise NO.
-    [ctr setPlugged: AJDIsReaderPlugged()];
+    NSInteger routeChangeReason = [[interuptionDict valueForKey: AVAudioSessionRouteChangeReasonKey] integerValue];
+    
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+        {
+            // a headset was added or removed
+            NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonNewDeviceAvailable");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setPlugged: AJDIsReaderPlugged()];
+            });
+        }
+            break;
+            
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+        {
+            // a headset was added or removed
+            NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setPlugged: AJDIsReaderPlugged()];
+            });
+        }
+            break;
+            
+        case AVAudioSessionRouteChangeReasonCategoryChange:
+        {
+            // called at start - also when other audio wants to play
+            NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonCategoryChange");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setPlugged: AJDIsReaderPlugged()];
+            });
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
-
-#pragma mark - Debugging
-
-- (NSString *)currentClass {
-    return CURRENT_CLASS;
-}
-
 
 @end
