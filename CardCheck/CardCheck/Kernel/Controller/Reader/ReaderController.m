@@ -141,6 +141,8 @@
     if (self.pluggedHandler) {
         self.pluggedHandler(self.cardReader);
     }
+    
+    [self didUpdateReader];
 }
 
 #pragma mark - Working methods

@@ -17,5 +17,6 @@
 @property (nonatomic, strong) ReaderController *readerController;
 
 - (IBAction)navBack:(id)sender;
+- (void)setupDemoUi;
 
 @end

@@ -66,34 +66,34 @@
                                             <constraint firstAttribute="width" secondItem="4FI-00-ePa" secondAttribute="height" multiplier="358/342" id="g42-bc-jmd"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ідентифікація картрідера" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lF1-f0-k34">
-                                        <rect key="frame" x="22" y="321.5" width="276" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ініціалізація пристрою" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lF1-f0-k34">
+                                        <rect key="frame" x="37.5" y="321.5" width="245" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="На цьому етапі підєднайте, будь ласка, зчитувач карток до вашого телефону" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8T-5K-1YR">
-                                        <rect key="frame" x="12" y="362.5" width="296" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Перевірте, будь ласка, правильність підєднання зчитувача карток до вашого телефону" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8T-5K-1YR">
+                                        <rect key="frame" x="12" y="362.5" width="296" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ADU-sy-46M">
-                                        <rect key="frame" x="150" y="428" width="20" height="20"/>
+                                        <rect key="frame" x="150" y="445" width="20" height="20"/>
                                         <color key="color" red="0.22965973615646362" green="0.52968615293502808" blue="0.75306618213653564" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGm-fV-5Dt">
-                                        <rect key="frame" x="113.5" y="464" width="93" height="30"/>
-                                        <state key="normal" title="Clean all data"/>
+                                        <rect key="frame" x="140.5" y="481" width="39" height="30"/>
+                                        <state key="normal" title="Clean"/>
                                         <connections>
                                             <action selector="clean:" destination="EAH-eo-M1m" eventType="touchUpInside" id="luP-pp-OuC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-uB-pMZ">
-                                        <rect key="frame" x="113" y="494" width="93" height="30"/>
-                                        <state key="normal" title="Demo Reader"/>
+                                        <rect key="frame" x="121" y="511" width="77" height="30"/>
+                                        <state key="normal" title="Start demo"/>
                                         <connections>
-                                            <action selector="test:" destination="EAH-eo-M1m" eventType="touchUpInside" id="OWY-uI-3fu"/>
+                                            <action selector="demo:" destination="EAH-eo-M1m" eventType="touchUpInside" id="oUC-bK-miT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -128,6 +128,9 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="activityView" destination="ADU-sy-46M" id="nqi-d5-GUG"/>
+                        <outlet property="btnClean" destination="QGm-fV-5Dt" id="UNB-Ua-fq2"/>
+                        <outlet property="btnDemo" destination="mie-uB-pMZ" id="84W-9l-VTG"/>
+                        <outlet property="lblDescription" destination="b8T-5K-1YR" id="KYX-XQ-ifc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnJ-3w-3Km" userLabel="First Responder" sceneMemberID="firstResponder"/>

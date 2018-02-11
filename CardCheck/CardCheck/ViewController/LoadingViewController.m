@@ -10,6 +10,11 @@
 
 @interface LoadingViewController ()<ReaderControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnClean;
+@property (weak, nonatomic) IBOutlet UIButton *btnDemo;
+
 @end
 
 
@@ -63,6 +68,12 @@
 
 #pragma mark - Working
 
+- (void)setupDemoUi
+{
+    [self.btnDemo setHidden: !DEMO_MODE];
+    [self.btnClean setHidden: !DEMO_MODE];
+}
+
 - (void)baseSetup
 {
     [self setupReaderController];
@@ -91,6 +102,11 @@
             [self.rootViewController showAuth: nil];
         }
     }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        float value = reader.isPlugged? 0.0 : 1.0;
+        [self.lblDescription.layer setOpacity: value];
+    }];
 }
 
 #pragma mark - Actions
@@ -100,7 +116,7 @@
     [[MandatoryData sharedInstance] clean];
 }
 
-- (IBAction)test:(id)sender
+- (IBAction)demo:(id)sender
 {
     [self.readerController startDemoMode];
 }

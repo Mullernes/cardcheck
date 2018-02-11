@@ -22,6 +22,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    [self setupDemoUi];
 }
 
 #pragma mark - Accessors
@@ -85,6 +87,13 @@
 - (IBAction)navBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Working
+
+- (void)setupDemoUi
+{
+    //Implement in subclass
 }
 
 @end
