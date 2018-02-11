@@ -22,7 +22,9 @@
 
 + (instancetype)loadingController
 {
-    LoadingViewController *controller = [[LoadingViewController alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    LoadingViewController *controller = [[UIStoryboard storyboardWithName: STORYBOARD_ROOT bundle:nil]
+                                         instantiateViewControllerWithIdentifier: LOADING_TARGET];
+    
     return controller;
 }
 
@@ -76,12 +78,7 @@
 
 - (void)baseSetup
 {
-    [self setupReaderController];
     [self.activityView startAnimating];
-}
-
-- (void)setupReaderController
-{
     [self.readerController setDelegate: self];
 }
 
@@ -95,12 +92,7 @@
         [self.activityView stopAnimating];
         
         //2
-        if (self.mandatoryData.isExist && [self.mandatoryData.deviceID isEqualToString: reader.deviceID]) {
-            [self.rootViewController showMain: nil];
-        }
-        else {
-            [self.rootViewController showAuth: nil];
-        }
+        [self.rootViewController checkReaderCompatibility: reader];
     }
     
     [UIView animateWithDuration:0.5 animations:^{

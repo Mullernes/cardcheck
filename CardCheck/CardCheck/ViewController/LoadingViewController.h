@@ -10,6 +10,8 @@
 
 @interface LoadingViewController : BaseViewController
 
++ (instancetype)loadingController;
+
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end

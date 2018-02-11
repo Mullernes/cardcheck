@@ -52,7 +52,7 @@
         <!--Loading View Controller-->
         <scene sceneID="ZcB-ft-LrO">
             <objects>
-                <viewController storyboardIdentifier="Empty" id="EAH-eo-M1m" customClass="LoadingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingTarget" id="EAH-eo-M1m" customClass="LoadingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jXV-y2-dIz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

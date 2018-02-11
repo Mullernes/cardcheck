@@ -11,8 +11,11 @@
 
 #define SIZE_REGULAR                    600.0
 
+#define STORYBOARD_ROOT                 @"Root"
 #define STORYBOARD_MAIN                 @"Main"
 #define STORYBOARD_AUTH                 @"Auth"
+
+#define LOADING_TARGET                  @"LoadingTarget"
 
 #define DEMO_STORYBOARD_MAIN            @"STDemoStoryboard"
 #define DEMO_MAIN_TARGET                @"DemoMainTarget"
