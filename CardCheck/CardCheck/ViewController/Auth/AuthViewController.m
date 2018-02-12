@@ -12,20 +12,6 @@
 #define TAG_AUTH_PASSWORD               301
 
 
-#define lAlertPhoneConfirmMessage             NSLocalizedStringFromTable(@"auth_loginID_phone_alert_message_text",             @"Authorization",   @"LoginID Alerts")
-#define lAlertPhoneConfirmBtnChange           NSLocalizedStringFromTable(@"auth_loginID_phone_alert_button_change_title",      @"Authorization",   @"LoginID Alerts")
-#define lAlertPhoneConfirmBtnSendSMS          NSLocalizedStringFromTable(@"auth_loginID_phone_alert_button_sendsms_title",     @"Authorization",   @"LoginID Alerts")
-
-#define lAlertEmailConfirmMessage             NSLocalizedStringFromTable(@"auth_loginID_email_alert_message_text",             @"Authorization",   @"LoginID Alerts")
-#define lAlertEmailConfirmBtnChange           NSLocalizedStringFromTable(@"auth_loginID_email_alert_button_change_title",      @"Authorization",   @"LoginID Alerts")
-#define lAlertEmailConfirmBtnSendCODE         NSLocalizedStringFromTable(@"auth_loginID_email_alert_button_sendsms_title",     @"Authorization",   @"LoginID Alerts")
-
-#define lAlertSignUpLoginConfirmMessage       NSLocalizedStringFromTable(@"auth_loginID_signUpLogin_alert_message_text",         @"Authorization",   @"LoginID Alerts")
-#define lAlertSignUpEmailConfirmMessage       NSLocalizedStringFromTable(@"auth_loginID_signUpEmail_alert_message_text",         @"Authorization",   @"LoginID Alerts")
-#define lAlertSignUpPhoneConfirmMessage       NSLocalizedStringFromTable(@"auth_loginID_signUpPhone_alert_message_text",         @"Authorization",   @"LoginID Alerts")
-#define lAlertSignUpConfirmBtnCancel          NSLocalizedStringFromTable(@"auth_loginID_signUp_alert_button_cancel_title",       @"Authorization",   @"LoginID Alerts")
-#define lAlertSignUpConfirmBtnSignUp          NSLocalizedStringFromTable(@"auth_loginID_signUp_alert_button_continue_title",     @"Authorization",   @"LoginID Alerts")
-
 @interface AuthViewController () <ITValidationDelegate, AuthViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -51,6 +37,7 @@
     [super viewDidLoad];
  
     [self baseUISetup];
+    [[KeyChainData sharedInstance] updateKeys];
 }
 
 - (void)viewDidAppear:(BOOL)animated

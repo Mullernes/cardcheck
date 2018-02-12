@@ -78,12 +78,6 @@
                                              selector: @selector(routeChange:)
                                                  name: AVAudioSessionRouteChangeNotification
                                                object: nil];
-    // Listen the audio route change.
-    /* Legacy
-    AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,
-                                    AJDAudioRouteChangeListener,
-                                    (__bridge void *) self);
-    */
 }
 
 - (void)resetReaderController
@@ -130,6 +124,8 @@
 
 - (void)setPlugged:(BOOL)plugged
 {
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
     [self onInfo: CURRENT_METHOD];
     
     [self.reader setMute: !plugged];
@@ -407,43 +403,6 @@
 }
 
 #pragma mark - Private Functions
-
-/**
- * Returns <code>YES</code> if the reader is plugged, otherwise <code>NO</code>.
- */
-//static BOOL AJDIsReaderPlugged() {
-//
-//    BOOL plugged = NO;
-//    CFStringRef route = NULL;
-//    UInt32 routeSize = sizeof(route);
-//
-//    if (AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &routeSize, &route) == kAudioSessionNoError) {
-//        if (CFStringCompare(route, CFSTR("HeadsetInOut"), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
-//            plugged = YES;
-//        }
-//    }
-//
-//    return plugged;
-//}
-
-/**
- * Listens the audio route change.
- * @param inClientData the <code>AJDMasterViewController</code> object.
- * @param inID         the <code>kAudioSessionProperty_AudioRoute</code>
- *                     constant.
- * @param inDataSize   the property size.
- * @param inData       the property.
- */
-//static void AJDAudioRouteChangeListener(void *inClientData,
-//                                        AudioSessionPropertyID inID,
-//                                        UInt32 inDataSize,
-//                                        const void *inData) {
-//
-//    ReaderController *ctr = (__bridge ReaderController *) inClientData;
-//
-//    // Set mute to YES if the reader is unplugged, otherwise NO.
-//    [ctr setPlugged: AJDIsReaderPlugged()];
-//}
 
 static BOOL AJDIsReaderPlugged() {
     AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];

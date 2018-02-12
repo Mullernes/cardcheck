@@ -22,6 +22,7 @@
 #define DEMO_CALL_TARGET                @"DemoCallTarget"
 
 #define BASE_TINT_COLOR                 [UIColor colorWithRed: 0.23 green: 0.63 blue: 0.64 alpha: 1.0]
+                                        //[UIColor colorWithRed: 0.23 green: 0.63 blue: 0.64 alpha: 1.0]
 
 #endif /* XT_UI_Constants_H */
 
