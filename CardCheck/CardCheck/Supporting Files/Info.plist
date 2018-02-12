@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Requires access to Camera on Your device</string>
+	<string>Для роботи додатка потрібен дозвіл знімати фото і відео</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>CardCheck - потребує доступу до мікрофону для коректної роботи зі зчитувачем</string>
+	<string>Для роботи додатка потрібен дозвіл записувати аудіо</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

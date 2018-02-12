@@ -73,6 +73,20 @@ static dispatch_once_t onceToken;
     }
 }
 
+#pragma mark - Accessors
+
+- (void)setPlugged:(BOOL)plugged
+{
+    if (_plugged && !plugged) {
+        [self setDeviceID: nil];
+        [self setCustomID: nil];
+    }
+    
+    _plugged = plugged;
+}
+
+#pragma mark - Working
+
 - (BOOL)isReady
 {
     return (self.isPlugged && self.deviceID && self.customID)? YES : NO;
@@ -80,13 +94,11 @@ static dispatch_once_t onceToken;
 
 - (void)setupWithDeviceID:(NSString *)deviceID
 {
-    //TODO: check input data
     [self setDeviceID: [deviceID lowercaseString]];
 }
 
 - (void)setupWithCustomID:(NSString *)customID
 {
-    //TODO: check input data
     [self setCustomID: [customID lowercaseString]];
 }
 

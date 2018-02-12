@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uCS-uw-cDn">
             <objects>
-                <navigationController navigationBarHidden="YES" id="f9F-U8-bRl" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="AuthNav" navigationBarHidden="YES" id="f9F-U8-bRl" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WSB-M5-rwd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

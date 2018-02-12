@@ -10,6 +10,11 @@
 
 @interface LoadingViewController ()<ReaderControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnClean;
+@property (weak, nonatomic) IBOutlet UIButton *btnDemo;
+
 @end
 
 
@@ -17,7 +22,9 @@
 
 + (instancetype)loadingController
 {
-    LoadingViewController *controller = [[LoadingViewController alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    LoadingViewController *controller = [[UIStoryboard storyboardWithName: STORYBOARD_ROOT bundle:nil]
+                                         instantiateViewControllerWithIdentifier: LOADING_TARGET];
+    
     return controller;
 }
 
@@ -63,14 +70,15 @@
 
 #pragma mark - Working
 
-- (void)baseSetup
+- (void)setupDemoUi
 {
-    [self setupReaderController];
-    [self.activityView startAnimating];
+    [self.btnDemo setHidden: !DEMO_MODE];
+    [self.btnClean setHidden: !DEMO_MODE];
 }
 
-- (void)setupReaderController
+- (void)baseSetup
 {
+    [self.activityView startAnimating];
     [self.readerController setDelegate: self];
 }
 
@@ -84,13 +92,13 @@
         [self.activityView stopAnimating];
         
         //2
-        if (self.mandatoryData.isExist && [self.mandatoryData.deviceID isEqualToString: reader.deviceID]) {
-            [self.rootViewController showMain: nil];
-        }
-        else {
-            [self.rootViewController showAuth: nil];
-        }
+        [self.rootViewController checkReaderCompatibility: reader];
     }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        float value = reader.isPlugged? 0.0 : 1.0;
+        [self.lblDescription.layer setOpacity: value];
+    }];
 }
 
 #pragma mark - Actions
@@ -100,7 +108,7 @@
     [[MandatoryData sharedInstance] clean];
 }
 
-- (IBAction)test:(id)sender
+- (IBAction)demo:(id)sender
 {
     [self.readerController startDemoMode];
 }

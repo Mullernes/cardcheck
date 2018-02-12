@@ -102,7 +102,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ohL-qC-DEk">
             <objects>
-                <navigationController navigationBarHidden="YES" id="WCf-0X-l6e" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="MainNav" navigationBarHidden="YES" id="WCf-0X-l6e" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a6X-Sx-HDC">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
