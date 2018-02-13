@@ -27,7 +27,7 @@
 {
     [super viewWillAppear: animated];
 
-    [self baseDataSetup];
+    [self baseSetup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -40,7 +40,7 @@
     [super viewDidDisappear:animated];
 }
 
-- (void)baseDataSetup
+- (void)baseSetup
 {
     self.stackOfResponse = @[];
     [self.readerController setDelegate: self];

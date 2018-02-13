@@ -182,46 +182,42 @@
 
 - (void)checkPassword:(NSString *)password
 {
-    //1
-    long typedRequestID = self.devInitData.authRequestID;
-    if (typedRequestID == self.devInitData.authRequestID)
+    [self calcOtp];
+    
+    //2 - check password
+    BOOL demoAuth = (DEMO_AUTH && !self.devInitView.retypePasswordTextField.text.length)?YES:NO;
+    NSString *typedOtp =  demoAuth? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
+    if ([self.devInitData.otp isEqualToString: typedOtp])
     {
-        [self calcOtp];
+        [self.devInitView setLoading: YES];
         
-        //2 - check password
-        BOOL demoAuth = (DEMO_AUTH && !self.devInitView.retypePasswordTextField.text.length)?YES:NO;
-        NSString *typedOtp =  demoAuth? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
-        if ([self.devInitData.otp isEqualToString: typedOtp])
-        {
-            [self.devInitView setLoading: YES];
-            
-            InitRequestModel *request = [InitRequestModel requestWithData: self.devInitData
-                                                                andReader: self.currentReader];
-            __weak AuthViewController *weakSelf = self;
-            [[APIController sharedInstance] sendDevInitRequest: request
-                                                withCompletion:^(InitResponseModel *model, NSError *error) {
-                                                    if (model.isCorrect)
-                                                    {
-                                                        [weakSelf.devInitView setCorrect: YES];
-                                                        
-                                                        [weakSelf.devInitData setupWithInitResponse: model];
-                                                        NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
-                                                        
-                                                        [weakSelf completeInitialization];
-                                                    }
-                                                    else {
-                                                        NSLog(@"response = %@", model);
-                                                        
-                                                        [weakSelf.devInitView failedStateWithError: error];
-                                                    }
-                                                }];
-        }
-        else {
-            [self.devInitView failedStateWithError: nil];
-        }
+        InitRequestModel *request = [InitRequestModel requestWithData: self.devInitData
+                                                            andReader: self.currentReader];
+        __weak AuthViewController *weakSelf = self;
+        [[APIController sharedInstance] sendDevInitRequest: request
+                                            withCompletion:^(InitResponseModel *model, NSError *error) {
+                                                if (model.isCorrect)
+                                                {
+                                                    [weakSelf.devInitView setCorrect: YES];
+                                                    
+                                                    [weakSelf.devInitData setupWithInitResponse: model];
+                                                    NSLog(@"devInit = %@", [weakSelf.devInitData debugDescription]);
+                                                    
+                                                    [weakSelf completeInitialization];
+                                                }
+                                                else {
+                                                    NSLog(@"response = %@", model);
+                                                    
+                                                    [weakSelf.devInitView failedStateWithError: error];
+                                                }
+                                            }];
     }
     else {
-        [self.devInitView failedStateWithError: nil];
+        NSString *info = NSLocalizedStringFromTable(@"password_default_validation_text",  @"Authorization", @"Input View");
+        NSError *err = [NSError errorWithDomain: CURRENT_METHOD
+                                           code: 0
+                                       userInfo: @{NSLocalizedDescriptionKey : info}];
+        [self.devInitView failedStateWithError: err];
     }
 }
 

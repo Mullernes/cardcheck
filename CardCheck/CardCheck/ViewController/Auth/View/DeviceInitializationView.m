@@ -1,6 +1,7 @@
 #import "DeviceInitializationView.h"
 
 #define lInfoText                   NSLocalizedStringFromTable(@"dev_initialize_info_default_text", @"Authorization", @"Info View")
+#define lRequestID                  NSLocalizedStringFromTable(@"dev_initialize_info_requestID", @"Authorization", @"Info View")
 
 @interface DeviceInitializationView ()
 
@@ -57,7 +58,7 @@
 - (void)setupWithRequestID:(long)rID
 {
     [self.passwordTextField setEnabled: NO];
-    [self.passwordTextField setText: [NSString stringWithFormat:@"Request ID: %li", rID]];
+    [self.passwordTextField setText: [NSString stringWithFormat:@"%@ %li", lRequestID, rID]];
 }
 
 - (IBAction)next:(id)sender

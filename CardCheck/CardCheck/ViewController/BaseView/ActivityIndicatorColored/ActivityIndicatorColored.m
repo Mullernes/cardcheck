@@ -14,8 +14,8 @@
 {
     [super awakeFromNib];
     
-    [self setColor: [UIColor blueColor]];
-    [self setTintColor: [UIColor blueColor]];
+    [self setColor: BASE_TINT_COLOR];
+    [self setTintColor: BASE_TINT_COLOR];
 }
 
 /*

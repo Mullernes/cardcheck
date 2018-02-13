@@ -10,6 +10,7 @@
 /* Info View */
 "auth_loginID_info_default_text"    = "Welcome to mobile card checking application";
 "dev_initialize_info_default_text"  = "Please, check your mail and enter the password";
+"dev_initialize_info_requestID"     = "Request ID:";
 "card_checked_info_success_text"    = "Your card has been checked with success";
 
 /* Input View */

@@ -172,17 +172,16 @@
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender
 {
-    UIViewController *childController = self.childViewControllers.firstObject;
+    NSString *destinationId = [vc valueForKey:@"restorationIdentifier"];
+    NSString *currentId = [[self.childViewControllers lastObject] valueForKey:@"restorationIdentifier"];
     
-    NSString *restorationId_1 = [vc valueForKey:@"restorationIdentifier"];
-    NSString *restorationId_2 = [childController valueForKey:@"restorationIdentifier"];
+    if ([destinationId isEqualToString: currentId]) return;
     
-    if ([restorationId_1 isEqualToString: restorationId_2]) return;
-        
     vc.view.frame = self.containerView.bounds;
     vc.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
     vc.view.alpha = 0.5;
     
+    UIViewController *childController = self.childViewControllers.firstObject;
     CGRect frame = CGRectOffset(childController.view.frame, -1.5 * childController.view.frame.size.width, 0.0);
     
     [childController willMoveToParentViewController:nil];

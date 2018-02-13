@@ -69,7 +69,7 @@
                     <rect key="frame" x="417" y="129" width="20" height="20"/>
                     <color key="color" red="1" green="0.40784313729999999" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
-                <textField opaque="NO" clipsSubviews="YES" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eUB-8g-fTB" customClass="SFLoginIDTextField">
+                <textField opaque="NO" clipsSubviews="YES" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Логін" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eUB-8g-fTB" customClass="SFLoginIDTextField">
                     <rect key="frame" x="217" y="119" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="iaf-Hf-nlf"/>
@@ -81,7 +81,7 @@
                         <outlet property="markView" destination="39Z-6W-Z4r" id="ah5-lo-cj8"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can login into an existing account or create a new one" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dz-j8-mN8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш логін (3-20 символів)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dz-j8-mN8">
                     <rect key="frame" x="197" y="175" width="240" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Zjc-x7-IWH"/>
@@ -97,7 +97,7 @@
                         <constraint firstAttribute="height" constant="44" id="uKf-eG-Wao"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="CHECK" backgroundImage="button_enabled_icon">
+                    <state key="normal" title="Продовжити" backgroundImage="button_enabled_icon">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
