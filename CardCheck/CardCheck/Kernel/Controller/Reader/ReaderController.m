@@ -126,7 +126,7 @@
 {
     XT_EXEPTION_NOT_MAIN_THREAD;
     
-    [self onInfo: CURRENT_METHOD];
+    [self onInfo: [NSString stringWithFormat:@"%@, %@", CURRENT_METHOD, plugged?@"Plugged":@"Un-Plugged"]];
     
     [self.reader setMute: !plugged];
     
