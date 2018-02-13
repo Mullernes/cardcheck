@@ -20,7 +20,7 @@
 - (void)setImage:(UIImage *)image warning:(BOOL)warning
 {
     self.imageView.image = image;
-    self.label.textColor = warning ? [UIColor blueColor] : COLOR_DEFAULT;
+    self.label.textColor = warning ? BASE_INFO_COLOR : COLOR_DEFAULT;
 }
 
 - (void)setState:(AuthInfoState)state withText:(NSString *)text animated:(BOOL)animated

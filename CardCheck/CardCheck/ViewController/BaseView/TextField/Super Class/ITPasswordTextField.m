@@ -21,7 +21,7 @@
 {
     [super awakeFromNib];
     
-    self.keyboardType = UIKeyboardTypeDefault;
+    self.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 #pragma mark - Accessors

@@ -43,19 +43,6 @@
     [super viewDidAppear: YES];
     
     [self baseSetup];
-
-#if 0
-    dispatch_after(3.0, dispatch_get_main_queue(), ^{
-        [self.rootViewController showAuth: nil];
-    });
-#endif
-    
-#if 0
-    dispatch_after(3.0, dispatch_get_main_queue(), ^{
-        [self.rootViewController showMain: nil];
-    });
-#endif
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated

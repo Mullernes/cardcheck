@@ -38,7 +38,7 @@
 
 - (BOOL)isGeneralLogin:(NSString *)login
 {
-    NSString *regex = @"^([a-z]{1}[a-z0-9-.]{3,31})$";
+    NSString *regex = @"^([a-z]{1}[a-z0-9-.]{3,20})$";
     NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isValid = [predTest evaluateWithObject: [login lowercaseString]];
     
