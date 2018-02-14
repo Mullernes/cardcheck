@@ -1,12 +1,14 @@
 #import "CardDefaultView.h"
-#import "ITLoadingView.h"
+
 
 @interface CardDefaultView ()
 
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet UILabel *counter;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
-@property (weak, nonatomic) IBOutlet ITLoadingView *loadingView;
+@property (weak, nonatomic) IBOutlet UIButton *resetBtn;
+@property (weak, nonatomic) IBOutlet UIButton *checkDemoBtn;
 
 - (IBAction)reset:(id)sender;
 - (IBAction)checkDemo:(id)sender;
@@ -24,31 +26,32 @@
 
 #pragma mark - Working
 
-- (void)stopAnimating
+- (void)prepareUi
 {
-//    [self.loadingView stopAnimating];
-//    [self.loadingView setHidden: YES];
+    [super prepareUi];
     
-    [self.status setHidden: YES];
-    
-    [self.activityView stopAnimating];
-    [self.activityView setHidden: YES];
+    [self.resetBtn setHidden: !DEMO_MODE];
+    [self.checkDemoBtn setHidden: !DEMO_MODE];
 }
-- (void)startAnimating:(NSString *)title
+
+- (void)updateWithStatus:(NSString *)status
 {
-//    if (self.loadingView.isAnimating) {
-//        [self.loadingView stopAnimating];
-//    };
-//
-//    [self.loadingView setTitle: title];
-//    [self.loadingView setHidden: NO];
-//    [self.loadingView startAnimating];
-    
-    [self.status setText: title];
+    [self.status setText: status];
     [self.status setHidden: NO];
+    
+    [self.counter setHidden: YES];
     
     [self.activityView startAnimating];
     [self.activityView setHidden: NO];
+}
+
+- (void)updateWithCounter:(NSUInteger)counter
+{
+    [self.activityView stopAnimating];
+    [self.activityView setHidden: YES];
+    
+    [self.counter setText: [NSString stringWithFormat:@"%lu", (unsigned long)counter]];
+    [self.counter setHidden: NO];
 }
 
 - (IBAction)reset:(id)sender

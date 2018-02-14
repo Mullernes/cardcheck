@@ -3,8 +3,8 @@
 
 @interface CardDefaultView : AuthView
 
-- (void)stopAnimating;
-- (void)startAnimating:(NSString *)title;
+- (void)updateWithStatus:(NSString *)status;
+- (void)updateWithCounter:(NSUInteger)counter;
 
 @end
 

@@ -37,7 +37,10 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 @protocol ReaderControllerDelegate <NSObject>
 @optional
+
 - (void)readerController:(ReaderController *)controller didUpdateWithState:(ReaderState)state;
+- (void)readerController:(ReaderController *)controller didUpdateWithCounter:(NSUInteger)counter;
+
 - (void)readerController:(ReaderController *)controller didReceiveTrackData:(AesTrackData *)data;
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader;
 

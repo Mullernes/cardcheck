@@ -90,6 +90,7 @@
 
 - (void)showCardDefaultView
 {
+    [self.cardDefaultView prepareUi];
     [self showView: self.cardDefaultView reverse: YES];
 }
 
@@ -120,7 +121,7 @@
     }];
 }
 
-- (void)showReaderState:(ReaderState)state
+- (NSString *)readerStatus:(ReaderState)state
 {
     NSString *title = nil;
     BOOL isStaging = self.readerController.isStaging;
@@ -143,8 +144,7 @@
             break;
     }
     
-    NSLog(@"%@ - %@", CURRENT_METHOD, title);
-    [self.cardDefaultView startAnimating: title];
+    return title;
 }
 
 #pragma mark - Working
@@ -278,24 +278,35 @@
 
 - (void)readerController:(ReaderController *)controller didUpdateWithState:(ReaderState)state
 {
-    NSLog(@"%@", CURRENT_METHOD);
     XT_EXEPTION_NOT_MAIN_THREAD;
     
-    [self showReaderState: state];
+    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %@", CURRENT_METHOD, [self readerStatus: state]]);
+    
+    [self.cardDefaultView updateWithStatus: [self readerStatus: state]];
+}
+
+- (void)readerController:(ReaderController *)controller didUpdateWithCounter:(NSUInteger)counter
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %i", CURRENT_METHOD, counter]);
+    
+    [self.cardDefaultView updateWithCounter: counter];
 }
 
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader
 {
-    NSLog(@"%@", CURRENT_METHOD);
     XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", CURRENT_METHOD);
     
     //[self handleReader: reader];
 }
 
 - (void)readerController:(ReaderController *)controller didReceiveTrackData:(AesTrackData *)data
 {
-    NSLog(@"%@", CURRENT_METHOD);
     XT_EXEPTION_NOT_MAIN_THREAD;
+    NSLog(@"%@", CURRENT_METHOD);
 }
 
 #pragma mark - AuthViewDelegate
@@ -313,6 +324,8 @@
 - (void)cardViewContinuePressed:(CardCheckedView *)view
 {
     [self showCardDefaultView];
+    
+    [self.readerController resetReaderController];
 }
 
 #pragma mark - CardImagePickerDelegate

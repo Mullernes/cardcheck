@@ -13,6 +13,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 
+#define MAX_CONTROL_COUNTER 10
+
+
 @interface ReaderController()
 
 @property (nonatomic) BOOL resultReady;
@@ -25,6 +28,9 @@
 @property (nonatomic, strong) CardReader *cardReader;
 @property (nonatomic, strong) ACRAudioJackReader *reader;
 @property (nonatomic, strong) NSCondition *responseCondition;
+
+@property (nonatomic) NSUInteger controlCounter;
+@property (nonatomic, strong) NSTimer *controlTimer;
 
 @end
 
@@ -124,21 +130,80 @@
     
     __weak ReaderController *weakSelf = self;
     [self.reader resetWithCompletion:^{
-        [weakSelf didUpdateState: ReaderStateReady];
+        [weakSelf setupControlTimer];
     }];
+}
+
+- (void)setupControlTimer
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [weakSelf didUpdateState: ReaderStateReady];
+        
+        if (weakSelf.controlTimer) {
+            [weakSelf.controlTimer invalidate];
+            weakSelf.controlTimer = nil;
+        }
+        
+        weakSelf.controlCounter = 0;
+        weakSelf.controlTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f target: self
+                                                               selector: @selector(checkControlTimer) userInfo: nil repeats: YES];
+    });
+}
+
+- (void)checkControlTimer
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    [self onInfo: CURRENT_METHOD];
+    
+    if (nil == self.controlTimer) return;
+    
+    self.controlCounter++;
+    
+    if ([self.delegate respondsToSelector:@selector(readerController:didUpdateWithCounter:)])
+    {
+        [self.delegate readerController: self didUpdateWithCounter: (MAX_CONTROL_COUNTER - self.controlCounter)];
+    }
+    else {
+        XT_LOG_NOT_IMPLEMENTED;
+    }
+    
+    if (self.controlCounter >= MAX_CONTROL_COUNTER) {
+        [self invalidateControlTimer];
+        [self resetReaderController];
+    }
+}
+
+- (void)invalidateControlTimer
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (nil == weakSelf.controlTimer) return;
+        
+        weakSelf.controlCounter = 0;
+        
+        [weakSelf.controlTimer invalidate];
+        weakSelf.controlTimer = nil;
+    });
 }
 
 - (void)startDemoMode
 {
-    //    [self.cardReader setupDemoReaderIfNeeded];
-    //
-    //    if (self.pluggedHandler) {
-    //        self.pluggedHandler(self.cardReader);
-    //    }
-    //
-    //    [self didUpdateReader];
+    [self.cardReader setupDemoReaderIfNeeded];
+    
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+    
+    [self didUpdateReader];
 }
-
 
 #pragma mark - Working methods
 
@@ -349,8 +414,9 @@
 {
     [self onInfo: CURRENT_METHOD];
     
-    NSString *errorString = nil;
+    [self invalidateControlTimer];
     
+    NSString *errorString = nil;
     if ((trackData.track1ErrorCode == ACRTrackErrorSuccess) &&
         (trackData.track2ErrorCode == ACRTrackErrorSuccess))
     {
