@@ -11,6 +11,7 @@
 #define     kDeviceID       @"kDeviceID"
 #define     kAppDataKey     @"kAppDataKey"
 #define     kAppCommKey     @"kAppCommKey"
+#define     kStageMode      @"kStageMode"
 
 #import "MandatoryData.h"
 
@@ -40,13 +41,15 @@
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
         NSDictionary *data = [USER_DEFAULTS objectForKey: kMandatoryData];
-        if (data) {
+        if (data)
+        {
             self.exist = YES;
             
-            self.appID = [[data objectForKey: kAppID] longValue];
             self.deviceID = [data objectForKey: kDeviceID];
             self.appDataKey =  [data objectForKey: kAppDataKey];
             self.appCommKey =  [data objectForKey: kAppCommKey];
+            self.appID = [[data objectForKey: kAppID] longValue];
+            self.stageMode = [[data objectForKey: kStageMode] boolValue];
         }
         else {
             self.exist = NO;
@@ -64,7 +67,9 @@
     NSDictionary *data = @{kAppID       : @(self.appID),
                            kDeviceID    : self.deviceID,
                            kAppDataKey  : self.appDataKey,
-                           kAppCommKey  : self.appCommKey};
+                           kAppCommKey  : self.appCommKey,
+                           kStageMode   : @(self.stageMode)
+                           };
 
     [USER_DEFAULTS setObject: data forKey: kMandatoryData];
     [USER_DEFAULTS synchronize];

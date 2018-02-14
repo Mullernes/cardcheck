@@ -22,7 +22,7 @@
 		7D0E4135202B89B70026F7B0 /* CardDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */; };
 		7D0F5EC72004B05F00780CE8 /* CCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC32004B05F00780CE8 /* CCheckResponseModel.m */; };
 		7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */; };
-		7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* AesTrackData.m */; };
+		7D0F5ECB200505AC00780CE8 /* TrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* TrackData.m */; };
 		7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */; };
 		7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */; };
 		7D33B7CD20132CD9006004BD /* CardImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D33B7CC20132CD9006004BD /* CardImage.m */; };
@@ -58,6 +58,7 @@
 		7DACA3582031741900D31166 /* NSDictionary+ApiKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3502031741900D31166 /* NSDictionary+ApiKeys.m */; };
 		7DACA3592031741900D31166 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3532031741900D31166 /* NSData+AES.m */; };
 		7DACA35A2031741900D31166 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3562031741900D31166 /* UIImage+ImageEffects.m */; };
+		7DACA35E2033F6CE00D31166 /* ITLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA35C2033F6CE00D31166 /* ITLoadingView.m */; };
 		7DB705B12013AAF500782CF1 /* CUploadResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */; };
 		7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB705B02013AAF500782CF1 /* CUploadRequestModel.m */; };
 		7DBC744E201CD27700D925CB /* CheckingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC744D201CD27600D925CB /* CheckingViewController.m */; };
@@ -138,8 +139,8 @@
 		7D0F5EC42004B05F00780CE8 /* CCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCheckRequestModel.m; sourceTree = "<group>"; };
 		7D0F5EC52004B05F00780CE8 /* CCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckResponseModel.h; sourceTree = "<group>"; };
 		7D0F5EC62004B05F00780CE8 /* CCheckRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCheckRequestModel.h; sourceTree = "<group>"; };
-		7D0F5EC9200505AC00780CE8 /* AesTrackData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AesTrackData.h; sourceTree = "<group>"; };
-		7D0F5ECA200505AC00780CE8 /* AesTrackData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AesTrackData.m; sourceTree = "<group>"; };
+		7D0F5EC9200505AC00780CE8 /* TrackData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackData.h; sourceTree = "<group>"; };
+		7D0F5ECA200505AC00780CE8 /* TrackData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackData.m; sourceTree = "<group>"; };
 		7D13E6A320122BD7002B2625 /* CFinishCheckRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckRequestModel.h; sourceTree = "<group>"; };
 		7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckRequestModel.m; sourceTree = "<group>"; };
 		7D13E6A520122BD7002B2625 /* CFinishCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckResponseModel.h; sourceTree = "<group>"; };
@@ -207,6 +208,8 @@
 		7DACA3532031741900D31166 /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
 		7DACA3552031741900D31166 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		7DACA3562031741900D31166 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		7DACA35C2033F6CE00D31166 /* ITLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITLoadingView.m; sourceTree = "<group>"; };
+		7DACA35D2033F6CE00D31166 /* ITLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITLoadingView.h; sourceTree = "<group>"; };
 		7DB705AD2013AAF500782CF1 /* CUploadResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploadResponseModel.m; sourceTree = "<group>"; };
 		7DB705AE2013AAF500782CF1 /* CUploadRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadRequestModel.h; sourceTree = "<group>"; };
 		7DB705AF2013AAF500782CF1 /* CUploadResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadResponseModel.h; sourceTree = "<group>"; };
@@ -460,6 +463,7 @@
 				7DE168052002BC0200F4A417 /* HexCvtr.m */,
 				7D3A42851FFB8DCF00FFF207 /* CurrentDevice.h */,
 				7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */,
+				7DACA35B2033F6CE00D31166 /* Animation */,
 				7D7E2BE420187AD900BE6950 /* Key Value Observer */,
 				7D7E2BE920187AD900BE6950 /* Keyboard Observer */,
 				7DBC744F201CD43200D925CB /* CWStatusBarNotification */,
@@ -659,6 +663,15 @@
 				7DACA3562031741900D31166 /* UIImage+ImageEffects.m */,
 			);
 			path = UIImage;
+			sourceTree = "<group>";
+		};
+		7DACA35B2033F6CE00D31166 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				7DACA35C2033F6CE00D31166 /* ITLoadingView.m */,
+				7DACA35D2033F6CE00D31166 /* ITLoadingView.h */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		7DB705AC2013AAB700782CF1 /* UploadImage */ = {
@@ -899,8 +912,8 @@
 		7DDE2C681FF2E8E800058FD4 /* CardReader */ = {
 			isa = PBXGroup;
 			children = (
-				7D0F5EC9200505AC00780CE8 /* AesTrackData.h */,
-				7D0F5ECA200505AC00780CE8 /* AesTrackData.m */,
+				7D0F5EC9200505AC00780CE8 /* TrackData.h */,
+				7D0F5ECA200505AC00780CE8 /* TrackData.m */,
 				7DDE2C691FF2E90100058FD4 /* CardReader.h */,
 				7DDE2C6A1FF2E90100058FD4 /* CardReader.m */,
 			);
@@ -1347,7 +1360,8 @@
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
 				7D7E2BD5201879D100BE6950 /* SFPasswordTextField.m in Sources */,
 				7D0E4132202B89200026F7B0 /* CardDefaultView.m in Sources */,
-				7D0F5ECB200505AC00780CE8 /* AesTrackData.m in Sources */,
+				7DACA35E2033F6CE00D31166 /* ITLoadingView.m in Sources */,
+				7D0F5ECB200505AC00780CE8 /* TrackData.m in Sources */,
 				7DE167F5200022DF00F4A417 /* ReaderController.m in Sources */,
 				7DACA3572031741900D31166 /* NSError+Extensions.m in Sources */,
 				7D7E2B9D2018744F00BE6950 /* DeviceInitializationView.m in Sources */,

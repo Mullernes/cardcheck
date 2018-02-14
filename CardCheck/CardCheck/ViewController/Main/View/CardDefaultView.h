@@ -1,18 +1,10 @@
 
-#import <UIKit/UIKit.h>
+#import "AuthView.h"
 
-@protocol CardDefaultViewDelegate;
-@interface CardDefaultView : UIView
+@interface CardDefaultView : AuthView
 
-@property (weak, nonatomic) id<CardDefaultViewDelegate> delegate;
-
-+ (instancetype)viewWithDelegate:(id<CardDefaultViewDelegate>)delegate;
+- (void)updateWithStatus:(NSString *)status;
+- (void)updateWithCounter:(NSUInteger)counter;
 
 @end
 
-@protocol CardDefaultViewDelegate <NSObject>
-
-- (void)cardViewResetPressed:(CardDefaultView *)view;
-- (void)cardViewCheckDemoPressed:(CardDefaultView *)view;
-
-@end

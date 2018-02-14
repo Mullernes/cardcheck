@@ -4,7 +4,30 @@
 #import "CardCheckedView.h"
 #import "CardDefaultView.h"
 
-@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate, CardDefaultViewDelegate>
+#import "NotificationManager.h"
+
+#define lPreparingForReading        NSLocalizedStringFromTable(@"animation_preparing_for_reading", @"Common", @"Animation View")
+#define lPreparingForTestReading    NSLocalizedStringFromTable(@"animation_preparing_for_test_reading", @"Common", @"Animation View")
+
+#define lSwipeCard                  NSLocalizedStringFromTable(@"animation_swipe_card", @"Common", @"Animation View")
+#define lSwipeTestCard              NSLocalizedStringFromTable(@"animation_swipe_test_card", @"Common", @"Animation View")
+
+#define lGettingData                NSLocalizedStringFromTable(@"animation_getting_data_from_reader", @"Common", @"Animation View")
+#define lGettingTestData            NSLocalizedStringFromTable(@"animation_getting_test_data_from_reader", @"Common", @"Animation View")
+
+#define lSendingRequest             NSLocalizedStringFromTable(@"animation_sending_request", @"Common", @"Animation View")
+
+
+#define lInfo                       NSLocalizedStringFromTable(@"handle_track_info",        @"Common", @"Track Data")
+#define lNoneRead                   NSLocalizedStringFromTable(@"handle_track_none_read",   @"Common", @"Track Data")
+#define lTrack1Read                 NSLocalizedStringFromTable(@"handle_track_track1_read", @"Common", @"Track Data")
+#define lTrack2Read                 NSLocalizedStringFromTable(@"handle_track_track2_read", @"Common", @"Track Data")
+
+#define lRepeatReading              NSLocalizedStringFromTable(@"handle_track_repeat_reading", @"Common", @"Track Data")
+#define lSendRequest                NSLocalizedStringFromTable(@"handle_track_send_request",   @"Common", @"Track Data")
+
+
+@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -13,6 +36,8 @@
 
 @property (nonatomic, strong) NSArray *stackOfResponse;
 @property (nonatomic, strong) CardImagePicker *cardImagePickerController;
+
+@property (weak, nonatomic) NotificationManager *notifyManager;
 
 @end
 
@@ -45,8 +70,10 @@
 - (void)baseSetup
 {
     self.stackOfResponse = @[];
-    [self.readerController setDelegate: self];
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    
+    [self.readerController setDelegate: self];
+    [self.readerController resetReaderController];
 }
 
 #pragma mark - Accessors
@@ -71,19 +98,28 @@
     return _cardDefaultView;
 }
 
+- (NotificationManager *)notifyManager {
+    return [NotificationManager sharedInstance];
+}
+
 #pragma mark - Ui
+
+- (void)showCardDefaultView
+{
+    [self.cardDefaultView prepareUi];
+    [self showView: self.cardDefaultView reverse: YES];
+}
 
 - (void)showCardCheckedView:(CCheckResponseModel *)response
 {
+    if (NO == self.readerController.isStaging) {
+        [self.readerController startStageMode];
+    }
+    
     [self.cardCheckedView prepareUi];
     [self.cardCheckedView setupWith: response];
     
     [self showView: self.cardCheckedView reverse: NO];
-}
-
-- (void)showCardDefaultView
-{
-    [self showView: self.cardDefaultView reverse: YES];
 }
 
 - (void)showView:(UIView *)view reverse:(BOOL)reverse
@@ -105,50 +141,33 @@
     }];
 }
 
-#pragma mark - Working
-
-- (void)showAlertWithError:(NSError *)error
+- (NSString *)readerStatus:(ReaderState)state
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"ERROR"
-                                                    message: error.localizedDescription
-                                                   delegate:nil
-                                          cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-    [alert show];
+    NSString *title = nil;
+    BOOL isStaging = self.readerController.isStaging;
+    
+    switch (state) {
+        case ReaderStatePreparing:
+            title = isStaging? lPreparingForReading : lPreparingForTestReading;
+            break;
+            
+        case ReaderStateReady:
+            title = isStaging? lSwipeCard : lSwipeTestCard;
+            break;
+            
+        case ReaderStateGettingData:
+            title = isStaging? lGettingData : lGettingTestData;
+            break;
+            
+        default:
+            title = nil;
+            break;
+    }
+    
+    return title;
 }
 
-- (void)checkCardData:(AesTrackData *)trackData
-{
-    self.stackOfResponse = @[];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Sending track data..."
-                                                   delegate:nil
-                                          cancelButtonTitle:nil otherButtonTitles:nil];
-    [alert show];
-    
-    CryptoController *crp = [CryptoController sharedInstance];
-    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
-                                        withHexKey: [self.keyChain appDataKey]];
-    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
-    [self.currentReader setTrackData: trackData];
-    
-    CCheckRequestModel *request = [CCheckRequestModel requestWithReader: self.currentReader];
-    __weak CheckingViewController *weakSelf = self;
-    [[APIController sharedInstance] sendCCheckRequest: request
-                                       withCompletion:^(CCheckResponseModel *model, NSError *error)
-     {
-         if (model.isCorrect) {
-             weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
-             [weakSelf showCardCheckedView: model];
-         }
-         else {
-             [weakSelf showAlertWithError: error];
-         }
-         
-         [alert dismissWithClickedButtonIndex:0 animated:YES];
-         NSLog(@" response = %@", [model debugDescription]);
-     }];
-}
+#pragma mark - Request
 
 - (CCheckResponseModel *)lastCheckResponse
 {
@@ -169,9 +188,36 @@
     return [self.stackOfResponse filteredArrayUsingPredicate: predicate];
 }
 
-- (void)completeCheckCard
+- (void)sendCheckCard:(TrackData *)trackData
 {
-    AesTrackData *trackData = [AesTrackData demoTrack];
+    self.stackOfResponse = @[];
+    
+    CryptoController *crp = [CryptoController sharedInstance];
+    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
+                                        withHexKey: [self.keyChain appDataKey]];
+    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
+    [self.currentReader setTrackData: trackData];
+    
+    CCheckRequestModel *request = [CCheckRequestModel requestWithReader: self.currentReader];
+    __weak CheckingViewController *weakSelf = self;
+    [[APIController sharedInstance] sendCCheckRequest: request
+                                       withCompletion:^(CCheckResponseModel *model, NSError *error)
+     {
+         if (model.isCorrect) {
+             weakSelf.stackOfResponse = [weakSelf.stackOfResponse arrayByAddingObject: model];
+             [weakSelf showCardCheckedView: model];
+         }
+         else {
+             [weakSelf showAlertWithError: error];
+         }
+         
+         NSLog(@" response = %@", [model debugDescription]);
+     }];
+}
+
+- (void)sendCompleteCheckCard
+{
+    TrackData *trackData = [TrackData demoTrack];
     trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
     
     CryptoController *crp = [CryptoController sharedInstance];
@@ -197,7 +243,7 @@
     [self.cardImagePickerController presentInView: self];
 }
 
-- (void)uploadImage:(CardImage *)image
+- (void)sendUploadImage:(CardImage *)image
 {
     CCheckResponseModel *report = [self lastCheckResponse];
     CUploadRequestModel *request = [CUploadRequestModel requestWithReportID: report.reportID
@@ -220,23 +266,112 @@
      }];
 }
 
-- (void)handleReader:(CardReader *)reader
+- (void)showAlertWithError:(NSError *)error
 {
-    NSLog(@"%@: reader => %@", CURRENT_METHOD, [reader debugDescription]);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"ERROR"
+                                                    message: error.localizedDescription
+                                                   delegate:nil
+                                          cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - Working
+
+- (void)checkTrackData:(TrackData *)data
+{
+    NSLog(@"%@: trackData => %@", CURRENT_METHOD, [data debugDescription]);
     
-    if ([reader.trackData isExist]) {
-        [self checkCardData: reader.trackData];
+    //1
+    [self.currentReader setTrackData: data];
+    
+    //2
+    if (data.isReadableTrack1 && data.isReadableTrack2)
+    {
+        [self sendCheckCard: data];
+        [self.cardDefaultView updateWithStatus: lSendingRequest];
     }
-    else {
-        [self showCardDefaultView];
+    else if ((NO == data.isReadableTrack1) && (NO == data.isReadableTrack2)) {
+        [self showAlertWithTitle: lInfo andMessage: lNoneRead];
+    }
+    else if (NO == data.isReadableTrack1) {
+        [self showAlertWithTitle: lInfo andMessage: lTrack1Read];
+    }
+    else if (NO == data.isReadableTrack2) {
+        [self showAlertWithTitle: lInfo andMessage: lTrack2Read];
     }
 }
 
+- (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message
+{
+    AlertViewController *controller = [AlertViewController alertControllerWithTitle: title
+                                                                            message: message];
+    
+    [controller addAction:[AlertAction actionWithTitle: lRepeatReading style:UIAlertActionStyleCancel handler:^(AlertAction *action) {
+        [self.readerController resetReaderController];
+    }]];
+    
+    [controller addAction:[AlertAction actionWithTitle: lSendingRequest style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
+        [self sendCheckCard: self.currentReader.trackData];
+        [self.cardDefaultView updateWithStatus: lSendingRequest];
+    }]];
+    
+    [self.notifyManager showAlert: controller];
+}
+
+
 #pragma mark - ReaderControllerDelegate
+
+- (void)readerController:(ReaderController *)controller didUpdateWithState:(ReaderState)state
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %@", CURRENT_METHOD, [self readerStatus: state]]);
+    
+    [self.cardDefaultView updateWithStatus: [self readerStatus: state]];
+}
+
+- (void)readerController:(ReaderController *)controller didUpdateWithCounter:(NSUInteger)counter
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %i", CURRENT_METHOD, counter]);
+    
+    [self.cardDefaultView updateWithCounter: counter];
+}
 
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader
 {
-    [self handleReader: reader];
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", CURRENT_METHOD);
+}
+
+- (void)readerController:(ReaderController *)controller didReceiveTrackData:(TrackData *)data
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    NSLog(@"%@", CURRENT_METHOD);
+    
+    [self checkTrackData: data];
+}
+
+#pragma mark - AuthViewDelegate
+
+- (void)cardViewDemoPressed:(CardDefaultView *)view
+{
+    [self sendCheckCard: [TrackData demoTrack]];
+}
+
+- (void)cardViewResetPressed:(CardDefaultView *)view
+{
+    [self.readerController resetReaderController];
+}
+
+- (void)cardViewContinuePressed:(CardCheckedView *)view
+{
+    [self showCardDefaultView];
+    
+    [self.readerController resetReaderController];
 }
 
 #pragma mark - CardImagePickerDelegate
@@ -245,32 +380,12 @@
 {
     [picker dismissInView: self];
     
-    [self uploadImage: image];
+    [self sendUploadImage: image];
 }
 
 - (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
 {
     [picker dismissInView: self];
-}
-
-#pragma mark - AuthViewDelegate
-
-- (void)continueCardChecking:(CardCheckedView *)view
-{
-    [self showCardDefaultView];
-}
-
-#pragma mark - CardDefaultViewDelegate
-
-- (void)cardViewResetPressed:(CardDefaultView *)view
-{
-    [self.readerController resetReaderController];
-    [self.currentReader setTrackData: nil];
-}
-
-- (void)cardViewCheckDemoPressed:(CardDefaultView *)view
-{
-    [self checkCardData: [AesTrackData demoTrack]];
 }
 
 @end

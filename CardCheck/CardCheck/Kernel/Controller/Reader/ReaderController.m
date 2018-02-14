@@ -9,9 +9,12 @@
 #import "ReaderController.h"
 
 #import "AudioJack.h"
-
-#import <AudioToolbox/AudioSession.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+
+
+#define MAX_CONTROL_COUNTER 10
+
 
 @interface ReaderController()
 
@@ -25,6 +28,9 @@
 @property (nonatomic, strong) CardReader *cardReader;
 @property (nonatomic, strong) ACRAudioJackReader *reader;
 @property (nonatomic, strong) NSCondition *responseCondition;
+
+@property (nonatomic) NSUInteger controlCounter;
+@property (nonatomic, strong) NSTimer *controlTimer;
 
 @end
 
@@ -48,12 +54,10 @@
     if (self) {
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
+        self.plugged = NO;
         self.resultReady = NO;
         self.customIDReady = NO;
         self.deviceIDReady = NO;
-
-        self.plugged = NO;
-        
         self.cardReader = [CardReader sharedInstance];
         
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
@@ -61,56 +65,11 @@
     return self;
 }
 
-- (void)startIfNeeded
-{
-    [self onInfo: CURRENT_METHOD];
-    
-    if (self.reader) return;
-    
-    self.responseCondition = [[NSCondition alloc] init];
-    
-    self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
-    [self.reader setDelegate: self];
-
-    [self setPlugged: AJDIsReaderPlugged()];
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(routeChange:)
-                                                 name: AVAudioSessionRouteChangeNotification
-                                               object: nil];
-}
-
-- (void)resetReaderController
-{
-    // Show the progress.
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Resetting the reader..."
-                                                   delegate:nil
-                                          cancelButtonTitle:nil otherButtonTitles:nil];
-    [alert show];
-    
-    // Reset the reader.
-    [self.reader resetWithCompletion:^{
-        
-        // Hide the progress.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-        });
-    }];
-}
-
-- (void)startDemoMode
-{
-    [self.cardReader setupDemoReaderIfNeeded];
-    
-    if (self.pluggedHandler) {
-        self.pluggedHandler(self.cardReader);
-    }
-    
-    [self didUpdateReader];
-}
-
 #pragma mark - Accessors
+
+- (BOOL)isStaging {
+    return [[MandatoryData sharedInstance] stageMode];
+}
 
 - (void)setDelegate:(id<ReaderControllerDelegate>)delegate
 {
@@ -141,14 +100,118 @@
     [self didUpdateReader];
 }
 
-#pragma mark - Working methods
+#pragma mark - Setup methods
 
-- (void)didUpdateReader
+- (void)startIfNeeded
 {
+    [self onInfo: CURRENT_METHOD];
+    
+    if (self.reader) return;
+    
+    self.responseCondition = [[NSCondition alloc] init];
+    
+    self.reader = [[ACRAudioJackReader alloc] initWithMute: YES];
+    [self.reader setDelegate: self];
+    
+    [self setPlugged: AJDIsReaderPlugged()];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(routeChange:)
+                                                 name: AVAudioSessionRouteChangeNotification
+                                               object: nil];
+}
+
+- (void)resetReaderController
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    [self.cardReader setTrackData: nil];
+    [self didUpdateState: ReaderStatePreparing];
+    
+    __weak ReaderController *weakSelf = self;
+    [self.reader resetWithCompletion:^{
+        [weakSelf setupControlTimer];
+    }];
+}
+
+- (void)setupControlTimer
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate readerController: self didUpdateWithReader: self.cardReader];
+        
+        [weakSelf didUpdateState: ReaderStateReady];
+        
+        if (weakSelf.controlTimer) {
+            [weakSelf.controlTimer invalidate];
+            weakSelf.controlTimer = nil;
+        }
+        
+        weakSelf.controlCounter = 0;
+        weakSelf.controlTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f target: self
+                                                               selector: @selector(checkControlTimer) userInfo: nil repeats: YES];
     });
 }
+
+- (void)checkControlTimer
+{
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    [self onInfo: CURRENT_METHOD];
+    
+    if (nil == self.controlTimer) return;
+    
+    self.controlCounter++;
+    
+    if ([self.delegate respondsToSelector:@selector(readerController:didUpdateWithCounter:)])
+    {
+        [self.delegate readerController: self didUpdateWithCounter: (MAX_CONTROL_COUNTER - self.controlCounter)];
+    }
+    else {
+        XT_LOG_NOT_IMPLEMENTED;
+    }
+    
+    if (self.controlCounter >= MAX_CONTROL_COUNTER) {
+        [self invalidateControlTimer];
+        [self resetReaderController];
+    }
+}
+
+- (void)invalidateControlTimer
+{
+    [self onInfo: CURRENT_METHOD];
+    
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (nil == weakSelf.controlTimer) return;
+        
+        weakSelf.controlCounter = 0;
+        
+        [weakSelf.controlTimer invalidate];
+        weakSelf.controlTimer = nil;
+    });
+}
+
+- (void)startStageMode
+{
+    [[MandatoryData sharedInstance] setStageMode: YES];
+    [[MandatoryData sharedInstance] save];
+}
+
+- (void)startDemoMode
+{
+    [self.cardReader setupDemoReaderIfNeeded];
+    
+    if (self.pluggedHandler) {
+        self.pluggedHandler(self.cardReader);
+    }
+    
+    [self didUpdateReader];
+}
+
+#pragma mark - Working methods
 
 - (void)tryRequestPrimaryDataIdNeeded:(BOOL)shouldReset
 {
@@ -159,8 +222,9 @@
     }
     else if (self.cardReader.isPlugged) {
         if (shouldReset) {
+            __weak ReaderController *weakSelf = self;
             [self.reader resetWithCompletion:^{
-                [self requestPrimaryData];
+                [weakSelf requestPrimaryData];
             }];
         }
         else {
@@ -288,6 +352,50 @@
     }
 }
 
+#pragma mark - Delegates
+
+- (void)didUpdateReader
+{
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didUpdateWithReader:)])
+        {
+            [weakSelf.delegate readerController: weakSelf didUpdateWithReader: weakSelf.cardReader];
+        }
+        else {
+            XT_LOG_NOT_IMPLEMENTED;
+        }
+    });
+}
+
+- (void)didUpdateState:(ReaderState)state
+{
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didUpdateWithState:)])
+        {
+            [weakSelf.delegate readerController: weakSelf didUpdateWithState: state];
+        }
+        else {
+            XT_LOG_NOT_IMPLEMENTED;
+        }
+    });
+}
+
+- (void)didReceiveTrackData:(TrackData *)data
+{
+    __weak ReaderController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didReceiveTrackData:)])
+        {
+            [weakSelf.delegate readerController: weakSelf didReceiveTrackData: data];
+        }
+        else {
+            XT_LOG_NOT_IMPLEMENTED;
+        }
+    });
+}
+
 #pragma mark - Audio Jack Reader
 
 - (void)reader:(ACRAudioJackReader *)reader didNotifyResult:(ACRResult *)result
@@ -303,77 +411,37 @@
 
 - (void)readerDidNotifyTrackData:(ACRAudioJackReader *)reader
 {
-    NSLog(@"Processing the track data...");
+    [self onInfo: CURRENT_METHOD];
+    
+    [self didUpdateState: ReaderStateGettingData];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
 {
-    NSLog(@"didSendTrackData...");
+    [self onInfo: CURRENT_METHOD];
     
-    NSString *errorString = nil;
+    //1
+    [self invalidateControlTimer];
     
-    if ((trackData.track1ErrorCode == ACRTrackErrorSuccess) &&
-        (trackData.track2ErrorCode == ACRTrackErrorSuccess))
-    {
-        if ([trackData isKindOfClass:[ACRAesTrackData class]])
-        {
-            ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
-            
-            AesTrackData *trackData = [AesTrackData emptyTrack];
-            [trackData setTr1Code: 0];
-            [trackData setTr2Code: 0];
-            [trackData setTr1Length: (int)(aesTrackData.track1Length)];
-            [trackData setTr2Length: (int)(aesTrackData.track2Length)];
-            [trackData setPlainHexData: [HexCvtr hexFromData: aesTrackData.trackData]];
-            
-            NSLog(@"Generate trackData with Success: %@", [trackData debugDescription]);
-            [self.cardReader setTrackData: trackData];
-            
-            //
-            [self didUpdateReader];
-        }
-        else {
-            XT_MAKE_EXEPTION;
-        }
+    //2
+    ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
 
-    }
-    else if ((trackData.track1ErrorCode != ACRTrackErrorSuccess) &&
-             (trackData.track2ErrorCode != ACRTrackErrorSuccess))
-    {
-        errorString = @"The track 1 and track 2 data";
-    }
-    else
-    {
-        if (trackData.track1ErrorCode != ACRTrackErrorSuccess) {
-            errorString = @"The track 1 data";
-        }
-        
-        if (trackData.track2ErrorCode != ACRTrackErrorSuccess) {
-            errorString = @"The track 2 data";
-        }
-    }
+    TrackData *cTrackData = [TrackData emptyTrack];
+    [cTrackData setupWithAesTrackData: aesTrackData];
     
-    if (errorString) {
-        errorString = [errorString stringByAppendingString:@" may be corrupted. Please swipe the card again!"];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorString
-                                                            message: nil
-                                                           delegate: nil
-                                                  cancelButtonTitle: @"OK" otherButtonTitles: nil];
-            [alert show];
-        });
-    }
+    //3
+    [self didReceiveTrackData: cTrackData];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendRawData:(const uint8_t *)rawData length:(NSUInteger)length
 {
-    NSLog(@"");
+    [self onInfo: CURRENT_METHOD];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendCustomId:(const uint8_t *)customId length:(NSUInteger)length
 {
+    [self onInfo: CURRENT_METHOD];
+    
     [self.responseCondition lock];
     
     self.customIDReady = YES;
@@ -386,6 +454,8 @@
 
 - (void)reader:(ACRAudioJackReader *)reader didSendDeviceId:(const uint8_t *)deviceId length:(NSUInteger)length
 {
+    [self onInfo: CURRENT_METHOD];
+    
     [self.responseCondition lock];
     
     self.deviceIDReady = YES;
@@ -424,16 +494,16 @@ static BOOL AJDIsReaderPlugged() {
 - (void)routeChange:(NSNotification*)notification
 {
     NSDictionary *interuptionDict = notification.userInfo;
-    
     NSInteger routeChangeReason = [[interuptionDict valueForKey: AVAudioSessionRouteChangeReasonKey] integerValue];
     
+    __weak ReaderController *weakSelf = self;
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
         {
             // a headset was added or removed
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonNewDeviceAvailable");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;
@@ -443,7 +513,7 @@ static BOOL AJDIsReaderPlugged() {
             // a headset was added or removed
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;
@@ -453,7 +523,7 @@ static BOOL AJDIsReaderPlugged() {
             // called at start - also when other audio wants to play
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonCategoryChange");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;

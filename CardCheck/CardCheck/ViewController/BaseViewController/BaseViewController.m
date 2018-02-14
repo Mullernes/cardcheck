@@ -60,6 +60,8 @@
     return _readerController;
 }
 
+#pragma mark - Ui
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if ([self respondsToSelector:@selector(traitCollection)])

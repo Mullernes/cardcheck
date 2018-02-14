@@ -19,7 +19,7 @@
 - (UIViewController *)parentViewControllerOfClass:(Class)class
 {
     UIViewController *parent = [self parentViewController];
-    //if (nil == parent) parent = [self presentingViewController];
+    if (nil == parent) parent = [self presentingViewController];
     
     while (nil != parent)
     {

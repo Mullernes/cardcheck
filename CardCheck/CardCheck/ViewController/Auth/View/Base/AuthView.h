@@ -3,8 +3,9 @@
 #import "ITTextField.h"
 #import "AuthInfoView.h"
 
-@class CardCheckedView;
+@class CardCheckedView,CardDefaultView;
 @protocol AuthViewDelegate;
+
 @interface AuthView : UIView
 
 @property (weak, nonatomic) IBOutlet AuthInfoView *infoView;
@@ -29,6 +30,9 @@
 @optional
 - (void)authView:(AuthView *)view checkLoginDidEnter:(ITTextField *)textField;
 - (void)authView:(AuthView *)view checkPasswordDidEnter:(ITTextField *)textField;
-- (void)continueCardChecking:(CardCheckedView *)view;
+
+- (void)cardViewDemoPressed:(CardDefaultView *)view;
+- (void)cardViewResetPressed:(CardDefaultView *)view;
+- (void)cardViewContinuePressed:(CardCheckedView *)view;
 
 @end

@@ -1,6 +1,6 @@
 #import "CardCheckedView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_success_text", @"Authorization", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Authorization", @"Info View")
 
 @interface CardCheckedView ()
 
@@ -50,7 +50,7 @@
 
 - (IBAction)next:(id)sender
 {
-    [self.delegate continueCardChecking: self];
+    [self.delegate cardViewContinuePressed: self];
 }
     
 @end
