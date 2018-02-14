@@ -56,7 +56,7 @@ static dispatch_once_t onceToken;
     CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
                                                   customID: DEMO_CUSTOM_ID
                                                    andType: 1];
-    [reader setTrackData: [AesTrackData demoTrack]];
+    [reader setTrackData: [TrackData demoTrack]];
     
     return reader;
 }
@@ -64,7 +64,7 @@ static dispatch_once_t onceToken;
 - (void)setupDemoReaderIfNeeded
 {
     [self setPlugged: YES];
-    [self setTrackData: [AesTrackData demoTrack]];
+    [self setTrackData: [TrackData demoTrack]];
     
     if (!self.deviceID || !self.customID)
     {

@@ -376,7 +376,7 @@
     });
 }
 
-- (void)didReceiveTrackData:(AesTrackData *)data
+- (void)didReceiveTrackData:(TrackData *)data
 {
     __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -407,69 +407,24 @@
 {
     [self onInfo: CURRENT_METHOD];
     
-    [self didUpdateState: ReaderStateProcessing];
+    [self didUpdateState: ReaderStateGettingData];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendTrackData:(ACRTrackData *)trackData
 {
     [self onInfo: CURRENT_METHOD];
     
+    //1
     [self invalidateControlTimer];
     
-    NSString *errorString = nil;
-    if ((trackData.track1ErrorCode == ACRTrackErrorSuccess) &&
-        (trackData.track2ErrorCode == ACRTrackErrorSuccess))
-    {
-        if ([trackData isKindOfClass:[ACRAesTrackData class]])
-        {
-            ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
-            
-            AesTrackData *trackData = [AesTrackData emptyTrack];
-            [trackData setTr1Code: 0];
-            [trackData setTr2Code: 0];
-            [trackData setTr1Length: (int)(aesTrackData.track1Length)];
-            [trackData setTr2Length: (int)(aesTrackData.track2Length)];
-            [trackData setPlainHexData: [HexCvtr hexFromData: aesTrackData.trackData]];
-            
-            NSLog(@"Generate trackData with Success: %@", [trackData debugDescription]);
-            [self.cardReader setTrackData: trackData];
-            
-            //>
-            [self didReceiveTrackData: trackData];
-        }
-        else {
-            XT_MAKE_EXEPTION;
-        }
+    //2
+    ACRAesTrackData *aesTrackData = (ACRAesTrackData *) trackData;
 
-    }
-    else if ((trackData.track1ErrorCode != ACRTrackErrorSuccess) &&
-             (trackData.track2ErrorCode != ACRTrackErrorSuccess))
-    {
-        errorString = @"The track 1 and track 2 data";
-    }
-    else
-    {
-        if (trackData.track1ErrorCode != ACRTrackErrorSuccess) {
-            errorString = @"The track 1 data";
-        }
-        
-        if (trackData.track2ErrorCode != ACRTrackErrorSuccess) {
-            errorString = @"The track 2 data";
-        }
-    }
+    TrackData *cTrackData = [TrackData emptyTrack];
+    [cTrackData setupWithAesTrackData: aesTrackData];
     
-    if (errorString) {
-        errorString = [errorString stringByAppendingString:@" may be corrupted. Please swipe the card again!"];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorString
-                                                            message: nil
-                                                           delegate: nil
-                                                  cancelButtonTitle: @"OK" otherButtonTitles: nil];
-            [alert show];
-        });
-    }
+    //3
+    [self didReceiveTrackData: cTrackData];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendRawData:(const uint8_t *)rawData length:(NSUInteger)length

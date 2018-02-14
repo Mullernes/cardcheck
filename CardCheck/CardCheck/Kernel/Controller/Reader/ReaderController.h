@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger, ReaderState) {
     
     ReaderStatePreparing,
     ReaderStateReady,
-    ReaderStateProcessing
+    ReaderStateGettingData
 };
 
 @protocol ReaderControllerDelegate;
@@ -41,7 +41,7 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 - (void)readerController:(ReaderController *)controller didUpdateWithState:(ReaderState)state;
 - (void)readerController:(ReaderController *)controller didUpdateWithCounter:(NSUInteger)counter;
 
-- (void)readerController:(ReaderController *)controller didReceiveTrackData:(AesTrackData *)data;
+- (void)readerController:(ReaderController *)controller didReceiveTrackData:(TrackData *)data;
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader;
 
 @end

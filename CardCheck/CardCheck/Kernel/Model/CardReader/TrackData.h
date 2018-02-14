@@ -8,7 +8,8 @@
 
 #import "KLBaseModel.h"
 
-@interface AesTrackData : KLBaseModel
+@class ACRTrackData;
+@interface TrackData : KLBaseModel
 
 @property (nonatomic) int tr1Code;
 @property (nonatomic) int tr1Length;
@@ -19,9 +20,14 @@
 @property (nonatomic, strong) NSString *plainHexData;
 @property (nonatomic, strong) NSString *cipherHexData;   //aes256
 
+@property (nonatomic, getter=isReadable) BOOL readable;
+
 + (instancetype)demoTrack;
 + (instancetype)emptyTrack;
 
-- (BOOL)isExist;
+- (void)setupWithAesTrackData:(ACRTrackData *)data;
+
+- (BOOL)isReadableTrack1;
+- (BOOL)isReadableTrack2;
 
 @end

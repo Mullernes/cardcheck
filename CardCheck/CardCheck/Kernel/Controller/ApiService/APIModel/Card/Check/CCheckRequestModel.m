@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *appVersion;
 
 @property (nonatomic, strong) CardReader *reader;
-@property (nonatomic, strong) AesTrackData *trackData;
+@property (nonatomic, strong) TrackData *trackData;
 
 @end
 
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (AesTrackData *)trackData {
+- (TrackData *)trackData {
     return self.reader.trackData;
 }
 

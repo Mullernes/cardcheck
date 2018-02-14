@@ -158,7 +158,7 @@
 {
     self.stackOfResponse = @[];
     
-    AesTrackData *trackData = [AesTrackData demoTrack];
+    TrackData *trackData = [TrackData demoTrack];
     
     CryptoController *crp = [CryptoController sharedInstance];
     NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
@@ -197,7 +197,7 @@
 
 - (IBAction)completeCheckCard:(id)sender
 {
-    AesTrackData *trackData = [AesTrackData demoTrack];
+    TrackData *trackData = [TrackData demoTrack];
     trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
     
     CryptoController *crp = [CryptoController sharedInstance];

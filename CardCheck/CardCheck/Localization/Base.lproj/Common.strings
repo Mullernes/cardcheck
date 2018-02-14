@@ -27,4 +27,14 @@
 
 "animation_sending_request" = "Відправлення запиту на сервер…";
 
+/* Track Data */
+"handle_track_info" = "Інформація";
+
+"handle_track_none_read" = "Помилка зчитування.";
+"handle_track_track1_read" = "Зчитано лише Track 1. Наполегливо рекомендовано повторити зчитування картки.";
+"handle_track_track2_read" = "Зчитано лише Track 2. Рекомендовано повторити зчитування картки.";
+
+"handle_track_repeat_reading" = "Прочитати картку";
+"handle_track_send_request" = "Відправити запит";
+
 

@@ -18,7 +18,7 @@
 
 @property (nonatomic, getter=isPlugged) BOOL plugged;
 
-@property (nonatomic, strong) AesTrackData *trackData;
+@property (nonatomic, strong) TrackData *trackData;
 
 + (instancetype)sharedInstance;
 
