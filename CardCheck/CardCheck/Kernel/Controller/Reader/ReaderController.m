@@ -48,12 +48,10 @@
     if (self) {
         [self onInfo: @"%@ initing...", CURRENT_CLASS];
         
+        self.plugged = NO;
         self.resultReady = NO;
         self.customIDReady = NO;
         self.deviceIDReady = NO;
-
-        self.plugged = NO;
-        
         self.cardReader = [CardReader sharedInstance];
         
         [self onSuccess: @"%@ inited", CURRENT_CLASS];
@@ -122,12 +120,12 @@
     [self onInfo: CURRENT_METHOD];
     
     [self.cardReader setTrackData: nil];
-    
-    [self.reader resetWithCompletion:^{
-        [self didUpdateState: ReaderStateReady];
-    }];
-    
     [self didUpdateState: ReaderStatePreparing];
+    
+    __weak ReaderController *weakSelf = self;
+    [self.reader resetWithCompletion:^{
+        [weakSelf didUpdateState: ReaderStateReady];
+    }];
 }
 
 - (void)startDemoMode
@@ -153,8 +151,9 @@
     }
     else if (self.cardReader.isPlugged) {
         if (shouldReset) {
+            __weak ReaderController *weakSelf = self;
             [self.reader resetWithCompletion:^{
-                [self requestPrimaryData];
+                [weakSelf requestPrimaryData];
             }];
         }
         else {
@@ -286,10 +285,11 @@
 
 - (void)didUpdateReader
 {
+    __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.delegate respondsToSelector:@selector(readerController:didUpdateWithReader:)])
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didUpdateWithReader:)])
         {
-            [self.delegate readerController: self didUpdateWithReader: self.cardReader];
+            [weakSelf.delegate readerController: weakSelf didUpdateWithReader: weakSelf.cardReader];
         }
         else {
             XT_LOG_NOT_IMPLEMENTED;
@@ -299,10 +299,11 @@
 
 - (void)didUpdateState:(ReaderState)state
 {
+    __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.delegate respondsToSelector:@selector(readerController:didUpdateWithState:)])
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didUpdateWithState:)])
         {
-            [self.delegate readerController: self didUpdateWithState: state];
+            [weakSelf.delegate readerController: weakSelf didUpdateWithState: state];
         }
         else {
             XT_LOG_NOT_IMPLEMENTED;
@@ -312,10 +313,11 @@
 
 - (void)didReceiveTrackData:(AesTrackData *)data
 {
+    __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.delegate respondsToSelector:@selector(readerController:didReceiveTrackData:)])
+        if ([weakSelf.delegate respondsToSelector:@selector(readerController:didReceiveTrackData:)])
         {
-            [self.delegate readerController: self didReceiveTrackData: data];
+            [weakSelf.delegate readerController: weakSelf didReceiveTrackData: data];
         }
         else {
             XT_LOG_NOT_IMPLEMENTED;
@@ -467,13 +469,14 @@ static BOOL AJDIsReaderPlugged() {
     NSDictionary *interuptionDict = notification.userInfo;
     NSInteger routeChangeReason = [[interuptionDict valueForKey: AVAudioSessionRouteChangeReasonKey] integerValue];
     
+    __weak ReaderController *weakSelf = self;
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
         {
             // a headset was added or removed
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonNewDeviceAvailable");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;
@@ -483,7 +486,7 @@ static BOOL AJDIsReaderPlugged() {
             // a headset was added or removed
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;
@@ -493,7 +496,7 @@ static BOOL AJDIsReaderPlugged() {
             // called at start - also when other audio wants to play
             NSLog(@"routeChangeReason : AVAudioSessionRouteChangeReasonCategoryChange");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setPlugged: AJDIsReaderPlugged()];
+                [weakSelf setPlugged: AJDIsReaderPlugged()];
             });
         }
             break;

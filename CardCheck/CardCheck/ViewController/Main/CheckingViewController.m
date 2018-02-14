@@ -144,7 +144,7 @@
     }
     
     NSLog(@"%@ - %@", CURRENT_METHOD, title);
-    //[self.cardDefaultView startAnimating: title];
+    [self.cardDefaultView startAnimating: title];
 }
 
 #pragma mark - Working
