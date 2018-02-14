@@ -1,6 +1,9 @@
 #import "CardDefaultView.h"
+#import "ITLoadingView.h"
 
 @interface CardDefaultView ()
+
+@property (weak, nonatomic) IBOutlet ITLoadingView *loadingView;
 
 - (IBAction)reset:(id)sender;
 - (IBAction)checkDemo:(id)sender;
@@ -9,17 +12,29 @@
 
 @implementation CardDefaultView
 
-+ (instancetype)viewWithDelegate:(id<CardDefaultViewDelegate>)delegate
+#pragma mark - Accessors
+
+- (void)setDelegate:(id<AuthViewDelegate>)delegate
 {
-    CardDefaultView *view = [[[UINib nibWithNibName: NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:nil options:nil] firstObject];
-    view.delegate = delegate;
-    
-    return view;
+    [super setDelegate: delegate];
 }
 
-- (void)awakeFromNib
+#pragma mark - Working
+
+- (void)stopAnimating
 {
-    [super awakeFromNib];
+    [self.loadingView stopAnimating];
+    [self.loadingView setHidden: YES];
+}
+- (void)startAnimating:(NSString *)title
+{
+    if (self.loadingView.isAnimating) {
+        [self.loadingView stopAnimating];
+    };
+    
+    [self.loadingView setTitle: title];
+    [self.loadingView setHidden: NO];
+    [self.loadingView startAnimating];
 }
 
 - (IBAction)reset:(id)sender
@@ -29,7 +44,7 @@
 
 - (IBAction)checkDemo:(id)sender
 {
-    [self.delegate cardViewCheckDemoPressed: self];
+    [self.delegate cardViewDemoPressed: self];
 }
 
 @end

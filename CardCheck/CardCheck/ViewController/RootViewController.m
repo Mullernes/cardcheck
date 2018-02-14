@@ -206,32 +206,32 @@
 {
     BOOL rez = NO;
     
-    if ((volume >= 0.0f) && (volume <= 1.0f))
-    {
-        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-        UISlider *volumeViewSlider = nil;
-        
-        for (UIView *subview in [volumeView subviews])
-        {
-            if ([subview isKindOfClass:[UISlider class]])
-            {
-                volumeViewSlider = (UISlider*)subview;
-                volumeViewSlider.continuous = true;
-                break;
-            }
-        }
-        
-        if (volumeViewSlider)
-        {
-            [volumeViewSlider setValue:volume animated:YES];
-            [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
-            
-            rez = YES;
-        }
-    }
-    
-    float currentVolume = [[AVAudioSession sharedInstance] outputVolume];
-    NSLog(@"Plugged: output volume = %1.2f", currentVolume);
+//    if ((volume >= 0.0f) && (volume <= 1.0f))
+//    {
+//        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+//        UISlider *volumeViewSlider = nil;
+//        
+//        for (UIView *subview in [volumeView subviews])
+//        {
+//            if ([subview isKindOfClass:[UISlider class]])
+//            {
+//                volumeViewSlider = (UISlider*)subview;
+//                volumeViewSlider.continuous = true;
+//                break;
+//            }
+//        }
+//        
+//        if (volumeViewSlider)
+//        {
+//            [volumeViewSlider setValue:volume animated:YES];
+//            [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+//            
+//            rez = YES;
+//        }
+//    }
+//    
+//    float currentVolume = [[AVAudioSession sharedInstance] outputVolume];
+//    NSLog(@"Plugged: output volume = %1.2f", currentVolume);
     
     return rez;
 }

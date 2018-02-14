@@ -2,7 +2,21 @@
 "connecting_bar_status" = "Підключення...";
 
 /* Alert View */
-"alert_recovery_title"            =   "Нерозпізнаний картрідер";
-"alert_recovery_message"          =   "Під'єднано інший картрідер! Бажаєте його використовувати?";
-"alert_recovery_button_ok"        =   "Продовжити";
-"alert_recovery_button_cancel"    =   "Завершити";
+"alert_recovery_title" = "Нерозпізнаний картрідер";
+"alert_recovery_message" = "Під'єднано інший картрідер! Бажаєте його використовувати?";
+"alert_recovery_button_ok" = "Продовжити";
+"alert_recovery_button_cancel" = "Завершити";
+
+/* Animation View */
+"animation_preparing_for_reading" = "Підготовка картрідера до зчитування картки…";
+"animation_preparing_for_test_reading" = "Підготовка картрідера до тестового зчитування картки…";
+
+"animation_swipe_card" = "Зчитайте картку…";
+"animation_swipe_test_card" = "Зчитайте тестову картку…";
+
+"animation_getting_data_from_reader" = "Отримання даних з картрідера…";
+"animation_getting_test_data_from_reader" = "Отримання тестових даних з картрідера…";
+
+"animation_sending_request" = "Відправлення запиту на сервер…";
+
+

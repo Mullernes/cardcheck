@@ -50,7 +50,7 @@
 
 - (IBAction)next:(id)sender
 {
-    [self.delegate continueCardChecking: self];
+    [self.delegate cardViewContinuePressed: self];
 }
     
 @end

@@ -13,6 +13,7 @@
 @property (nonatomic, readonly, getter=isExist) BOOL exist;
 
 @property (nonatomic) long appID;
+@property (nonatomic) BOOL stageMode;
 @property (nonatomic, strong) NSString *deviceID;       //8 bytes MCU
 @property (nonatomic, strong) NSString *appDataKey;     //32 bytes for AES256
 @property (nonatomic, strong) NSString *appCommKey;     //42 bytes

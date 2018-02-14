@@ -4,7 +4,20 @@
 #import "CardCheckedView.h"
 #import "CardDefaultView.h"
 
-@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate, CardDefaultViewDelegate>
+
+#define lPreparingForReading        NSLocalizedStringFromTable(@"animation_preparing_for_reading", @"Common", @"Animation View")
+#define lPreparingForTestReading    NSLocalizedStringFromTable(@"animation_preparing_for_test_reading", @"Common", @"Animation View")
+
+#define lSwipeCard                  NSLocalizedStringFromTable(@"animation_swipe_card", @"Common", @"Animation View")
+#define lSwipeTestCard              NSLocalizedStringFromTable(@"animation_swipe_test_card", @"Common", @"Animation View")
+
+#define lGettingData                NSLocalizedStringFromTable(@"animation_getting_data_from_reader", @"Common", @"Animation View")
+#define lGettingTestData            NSLocalizedStringFromTable(@"animation_getting_test_data_from_reader", @"Common", @"Animation View")
+
+#define lSendingRequest             NSLocalizedStringFromTable(@"animation_sending_request", @"Common", @"Animation View")
+
+
+@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -45,8 +58,10 @@
 - (void)baseSetup
 {
     self.stackOfResponse = @[];
-    [self.readerController setDelegate: self];
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    
+    [self.readerController setDelegate: self];
+    [self.readerController resetReaderController];
 }
 
 #pragma mark - Accessors
@@ -73,17 +88,17 @@
 
 #pragma mark - Ui
 
+- (void)showCardDefaultView
+{
+    [self showView: self.cardDefaultView reverse: YES];
+}
+
 - (void)showCardCheckedView:(CCheckResponseModel *)response
 {
     [self.cardCheckedView prepareUi];
     [self.cardCheckedView setupWith: response];
     
     [self showView: self.cardCheckedView reverse: NO];
-}
-
-- (void)showCardDefaultView
-{
-    [self showView: self.cardDefaultView reverse: YES];
 }
 
 - (void)showView:(UIView *)view reverse:(BOOL)reverse
@@ -103,6 +118,33 @@
     } completion:^(BOOL finished) {
         [oldView removeFromSuperview];
     }];
+}
+
+- (void)showReaderState:(ReaderState)state
+{
+    NSString *title = nil;
+    BOOL isStaging = self.readerController.isStaging;
+    
+    switch (state) {
+        case ReaderStatePreparing:
+            title = isStaging? lPreparingForReading : lPreparingForTestReading;
+            break;
+            
+        case ReaderStateReady:
+            title = isStaging? lSwipeCard : lSwipeTestCard;
+            break;
+            
+        case ReaderStateProcessing:
+            title = isStaging? lGettingData : lGettingTestData;
+            break;
+            
+        default:
+            title = nil;
+            break;
+    }
+    
+    NSLog(@"%@ - %@", CURRENT_METHOD, title);
+    //[self.cardDefaultView startAnimating: title];
 }
 
 #pragma mark - Working
@@ -234,9 +276,43 @@
 
 #pragma mark - ReaderControllerDelegate
 
+- (void)readerController:(ReaderController *)controller didUpdateWithState:(ReaderState)state
+{
+    NSLog(@"%@", CURRENT_METHOD);
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    [self showReaderState: state];
+}
+
 - (void)readerController:(ReaderController *)controller didUpdateWithReader:(CardReader *)reader
 {
-    [self handleReader: reader];
+    NSLog(@"%@", CURRENT_METHOD);
+    XT_EXEPTION_NOT_MAIN_THREAD;
+    
+    //[self handleReader: reader];
+}
+
+- (void)readerController:(ReaderController *)controller didReceiveTrackData:(AesTrackData *)data
+{
+    NSLog(@"%@", CURRENT_METHOD);
+    XT_EXEPTION_NOT_MAIN_THREAD;
+}
+
+#pragma mark - AuthViewDelegate
+
+- (void)cardViewDemoPressed:(CardDefaultView *)view
+{
+    [self checkCardData: [AesTrackData demoTrack]];
+}
+
+- (void)cardViewResetPressed:(CardDefaultView *)view
+{
+    [self.readerController resetReaderController];
+}
+
+- (void)cardViewContinuePressed:(CardCheckedView *)view
+{
+    [self showCardDefaultView];
 }
 
 #pragma mark - CardImagePickerDelegate
@@ -251,26 +327,6 @@
 - (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
 {
     [picker dismissInView: self];
-}
-
-#pragma mark - AuthViewDelegate
-
-- (void)continueCardChecking:(CardCheckedView *)view
-{
-    [self showCardDefaultView];
-}
-
-#pragma mark - CardDefaultViewDelegate
-
-- (void)cardViewResetPressed:(CardDefaultView *)view
-{
-    [self.readerController resetReaderController];
-    [self.currentReader setTrackData: nil];
-}
-
-- (void)cardViewCheckDemoPressed:(CardDefaultView *)view
-{
-    [self checkCardData: [AesTrackData demoTrack]];
 }
 
 @end
