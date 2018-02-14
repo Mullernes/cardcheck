@@ -2,7 +2,7 @@
 "auth_loginID_info_default_text"    = "Аутентифікація користувача";
 "dev_initialize_info_default_text"  = "Please, check your mail and enter the password";
 "dev_initialize_info_requestID"     = "Номер запроса:";
-"card_checked_info_success_text"    = "Your card has been checked with success";
+"card_checked_info_default_text"    = "CardCheck - Інформація про картку";
 
 /* Input View */
 "login_default_validation_text" = "Логин должен быть не менее 4 символов (латинские буквы, цифры, точка)";

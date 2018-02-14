@@ -194,6 +194,12 @@
     });
 }
 
+- (void)startStageMode
+{
+    [[MandatoryData sharedInstance] setStageMode: YES];
+    [[MandatoryData sharedInstance] save];
+}
+
 - (void)startDemoMode
 {
     [self.cardReader setupDemoReaderIfNeeded];

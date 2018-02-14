@@ -30,6 +30,7 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 + (instancetype)sharedInstance;
 - (void)resetReaderController;
 
+- (void)startStageMode;
 - (void)startDemoMode;
 
 @end

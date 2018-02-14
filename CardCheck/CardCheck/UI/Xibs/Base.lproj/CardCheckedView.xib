@@ -170,7 +170,7 @@
                         <constraint firstAttribute="height" constant="44" id="nhQ-TS-b5r"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="CONTINUE" backgroundImage="button_enabled_icon">
+                    <state key="normal" title="ПРОДОВЖИТИ" backgroundImage="button_enabled_icon">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <state key="highlighted" backgroundImage="button_highlighted_bg"/>

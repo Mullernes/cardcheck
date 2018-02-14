@@ -112,6 +112,10 @@
 
 - (void)showCardCheckedView:(CCheckResponseModel *)response
 {
+    if (NO == self.readerController.isStaging) {
+        [self.readerController startStageMode];
+    }
+    
     [self.cardCheckedView prepareUi];
     [self.cardCheckedView setupWith: response];
     
