@@ -90,7 +90,7 @@
                     <color key="textColor" red="0.54901960780000003" green="0.5450980392" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-Yz-SnA">
+                <button opaque="NO" tag="401" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-Yz-SnA">
                     <rect key="frame" x="197" y="273" width="240" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="dyc-tb-ISg"/>

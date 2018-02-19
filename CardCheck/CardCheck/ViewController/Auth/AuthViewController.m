@@ -145,10 +145,20 @@
         view.alpha = 1.0;
     } completion:^(BOOL finished) {
         [oldView removeFromSuperview];
+        [self resetFocusFrame];
     }];
 }
 
 #pragma mark - Working
+
+- (void)resetFocusFrame
+{
+    UIView *subview = [[self.contentView subviews] firstObject];
+    UIView *btnView = [subview viewWithTag: 401];
+    
+    CGRect focusFrame = [subview convertRect: btnView.frame toView: self.view];
+    self.keyboardObserver.focusFrame = focusFrame;
+}
 
 - (void)checkLogin:(ITTextField *)loginID
 {
