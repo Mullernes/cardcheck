@@ -136,7 +136,7 @@
                         <constraint firstAttribute="width" constant="10" id="RB7-iO-c0E"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-7h-OGz">
+                <button opaque="NO" tag="401" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-7h-OGz">
                     <rect key="frame" x="180" y="318" width="240" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="b0f-P8-7CE"/>

@@ -7,8 +7,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *counter;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
-@property (weak, nonatomic) IBOutlet UIButton *resetBtn;
-@property (weak, nonatomic) IBOutlet UIButton *checkDemoBtn;
+@property (weak, nonatomic) IBOutlet UIView *demoView;
 
 - (IBAction)reset:(id)sender;
 - (IBAction)checkDemo:(id)sender;
@@ -30,8 +29,7 @@
 {
     [super prepareUi];
     
-    [self.resetBtn setHidden: !DEMO_MODE];
-    [self.checkDemoBtn setHidden: !DEMO_MODE];
+    [self.demoView setHidden: !DEMO_MODE];
 }
 
 - (void)updateWithStatus:(NSString *)status
