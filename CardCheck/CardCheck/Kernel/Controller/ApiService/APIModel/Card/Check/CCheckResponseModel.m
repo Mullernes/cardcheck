@@ -13,7 +13,7 @@
 @property (nonatomic, readwrite) long reportID;
 @property (nonatomic, readwrite) BOOL fakeCard;
 @property (nonatomic, readwrite) NSString *reportDate;
-@property (nonatomic, readwrite) CCheckReportData *report;
+@property (nonatomic, readwrite) NSArray<CCheckReportData*> *reports;
 
 @end
 
@@ -31,7 +31,8 @@
         self.reportDate = [data kReportDate];
         self.reportID = [[data kReportID] longValue];
         self.fakeCard = [[data kFakeCard] boolValue];
-        self.report = [[CCheckReportData alloc] initWithRawData: [[data kReportColumns] firstObject]];
+        
+        [self setupReports: [data kReportColumns]];
         
         if (self.code > 0) {
             [self failedInResponse: @"CCheck_Response" withCode: self.code];
@@ -41,6 +42,17 @@
         }
     }
     return self;
+}
+
+- (void)setupReports:(NSArray<NSDictionary*> *)data
+{
+    self.reports = @[];
+    [data enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CCheckReportData *report = [[CCheckReportData alloc] initWithRawData: obj];
+        if (report) {
+            self.reports = [self.reports arrayByAddingObject: report];
+        }
+    }];
 }
 
 - (NSString *)currentClass {

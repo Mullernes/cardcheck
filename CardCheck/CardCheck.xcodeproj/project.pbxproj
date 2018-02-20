@@ -30,6 +30,8 @@
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
 		7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */; };
 		7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50E20E1FF03D4F00705D06 /* CryptoController.m */; };
+		7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4658203C3C83000F8709 /* CardTrackView.xib */; };
+		7D5E465D203C3D31000F8709 /* CardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E465B203C3D31000F8709 /* CardTrackView.m */; };
 		7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2B842018740000BE6950 /* Auth.storyboard */; };
 		7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B892018744F00BE6950 /* AuthViewController.m */; };
 		7D7E2B992018744F00BE6950 /* AuthLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B8C2018744F00BE6950 /* AuthLoginView.m */; };
@@ -155,6 +157,9 @@
 		7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitResponseModel.m; sourceTree = "<group>"; };
 		7D50E20D1FF03D4F00705D06 /* CryptoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoController.h; sourceTree = "<group>"; };
 		7D50E20E1FF03D4F00705D06 /* CryptoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoController.m; sourceTree = "<group>"; };
+		7D5E4659203C3C83000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTrackView.xib; sourceTree = "<group>"; };
+		7D5E465B203C3D31000F8709 /* CardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTrackView.m; sourceTree = "<group>"; };
+		7D5E465C203C3D31000F8709 /* CardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTrackView.h; sourceTree = "<group>"; };
 		7D7E2B852018740000BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		7D7E2B882018744F00BE6950 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		7D7E2B892018744F00BE6950 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
@@ -398,6 +403,8 @@
 				7D0E4131202B89200026F7B0 /* CardDefaultView.m */,
 				7D0E412C202A34E80026F7B0 /* CardCheckedView.h */,
 				7D0E412D202A34E90026F7B0 /* CardCheckedView.m */,
+				7D5E465C203C3D31000F8709 /* CardTrackView.h */,
+				7D5E465B203C3D31000F8709 /* CardTrackView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -519,6 +526,7 @@
 				7D7E2BA22018782A00BE6950 /* AuthLoginView.xib */,
 				7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */,
 				7D0E4126202A30360026F7B0 /* CardCheckedView.xib */,
+				7D5E4658203C3C83000F8709 /* CardTrackView.xib */,
 				7DACA3442031728D00D31166 /* AlertViewController.xib */,
 				7D7E2BAA2018782A00BE6950 /* DeviceInitializationView.xib */,
 			);
@@ -1159,6 +1167,7 @@
 				7D0E4135202B89B70026F7B0 /* CardDefaultView.xib in Resources */,
 				7DBC7455201CD58B00D925CB /* Common.strings in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
+				7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */,
 				7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */,
 				7D0105C320173D770080E63A /* Root.storyboard in Resources */,
 				7D0E4128202A30360026F7B0 /* CardCheckedView.xib in Resources */,
@@ -1381,6 +1390,7 @@
 				7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */,
 				7D0105D3201751790080E63A /* BaseViewController.m in Sources */,
 				7D7E2BD3201879D100BE6950 /* SFLoginIDTextField.m in Sources */,
+				7D5E465D203C3D31000F8709 /* CardTrackView.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
 				7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
@@ -1459,6 +1469,14 @@
 				7D0E4134202B89B60026F7B0 /* Base */,
 			);
 			name = CardDefaultView.xib;
+			sourceTree = "<group>";
+		};
+		7D5E4658203C3C83000F8709 /* CardTrackView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D5E4659203C3C83000F8709 /* Base */,
+			);
+			name = CardTrackView.xib;
 			sourceTree = "<group>";
 		};
 		7D7E2B842018740000BE6950 /* Auth.storyboard */ = {

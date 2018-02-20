@@ -359,7 +359,7 @@
 
 - (void)cardViewDemoPressed:(CardDefaultView *)view
 {
-    [self checkTrackData: [TrackData demoTrack2]];
+    [self checkTrackData: [TrackData demoTrack1]];
 }
 
 - (void)cardViewResetPressed:(CardDefaultView *)view

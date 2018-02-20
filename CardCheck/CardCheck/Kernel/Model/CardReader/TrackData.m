@@ -33,12 +33,12 @@
 {
     TrackData *data = [TrackData new];
     [data setTr1Code: 0];
-    [data setTr1Length: 69];
+    [data setTr1Length: 51];
     
-    [data setTr2Code: 1];
-    [data setTr2Length: 0];
+    [data setTr2Code: 133];
+    [data setTr2Length: 40];
     
-    [data setPlainHexData: DEMO_TRACK_DATA];
+    [data setPlainHexData: DEMO_TRACK_1_DATA]; 
     
     return data;
 }

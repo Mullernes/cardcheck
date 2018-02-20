@@ -1,8 +1,15 @@
 #import "CardCheckedView.h"
+#import "CardTrackView.h"
 
 #define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Authorization", @"Info View")
 
 @interface CardCheckedView ()
+
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIStackView *stackContentView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDefault;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintMultiplier;
 
 - (IBAction)next:(id)sender;
     
@@ -42,10 +49,105 @@
 
 - (void)setupWith:(CCheckResponseModel *)response
 {
-    [self.trackStatus setText: response.report.title];
-    [self.pan setText: response.report.truncatedPan];
-    [self.holder setText: response.report.holderName];
-    [self.paymentSystem setText: [NSString stringWithFormat:@"%@ %@", response.report.type, response.report.issuerName]];
+    __block NSArray<CardTrackView *> *views = @[];
+    [response.reports enumerateObjectsUsingBlock:^(CCheckReportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CardTrackView *trackView = [CardTrackView trackView];
+        [trackView setupWith: obj];
+        views = [views arrayByAddingObject: trackView];
+    }];
+    
+    [self resetWithTrackViews: views];
+}
+
+- (void)resetWithTrackViews:(NSArray<CardTrackView *> *)views
+{
+    //Clean old views
+    for (UIView *view in self.stackContentView.subviews) {
+        [view removeFromSuperview];
+    }
+    [self.stackContentView removeConstraints: self.stackContentView.constraints.copy];
+    
+    //Add new
+    UIView *prevView = nil;
+    NSMutableArray *constraints = [NSMutableArray array];
+    
+    for (CardTrackView *trackView in views)
+    {
+        [trackView setTranslatesAutoresizingMaskIntoConstraints: NO];
+        
+        [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
+                                                             attribute: NSLayoutAttributeTop
+                                                             relatedBy: NSLayoutRelationEqual
+                                                                toItem: self.stackContentView
+                                                             attribute: NSLayoutAttributeTop
+                                                            multiplier: 1.0
+                                                              constant: 0.0]];
+        
+        [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
+                                                             attribute: NSLayoutAttributeBottom
+                                                             relatedBy: NSLayoutRelationEqual
+                                                                toItem: self.stackContentView
+                                                             attribute: NSLayoutAttributeBottom
+                                                            multiplier: 1.0
+                                                              constant: 0.0]];
+        
+        if (prevView) {
+            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
+                                                                 attribute: NSLayoutAttributeLeading
+                                                                 relatedBy: NSLayoutRelationEqual
+                                                                    toItem: prevView
+                                                                 attribute: NSLayoutAttributeTrailing
+                                                                multiplier: 1.0
+                                                                  constant: 1.0]];
+            
+            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
+                                                                 attribute: NSLayoutAttributeWidth
+                                                                 relatedBy: NSLayoutRelationEqual
+                                                                    toItem: prevView
+                                                                 attribute: NSLayoutAttributeWidth
+                                                                multiplier: 1.0
+                                                                  constant: 0.0]];
+        }
+        else {
+            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
+                                                                 attribute: NSLayoutAttributeLeading
+                                                                 relatedBy: NSLayoutRelationEqual
+                                                                    toItem: self.stackContentView
+                                                                 attribute: NSLayoutAttributeLeading
+                                                                multiplier: 1.0
+                                                                  constant: 0.0]];
+        }
+        
+        [trackView addConstraint:[NSLayoutConstraint constraintWithItem: trackView
+                                                               attribute: NSLayoutAttributeWidth
+                                                               relatedBy: NSLayoutRelationGreaterThanOrEqual
+                                                                  toItem: nil
+                                                               attribute: NSLayoutAttributeNotAnAttribute
+                                                              multiplier: 1.0
+                                                                constant: 0.0]];
+        [self.stackContentView addSubview: trackView];
+        prevView = trackView;
+    }
+    
+    [constraints addObject: [NSLayoutConstraint constraintWithItem: prevView
+                                                         attribute: NSLayoutAttributeTrailing
+                                                         relatedBy: NSLayoutRelationEqual
+                                                            toItem: self.stackContentView
+                                                         attribute: NSLayoutAttributeTrailing
+                                                        multiplier: 1.0
+                                                          constant: 0.0]];
+    
+    [self.stackContentView addConstraints: constraints];
+    
+//    BOOL active = ([views count] == 2)? YES : NO;
+//    [self.contentWidthConstraintDefault setActive: !active];
+//    [self.contentWidthConstraintDefault setPriority: UILayoutPriorityRequired];
+//    
+//    [self.contentWidthConstraintMultiplier setActive: active];
+//    [self.contentWidthConstraintMultiplier setPriority: UILayoutPriorityRequired];
+//    
+//    [self.contentView layoutIfNeeded];
+//    [self.stackContentView layoutIfNeeded];
 }
 
 - (IBAction)next:(id)sender

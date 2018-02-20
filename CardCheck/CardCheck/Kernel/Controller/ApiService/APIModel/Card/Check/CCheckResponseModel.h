@@ -14,7 +14,7 @@
 @property (nonatomic, readonly) long reportID;
 @property (nonatomic, readonly) BOOL fakeCard;
 @property (nonatomic, readonly) NSString *reportDate;
-@property (nonatomic, readonly) CCheckReportData *report;
+@property (nonatomic, readonly) NSArray<CCheckReportData*> *reports;
 
 + (instancetype)responseWithRawData:(NSDictionary *)data;
 
