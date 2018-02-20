@@ -29,6 +29,34 @@
     return data;
 }
 
++ (instancetype)demoTrack1
+{
+    TrackData *data = [TrackData new];
+    [data setTr1Code: 0];
+    [data setTr1Length: 69];
+    
+    [data setTr2Code: 1];
+    [data setTr2Length: 0];
+    
+    [data setPlainHexData: DEMO_TRACK_DATA];
+    
+    return data;
+}
+
++ (instancetype)demoTrack2
+{
+    TrackData *data = [TrackData new];
+    [data setTr1Code: 1];
+    [data setTr1Length: 0];
+    
+    [data setTr2Code: 0];
+    [data setTr2Length: 37];
+    
+    [data setPlainHexData: DEMO_TRACK_DATA];
+    
+    return data;
+}
+
 + (instancetype)emptyTrack {
     TrackData *data = [TrackData new];
     return data;

@@ -280,7 +280,11 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     
-    [button setTitle:self.title forState:UIControlStateNormal];
+    [button setTitle: self.title forState: UIControlStateNormal];
+    [button.titleLabel setLineBreakMode: NSLineBreakByWordWrapping];
+    [button.titleLabel setTextAlignment: NSTextAlignmentCenter];
+    [button.titleLabel setNumberOfLines: 2];
+    
     [button addTarget:self action:@selector(callAction:) forControlEvents:UIControlEventTouchUpInside];
     
     switch (self.style) {

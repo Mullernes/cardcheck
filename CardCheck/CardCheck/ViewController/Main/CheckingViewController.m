@@ -306,11 +306,11 @@
     AlertViewController *controller = [AlertViewController alertControllerWithTitle: title
                                                                             message: message];
     
-    [controller addAction:[AlertAction actionWithTitle: lRepeatReading style:UIAlertActionStyleCancel handler:^(AlertAction *action) {
+    [controller addAction:[AlertAction actionWithTitle: lRepeatReading style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
         [self.readerController resetReaderController];
     }]];
     
-    [controller addAction:[AlertAction actionWithTitle: lSendingRequest style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
+    [controller addAction:[AlertAction actionWithTitle: lSendRequest style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
         [self sendCheckCard: self.currentReader.trackData];
         [self.cardDefaultView updateWithStatus: lSendingRequest];
     }]];
@@ -334,7 +334,7 @@
 {
     XT_EXEPTION_NOT_MAIN_THREAD;
     
-    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %i", CURRENT_METHOD, counter]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%@ - %lu", CURRENT_METHOD, (unsigned long)counter]);
     
     [self.cardDefaultView updateWithCounter: counter];
 }
@@ -359,7 +359,7 @@
 
 - (void)cardViewDemoPressed:(CardDefaultView *)view
 {
-    [self sendCheckCard: [TrackData demoTrack]];
+    [self checkTrackData: [TrackData demoTrack2]];
 }
 
 - (void)cardViewResetPressed:(CardDefaultView *)view
