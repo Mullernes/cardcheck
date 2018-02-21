@@ -5,13 +5,21 @@
 
 @interface CardCheckedView ()
 
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIStackView *stackContentView;
 
+@property (weak, nonatomic) IBOutlet UIView *extraInfo;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+@property (weak, nonatomic) IBOutlet UIButton *noButton;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDefault;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintMultiplier;
 
 - (IBAction)next:(id)sender;
+- (IBAction)yes:(id)sender;
+- (IBAction)no:(id)sender;
     
 @end
 
@@ -47,16 +55,25 @@
     [self.infoView setState: InfoStateCard withText: lInfoText animated: NO];
 }
 
-- (void)setupWith:(CCheckResponseModel *)response
+- (void)setupWith:(CardCheckReport *)report andStage:(BOOL)stage
 {
     __block NSArray<CardTrackView *> *views = @[];
-    [response.reports enumerateObjectsUsingBlock:^(CCheckReportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [report.reports enumerateObjectsUsingBlock:^(CCheckReportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CardTrackView *trackView = [CardTrackView trackView];
         [trackView setupWith: obj];
         views = [views arrayByAddingObject: trackView];
     }];
     
+    [self resetActionView: stage];
     [self resetWithTrackViews: views];
+}
+
+- (void)resetActionView:(BOOL)stage
+{
+    [self.extraInfo setHidden: !stage];
+    [self.yesButton setHidden: !stage];
+    [self.noButton setHidden: !stage];
+    [self.nextButton setHidden: stage];
 }
 
 - (void)resetWithTrackViews:(NSArray<CardTrackView *> *)views
@@ -139,13 +156,7 @@
     
     [self.stackContentView addConstraints: constraints];
     
-//    BOOL active = ([views count] == 2)? YES : NO;
-//    [self.contentWidthConstraintDefault setActive: !active];
-//    [self.contentWidthConstraintDefault setPriority: UILayoutPriorityRequired];
-//    
-//    [self.contentWidthConstraintMultiplier setActive: active];
-//    [self.contentWidthConstraintMultiplier setPriority: UILayoutPriorityRequired];
-//    
+//    BOOL doubleWidth = ([views count] == 2)? YES : NO;
 //    [self.contentView layoutIfNeeded];
 //    [self.stackContentView layoutIfNeeded];
 }
@@ -154,7 +165,17 @@
 {
     [self.delegate cardViewContinuePressed: self];
 }
-    
+
+- (IBAction)yes:(id)sender
+{
+    [self.delegate cardViewYesPressed: self];
+}
+
+- (IBAction)no:(id)sender
+{
+    [self.delegate cardViewNoPressed: self];
+}
+
 @end
 
 

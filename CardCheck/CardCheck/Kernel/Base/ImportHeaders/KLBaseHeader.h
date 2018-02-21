@@ -21,6 +21,7 @@
 #import "MandatoryData.h"
 #import "CardReader.h"
 #import "InitializationData.h"
+#import "CardCheckReport.h"
 
 //Controller
 #import "APIController.h"

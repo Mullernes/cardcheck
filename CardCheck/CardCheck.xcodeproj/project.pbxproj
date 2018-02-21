@@ -32,6 +32,7 @@
 		7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50E20E1FF03D4F00705D06 /* CryptoController.m */; };
 		7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4658203C3C83000F8709 /* CardTrackView.xib */; };
 		7D5E465D203C3D31000F8709 /* CardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E465B203C3D31000F8709 /* CardTrackView.m */; };
+		7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4660203D5F93000F8709 /* CardCheckReport.m */; };
 		7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2B842018740000BE6950 /* Auth.storyboard */; };
 		7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B892018744F00BE6950 /* AuthViewController.m */; };
 		7D7E2B992018744F00BE6950 /* AuthLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B8C2018744F00BE6950 /* AuthLoginView.m */; };
@@ -160,6 +161,8 @@
 		7D5E4659203C3C83000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTrackView.xib; sourceTree = "<group>"; };
 		7D5E465B203C3D31000F8709 /* CardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTrackView.m; sourceTree = "<group>"; };
 		7D5E465C203C3D31000F8709 /* CardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTrackView.h; sourceTree = "<group>"; };
+		7D5E465F203D5F93000F8709 /* CardCheckReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCheckReport.h; sourceTree = "<group>"; };
+		7D5E4660203D5F93000F8709 /* CardCheckReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCheckReport.m; sourceTree = "<group>"; };
 		7D7E2B852018740000BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		7D7E2B882018744F00BE6950 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		7D7E2B892018744F00BE6950 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
@@ -485,6 +488,15 @@
 				7D50E20E1FF03D4F00705D06 /* CryptoController.m */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		7D5E465E203D5F93000F8709 /* CardCheckReport */ = {
+			isa = PBXGroup;
+			children = (
+				7D5E465F203D5F93000F8709 /* CardCheckReport.h */,
+				7D5E4660203D5F93000F8709 /* CardCheckReport.m */,
+			);
+			path = CardCheckReport;
 			sourceTree = "<group>";
 		};
 		7D7E2B872018744F00BE6950 /* Auth */ = {
@@ -831,6 +843,7 @@
 			isa = PBXGroup;
 			children = (
 				7D33B7C920132CB4006004BD /* CardImage */,
+				7D5E465E203D5F93000F8709 /* CardCheckReport */,
 				7DDE2C681FF2E8E800058FD4 /* CardReader */,
 				7DDE2D081FF6C04300058FD4 /* InitializationData */,
 				7DE1680A2004081400F4A417 /* KeyChainData */,
@@ -1406,6 +1419,7 @@
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
+				7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
 				7DBC7452201CD43200D925CB /* CWStatusBarNotification.m in Sources */,
 				7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */,

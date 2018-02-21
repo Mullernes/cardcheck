@@ -8,12 +8,12 @@
 
 #import "APIBaseModel.h"
 
+@class CardCheckReport;
 @interface CFinishCheckRequestModel : APIBaseModel
 
-@property (nonatomic, strong) CCheckResponseModel *checkResponse;
-
 + (instancetype)requestWithReader:(CardReader *)reader;
-- (void)setupFakeCardWithImages:(NSArray<CardImage *> *)images;
+
+- (void)setupWithReport:(CardCheckReport *)report;
 
 @end
 

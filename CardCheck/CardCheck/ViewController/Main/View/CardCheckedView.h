@@ -2,7 +2,7 @@
 
 @interface CardCheckedView : AuthView
 
-- (void)setupWith:(CCheckResponseModel *)response;
+- (void)setupWith:(CardCheckReport *)report andStage:(BOOL)stage;
     
 @end
 

@@ -10,6 +10,11 @@
 
 @implementation HexCvtr
 
++ (NSString *)hexFromString:(NSString *)string
+{
+    return [HexCvtr hexFromData: [string dataUsingEncoding: NSUTF8StringEncoding]];
+}
+
 + (NSString *)hexFromData:(NSData *)data
 {
     unsigned char *dataBuffer = (unsigned char *)[[data copy] bytes];

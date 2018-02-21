@@ -3,7 +3,6 @@
 #import "ITTextField.h"
 #import "AuthInfoView.h"
 
-@class CardCheckedView,CardDefaultView;
 @protocol AuthViewDelegate;
 
 @interface AuthView : UIView
@@ -31,8 +30,11 @@
 - (void)authView:(AuthView *)view checkLoginDidEnter:(ITTextField *)textField;
 - (void)authView:(AuthView *)view checkPasswordDidEnter:(ITTextField *)textField;
 
-- (void)cardViewDemoPressed:(CardDefaultView *)view;
-- (void)cardViewResetPressed:(CardDefaultView *)view;
-- (void)cardViewContinuePressed:(CardCheckedView *)view;
+- (void)cardViewDemoPressed:(UIView *)view;
+- (void)cardViewResetPressed:(UIView *)view;
+- (void)cardViewContinuePressed:(UIView *)view;
+
+- (void)cardViewYesPressed:(UIView *)view;
+- (void)cardViewNoPressed:(UIView *)view;
 
 @end

@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZQ-nx-3aR" userLabel="Info View" customClass="AuthInfoView">
-                    <rect key="frame" x="171.5" y="59.5" width="258.5" height="18"/>
+                    <rect key="frame" x="171.5" y="32" width="258.5" height="18"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_checking_info_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-0K-85G">
                             <rect key="frame" x="0.0" y="-11" width="40" height="40"/>
@@ -54,21 +54,21 @@
                     </connections>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaO-X2-6w5" userLabel="Layout View">
-                    <rect key="frame" x="295" y="0.0" width="10" height="59.5"/>
+                    <rect key="frame" x="295" y="0.0" width="10" height="32"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="6ue-hE-S7Y"/>
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hj-eE-W3j" userLabel="Layout View">
-                    <rect key="frame" x="295" y="77" width="10" height="60"/>
+                    <rect key="frame" x="295" y="49.5" width="10" height="32"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="dO9-h9-sQa"/>
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWF-E9-PeS" userLabel="Card View">
-                    <rect key="frame" x="60" y="145" width="480" height="150"/>
+                    <rect key="frame" x="60" y="89.5" width="480" height="150"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-Dy-snk">
                             <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
@@ -111,35 +111,104 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUh-hy-rkH" userLabel="Layout View">
-                    <rect key="frame" x="295" y="295" width="10" height="59.5"/>
+                    <rect key="frame" x="295" y="239.5" width="10" height="32.5"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="E29-Bt-pWd"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-7h-OGz">
-                    <rect key="frame" x="180" y="354.5" width="240" height="44"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E0V-yc-UuU">
+                    <rect key="frame" x="132" y="272" width="336" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sr0-GO-WNv">
+                            <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Надана інформація відповідає картці?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0Z-k6-ZCf">
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="a0Z-k6-ZCf" secondAttribute="bottom" id="4Ju-nj-iqh"/>
+                                <constraint firstAttribute="trailing" secondItem="a0Z-k6-ZCf" secondAttribute="trailing" id="EGt-Xr-yfk"/>
+                                <constraint firstItem="a0Z-k6-ZCf" firstAttribute="top" secondItem="Sr0-GO-WNv" secondAttribute="top" id="ck6-kn-fyC"/>
+                                <constraint firstItem="a0Z-k6-ZCf" firstAttribute="leading" secondItem="Sr0-GO-WNv" secondAttribute="leading" id="ecc-bn-LWw"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-7h-OGz">
+                            <rect key="frame" x="48" y="52" width="240" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="b0f-P8-7CE"/>
+                                <constraint firstAttribute="height" constant="44" id="nhQ-TS-b5r"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="ПРОДОВЖИТИ" backgroundImage="button_enabled_icon">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="button_highlighted_bg"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="next:" destination="iN0-l3-epB" eventType="touchUpInside" id="u10-Sa-RtJ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sG7-QY-940">
+                            <rect key="frame" x="48" y="104" width="240" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Bka-fG-HgC"/>
+                                <constraint firstAttribute="width" constant="240" id="FvN-Bu-FEg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="ТАК" backgroundImage="button_enabled_icon">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="button_highlighted_bg"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="yes:" destination="iN0-l3-epB" eventType="touchUpInside" id="KuM-JB-gWM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNI-7l-Uzx">
+                            <rect key="frame" x="48" y="156" width="240" height="44"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40784313729999999" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="6ua-p8-wXG"/>
+                                <constraint firstAttribute="height" constant="44" id="UDE-9x-LDK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="НІ">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="button_highlighted_bg"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="no:" destination="iN0-l3-epB" eventType="touchUpInside" id="JP7-Sp-FXG"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" constant="240" id="b0f-P8-7CE"/>
-                        <constraint firstAttribute="height" constant="44" id="nhQ-TS-b5r"/>
+                        <constraint firstItem="Sr0-GO-WNv" firstAttribute="width" secondItem="Lor-7h-OGz" secondAttribute="width" multiplier="1.4" id="5H8-vg-jlC"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="ПРОДОВЖИТИ" backgroundImage="button_enabled_icon">
-                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <state key="highlighted" backgroundImage="button_highlighted_bg"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="next:" destination="iN0-l3-epB" eventType="touchUpInside" id="u10-Sa-RtJ"/>
-                    </connections>
-                </button>
+                </stackView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-XK-erj" userLabel="Layout View">
-                    <rect key="frame" x="295" y="398.5" width="10" height="201.5"/>
+                    <rect key="frame" x="295" y="472" width="10" height="128"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="RB7-iO-c0E"/>
@@ -148,34 +217,39 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Lor-7h-OGz" firstAttribute="top" secondItem="OUh-hy-rkH" secondAttribute="bottom" id="1LL-fw-TXq"/>
                 <constraint firstItem="aZQ-nx-3aR" firstAttribute="top" secondItem="kaO-X2-6w5" secondAttribute="bottom" id="8lx-qF-4JT"/>
-                <constraint firstItem="tPg-XK-erj" firstAttribute="top" secondItem="Lor-7h-OGz" secondAttribute="bottom" id="B5L-e1-t0P"/>
                 <constraint firstItem="kaO-X2-6w5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Bb6-UB-GW6"/>
                 <constraint firstItem="rWF-E9-PeS" firstAttribute="top" secondItem="5hj-eE-W3j" secondAttribute="bottom" constant="8" id="DPS-AB-K4W"/>
-                <constraint firstAttribute="centerX" secondItem="Lor-7h-OGz" secondAttribute="centerX" id="Eqn-Hu-lKN"/>
                 <constraint firstItem="rWF-E9-PeS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kv4-9a-uVc"/>
                 <constraint firstItem="5hj-eE-W3j" firstAttribute="top" secondItem="aZQ-nx-3aR" secondAttribute="bottom" id="Ssu-lF-JCi"/>
                 <constraint firstItem="aZQ-nx-3aR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="TWa-WV-QZA"/>
                 <constraint firstItem="OUh-hy-rkH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XCt-98-Mhs"/>
+                <constraint firstItem="E0V-yc-UuU" firstAttribute="top" secondItem="OUh-hy-rkH" secondAttribute="bottom" id="YzU-F4-q4k"/>
                 <constraint firstItem="OUh-hy-rkH" firstAttribute="top" secondItem="rWF-E9-PeS" secondAttribute="bottom" id="Z6Y-kN-RTQ"/>
+                <constraint firstItem="E0V-yc-UuU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Zkx-2p-0ir"/>
                 <constraint firstAttribute="centerX" secondItem="kaO-X2-6w5" secondAttribute="centerX" id="bkY-b0-MVM"/>
                 <constraint firstAttribute="centerX" secondItem="tPg-XK-erj" secondAttribute="centerX" id="eYe-1N-bcz"/>
+                <constraint firstItem="tPg-XK-erj" firstAttribute="top" secondItem="E0V-yc-UuU" secondAttribute="bottom" id="fFP-lM-3eJ"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aZQ-nx-3aR" secondAttribute="trailing" constant="30" id="g5E-mo-UAg"/>
                 <constraint firstAttribute="bottom" secondItem="tPg-XK-erj" secondAttribute="bottom" id="hyq-Sl-DG5"/>
                 <constraint firstItem="OUh-hy-rkH" firstAttribute="height" secondItem="5hj-eE-W3j" secondAttribute="height" id="iSV-lu-sOv"/>
                 <constraint firstItem="rWF-E9-PeS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="id0-ls-xJt"/>
-                <constraint firstItem="kaO-X2-6w5" firstAttribute="height" secondItem="tPg-XK-erj" secondAttribute="height" multiplier="0.3" id="ned-s7-uRD"/>
+                <constraint firstItem="kaO-X2-6w5" firstAttribute="height" secondItem="tPg-XK-erj" secondAttribute="height" multiplier="0.25" id="ned-s7-uRD"/>
                 <constraint firstItem="kaO-X2-6w5" firstAttribute="height" secondItem="5hj-eE-W3j" secondAttribute="height" id="wLL-j2-JZo"/>
                 <constraint firstAttribute="centerX" secondItem="5hj-eE-W3j" secondAttribute="centerX" id="zMU-is-H4G"/>
                 <constraint firstAttribute="centerX" secondItem="aZQ-nx-3aR" secondAttribute="centerX" id="zPH-Ke-7ce"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cardView" destination="rWF-E9-PeS" id="BhO-rf-Rem"/>
                 <outlet property="contentView" destination="RyP-RA-Ht7" id="MC3-pn-UDd"/>
                 <outlet property="contentWidthConstraintDefault" destination="Azp-3O-Acc" id="Q51-EV-uhq"/>
+                <outlet property="extraInfo" destination="Sr0-GO-WNv" id="LaE-HZ-LCb"/>
                 <outlet property="infoView" destination="aZQ-nx-3aR" id="9yg-Yr-wa6"/>
+                <outlet property="nextButton" destination="Lor-7h-OGz" id="kyS-07-p8v"/>
+                <outlet property="noButton" destination="uNI-7l-Uzx" id="WH8-yu-EFi"/>
                 <outlet property="stackContentView" destination="V5V-x0-qFa" id="MkM-Md-eL8"/>
+                <outlet property="yesButton" destination="sG7-QY-940" id="0rN-ab-QB9"/>
             </connections>
             <point key="canvasLocation" x="-290" y="-159"/>
         </view>

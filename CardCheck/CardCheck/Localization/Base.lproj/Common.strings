@@ -15,6 +15,19 @@
 "alert_recovery_button_ok"        =   "Продовжити";
 "alert_recovery_button_cancel"    =   "Завершити";
 
+"handle_track_info_title"               = "Інформація";
+
+"handle_track_none_read_message"        = "Помилка зчитування.";
+"handle_track_track1_read_message"      = "Зчитано лише Track 1. Наполегливо рекомендовано повторити зчитування картки.";
+"handle_track_track2_read_message"      = "Зчитано лише Track 2. Рекомендовано повторити зчитування картки.";
+
+"handle_track_button_repeat_reading"    = "Прочитати картку";
+"handle_track_button_send_request"      = "Відправити запит";
+
+"handle_track_complete_message"         = "Перевірку завершено.";
+"handle_track_button_close"             = "Закрити додаток";
+"handle_track_button_continue"          = "Перевірити наступну картку";
+
 /* Animation View */
 "animation_preparing_for_reading" = "Підготовка картрідера до зчитування картки…";
 "animation_preparing_for_test_reading" = "Підготовка картрідера до тестового зчитування картки…";
@@ -27,14 +40,6 @@
 
 "animation_sending_request" = "Відправлення запиту на сервер…";
 
-/* Track Data */
-"handle_track_info" = "Інформація";
 
-"handle_track_none_read" = "Помилка зчитування.";
-"handle_track_track1_read" = "Зчитано лише Track 1. Наполегливо рекомендовано повторити зчитування картки.";
-"handle_track_track2_read" = "Зчитано лише Track 2. Рекомендовано повторити зчитування картки.";
-
-"handle_track_repeat_reading" = "Прочитати картку";
-"handle_track_send_request" = "Відправити запит";
 
 

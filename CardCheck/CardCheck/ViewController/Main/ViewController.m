@@ -197,25 +197,25 @@
 
 - (IBAction)completeCheckCard:(id)sender
 {
-    TrackData *trackData = [TrackData demoTrack];
-    trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
-    
-    CryptoController *crp = [CryptoController sharedInstance];
-    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
-                                        withHexKey: [self.keyChain appDataKey]];
-    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
-    [self.currentReader setTrackData: trackData];
-    
-    CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
-    [request setCheckResponse: [self lastCheckResponse]];
-    [request setupFakeCardWithImages: [self fakeCardImages]];
-    
-    //__weak ViewController *weakSelf = self;
-    [[APIController sharedInstance] sendCFinishCheckRequest: request
-                                             withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
-    {
-        NSLog(@" response = %@", [model debugDescription]);
-    }];
+//    TrackData *trackData = [TrackData demoTrack];
+//    trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
+//    
+//    CryptoController *crp = [CryptoController sharedInstance];
+//    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
+//                                        withHexKey: [self.keyChain appDataKey]];
+//    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
+//    [self.currentReader setTrackData: trackData];
+//    
+//    CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
+//    [request setCheckResponse: [self lastCheckResponse]];
+//    [request setupFakeCardWithImages: [self fakeCardImages]];
+//    
+//    //__weak ViewController *weakSelf = self;
+//    [[APIController sharedInstance] sendCFinishCheckRequest: request
+//                                             withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
+//    {
+//        NSLog(@" response = %@", [model debugDescription]);
+//    }];
 }
 
 - (IBAction)uploadCardImage:(id)sender

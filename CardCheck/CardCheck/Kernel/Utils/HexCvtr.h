@@ -10,7 +10,8 @@
 
 @interface HexCvtr : NSObject
 
-+ (NSString *)hexFromData:(NSData *)data;
 + (NSData *)dataFromHex:(NSString *)hex;
++ (NSString *)hexFromData:(NSData *)data;
++ (NSString *)hexFromString:(NSString *)string;
 
 @end
