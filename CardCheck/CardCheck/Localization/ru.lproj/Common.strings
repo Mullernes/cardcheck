@@ -1,7 +1,4 @@
 
-/* Animation View */
-"connecting_bar_status" = "Подключение...";
-
 /* Alert View */
 "alert_recovery_title"            =   "Нерозпізнаний картрідер";
 "alert_recovery_message"          =   "Під'єднано інший картрідер! Бажаєте його використовувати?";
@@ -17,12 +14,17 @@
 "handle_track_button_repeat_reading"    = "Прочитати картку";
 "handle_track_button_send_request"      = "Відправити запит";
 
-"handle_track_complete_message"         = "Перевірку завершено.";
-"handle_track_button_close"             = "Закрити додаток";
-"handle_track_button_continue"          = "Перевірити наступну картку";
+"card_check_complete_message"         = "Перевірку завершено.";
+"card_check_button_close"             = "Закрити додаток";
+"card_check_button_continue"          = "Перевірити наступну картку";
 
+"add_extra_info_title"      = "Бажаєте додати до звіту: фото обох сторін картки, номер картки з лицьової сторони та коментар?";
+"add_extra_info_button_yes" = "Так";
+"add_extra_info_button_no"  = "Ні";
 
 /* Animation View */
+"connecting_bar_status" = "Подключение...";
+
 "animation_preparing_for_reading" = "Підготовка картрідера до зчитування картки…";
 "animation_preparing_for_test_reading" = "Підготовка картрідера до тестового зчитування картки…";
 

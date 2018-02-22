@@ -23,11 +23,13 @@
 @property (nonatomic, readonly) NSInteger pan3Length;
 @property (nonatomic, strong, readonly) NSString *pan3;
 
-@property (nonatomic, strong, readonly) NSString *notes;
+@property (nonatomic, strong) NSString *notes;
 
 @property (nonatomic, strong, readonly) NSArray<CCheckReportData*> *reports;
 
 - (instancetype)initWithCheckResponse:(CCheckResponseModel *)response;
+
 - (void)setupWithCardImage:(CardImage *)image;
+- (void)setupWithManualPan:(NSString *)pan;
 
 @end

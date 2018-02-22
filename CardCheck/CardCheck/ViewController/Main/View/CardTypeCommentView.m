@@ -1,17 +1,17 @@
 
 
-#import "AuthLoginView.h"
+#import "CardTypeCommentView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_default_text", @"Interactive", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"add_comment_info_default_text", @"Interactive", @"Info View")
 
-@interface AuthLoginView ()
+@interface CardTypeCommentView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 - (IBAction)next:(id)sender;
 
 @end
 
-@implementation AuthLoginView
+@implementation CardTypeCommentView
 
 #pragma mark - Accessors
 - (void)setDelegate:(id<AuthViewDelegate>)delegate
@@ -19,21 +19,21 @@
     [super setDelegate: delegate];
     
     id<UITextFieldDelegate> textFieldDelegate = [delegate textFieldDelegate];
-    self.loginIDTextField.delegate = textFieldDelegate;
+    self.commentIDTextField.delegate = textFieldDelegate;
 }
 
 - (void)setCorrect:(BOOL)correct
 {
     [super setCorrect: correct];
     
-    [self.loginIDTextField setCorrect: correct];
+    [self.commentIDTextField setCorrect: correct];
 }
 
 - (void)setLoading:(BOOL)loading
 {
     [super setLoading: loading];
     
-    [self.loginIDTextField setLoading: loading];
+    [self.commentIDTextField setLoading: loading];
 }
 
 #pragma mark - Working
@@ -42,14 +42,14 @@
 {
     [super prepareUi];
     
-    [self.loginIDTextField setText:@""];
+    [self.commentIDTextField setText:@""];
 }
 
 - (void)resetState
 {
     [super resetState];
     
-    self.loginIDTextField.loading = NO;
+    self.commentIDTextField.loading = NO;
     [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
@@ -57,12 +57,12 @@
 
 - (IBAction)next:(id)sender
 {
-    if ([self.loginIDTextField isValid]) {
-        [self.loginIDTextField resignFirstResponder];
-        [self.delegate authView: self checkLoginDidEnter: self.loginIDTextField];
+    if ([self.commentIDTextField isValid]) {
+        [self.commentIDTextField resignFirstResponder];
+        [self.delegate authView: self checkCardCommentDidEnter: self.commentIDTextField];
     }
     else {
-        [self failedStateWithText: self.loginIDTextField.validationWarning];
+        [self failedStateWithText: self.commentIDTextField.validationWarning];
     }
 }
 

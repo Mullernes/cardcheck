@@ -256,12 +256,12 @@
 
 - (void)callAction:(id)sender
 {
-    if (self.handler) {
-        self.handler(self);
-    }
-    
     if (self.controller) {
-        [[NotificationManager sharedInstance] hideAlert: self.controller completion: nil];
+        [[NotificationManager sharedInstance] hideAlert: self.controller completion:^{
+            if (self.handler) {
+                self.handler(self);
+            }
+        }];
     }
 }
 

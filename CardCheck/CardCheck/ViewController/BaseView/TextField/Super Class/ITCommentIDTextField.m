@@ -7,11 +7,11 @@
 //
 
 
-#define lValidationWarning      NSLocalizedStringFromTable(@"login_default_validation_text", @"Interactive", @"Input View")
+#define lValidationWarning      NSLocalizedStringFromTable(@"comment_default_validation_text", @"Interactive", @"Input View")
 
-#import "ITLoginIDTextField.h"
+#import "ITCommentIDTextField.h"
 
-@implementation ITLoginIDTextField
+@implementation ITCommentIDTextField
 
 - (void)awakeFromNib
 {
@@ -24,11 +24,11 @@
 
 - (BOOL)isValid
 {
-    BOOL isValid = [self isGeneralLogin: self.text];
+    BOOL isValid = [self isGeneralComment: self.text];
 
     self.validationWarning = (!isValid)? lValidationWarning : nil;
 
-    return DEMO_AUTH? YES : isValid;
+    return isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
@@ -36,11 +36,11 @@
     return YES;
 }
 
-- (BOOL)isGeneralLogin:(NSString *)login
+- (BOOL)isGeneralComment:(NSString *)value
 {
-    NSString *regex = @"^([a-z]{1}[a-z0-9-.]{3,20})$";
+    NSString *regex = @"^([.]{1,})$";
     NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValid = [predTest evaluateWithObject: [login lowercaseString]];
+    BOOL isValid = [predTest evaluateWithObject: [value lowercaseString]];
     
     return isValid;
 }

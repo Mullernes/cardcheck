@@ -13,9 +13,16 @@
 "dev_initialize_info_requestID"     = "Request ID:";
 "card_checked_info_default_text"    = "CardCheck - Інформація про картку";
 
+"add_pan_info_default_text"        = "Номер картки на лицьовій стороні (13-19 цифр)";
+"add_comment_info_default_text"    = "Введення коментарів";
+
 /* Input View */
 "login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers)";
 "password_invalid_validation_text"      = "Invalid password. please, try again";
 "password_default_validation_text"      = "Password must contain at least 4 symbols";
+
+"pan_default_validation_text"         = "Номер картки повинен бути 13-19 цифр";
+"comment_default_validation_text"     = "Введіть коментар";
+
 
 

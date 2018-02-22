@@ -27,8 +27,10 @@
 - (id<UITextFieldDelegate>)textFieldDelegate;
 
 @optional
-- (void)authView:(AuthView *)view checkLoginDidEnter:(ITTextField *)textField;
-- (void)authView:(AuthView *)view checkPasswordDidEnter:(ITTextField *)textField;
+- (void)authView:(UIView *)view checkLoginDidEnter:(ITTextField *)textField;
+- (void)authView:(UIView *)view checkPasswordDidEnter:(ITTextField *)textField;
+- (void)authView:(UIView *)view checkCardPanDidEnter:(ITTextField *)textField;
+- (void)authView:(UIView *)view checkCardCommentDidEnter:(ITTextField *)textField;
 
 - (void)cardViewDemoPressed:(UIView *)view;
 - (void)cardViewResetPressed:(UIView *)view;

@@ -14,6 +14,9 @@
 - (NSNumber *)kFakeCard;
 - (NSNumber *)kReportID;
 - (NSString *)kReportDate;
+- (NSNumber *)kImageID;
+- (NSNumber *)kImageSize;
+- (NSNumber *)kImageCRC32;
 - (NSNumber *)numberValueForKey:(NSString *)key;
 
 #pragma mark - CReport

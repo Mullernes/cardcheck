@@ -1,17 +1,17 @@
 
 
-#import "AuthLoginView.h"
+#import "CardTypePanView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_default_text", @"Interactive", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"add_pan_info_default_text", @"Interactive", @"Info View")
 
-@interface AuthLoginView ()
+@interface CardTypePanView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 - (IBAction)next:(id)sender;
 
 @end
 
-@implementation AuthLoginView
+@implementation CardTypePanView
 
 #pragma mark - Accessors
 - (void)setDelegate:(id<AuthViewDelegate>)delegate
@@ -19,21 +19,21 @@
     [super setDelegate: delegate];
     
     id<UITextFieldDelegate> textFieldDelegate = [delegate textFieldDelegate];
-    self.loginIDTextField.delegate = textFieldDelegate;
+    self.panIDTextField.delegate = textFieldDelegate;
 }
 
 - (void)setCorrect:(BOOL)correct
 {
     [super setCorrect: correct];
     
-    [self.loginIDTextField setCorrect: correct];
+    [self.panIDTextField setCorrect: correct];
 }
 
 - (void)setLoading:(BOOL)loading
 {
     [super setLoading: loading];
     
-    [self.loginIDTextField setLoading: loading];
+    [self.panIDTextField setLoading: loading];
 }
 
 #pragma mark - Working
@@ -42,14 +42,14 @@
 {
     [super prepareUi];
     
-    [self.loginIDTextField setText:@""];
+    [self.panIDTextField setText:@""];
 }
 
 - (void)resetState
 {
     [super resetState];
     
-    self.loginIDTextField.loading = NO;
+    self.panIDTextField.loading = NO;
     [self.infoView setState: InfoStateLogin withText: lInfoText animated: NO];
 }
 
@@ -57,12 +57,12 @@
 
 - (IBAction)next:(id)sender
 {
-    if ([self.loginIDTextField isValid]) {
-        [self.loginIDTextField resignFirstResponder];
-        [self.delegate authView: self checkLoginDidEnter: self.loginIDTextField];
+    if ([self.panIDTextField isValid]) {
+        [self.panIDTextField resignFirstResponder];
+        [self.delegate authView: self checkCardPanDidEnter: self.panIDTextField];
     }
     else {
-        [self failedStateWithText: self.loginIDTextField.validationWarning];
+        [self failedStateWithText: self.panIDTextField.validationWarning];
     }
 }
 

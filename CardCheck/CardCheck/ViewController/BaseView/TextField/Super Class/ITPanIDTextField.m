@@ -7,28 +7,28 @@
 //
 
 
-#define lValidationWarning      NSLocalizedStringFromTable(@"login_default_validation_text", @"Interactive", @"Input View")
+#define lValidationWarning      NSLocalizedStringFromTable(@"pan_default_validation_text", @"Interactive", @"Input View")
 
-#import "ITLoginIDTextField.h"
+#import "ITPanIDTextField.h"
 
-@implementation ITLoginIDTextField
+@implementation ITPanIDTextField
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     
-    self.keyboardType = UIKeyboardTypeDefault;
+    self.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 #pragma mark - Accessors
 
 - (BOOL)isValid
 {
-    BOOL isValid = [self isGeneralLogin: self.text];
+    BOOL isValid = [self isGeneralPan: self.text];
 
     self.validationWarning = (!isValid)? lValidationWarning : nil;
 
-    return DEMO_AUTH? YES : isValid;
+    return isValid;
 }
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
@@ -36,11 +36,11 @@
     return YES;
 }
 
-- (BOOL)isGeneralLogin:(NSString *)login
+- (BOOL)isGeneralPan:(NSString *)value
 {
-    NSString *regex = @"^([a-z]{1}[a-z0-9-.]{3,20})$";
+    NSString *regex = @"^([0-9]{13,19})$";
     NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValid = [predTest evaluateWithObject: [login lowercaseString]];
+    BOOL isValid = [predTest evaluateWithObject: [value lowercaseString]];
     
     return isValid;
 }

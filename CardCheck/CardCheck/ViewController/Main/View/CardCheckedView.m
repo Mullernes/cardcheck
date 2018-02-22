@@ -1,7 +1,7 @@
 #import "CardCheckedView.h"
 #import "CardTrackView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Authorization", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Interactive", @"Info View")
 
 @interface CardCheckedView ()
 

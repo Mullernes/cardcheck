@@ -1,7 +1,7 @@
 #import "DeviceInitializationView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"dev_initialize_info_default_text", @"Authorization", @"Info View")
-#define lRequestID                  NSLocalizedStringFromTable(@"dev_initialize_info_requestID", @"Authorization", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"dev_initialize_info_default_text", @"Interactive", @"Info View")
+#define lRequestID                  NSLocalizedStringFromTable(@"dev_initialize_info_requestID", @"Interactive", @"Info View")
 
 @interface DeviceInitializationView ()
 

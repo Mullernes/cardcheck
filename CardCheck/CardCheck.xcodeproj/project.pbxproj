@@ -33,6 +33,14 @@
 		7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4658203C3C83000F8709 /* CardTrackView.xib */; };
 		7D5E465D203C3D31000F8709 /* CardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E465B203C3D31000F8709 /* CardTrackView.m */; };
 		7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4660203D5F93000F8709 /* CardCheckReport.m */; };
+		7D5E4666203EC93D000F8709 /* CardTypeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4662203EC93C000F8709 /* CardTypeCommentView.xib */; };
+		7D5E4667203EC93D000F8709 /* CardTypePanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4664203EC93D000F8709 /* CardTypePanView.xib */; };
+		7D5E466A203ECA7D000F8709 /* CardTypePanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4668203ECA7D000F8709 /* CardTypePanView.m */; };
+		7D5E466D203ECAD7000F8709 /* SFPanIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E466C203ECAD7000F8709 /* SFPanIDTextField.m */; };
+		7D5E4670203ECB9C000F8709 /* ITPanIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E466E203ECB9C000F8709 /* ITPanIDTextField.m */; };
+		7D5E4673203ED148000F8709 /* CardTypeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4672203ED148000F8709 /* CardTypeCommentView.m */; };
+		7D5E4676203ED2A5000F8709 /* SFCommentIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4674203ED2A5000F8709 /* SFCommentIDTextField.m */; };
+		7D5E4679203ED2FA000F8709 /* ITCommentIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4677203ED2FA000F8709 /* ITCommentIDTextField.m */; };
 		7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2B842018740000BE6950 /* Auth.storyboard */; };
 		7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B892018744F00BE6950 /* AuthViewController.m */; };
 		7D7E2B992018744F00BE6950 /* AuthLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B8C2018744F00BE6950 /* AuthLoginView.m */; };
@@ -53,7 +61,7 @@
 		7D7E2BED20187AD900BE6950 /* NSObject+ITKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BE820187AD900BE6950 /* NSObject+ITKVO.m */; };
 		7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */; };
 		7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */; };
-		7D7E2C1B2018953500BE6950 /* Authorization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BF32018953500BE6950 /* Authorization.strings */; };
+		7D7E2C1B2018953500BE6950 /* Interactive.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BF32018953500BE6950 /* Interactive.strings */; };
 		7DACA3432031723400D31166 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3412031723300D31166 /* NotificationManager.m */; };
 		7DACA3462031728D00D31166 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DACA3442031728D00D31166 /* AlertViewController.xib */; };
 		7DACA34A2031734400D31166 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3482031734300D31166 /* AlertViewController.m */; };
@@ -163,6 +171,20 @@
 		7D5E465C203C3D31000F8709 /* CardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTrackView.h; sourceTree = "<group>"; };
 		7D5E465F203D5F93000F8709 /* CardCheckReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCheckReport.h; sourceTree = "<group>"; };
 		7D5E4660203D5F93000F8709 /* CardCheckReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCheckReport.m; sourceTree = "<group>"; };
+		7D5E4663203EC93C000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTypeCommentView.xib; sourceTree = "<group>"; };
+		7D5E4665203EC93D000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTypePanView.xib; sourceTree = "<group>"; };
+		7D5E4668203ECA7D000F8709 /* CardTypePanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTypePanView.m; sourceTree = "<group>"; };
+		7D5E4669203ECA7D000F8709 /* CardTypePanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTypePanView.h; sourceTree = "<group>"; };
+		7D5E466B203ECAD7000F8709 /* SFPanIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPanIDTextField.h; sourceTree = "<group>"; };
+		7D5E466C203ECAD7000F8709 /* SFPanIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPanIDTextField.m; sourceTree = "<group>"; };
+		7D5E466E203ECB9C000F8709 /* ITPanIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPanIDTextField.m; sourceTree = "<group>"; };
+		7D5E466F203ECB9C000F8709 /* ITPanIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPanIDTextField.h; sourceTree = "<group>"; };
+		7D5E4671203ED148000F8709 /* CardTypeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTypeCommentView.h; sourceTree = "<group>"; };
+		7D5E4672203ED148000F8709 /* CardTypeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTypeCommentView.m; sourceTree = "<group>"; };
+		7D5E4674203ED2A5000F8709 /* SFCommentIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCommentIDTextField.m; sourceTree = "<group>"; };
+		7D5E4675203ED2A5000F8709 /* SFCommentIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCommentIDTextField.h; sourceTree = "<group>"; };
+		7D5E4677203ED2FA000F8709 /* ITCommentIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITCommentIDTextField.m; sourceTree = "<group>"; };
+		7D5E4678203ED2FA000F8709 /* ITCommentIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITCommentIDTextField.h; sourceTree = "<group>"; };
 		7D7E2B852018740000BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		7D7E2B882018744F00BE6950 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		7D7E2B892018744F00BE6950 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
@@ -200,9 +222,9 @@
 		7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITKeyboardObserver.m; sourceTree = "<group>"; };
 		7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthInfoView.m; sourceTree = "<group>"; };
 		7D7E2BF020187B7100BE6950 /* AuthInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthInfoView.h; sourceTree = "<group>"; };
-		7D7E2BF42018953500BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Authorization.strings; sourceTree = "<group>"; };
-		7D7E2C112018953500BE6950 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Authorization.strings; sourceTree = "<group>"; };
-		7D7E2C162018953500BE6950 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Authorization.strings; sourceTree = "<group>"; };
+		7D7E2BF42018953500BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Interactive.strings; sourceTree = "<group>"; };
+		7D7E2C112018953500BE6950 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Interactive.strings; sourceTree = "<group>"; };
+		7D7E2C162018953500BE6950 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Interactive.strings; sourceTree = "<group>"; };
 		7DACA3412031723300D31166 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		7DACA3422031723300D31166 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		7DACA3452031728D00D31166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertViewController.xib; sourceTree = "<group>"; };
@@ -402,6 +424,10 @@
 		7D0E412F202B34880026F7B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D5E4671203ED148000F8709 /* CardTypeCommentView.h */,
+				7D5E4672203ED148000F8709 /* CardTypeCommentView.m */,
+				7D5E4669203ECA7D000F8709 /* CardTypePanView.h */,
+				7D5E4668203ECA7D000F8709 /* CardTypePanView.m */,
 				7D0E4130202B891F0026F7B0 /* CardDefaultView.h */,
 				7D0E4131202B89200026F7B0 /* CardDefaultView.m */,
 				7D0E412C202A34E80026F7B0 /* CardCheckedView.h */,
@@ -535,6 +561,8 @@
 		7D7E2B9F2018782A00BE6950 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7D5E4662203EC93C000F8709 /* CardTypeCommentView.xib */,
+				7D5E4664203EC93D000F8709 /* CardTypePanView.xib */,
 				7D7E2BA22018782A00BE6950 /* AuthLoginView.xib */,
 				7D0E4133202B89B60026F7B0 /* CardDefaultView.xib */,
 				7D0E4126202A30360026F7B0 /* CardCheckedView.xib */,
@@ -557,6 +585,10 @@
 		7D7E2BB2201879D100BE6950 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				7D5E4675203ED2A5000F8709 /* SFCommentIDTextField.h */,
+				7D5E4674203ED2A5000F8709 /* SFCommentIDTextField.m */,
+				7D5E466B203ECAD7000F8709 /* SFPanIDTextField.h */,
+				7D5E466C203ECAD7000F8709 /* SFPanIDTextField.m */,
 				7D7E2BB7201879D100BE6950 /* SFLoginIDTextField.h */,
 				7D7E2BB8201879D100BE6950 /* SFLoginIDTextField.m */,
 				7D7E2BBB201879D100BE6950 /* SFPasswordTextField.h */,
@@ -572,7 +604,11 @@
 		7D7E2BBF201879D100BE6950 /* Super Class */ = {
 			isa = PBXGroup;
 			children = (
+				7D5E4678203ED2FA000F8709 /* ITCommentIDTextField.h */,
+				7D5E4677203ED2FA000F8709 /* ITCommentIDTextField.m */,
 				7D7E2BC4201879D100BE6950 /* ITLoginIDTextField.h */,
+				7D5E466F203ECB9C000F8709 /* ITPanIDTextField.h */,
+				7D5E466E203ECB9C000F8709 /* ITPanIDTextField.m */,
 				7D7E2BC5201879D100BE6950 /* ITLoginIDTextField.m */,
 				7D7E2BC8201879D100BE6950 /* ITPasswordTextField.h */,
 				7D7E2BC9201879D100BE6950 /* ITPasswordTextField.m */,
@@ -626,7 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBC7453201CD58B00D925CB /* Common.strings */,
-				7D7E2BF32018953500BE6950 /* Authorization.strings */,
+				7D7E2BF32018953500BE6950 /* Interactive.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1177,15 +1213,17 @@
 			files = (
 				7DC4FB941FEA3D9100CFB4FE /* LaunchScreen.storyboard in Resources */,
 				7D7E2BB02018782A00BE6950 /* DeviceInitializationView.xib in Resources */,
+				7D5E4666203EC93D000F8709 /* CardTypeCommentView.xib in Resources */,
 				7D0E4135202B89B70026F7B0 /* CardDefaultView.xib in Resources */,
 				7DBC7455201CD58B00D925CB /* Common.strings in Resources */,
 				7DC4FB911FEA3D9100CFB4FE /* Assets.xcassets in Resources */,
 				7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */,
 				7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */,
+				7D5E4667203EC93D000F8709 /* CardTypePanView.xib in Resources */,
 				7D0105C320173D770080E63A /* Root.storyboard in Resources */,
 				7D0E4128202A30360026F7B0 /* CardCheckedView.xib in Resources */,
 				7DC4FB8F1FEA3D9100CFB4FE /* Main.storyboard in Resources */,
-				7D7E2C1B2018953500BE6950 /* Authorization.strings in Resources */,
+				7D7E2C1B2018953500BE6950 /* Interactive.strings in Resources */,
 				7D7E2BAC2018782A00BE6950 /* AuthLoginView.xib in Resources */,
 				7DACA3462031728D00D31166 /* AlertViewController.xib in Resources */,
 			);
@@ -1360,6 +1398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DACA35A2031741900D31166 /* UIImage+ImageEffects.m in Sources */,
+				7D5E4673203ED148000F8709 /* CardTypeCommentView.m in Sources */,
 				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
 				7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */,
 				7DACA34A2031734400D31166 /* AlertViewController.m in Sources */,
@@ -1378,6 +1417,7 @@
 				7DDE2D0C1FF6CAA200058FD4 /* InitializationData.m in Sources */,
 				7D7E2BE220187A1200BE6950 /* ActivityIndicatorColored.m in Sources */,
 				7D0E412E202A34E90026F7B0 /* CardCheckedView.m in Sources */,
+				7D5E4670203ECB9C000F8709 /* ITPanIDTextField.m in Sources */,
 				7D7E2BDC201879D100BE6950 /* ITTextField.m in Sources */,
 				7DE16803200035D600F4A417 /* dummy.mm in Sources */,
 				7D7E2BD5201879D100BE6950 /* SFPasswordTextField.m in Sources */,
@@ -1419,9 +1459,13 @@
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
+				7D5E4679203ED2FA000F8709 /* ITCommentIDTextField.m in Sources */,
+				7D5E466D203ECAD7000F8709 /* SFPanIDTextField.m in Sources */,
 				7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
+				7D5E466A203ECA7D000F8709 /* CardTypePanView.m in Sources */,
 				7DBC7452201CD43200D925CB /* CWStatusBarNotification.m in Sources */,
+				7D5E4676203ED2A5000F8709 /* SFCommentIDTextField.m in Sources */,
 				7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */,
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
 				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
@@ -1493,6 +1537,22 @@
 			name = CardTrackView.xib;
 			sourceTree = "<group>";
 		};
+		7D5E4662203EC93C000F8709 /* CardTypeCommentView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D5E4663203EC93C000F8709 /* Base */,
+			);
+			name = CardTypeCommentView.xib;
+			sourceTree = "<group>";
+		};
+		7D5E4664203EC93D000F8709 /* CardTypePanView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D5E4665203EC93D000F8709 /* Base */,
+			);
+			name = CardTypePanView.xib;
+			sourceTree = "<group>";
+		};
 		7D7E2B842018740000BE6950 /* Auth.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1517,14 +1577,14 @@
 			name = DeviceInitializationView.xib;
 			sourceTree = "<group>";
 		};
-		7D7E2BF32018953500BE6950 /* Authorization.strings */ = {
+		7D7E2BF32018953500BE6950 /* Interactive.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7D7E2BF42018953500BE6950 /* Base */,
 				7D7E2C112018953500BE6950 /* ru */,
 				7D7E2C162018953500BE6950 /* uk */,
 			);
-			name = Authorization.strings;
+			name = Interactive.strings;
 			sourceTree = "<group>";
 		};
 		7DACA3442031728D00D31166 /* AlertViewController.xib */ = {

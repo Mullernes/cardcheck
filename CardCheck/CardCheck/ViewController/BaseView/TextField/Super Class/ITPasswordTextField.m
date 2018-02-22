@@ -9,8 +9,8 @@
 
 #define MIN_LEN                 1
 
-#define lValidationWarning      NSLocalizedStringFromTable(@"password_default_validation_text",  @"Authorization", @"Input View")
-#define lEqualityWarning        NSLocalizedStringFromTable(@"password_equality_validation_text", @"Authorization", @"Input View")
+#define lValidationWarning      NSLocalizedStringFromTable(@"password_default_validation_text",  @"Interactive", @"Input View")
+#define lEqualityWarning        NSLocalizedStringFromTable(@"password_equality_validation_text", @"Interactive", @"Input View")
 
 
 #import "ITPasswordTextField.h"

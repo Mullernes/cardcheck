@@ -21,8 +21,6 @@
 @property (nonatomic, readwrite) NSInteger pan3Length;
 @property (nonatomic, strong, readwrite) NSString *pan3;
 
-@property (nonatomic, strong, readwrite) NSString *notes;
-
 @property (nonatomic, strong, readwrite) NSArray<CCheckReportData*> *reports;
 
 @end
@@ -42,7 +40,7 @@
         self.backImgID = 0;
         self.frontImgID = 0;
         
-        [self setupPan3: [[response.reports firstObject] truncatedPan]];
+        [self setupPan3: [[response.reports firstObject] truncatedPan] manual: NO];
         
         self.notes = @"";
         self.reports = response.reports.copy;
@@ -50,7 +48,7 @@
     return self;
 }
 
-- (void)setupPan3:(NSString *)value
+- (void)setupPan3:(NSString *)value manual:(BOOL)manual
 {
     self.pan3Manual = NO;
     self.pan3Length = value.length;
@@ -70,6 +68,11 @@
     
     if (self.backImgID == 0)
         self.backImgID = image.ID;
+}
+
+- (void)setupWithManualPan:(NSString *)pan
+{
+    [self setupPan3: pan manual: YES];
 }
 
 @end
