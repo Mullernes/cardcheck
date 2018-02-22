@@ -38,11 +38,7 @@
 
 - (BOOL)isGeneralComment:(NSString *)value
 {
-    NSString *regex = @"^([.]{1,})$";
-    NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValid = [predTest evaluateWithObject: [value lowercaseString]];
-    
-    return isValid;
+    return value.length;
 }
 
 @end

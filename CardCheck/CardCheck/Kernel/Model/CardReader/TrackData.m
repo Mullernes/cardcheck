@@ -68,11 +68,11 @@
     {
         self.readable = YES;
         
-        [self setTr1Code: data.track1ErrorCode];
-        [self setTr2Code: data.track2ErrorCode];
+        [self setTr1Code: (int)data.track1ErrorCode];
+        [self setTr2Code: (int)data.track2ErrorCode];
         
-        [self setTr1Length: data.track1Length];
-        [self setTr2Length: data.track2Length];
+        [self setTr1Length: (int)data.track1Length];
+        [self setTr2Length: (int)data.track2Length];
         
         [self setPlainHexData: [HexCvtr hexFromData: ((ACRAesTrackData *)data).trackData]];
     }

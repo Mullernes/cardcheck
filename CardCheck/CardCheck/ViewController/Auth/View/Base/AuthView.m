@@ -39,6 +39,7 @@
 
 - (void)failedStateWithText:(NSString *)text
 {
+    [self setCorrect: NO];
     [self.infoView setState: InfoStateWaring withText: text animated: NO];
 }
 

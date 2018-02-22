@@ -32,6 +32,7 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 - (void)startStageMode;
 - (void)startDemoMode;
+- (void)generateDemoTrack;
 
 @end
 

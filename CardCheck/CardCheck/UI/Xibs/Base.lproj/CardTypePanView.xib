@@ -91,8 +91,8 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="F5W-6V-Kup" id="v0b-td-bus"/>
-                        <outlet property="markView" destination="39Z-6W-Z4r" id="ah5-lo-cj8"/>
+                        <outlet property="activityIndicator" destination="F5W-6V-Kup" id="lDg-Mi-Stp"/>
+                        <outlet property="markView" destination="39Z-6W-Z4r" id="b8f-th-7Fx"/>
                     </connections>
                 </textField>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUV-nK-CwF" userLabel="Layout View">
@@ -165,7 +165,7 @@
                 <outlet property="infoView" destination="6fF-4m-a2L" id="XT6-ck-RTc"/>
                 <outlet property="panIDTextField" destination="eUB-8g-fTB" id="PAa-9T-QeD"/>
             </connections>
-            <point key="canvasLocation" x="-101" y="21"/>
+            <point key="canvasLocation" x="-445" y="-38"/>
         </view>
     </objects>
     <resources>

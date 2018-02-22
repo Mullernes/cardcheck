@@ -44,7 +44,7 @@
 
 
 
-@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate>
+@interface CheckingViewController ()<ReaderControllerDelegate, CardImagePickerDelegate, AuthViewDelegate, ITValidationDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -96,6 +96,7 @@
     [self.readerController resetReaderController];
     
     self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    self.textFieldValidator = [[ITTextFieldValidator alloc] initWithValidationDelegate: self];
 }
 
 #pragma mark - Accessors
@@ -499,7 +500,7 @@
 
 - (void)cardViewDemoPressed:(UIView *)view
 {
-    [self checkTrackData: [TrackData demoTrack1]];
+    [self.readerController generateDemoTrack];
 }
 
 - (void)cardViewResetPressed:(UIView *)view
@@ -526,6 +527,7 @@
     self.cardCheckReport.fakeCard = YES;
     
     [self showAddExtraInfoAlert];
+    //[self showCardTypePanView];
 }
 
 - (id<UITextFieldDelegate>)textFieldDelegate
@@ -538,13 +540,20 @@
     [self validatorDidCheckTextField: textField withResult: YES];
 }
 
+- (void)authView:(UIView *)view checkCardCommentDidEnter:(ITTextField *)textField
+{
+    [self validatorDidCheckTextField: textField withResult: YES];
+}
+
 #pragma mark - CardImagePickerDelegate
 
 - (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
 {
     [picker dismissInView: self];
     
-    [self sendUploadCardImage: image];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self sendUploadCardImage: image];
+    });
 }
 
 - (void)cardPickerDidCancelPicking:(CardImagePicker *)picker

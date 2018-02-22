@@ -8,7 +8,7 @@
 
 #import "CardImage.h"
 
-#define IMAGE_JPG_QUALITY        0.4f
+#define IMAGE_JPG_QUALITY        0.8f
 
 @implementation CardImage
 
@@ -17,6 +17,7 @@
     self = [super init];
     if (self) {
         self.data = [NSData dataWithData: UIImageJPEGRepresentation(image, IMAGE_JPG_QUALITY)];
+        NSLog(@"");
     }
     return self;
 }

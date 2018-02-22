@@ -46,7 +46,7 @@ typedef void(^CUploadResponseHandler)(CUploadResponseModel *model, NSError *erro
 - (void)sendCFinishCheckRequest:(CFinishCheckRequestModel *)request
                  withCompletion:(CFinishCheckResponseHandler)handler;
 
-- (void)uploadImageRequest:(CUploadRequestModel *)model
+- (void)uploadImageRequest:(CUploadRequestModel *)request
             withCompletion:(CUploadResponseHandler)handler;
 
 @end

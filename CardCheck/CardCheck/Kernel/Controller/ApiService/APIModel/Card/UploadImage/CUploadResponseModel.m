@@ -28,9 +28,9 @@
     self = [super initWithRawData: data];
     if (self) {
         
-        self.imgID = [[data objectForKey: @"image_id"] longValue];
-        self.imgSize = [[data objectForKey: @"image_size"] longValue];
-        self.imgCRC32 = [[data objectForKey: @"image_crc32"] longValue];
+        self.imgID = [[data kImageID] longValue];
+        self.imgSize = [[data kImageSize] longValue];
+        self.imgCRC32 = [[data kImageCRC32] longValue];
         
         if (self.code > 0) {
             [self failedInResponse: @"CUpload_Response" withCode: self.code];

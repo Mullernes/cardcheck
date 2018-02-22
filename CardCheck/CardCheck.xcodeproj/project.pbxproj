@@ -41,6 +41,7 @@
 		7D5E4673203ED148000F8709 /* CardTypeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4672203ED148000F8709 /* CardTypeCommentView.m */; };
 		7D5E4676203ED2A5000F8709 /* SFCommentIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4674203ED2A5000F8709 /* SFCommentIDTextField.m */; };
 		7D5E4679203ED2FA000F8709 /* ITCommentIDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4677203ED2FA000F8709 /* ITCommentIDTextField.m */; };
+		7D5E467C203F009C000F8709 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E467A203F009B000F8709 /* UIImage+Extensions.m */; };
 		7D7E2B862018740000BE6950 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2B842018740000BE6950 /* Auth.storyboard */; };
 		7D7E2B982018744F00BE6950 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B892018744F00BE6950 /* AuthViewController.m */; };
 		7D7E2B992018744F00BE6950 /* AuthLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2B8C2018744F00BE6950 /* AuthLoginView.m */; };
@@ -185,6 +186,8 @@
 		7D5E4675203ED2A5000F8709 /* SFCommentIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCommentIDTextField.h; sourceTree = "<group>"; };
 		7D5E4677203ED2FA000F8709 /* ITCommentIDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITCommentIDTextField.m; sourceTree = "<group>"; };
 		7D5E4678203ED2FA000F8709 /* ITCommentIDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITCommentIDTextField.h; sourceTree = "<group>"; };
+		7D5E467A203F009B000F8709 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
+		7D5E467B203F009C000F8709 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		7D7E2B852018740000BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		7D7E2B882018744F00BE6950 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		7D7E2B892018744F00BE6950 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
@@ -715,6 +718,8 @@
 		7DACA3542031741900D31166 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
+				7D5E467B203F009C000F8709 /* UIImage+Extensions.h */,
+				7D5E467A203F009B000F8709 /* UIImage+Extensions.m */,
 				7DACA3552031741900D31166 /* UIImage+ImageEffects.h */,
 				7DACA3562031741900D31166 /* UIImage+ImageEffects.m */,
 			);
@@ -1452,6 +1457,7 @@
 				7D33B7CD20132CD9006004BD /* CardImage.m in Sources */,
 				7D7E2BEC20187AD900BE6950 /* ITKeyValueObserver.m in Sources */,
 				7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */,
+				7D5E467C203F009C000F8709 /* UIImage+Extensions.m in Sources */,
 				7DACA3432031723400D31166 /* NotificationManager.m in Sources */,
 				7D7E2BDD201879D100BE6950 /* ITTextFieldDelegate.m in Sources */,
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,

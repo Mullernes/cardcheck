@@ -9,9 +9,9 @@
 #ifndef KLBaseAppConstants_H
 #define KLBaseAppConstants_H
 
-#define DEMO_MODE           0
+#define DEMO_MODE           1
 
-#define DEMO_AUTH           0
+#define DEMO_AUTH           1
 #define DEMO_LOGIN          @"vlad57981"
 
 #define DEMO_READER_ID      @"64bc2e5107fe2924"
