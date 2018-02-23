@@ -230,7 +230,7 @@
 - (void)uploadImageRequest:(CUploadRequestModel *)request
             withCompletion:(CUploadResponseHandler)handler
 {
-    NSLog(@"request = %@", request.parameters);
+    NSLog(@"request = %@", [request debugDescription]);
     
     //Handlers
     void (^constructionHandler)(id <AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
@@ -254,7 +254,7 @@
                 handler(response, nil);
             }
             else {
-                handler(nil, response.failErr);
+                handler(response, response.failErr);
             }
         }
     };

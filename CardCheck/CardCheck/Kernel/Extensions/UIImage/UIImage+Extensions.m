@@ -8,54 +8,42 @@
 
 #import "UIImage+Extensions.h"
 
-CGFloat const ImagePhotoCompression = 0.7f;
+CGFloat const ImagePhotoCompression = 0.9f;
+
 CGSize  const ImagePhotoSize1280x960 = (CGSize) { .width = 1280, .height = 960 };
 CGSize  const ImagePhotoSize960x720  = (CGSize) { .width = 960,  .height = 720 };
 CGSize  const ImagePhotoSize720x540  = (CGSize) { .width = 720,  .height = 540 };
 CGSize  const ImagePhotoSize640x640  = (CGSize) { .width = 640,  .height = 640 };
 CGSize  const ImagePhotoSize120x120  = (CGSize) { .width = 120,  .height = 120 };
 
+CGSize  const CardImageSize8x5 = (CGSize) { .width = 1632, .height = 1020 };
+
 @implementation UIImage (Extensions)
 
-+ (UIImage *)placeholder
+- (UIImage *)scaleImageToCardSize
 {
-    return [UIImage imageNamed:@"placeholder"];
+    return [self scaleImageToSize: CardImageSize8x5];
 }
 
-+ (UIImage *)placeholderSupport
+- (UIImage *)scaleImageToSize:(CGSize)newSize
 {
-    return [UIImage imageNamed:@"contact_placeholder_support"];
-}
-
-+ (UIImage *)placeholderUnknown
-{
-    //return [UIImage imageNamed:@"contact_placeholder_unknown"];
-    return [UIImage imageNamed:@"placeholder"];
-}
-
-+ (UIImage *)previewCipher
-{
-    return [UIImage imageNamed: @"preview_cipher"];
-}
-
-+ (UIImage *)previewCipherError
-{
-    return [UIImage imageNamed: @"img_preview_cipher_error"];
-}
-
-+ (UIImage *)previewHistory
-{
-    return [UIImage imageNamed: @"img_preview_history"];
-}
-
-+ (UIImage *)previewMissing
-{
-    return [UIImage imageNamed: @"img_preview_missing"];
-}
-
-+ (UIImage *)previewError
-{
-    return [UIImage imageNamed: @"img_preview_error"];
+    CGRect scaledImageRect = CGRectZero;
+    
+    CGFloat aspectWidth = newSize.width / self.size.width;
+    CGFloat aspectHeight = newSize.height / self.size.height;
+    CGFloat aspectRatio = MIN ( aspectWidth, aspectHeight );
+    
+    scaledImageRect.size.width = self.size.width * aspectRatio;
+    scaledImageRect.size.height = self.size.height * aspectRatio;
+    scaledImageRect.origin.x = (newSize.width - scaledImageRect.size.width) / 2.0f;
+    scaledImageRect.origin.y = (newSize.height - scaledImageRect.size.height) / 2.0f;
+    
+    UIGraphicsBeginImageContextWithOptions( newSize, NO, 0 );
+    [self drawInRect:scaledImageRect];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
 }
 
 - (UIImage *)imageWithSize:(CGSize)size

@@ -51,9 +51,11 @@
         return [NSString stringWithFormat:@"self = %@; json = %@", self, self.parameters];
     }
     else if (self.failErr) {
+        NSLog(@"self = %@; imgID = %li, imgSize = %li, imgCRC32 = %li", self, self.imgID, self.imgSize, self.imgCRC32);
         return self.failErr.debugDescription;
     }
     else if (self.warnErr) {
+        NSLog(@"self = %@; imgID = %li, imgSize = %li, imgCRC32 = %li", self, self.imgID, self.imgSize, self.imgCRC32);
         return self.warnErr.debugDescription;
     }
     else {

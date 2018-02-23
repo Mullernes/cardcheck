@@ -229,11 +229,12 @@
     CUploadRequestModel *request = [CUploadRequestModel requestWithReportID: report.reportID
                                                                  reportTime: report.time
                                                                   cardImage: image];
-
+    
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] uploadImageRequest: request
                                         withCompletion:^(CUploadResponseModel *model, NSError *error)
      {
+         NSLog(@" image = %@", [image debugDescription]);
          NSLog(@" response = %@", [model debugDescription]);
          
          [image setID: model.imgID];
@@ -310,7 +311,15 @@
 - (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
 {
     [picker dismissInView: self];
-    [self uploadImage: image];
+    
+    [image save:^(CardImage *cardImg, NSError *error) {
+        if (nil == error) {
+            [self uploadImage: image];
+        }
+        else {
+            NSLog(@"Couldn't save into gallery");
+        }
+    }];
 }
 
 - (void)cardPickerDidCancelPicking:(CardImagePicker *)picker

@@ -10,15 +10,7 @@
 
 @interface UIImage (Extensions)
 
-+ (UIImage *)placeholder;
-+ (UIImage *)placeholderSupport;
-+ (UIImage *)placeholderUnknown;
-
-+ (UIImage *)previewCipher;
-+ (UIImage *)previewCipherError;
-+ (UIImage *)previewHistory;
-+ (UIImage *)previewMissing;
-+ (UIImage *)previewError;
+- (UIImage *)scaleImageToCardSize;
 
 - (UIImage *)imageWithSize:(CGSize)size;
 - (UIImage *)imageLimitedWithSize:(CGSize)size;
