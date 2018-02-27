@@ -15,7 +15,7 @@
 		7D0105C92017507D0080E63A /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105C72017507D0080E63A /* LoadingViewController.m */; };
 		7D0105D3201751790080E63A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105CC201751780080E63A /* BaseViewController.m */; };
 		7D0105D4201751790080E63A /* UIViewController+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0105CE201751780080E63A /* UIViewController+Extensions.m */; };
-		7D0D572E2013A9F000CC250C /* CardImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D572D2013A9F000CC250C /* CardImagePicker.m */; };
+		7D0D572E2013A9F000CC250C /* CardPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D572D2013A9F000CC250C /* CardPickerController.m */; };
 		7D0E4128202A30360026F7B0 /* CardCheckedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0E4126202A30360026F7B0 /* CardCheckedView.xib */; };
 		7D0E412E202A34E90026F7B0 /* CardCheckedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E412D202A34E90026F7B0 /* CardCheckedView.m */; };
 		7D0E4132202B89200026F7B0 /* CardDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E4131202B89200026F7B0 /* CardDefaultView.m */; };
@@ -25,6 +25,8 @@
 		7D0F5ECB200505AC00780CE8 /* TrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F5ECA200505AC00780CE8 /* TrackData.m */; };
 		7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */; };
 		7D13E6A820122BD7002B2625 /* CFinishCheckResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */; };
+		7D210D872044A86B005BBD46 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D210D862044A86B005BBD46 /* CameraViewController.m */; };
+		7D210D8B2044B487005BBD46 /* CameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D210D8A2044B487005BBD46 /* CameraOverlayView.m */; };
 		7D33B7CD20132CD9006004BD /* CardImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D33B7CC20132CD9006004BD /* CardImage.m */; };
 		7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A427F1FFB893D00FFF207 /* InitRequestModel.m */; };
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
@@ -139,8 +141,8 @@
 		7D0105CC201751780080E63A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		7D0105CD201751780080E63A /* UIViewController+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extensions.h"; sourceTree = "<group>"; };
 		7D0105CE201751780080E63A /* UIViewController+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extensions.m"; sourceTree = "<group>"; };
-		7D0D572C2013A9F000CC250C /* CardImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImagePicker.h; sourceTree = "<group>"; };
-		7D0D572D2013A9F000CC250C /* CardImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardImagePicker.m; sourceTree = "<group>"; };
+		7D0D572C2013A9F000CC250C /* CardPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPickerController.h; sourceTree = "<group>"; };
+		7D0D572D2013A9F000CC250C /* CardPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPickerController.m; sourceTree = "<group>"; };
 		7D0E4127202A30360026F7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardCheckedView.xib; sourceTree = "<group>"; };
 		7D0E412C202A34E80026F7B0 /* CardCheckedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCheckedView.h; sourceTree = "<group>"; };
 		7D0E412D202A34E90026F7B0 /* CardCheckedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCheckedView.m; sourceTree = "<group>"; };
@@ -157,6 +159,10 @@
 		7D13E6A420122BD7002B2625 /* CFinishCheckRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckRequestModel.m; sourceTree = "<group>"; };
 		7D13E6A520122BD7002B2625 /* CFinishCheckResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFinishCheckResponseModel.h; sourceTree = "<group>"; };
 		7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFinishCheckResponseModel.m; sourceTree = "<group>"; };
+		7D210D852044A86B005BBD46 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		7D210D862044A86B005BBD46 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		7D210D892044B487005BBD46 /* CameraOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraOverlayView.h; sourceTree = "<group>"; };
+		7D210D8A2044B487005BBD46 /* CameraOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayView.m; sourceTree = "<group>"; };
 		7D33B7CB20132CD9006004BD /* CardImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardImage.h; sourceTree = "<group>"; };
 		7D33B7CC20132CD9006004BD /* CardImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardImage.m; sourceTree = "<group>"; };
 		7D3A427E1FFB893D00FFF207 /* InitRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitRequestModel.h; sourceTree = "<group>"; };
@@ -418,8 +424,8 @@
 		7D0D572B2013A9F000CC250C /* CardImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				7D0D572C2013A9F000CC250C /* CardImagePicker.h */,
-				7D0D572D2013A9F000CC250C /* CardImagePicker.m */,
+				7D0D572C2013A9F000CC250C /* CardPickerController.h */,
+				7D0D572D2013A9F000CC250C /* CardPickerController.m */,
 			);
 			path = CardImagePicker;
 			sourceTree = "<group>";
@@ -462,6 +468,17 @@
 				7D13E6A620122BD7002B2625 /* CFinishCheckResponseModel.m */,
 			);
 			path = Finish;
+			sourceTree = "<group>";
+		};
+		7D210D882044B41D005BBD46 /* CameraViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D210D852044A86B005BBD46 /* CameraViewController.h */,
+				7D210D862044A86B005BBD46 /* CameraViewController.m */,
+				7D210D892044B487005BBD46 /* CameraOverlayView.h */,
+				7D210D8A2044B487005BBD46 /* CameraOverlayView.m */,
+			);
+			path = CameraViewController;
 			sourceTree = "<group>";
 		};
 		7D33B7C920132CB4006004BD /* CardImage */ = {
@@ -829,6 +846,7 @@
 				7D7E2B872018744F00BE6950 /* Auth */,
 				7D0105D6201751830080E63A /* Main */,
 				7DACA3402031723300D31166 /* NotificationManager */,
+				7D210D882044B41D005BBD46 /* CameraViewController */,
 				7D0105C42017507C0080E63A /* LoadingViewController.h */,
 				7D0105C72017507D0080E63A /* LoadingViewController.m */,
 				7D0105C62017507D0080E63A /* RootViewController.h */,
@@ -1417,6 +1435,7 @@
 				7D7E2B9E2018744F00BE6950 /* AuthView.m in Sources */,
 				7D0105C92017507D0080E63A /* LoadingViewController.m in Sources */,
 				7DE1681120040FD100F4A417 /* KeyChainData.m in Sources */,
+				7D210D872044A86B005BBD46 /* CameraViewController.m in Sources */,
 				7D7E2B992018744F00BE6950 /* AuthLoginView.m in Sources */,
 				7DACA3592031741900D31166 /* NSData+AES.m in Sources */,
 				7DDE2D0C1FF6CAA200058FD4 /* InitializationData.m in Sources */,
@@ -1463,6 +1482,7 @@
 				7DE16802200035D600F4A417 /* AJDHex.m in Sources */,
 				7D0105C82017507D0080E63A /* RootViewController.m in Sources */,
 				7D3A42801FFB893D00FFF207 /* InitRequestModel.m in Sources */,
+				7D210D8B2044B487005BBD46 /* CameraOverlayView.m in Sources */,
 				7DC4FBC91FEA491B00CFB4FE /* KLBaseModel.m in Sources */,
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
 				7D5E4679203ED2FA000F8709 /* ITCommentIDTextField.m in Sources */,
@@ -1475,7 +1495,7 @@
 				7D7E2BD6201879D100BE6950 /* SFTextField.m in Sources */,
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
 				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
-				7D0D572E2013A9F000CC250C /* CardImagePicker.m in Sources */,
+				7D0D572E2013A9F000CC250C /* CardPickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

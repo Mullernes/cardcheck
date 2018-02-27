@@ -83,7 +83,7 @@
                     <rect key="frame" x="417" y="144" width="20" height="20"/>
                     <color key="color" red="1" green="0.40784313729999999" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
-                <textField opaque="NO" clipsSubviews="YES" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Логін" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eUB-8g-fTB" customClass="SFPanIDTextField">
+                <textField opaque="NO" clipsSubviews="YES" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Номер картки" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eUB-8g-fTB" customClass="SFPanIDTextField">
                     <rect key="frame" x="217" y="134" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="iaf-Hf-nlf"/>

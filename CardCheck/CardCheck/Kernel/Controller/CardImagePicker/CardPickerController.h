@@ -10,21 +10,22 @@
 
 @protocol CardImagePickerDelegate;
 
-@interface CardImagePicker : KLBaseController
+@interface CardPickerController : KLBaseController
 
 @property (nonatomic, weak) id<CardImagePickerDelegate>delegate;
 
 - (instancetype)initWithDelegate:(id<CardImagePickerDelegate>)delegate;
 
+- (void)didSendImage:(BOOL)result;
 - (void)presentInView:(UIViewController *)vc;
-- (void)dismissInView:(UIViewController *)vc;
+- (void)dismissInView:(UIViewController *)vc completion:(void(^)(void))completion;
 
 
 @end
 
 @protocol CardImagePickerDelegate <NSObject>
 
-- (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image;
-- (void)cardPickerDidCancelPicking:(CardImagePicker *)picker;
+- (void)cardPicker:(CardPickerController *)picker didPickCardImage:(CardImage *)image;
+- (void)cardPickerDidCancelPicking:(CardPickerController *)picker;
 
 @end

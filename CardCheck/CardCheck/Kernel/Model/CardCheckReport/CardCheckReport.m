@@ -50,7 +50,7 @@
 
 - (void)setupPan3:(NSString *)value manual:(BOOL)manual
 {
-    self.pan3Manual = NO;
+    self.pan3Manual = manual;
     self.pan3Length = value.length;
     
     if (value.length) {
@@ -65,8 +65,7 @@
 {
     if (self.frontImgID == 0)
         self.frontImgID = image.ID;
-    
-    if (self.backImgID == 0)
+    else if (self.backImgID == 0)
         self.backImgID = image.ID;
 }
 

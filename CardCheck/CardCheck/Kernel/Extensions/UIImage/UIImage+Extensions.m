@@ -8,7 +8,7 @@
 
 #import "UIImage+Extensions.h"
 
-CGFloat const ImagePhotoCompression = 0.9f;
+CGFloat const ImagePhotoCompression = 0.85f;
 
 CGSize  const ImagePhotoSize1280x960 = (CGSize) { .width = 1280, .height = 960 };
 CGSize  const ImagePhotoSize960x720  = (CGSize) { .width = 960,  .height = 720 };
@@ -22,7 +22,8 @@ CGSize  const CardImageSize8x5 = (CGSize) { .width = 1632, .height = 1020 };
 
 - (UIImage *)scaleImageToCardSize
 {
-    return [self scaleImageToSize: CardImageSize8x5];
+    return self;
+    //return [self scaleImageToSize: CardImageSize8x5];
 }
 
 - (UIImage *)scaleImageToSize:(CGSize)newSize

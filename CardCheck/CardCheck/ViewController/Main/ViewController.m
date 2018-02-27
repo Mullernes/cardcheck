@@ -20,7 +20,7 @@
 @property (nonatomic, strong) InitializationData *devInitData;
 
 @property (nonatomic, strong) ReaderController *readerController;
-@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
+@property (nonatomic, strong) CardPickerController *cardImagePickerController;
 
 @property (nonatomic, strong) NSArray *stackOfResponse;
 
@@ -36,7 +36,7 @@
     self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
     self.currentReader = [CardReader demoReader];
-    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    self.cardImagePickerController = [[CardPickerController alloc] initWithDelegate: self];
 
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
@@ -308,9 +308,9 @@
 
 #pragma mark - CardImagePickerDelegate
 
-- (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
+- (void)cardPicker:(CardPickerController *)picker didPickCardImage:(CardImage *)image
 {
-    [picker dismissInView: self];
+    [picker dismissInView: self completion: nil];
     
     [image save:^(CardImage *cardImg, NSError *error) {
         if (nil == error) {
@@ -322,9 +322,9 @@
     }];
 }
 
-- (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
+- (void)cardPickerDidCancelPicking:(CardPickerController *)picker
 {
-    [picker dismissInView: self];
+    [picker dismissInView: self completion: nil];
 }
 
 

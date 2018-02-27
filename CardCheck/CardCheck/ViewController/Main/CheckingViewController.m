@@ -54,7 +54,7 @@
 @property (nonatomic, strong) CardTypeCommentView *cardTypeCommentView;
 
 @property (nonatomic, strong) CardCheckReport *cardCheckReport;
-@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
+@property (nonatomic, strong) CardPickerController *cardImagePickerController;
 
 @property (nonatomic, strong) ITKeyboardObserver *keyboardObserver;
 @property (nonatomic, strong) ITTextFieldValidator *textFieldValidator;
@@ -71,13 +71,12 @@
     [super viewDidLoad];
     
     [self showCardDefaultView];
+    [self baseSetup];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-
-    [self baseSetup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -95,7 +94,7 @@
     [self.readerController setDelegate: self];
     [self.readerController resetReaderController];
     
-    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    self.cardImagePickerController = [[CardPickerController alloc] initWithDelegate: self];
     self.textFieldValidator = [[ITTextFieldValidator alloc] initWithValidationDelegate: self];
 }
 
@@ -160,9 +159,10 @@
 
 - (void)showCardTypePanView
 {
-    [self.cardTypePanView prepareUi];
-    
-    [self showView: self.cardTypePanView reverse: NO];
+    [self.cardImagePickerController dismissInView: self completion:^{
+        [self.cardTypePanView prepareUi];
+        [self showView: self.cardTypePanView reverse: NO];
+    }];
 }
 
 - (void)showCardTypeCommentView
@@ -284,8 +284,7 @@
     //1
     TrackData *trackData = self.currentReader.trackData;
     CryptoController *crp = [CryptoController sharedInstance];
-    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
-                                        withHexKey: [self.keyChain appDataKey]];
+    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData withHexKey: [self.keyChain appDataKey]];
     [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
     
     //2
@@ -317,8 +316,7 @@
     CryptoController *crp = [CryptoController sharedInstance];
     
     NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, self.cardCheckReport.pan3];
-    NSData *cipherData = [crp aes256EncryptHexData: plainData
-                                        withHexKey: [self.keyChain appDataKey]];
+    NSData *cipherData = [crp aes256EncryptHexData: plainData withHexKey: [self.keyChain appDataKey]];
     [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
     
     //1
@@ -358,7 +356,7 @@
              [weakSelf.cardCheckReport setupWithCardImage: image];
              
              if (!weakSelf.cardCheckReport.backImgID || !weakSelf.cardCheckReport.frontImgID) {
-                 [weakSelf uploadCardImage];
+                 [weakSelf.cardImagePickerController didSendImage: YES];
              }
              else {
                  [self showCardTypePanView];
@@ -547,18 +545,14 @@
 
 #pragma mark - CardImagePickerDelegate
 
-- (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
+- (void)cardPicker:(CardPickerController *)picker didPickCardImage:(CardImage *)image
 {
-    [picker dismissInView: self];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self sendUploadCardImage: image];
-    });
+    [self sendUploadCardImage: image];
 }
 
-- (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
+- (void)cardPickerDidCancelPicking:(CardPickerController *)picker
 {
-    [picker dismissInView: self];
+    [picker dismissInView: self completion: nil];
 }
 
 @end

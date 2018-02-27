@@ -52,6 +52,7 @@ static dispatch_once_t onceToken;
     return self;
 }
 
+
 + (instancetype)demoReader {
     CardReader *reader = [[CardReader alloc] initWithDevID: DEMO_READER_ID
                                                   customID: DEMO_CUSTOM_ID

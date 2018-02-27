@@ -12,8 +12,10 @@
 
 @property (nonatomic) long ID;
 @property (nonatomic) long crc32;
+
 @property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIImage *image;
 
 - (instancetype)initWithImage:(UIImage *)image;
 - (void)save:(void(^)(CardImage *cardImg, NSError *error))completion;

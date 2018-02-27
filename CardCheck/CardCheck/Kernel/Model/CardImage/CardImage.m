@@ -19,7 +19,6 @@ extern CGFloat const ImagePhotoCompression;
 @interface CardImage()
 
 @property (nonatomic) NSUInteger length;
-@property (nonatomic, strong) UIImage *image;
 
 @end
 
