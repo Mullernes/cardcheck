@@ -7,7 +7,7 @@
 //
 
 
-#define lValidationWarning      NSLocalizedStringFromTable(@"login_default_validation_text", @"Authorization", @"Input View")
+#define lValidationWarning      NSLocalizedStringFromTable(@"login_default_validation_text", @"Interactive", @"Input View")
 
 #import "ITLoginIDTextField.h"
 

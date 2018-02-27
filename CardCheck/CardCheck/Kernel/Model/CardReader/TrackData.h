@@ -23,6 +23,8 @@
 @property (nonatomic, getter=isReadable) BOOL readable;
 
 + (instancetype)demoTrack;
++ (instancetype)demoTrack1;
++ (instancetype)demoTrack2;
 + (instancetype)emptyTrack;
 
 - (void)setupWithAesTrackData:(ACRTrackData *)data;

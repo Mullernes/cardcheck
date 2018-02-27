@@ -15,4 +15,5 @@
 - (NSData *)AES256EncryptedDataWithKey:(NSString *)key;
 - (NSData *)AES256DecryptedDataWithKey:(NSString *)key;
 
+- (NSUInteger)crc32;
 @end

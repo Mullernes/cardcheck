@@ -25,6 +25,21 @@
     return [self numberValueForKey: @"code"];
 }
 
+- (NSNumber *)kImageID
+{
+    return [self numberValueForKey: @"image_id"];
+}
+
+- (NSNumber *)kImageSize
+{
+    return [self numberValueForKey: @"image_size"];
+}
+
+- (NSNumber *)kImageCRC32
+{
+    return [self numberValueForKey: @"image_crc32"];
+}
+
 - (NSString *)kAppKeys
 {
     return [self valueForKey: @"app_keys"];

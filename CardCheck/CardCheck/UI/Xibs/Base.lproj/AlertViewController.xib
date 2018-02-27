@@ -37,7 +37,7 @@
                     <gestureRecognizers/>
                 </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xld-uF-oIg">
-                    <rect key="frame" x="73" y="200.5" width="229.5" height="266"/>
+                    <rect key="frame" x="73.5" y="200.5" width="229.5" height="266"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eds-YI-b1t">
                             <rect key="frame" x="0.0" y="0.0" width="235" height="266"/>

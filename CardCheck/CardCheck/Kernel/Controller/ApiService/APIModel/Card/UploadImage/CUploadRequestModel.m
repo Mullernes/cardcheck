@@ -26,8 +26,12 @@
     [model setCardImg: image];
     [model setupWithTime: time];
     
+//    [model setName: [NSString stringWithFormat: @"image-%lld", time]];
+//    [model setFileName: [NSString stringWithFormat: @"name-%lld", time]];
+//    [model setMimeType: @"image/jpeg"];
+    
     [model setName: @"image"];
-    [model setFileName: @"name"];
+    [model setFileName: image.name];
     [model setMimeType: @"image/jpeg"];
     
     return model;
@@ -40,7 +44,7 @@
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"self = %@; json = %@", self, self.parameters];
+    return [NSString stringWithFormat:@"self = %@; json = %@; name = %@; fileName = %@; mimeType = %@", self, self.parameters, self.name, self.fileName, self.mimeType];
 }
 
 @end

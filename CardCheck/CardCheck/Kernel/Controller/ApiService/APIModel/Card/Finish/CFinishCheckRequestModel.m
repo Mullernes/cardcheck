@@ -7,16 +7,14 @@
 //
 
 #import "CFinishCheckRequestModel.h"
+#import "CardCheckReport.h"
 
 @interface CFinishCheckRequestModel()
 
 @property (nonatomic) long appId;
-
-@property (nonatomic) CardImage *backImage;
-@property (nonatomic) CardImage *frontImage;
-
 @property (nonatomic, strong) CardReader *reader;
 @property (nonatomic, strong) TrackData *trackData;
+@property (nonatomic, strong) CardCheckReport *report;
 
 @end
 
@@ -32,10 +30,9 @@
     return model;
 }
 
-- (void)setupFakeCardWithImages:(NSArray<CardImage *> *)images
+- (void)setupWithReport:(CardCheckReport *)report;
 {
-    self.backImage = [images lastObject];
-    self.frontImage = [images firstObject];
+    self.report = report;
 }
 
 - (instancetype)init
@@ -52,10 +49,6 @@
     return self.reader.trackData;
 }
 
-- (BOOL)isFakeCard {
-    return (self.backImage && self.frontImage)? YES : self.checkResponse.fakeCard;
-}
-
 - (NSDictionary *)parameters
 {
     return @{@"time"            :   @(self.time),
@@ -66,15 +59,16 @@
              @"track1_code"     :   @(self.trackData.tr1Code),
              @"track2_length"   :   @(self.trackData.tr2Length),
              @"track2_code"     :   @(self.trackData.tr2Code),
+             
              @"data"            :   self.trackData.cipherHexData,
              
-             @"report_id"       :    @(self.checkResponse.reportID),
-             @"fake_card"       :    @(self.isFakeCard),
-             @"front_image_id"  :    @(self.frontImage.ID),
-             @"back_image_id"   :    @(self.backImage.ID),
-             @"pan3_length"     :    @(0),
-             @"pan3_manual"     :    @(YES),
-             @"notes"           :    @"notes"
+             @"report_id"       :    @(self.report.reportID),
+             @"fake_card"       :    @(self.report.isFake),
+             @"front_image_id"  :    @(self.report.frontImgID),
+             @"back_image_id"   :    @(self.report.backImgID),
+             @"pan3_length"     :    @(self.report.pan3Length),
+             @"pan3_manual"     :    @(self.report.pan3Manual),
+             @"notes"           :    self.report.notes
              };
 }
 

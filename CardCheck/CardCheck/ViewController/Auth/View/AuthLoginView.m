@@ -2,7 +2,7 @@
 
 #import "AuthLoginView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_default_text", @"Authorization", @"Info View")
+#define lInfoText                   NSLocalizedStringFromTable(@"auth_loginID_info_default_text", @"Interactive", @"Info View")
 
 @interface AuthLoginView ()
 

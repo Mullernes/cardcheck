@@ -20,7 +20,7 @@
 @property (nonatomic, strong) InitializationData *devInitData;
 
 @property (nonatomic, strong) ReaderController *readerController;
-@property (nonatomic, strong) CardImagePicker *cardImagePickerController;
+@property (nonatomic, strong) CardPickerController *cardImagePickerController;
 
 @property (nonatomic, strong) NSArray *stackOfResponse;
 
@@ -36,7 +36,7 @@
     self.stackOfResponse = @[];
     self.keyChain = [KeyChainData sharedInstance];
     self.currentReader = [CardReader demoReader];
-    self.cardImagePickerController = [[CardImagePicker alloc] initWithDelegate: self];
+    self.cardImagePickerController = [[CardPickerController alloc] initWithDelegate: self];
 
     NSLog(@"keyChain = %@", [self.keyChain debugDescription]);
     NSLog(@"currentReader = %@", [self.currentReader debugDescription]);
@@ -197,25 +197,25 @@
 
 - (IBAction)completeCheckCard:(id)sender
 {
-    TrackData *trackData = [TrackData demoTrack];
-    trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
-    
-    CryptoController *crp = [CryptoController sharedInstance];
-    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
-                                        withHexKey: [self.keyChain appDataKey]];
-    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
-    [self.currentReader setTrackData: trackData];
-    
-    CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
-    [request setCheckResponse: [self lastCheckResponse]];
-    [request setupFakeCardWithImages: [self fakeCardImages]];
-    
-    //__weak ViewController *weakSelf = self;
-    [[APIController sharedInstance] sendCFinishCheckRequest: request
-                                             withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
-    {
-        NSLog(@" response = %@", [model debugDescription]);
-    }];
+//    TrackData *trackData = [TrackData demoTrack];
+//    trackData.plainHexData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
+//    
+//    CryptoController *crp = [CryptoController sharedInstance];
+//    NSData *cipherData = [crp aes256EncryptHexData: trackData.plainHexData
+//                                        withHexKey: [self.keyChain appDataKey]];
+//    [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
+//    [self.currentReader setTrackData: trackData];
+//    
+//    CFinishCheckRequestModel *request = [CFinishCheckRequestModel requestWithReader: self.currentReader];
+//    [request setCheckResponse: [self lastCheckResponse]];
+//    [request setupFakeCardWithImages: [self fakeCardImages]];
+//    
+//    //__weak ViewController *weakSelf = self;
+//    [[APIController sharedInstance] sendCFinishCheckRequest: request
+//                                             withCompletion:^(CFinishCheckResponseModel *model, NSError *error)
+//    {
+//        NSLog(@" response = %@", [model debugDescription]);
+//    }];
 }
 
 - (IBAction)uploadCardImage:(id)sender
@@ -229,11 +229,12 @@
     CUploadRequestModel *request = [CUploadRequestModel requestWithReportID: report.reportID
                                                                  reportTime: report.time
                                                                   cardImage: image];
-
+    
     __weak ViewController *weakSelf = self;
     [[APIController sharedInstance] uploadImageRequest: request
                                         withCompletion:^(CUploadResponseModel *model, NSError *error)
      {
+         NSLog(@" image = %@", [image debugDescription]);
          NSLog(@" response = %@", [model debugDescription]);
          
          [image setID: model.imgID];
@@ -307,15 +308,23 @@
 
 #pragma mark - CardImagePickerDelegate
 
-- (void)cardPicker:(CardImagePicker *)picker didPickCardImage:(CardImage *)image
+- (void)cardPicker:(CardPickerController *)picker didPickCardImage:(CardImage *)image
 {
-    [picker dismissInView: self];
-    [self uploadImage: image];
+    [picker dismissInView: self completion: nil];
+    
+    [image save:^(CardImage *cardImg, NSError *error) {
+        if (nil == error) {
+            [self uploadImage: image];
+        }
+        else {
+            NSLog(@"Couldn't save into gallery");
+        }
+    }];
 }
 
-- (void)cardPickerDidCancelPicking:(CardImagePicker *)picker
+- (void)cardPickerDidCancelPicking:(CardPickerController *)picker
 {
-    [picker dismissInView: self];
+    [picker dismissInView: self completion: nil];
 }
 
 

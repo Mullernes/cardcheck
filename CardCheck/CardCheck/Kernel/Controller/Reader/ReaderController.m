@@ -211,6 +211,12 @@
     [self didUpdateReader];
 }
 
+- (void)generateDemoTrack
+{
+    [self invalidateControlTimer];
+    [self didReceiveTrackData: [TrackData demoTrack]];
+}
+
 #pragma mark - Working methods
 
 - (void)tryRequestPrimaryDataIdNeeded:(BOOL)shouldReset

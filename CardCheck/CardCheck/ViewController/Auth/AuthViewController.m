@@ -223,7 +223,7 @@
                                             }];
     }
     else {
-        NSString *info = NSLocalizedStringFromTable(@"password_default_validation_text",  @"Authorization", @"Input View");
+        NSString *info = NSLocalizedStringFromTable(@"password_default_validation_text",  @"Interactive", @"Input View");
         NSError *err = [NSError errorWithDomain: CURRENT_METHOD
                                            code: 0
                                        userInfo: @{NSLocalizedDescriptionKey : info}];
@@ -314,12 +314,12 @@
     return self.textFieldValidator;
 }
 
-- (void)authView:(AuthView *)view checkLoginDidEnter:(ITTextField *)textField
+- (void)authView:(UIView *)view checkLoginDidEnter:(ITTextField *)textField
 {
     [self validatorDidCheckTextField: textField withResult: YES];
 }
 
-- (void)authView:(AuthView *)view checkPasswordDidEnter:(ITTextField *)textField
+- (void)authView:(UIView *)view checkPasswordDidEnter:(ITTextField *)textField
 {
     [self validatorDidCheckTextField: textField withResult: YES];
 }

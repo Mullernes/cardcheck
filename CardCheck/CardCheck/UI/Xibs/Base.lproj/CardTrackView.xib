@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CardTrackView">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ELH-rR-Px4">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgB-VX-Wcm">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="37.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track 1&amp;2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tal-fV-sWc">
+                                    <rect key="frame" x="199.5" y="9" width="81" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.2692556083" green="0.4939492345" blue="0.4980431199" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstItem="tal-fV-sWc" firstAttribute="centerY" secondItem="TgB-VX-Wcm" secondAttribute="centerY" id="7t2-vQ-jiQ"/>
+                                <constraint firstItem="tal-fV-sWc" firstAttribute="centerX" secondItem="TgB-VX-Wcm" secondAttribute="centerX" id="gLP-wj-BDn"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLv-9p-PkY">
+                            <rect key="frame" x="0.0" y="37.5" width="480" height="37.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="557810****1212" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twk-tV-30e">
+                                    <rect key="frame" x="0.0" y="9" width="480" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Twk-tV-30e" firstAttribute="leading" secondItem="XLv-9p-PkY" secondAttribute="leading" id="3YN-0Y-dXE"/>
+                                <constraint firstItem="Twk-tV-30e" firstAttribute="centerY" secondItem="XLv-9p-PkY" secondAttribute="centerY" id="Hda-ml-7rP"/>
+                                <constraint firstAttribute="trailing" secondItem="Twk-tV-30e" secondAttribute="trailing" id="OOa-or-0mC"/>
+                                <constraint firstItem="Twk-tV-30e" firstAttribute="centerX" secondItem="XLv-9p-PkY" secondAttribute="centerX" id="eXr-vv-KAR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NO2-5t-h5d">
+                            <rect key="frame" x="0.0" y="75" width="480" height="37.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ivan Martynov" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BS5-9p-1OL">
+                                    <rect key="frame" x="0.0" y="9" width="480" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="BS5-9p-1OL" firstAttribute="centerY" secondItem="NO2-5t-h5d" secondAttribute="centerY" id="M1L-mu-xy0"/>
+                                <constraint firstItem="BS5-9p-1OL" firstAttribute="leading" secondItem="NO2-5t-h5d" secondAttribute="leading" id="Qkh-VA-o02"/>
+                                <constraint firstAttribute="trailing" secondItem="BS5-9p-1OL" secondAttribute="trailing" id="R2C-9c-qgH"/>
+                                <constraint firstItem="BS5-9p-1OL" firstAttribute="centerX" secondItem="NO2-5t-h5d" secondAttribute="centerX" id="eEM-GT-ayy"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hp8-fe-AoB">
+                            <rect key="frame" x="0.0" y="112.5" width="480" height="37.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Master Card (Mastero Currius)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8L8-6P-PVz">
+                                    <rect key="frame" x="0.0" y="9" width="480" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="8L8-6P-PVz" secondAttribute="trailing" id="GQN-sq-3KT"/>
+                                <constraint firstItem="8L8-6P-PVz" firstAttribute="centerX" secondItem="Hp8-fe-AoB" secondAttribute="centerX" id="NJm-DW-unx"/>
+                                <constraint firstItem="8L8-6P-PVz" firstAttribute="centerY" secondItem="Hp8-fe-AoB" secondAttribute="centerY" id="lXr-iB-bVC"/>
+                                <constraint firstItem="8L8-6P-PVz" firstAttribute="leading" secondItem="Hp8-fe-AoB" secondAttribute="leading" id="wUM-oc-ud1"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647059999998" green="0.93333333330000001" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ELH-rR-Px4" secondAttribute="bottom" id="9JE-uP-CR1"/>
+                <constraint firstItem="ELH-rR-Px4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="A9k-ct-GSq"/>
+                <constraint firstAttribute="trailing" secondItem="ELH-rR-Px4" secondAttribute="trailing" id="bgY-Pv-Xdd"/>
+                <constraint firstItem="ELH-rR-Px4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="x01-7X-S2v"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="holder" destination="BS5-9p-1OL" id="nbd-jT-eKF"/>
+                <outlet property="pan" destination="Twk-tV-30e" id="euN-d5-6q2"/>
+                <outlet property="paymentSystem" destination="8L8-6P-PVz" id="HGf-xC-EFW"/>
+                <outlet property="trackStatus" destination="tal-fV-sWc" id="byk-c1-iLj"/>
+            </connections>
+            <point key="canvasLocation" x="-169" y="-156.5"/>
+        </view>
+    </objects>
+</document>

@@ -21,10 +21,11 @@
 #import "MandatoryData.h"
 #import "CardReader.h"
 #import "InitializationData.h"
+#import "CardCheckReport.h"
 
 //Controller
 #import "APIController.h"
-#import "CardImagePicker.h"
+#import "CardPickerController.h"
 #import "CryptoController.h"
 #import "ReaderController.h"
 

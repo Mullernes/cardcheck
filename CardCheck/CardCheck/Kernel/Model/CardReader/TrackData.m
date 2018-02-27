@@ -29,6 +29,34 @@
     return data;
 }
 
++ (instancetype)demoTrack1
+{
+    TrackData *data = [TrackData new];
+    [data setTr1Code: 0];
+    [data setTr1Length: 51];
+    
+    [data setTr2Code: 133];
+    [data setTr2Length: 40];
+    
+    [data setPlainHexData: DEMO_TRACK_1_DATA]; 
+    
+    return data;
+}
+
++ (instancetype)demoTrack2
+{
+    TrackData *data = [TrackData new];
+    [data setTr1Code: 1];
+    [data setTr1Length: 0];
+    
+    [data setTr2Code: 0];
+    [data setTr2Length: 37];
+    
+    [data setPlainHexData: DEMO_TRACK_DATA];
+    
+    return data;
+}
+
 + (instancetype)emptyTrack {
     TrackData *data = [TrackData new];
     return data;
@@ -40,11 +68,11 @@
     {
         self.readable = YES;
         
-        [self setTr1Code: data.track1ErrorCode];
-        [self setTr2Code: data.track2ErrorCode];
+        [self setTr1Code: (int)data.track1ErrorCode];
+        [self setTr2Code: (int)data.track2ErrorCode];
         
-        [self setTr1Length: data.track1Length];
-        [self setTr2Length: data.track2Length];
+        [self setTr1Length: (int)data.track1Length];
+        [self setTr2Length: (int)data.track2Length];
         
         [self setPlainHexData: [HexCvtr hexFromData: ((ACRAesTrackData *)data).trackData]];
     }

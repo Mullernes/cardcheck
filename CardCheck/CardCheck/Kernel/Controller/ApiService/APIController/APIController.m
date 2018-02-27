@@ -227,15 +227,17 @@
     }
 }
 
-- (void)uploadImageRequest:(CUploadRequestModel *)model
+- (void)uploadImageRequest:(CUploadRequestModel *)request
             withCompletion:(CUploadResponseHandler)handler
 {
+    NSLog(@"request = %@", [request debugDescription]);
+    
     //Handlers
     void (^constructionHandler)(id <AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData: model.cardImg.data
-                                    name: model.name
-                                fileName: model.fileName
-                                mimeType: model.mimeType];
+        [formData appendPartWithFileData: request.cardImg.data
+                                    name: request.name
+                                fileName: request.fileName
+                                mimeType: request.mimeType];
     };
 
     void (^uploadProgressHandler)(NSProgress *) = ^(NSProgress * _Nonnull uploadProgress) {
@@ -252,21 +254,21 @@
                 handler(response, nil);
             }
             else {
-                handler(nil, response.failErr);
+                handler(response, response.failErr);
             }
         }
     };
 
     //Request
     NSError *err = nil;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
+    NSMutableURLRequest *urlRequest = [[AFHTTPRequestSerializer serializer]
                                     multipartFormRequestWithMethod: @"POST"
                                     URLString: [self cUploadImagekUrl]
-                                    parameters: model.parameters
+                                    parameters: request.parameters
                                     constructingBodyWithBlock: constructionHandler
                                     error: &err];
 
-    NSURLSessionUploadTask *task = [self.uploadManager uploadTaskWithStreamedRequest: request
+    NSURLSessionUploadTask *task = [self.uploadManager uploadTaskWithStreamedRequest: urlRequest
                                                                             progress: uploadProgressHandler
                                                                    completionHandler: completionHandler];
     [task resume];

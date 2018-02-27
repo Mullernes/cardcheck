@@ -170,11 +170,12 @@
 - (NSNumber *)hotpWithData:(NSData *)plain andHexKey:(NSString *)key
 {
     //for debug
+    /*
     NSLog(@"==== hotp =====");
     NSLog(@"data = %@, length = %li", [HexCvtr hexFromData: plain], (unsigned long)[plain length]);
     NSLog(@"key = %@, length = %li", key, (unsigned long)[[HexCvtr dataFromHex: key] length]);
+     */
      
-    
     NSData *data = [self hmac1WithPlainData: plain andHexKey: key];
     const char *cHMAC = [data bytes];
     
