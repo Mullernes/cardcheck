@@ -9,9 +9,9 @@
 #ifndef KLBaseAppConstants_H
 #define KLBaseAppConstants_H
 
-#define DEMO_MODE           0
+#define DEMO_MODE           1
 
-#define DEMO_AUTH           0
+#define DEMO_AUTH           1
 #define DEMO_LOGIN          @"vlad57981"
 
 #define DEMO_READER_ID      @"64bc2e5107fe2924"
@@ -26,7 +26,8 @@
 
 
 #define DEMO_PAN_ZERO        @"0000000000000000000000000000000000000000000000000000000000000000"
-#define DEMO_PAN             @"676621******2101000000000000000000000000000000000000000000000000"
+//#define DEMO_PAN             @"676621******2101000000000000000000000000000000000000000000000000"
+#define DEMO_PAN             @"3637363632312a2a2a2a2a2a32313031000000000000000000000000000000000"
 
 
 #define API_BASE_URL            @"https://ibe.com.ua:64785/"

@@ -315,7 +315,8 @@
     TrackData *trackData = self.currentReader.trackData;
     CryptoController *crp = [CryptoController sharedInstance];
     
-    NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, self.cardCheckReport.pan3];
+    //NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, DEMO_PAN];
+    NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, self.cardCheckReport.pan3Hex];
     NSData *cipherData = [crp aes256EncryptHexData: plainData withHexKey: [self.keyChain appDataKey]];
     [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
     
