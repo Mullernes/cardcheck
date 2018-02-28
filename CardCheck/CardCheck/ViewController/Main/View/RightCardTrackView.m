@@ -1,6 +1,6 @@
-#import "CardTrackView.h"
+#import "RightCardTrackView.h"
 
-@interface CardTrackView ()
+@interface RightCardTrackView ()
 
 @property (weak, nonatomic) IBOutlet UILabel *pan;
 @property (weak, nonatomic) IBOutlet UILabel *holder;
@@ -9,11 +9,11 @@
 
 @end
 
-@implementation CardTrackView
+@implementation RightCardTrackView
 
 + (instancetype)trackView
 {
-    CardTrackView *view = [[[UINib nibWithNibName: NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:nil options:nil] firstObject];
+    RightCardTrackView *view = [[[UINib nibWithNibName: NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:nil options:nil] firstObject];
     return view;
 }
 

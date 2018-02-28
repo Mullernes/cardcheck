@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CardTrackView : UIView
+@interface RightCardTrackView : UIView
 
 + (instancetype)trackView;
 - (void)setupWith:(CCheckReportData *)report;
