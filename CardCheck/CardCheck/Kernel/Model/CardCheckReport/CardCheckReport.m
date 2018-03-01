@@ -19,7 +19,7 @@
 
 @property (nonatomic, readwrite) BOOL pan3Manual;
 @property (nonatomic, readwrite) NSInteger pan3Length;
-@property (nonatomic, strong, readwrite) NSString *pan3;
+@property (nonatomic, strong, readwrite) NSString *pan3Hex;
 
 @property (nonatomic, strong, readwrite) NSArray<CCheckReportData*> *reports;
 
@@ -40,10 +40,10 @@
         self.backImgID = 0;
         self.frontImgID = 0;
         
-        [self setupPan3: [[response.reports firstObject] truncatedPan] manual: NO];
-        
         self.notes = @"";
         self.reports = response.reports.copy;
+        
+        [self setupPan3: nil manual: NO];
     }
     return self;
 }
@@ -51,13 +51,14 @@
 - (void)setupPan3:(NSString *)value manual:(BOOL)manual
 {
     self.pan3Manual = manual;
+    self.pan3Hex = [HexCvtr hexFromString: value];
     self.pan3Length = value.length;
     
-    if (value.length) {
-        _pan3 = [DEMO_PAN_ZERO stringByReplacingCharactersInRange: NSMakeRange(0, value.length) withString: value];
+    if (self.pan3Hex) {
+        self.pan3Hex = [DEMO_PAN_ZERO stringByReplacingCharactersInRange: NSMakeRange(0, self.pan3Hex.length) withString: self.pan3Hex];
     }
     else {
-        _pan3 = DEMO_PAN_ZERO;
+        _pan3Hex = DEMO_PAN_ZERO;
     }
 }
 

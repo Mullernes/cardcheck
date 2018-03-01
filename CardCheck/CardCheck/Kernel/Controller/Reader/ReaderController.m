@@ -138,6 +138,8 @@
 {
     [self onInfo: CURRENT_METHOD];
     
+    if (DEMO_MODE) return;
+    
     __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         

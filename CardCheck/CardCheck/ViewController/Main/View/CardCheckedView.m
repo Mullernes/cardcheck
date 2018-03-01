@@ -1,7 +1,11 @@
 #import "CardCheckedView.h"
-#import "CardTrackView.h"
+#import "LeftCardTrackView.h"
+#import "RightCardTrackView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Interactive", @"Info View")
+#define lInfoText           NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Interactive", @"Info View")
+#define lFakeText           NSLocalizedStringFromTable(@"card_checked_info_fake_text", @"Interactive", @"Info View")
+#define lQuestionText       NSLocalizedStringFromTable(@"card_checked_info_question_text", @"Interactive", @"Info View")
+
 
 @interface CardCheckedView ()
 
@@ -9,13 +13,20 @@
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIStackView *stackContentView;
 
+@property (weak, nonatomic) IBOutlet LeftCardTrackView *leftCardView;
+@property (weak, nonatomic) IBOutlet RightCardTrackView *rightCardView;
+
 @property (weak, nonatomic) IBOutlet UIView *extraInfo;
+@property (weak, nonatomic) IBOutlet UILabel *extraInfoLbl;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDefault;
+@property (nonatomic) BOOL isFake;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDefault;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDouble;
 
 - (IBAction)next:(id)sender;
 - (IBAction)yes:(id)sender;
@@ -57,113 +68,67 @@
 
 - (void)setupWith:(CardCheckReport *)report andStage:(BOOL)stage
 {
-    __block NSArray<CardTrackView *> *views = @[];
-    [report.reports enumerateObjectsUsingBlock:^(CCheckReportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CardTrackView *trackView = [CardTrackView trackView];
-        [trackView setupWith: obj];
-        views = [views arrayByAddingObject: trackView];
-    }];
-    
     [self resetActionView: stage];
-    [self resetWithTrackViews: views];
+    [self resetWithReports: report.reports];
 }
 
 - (void)resetActionView:(BOOL)stage
 {
-    [self.extraInfo setHidden: !stage];
     [self.yesButton setHidden: !stage];
     [self.noButton setHidden: !stage];
+    
+    [self.extraInfo setHidden: !stage];
     [self.nextButton setHidden: stage];
 }
 
-- (void)resetWithTrackViews:(NSArray<CardTrackView *> *)views
+- (void)resetWithReports:(NSArray<CCheckReportData *> *)reports
 {
-    //Clean old views
-    for (UIView *view in self.stackContentView.subviews) {
-        [view removeFromSuperview];
-    }
-    [self.stackContentView removeConstraints: self.stackContentView.constraints.copy];
+    self.isFake = ([reports count] == 2)?YES:NO;
     
-    //Add new
-    UIView *prevView = nil;
-    NSMutableArray *constraints = [NSMutableArray array];
+    [self.leftCardView reset];
+    [self.rightCardView reset];
     
-    for (CardTrackView *trackView in views)
-    {
-        [trackView setTranslatesAutoresizingMaskIntoConstraints: NO];
-        
-        [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
-                                                             attribute: NSLayoutAttributeTop
-                                                             relatedBy: NSLayoutRelationEqual
-                                                                toItem: self.stackContentView
-                                                             attribute: NSLayoutAttributeTop
-                                                            multiplier: 1.0
-                                                              constant: 0.0]];
-        
-        [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
-                                                             attribute: NSLayoutAttributeBottom
-                                                             relatedBy: NSLayoutRelationEqual
-                                                                toItem: self.stackContentView
-                                                             attribute: NSLayoutAttributeBottom
-                                                            multiplier: 1.0
-                                                              constant: 0.0]];
-        
-        if (prevView) {
-            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
-                                                                 attribute: NSLayoutAttributeLeading
-                                                                 relatedBy: NSLayoutRelationEqual
-                                                                    toItem: prevView
-                                                                 attribute: NSLayoutAttributeTrailing
-                                                                multiplier: 1.0
-                                                                  constant: 1.0]];
-            
-            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
-                                                                 attribute: NSLayoutAttributeWidth
-                                                                 relatedBy: NSLayoutRelationEqual
-                                                                    toItem: prevView
-                                                                 attribute: NSLayoutAttributeWidth
-                                                                multiplier: 1.0
-                                                                  constant: 0.0]];
-        }
-        else {
-            [constraints addObject: [NSLayoutConstraint constraintWithItem: trackView
-                                                                 attribute: NSLayoutAttributeLeading
-                                                                 relatedBy: NSLayoutRelationEqual
-                                                                    toItem: self.stackContentView
-                                                                 attribute: NSLayoutAttributeLeading
-                                                                multiplier: 1.0
-                                                                  constant: 0.0]];
-        }
-        
-        [trackView addConstraint:[NSLayoutConstraint constraintWithItem: trackView
-                                                               attribute: NSLayoutAttributeWidth
-                                                               relatedBy: NSLayoutRelationGreaterThanOrEqual
-                                                                  toItem: nil
-                                                               attribute: NSLayoutAttributeNotAnAttribute
-                                                              multiplier: 1.0
-                                                                constant: 0.0]];
-        [self.stackContentView addSubview: trackView];
-        prevView = trackView;
+    //left
+    CCheckReportData *report = [reports firstObject];
+    if (report) {
+        [self.leftCardView setupWith: report];
+        [self.leftCardView setHidden: NO];
     }
     
-    [constraints addObject: [NSLayoutConstraint constraintWithItem: prevView
-                                                         attribute: NSLayoutAttributeTrailing
-                                                         relatedBy: NSLayoutRelationEqual
-                                                            toItem: self.stackContentView
-                                                         attribute: NSLayoutAttributeTrailing
-                                                        multiplier: 1.0
-                                                          constant: 0.0]];
+    //right
+    if (self.isFake) {
+        report = [reports lastObject];
+        [self.rightCardView setupWith: report];
+        [self.rightCardView setHidden: NO];
+    }
+    else {
+        [self.rightCardView setHidden: YES];
+    }
     
-    [self.stackContentView addConstraints: constraints];
+    //constraints
+    [self.contentWidthConstraintDouble setActive: self.isFake];
+    [self.contentWidthConstraintDefault setActive: !self.isFake];
     
-//    BOOL doubleWidth = ([views count] == 2)? YES : NO;
-//    [self.contentView layoutIfNeeded];
-//    [self.stackContentView layoutIfNeeded];
+    //Extra info
+    if (self.isFake) {
+        [self.yesButton setHidden: YES];
+        [self.noButton setHidden: YES];
+        
+        [self.extraInfo setHidden: NO];
+        [self.extraInfoLbl setText: lFakeText];
+        
+        [self.nextButton setHidden: NO];
+    }
+    else {
+        [self.extraInfoLbl setText: lQuestionText];
+    }
+
+    [self layoutIfNeeded];
 }
 
 - (IBAction)next:(id)sender
 {
-    [self.delegate cardViewContinuePressed: self];
+    [self.delegate cardViewContinuePressed: self isFake: self.isFake];
 }
 
 - (IBAction)yes:(id)sender

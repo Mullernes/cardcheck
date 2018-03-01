@@ -4,9 +4,11 @@
 "dev_initialize_info_requestID"     = "Номер запроса:";
 "card_checked_info_default_text"    = "CardCheck - Інформація про картку";
 
-
 "add_pan_info_default_text"        = "Номер картки на лицьовій стороні (13-19 цифр)";
 "add_comment_info_default_text"    = "Введення коментарів";
+
+"card_checked_info_question_text"  = "Надана інформація відповідає картці?";
+"card_checked_info_fake_text"      = "Магнітна смуга має ознаки підробки. Зробіть фото обох сторін картки.";
 
 
 /* Input View */

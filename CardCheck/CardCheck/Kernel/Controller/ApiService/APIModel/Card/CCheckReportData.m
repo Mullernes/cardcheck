@@ -40,6 +40,20 @@
     return self;
 }
 
+- (BOOL)hasBlackList
+{
+    return [self.blacklists count]?YES:NO;
+}
+
+- (NSString *)blackListName:(NSUInteger)index
+{
+    if (index < [self.blacklists count]) {
+        return self.blacklists[index];
+    }
+    else
+        return nil;
+}
+
 #pragma mark - Debug
 
 - (NSString *)currentClass {

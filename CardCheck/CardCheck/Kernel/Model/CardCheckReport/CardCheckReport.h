@@ -21,7 +21,7 @@
 
 @property (nonatomic, readonly) BOOL pan3Manual;
 @property (nonatomic, readonly) NSInteger pan3Length;
-@property (nonatomic, strong, readonly) NSString *pan3;
+@property (nonatomic, strong, readonly) NSString *pan3Hex;
 
 @property (nonatomic, strong) NSString *notes;
 

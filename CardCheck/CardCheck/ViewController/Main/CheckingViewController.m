@@ -315,7 +315,7 @@
     TrackData *trackData = self.currentReader.trackData;
     CryptoController *crp = [CryptoController sharedInstance];
     
-    NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, self.cardCheckReport.pan3];
+    NSString *plainData = [NSString stringWithFormat:@"%@%@", trackData.plainHexData, self.cardCheckReport.pan3Hex];
     NSData *cipherData = [crp aes256EncryptHexData: plainData withHexKey: [self.keyChain appDataKey]];
     [trackData setCipherHexData: [HexCvtr hexFromData: cipherData]];
     
@@ -363,7 +363,7 @@
              }
          }
          else {
-             [weakSelf showAlertWithError: error];
+             [weakSelf.cardImagePickerController didSendImage: NO];
          }
          
          NSLog(@" response = %@", [model debugDescription]);
@@ -444,6 +444,9 @@
     }
     else if (textField.tag == TAG_CARD_COMMENT_ID) {
         [self.cardCheckReport setNotes: textField.text];
+        
+        [self showCardDefaultView];
+
         [self sendCompleteCheckCard];
     }
 }
@@ -506,11 +509,16 @@
     [self.readerController resetReaderController];
 }
 
-- (void)cardViewContinuePressed:(UIView *)view
+- (void)cardViewContinuePressed:(UIView *)view isFake:(BOOL)fake
 {
-    [self showCardDefaultView];
-    
-    [self.readerController resetReaderController];
+    if (fake) {
+        [self uploadCardImage];
+    }
+    else {
+        [self showCardDefaultView];
+        
+        [self.readerController resetReaderController];
+    }
 }
 
 - (void)cardViewYesPressed:(UIView *)view
@@ -525,7 +533,6 @@
     self.cardCheckReport.fakeCard = YES;
     
     [self showAddExtraInfoAlert];
-    //[self showCardTypePanView];
 }
 
 - (id<UITextFieldDelegate>)textFieldDelegate

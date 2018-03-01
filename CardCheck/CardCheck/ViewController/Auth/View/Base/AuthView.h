@@ -34,7 +34,7 @@
 
 - (void)cardViewDemoPressed:(UIView *)view;
 - (void)cardViewResetPressed:(UIView *)view;
-- (void)cardViewContinuePressed:(UIView *)view;
+- (void)cardViewContinuePressed:(UIView *)view isFake:(BOOL)fake;
 
 - (void)cardViewYesPressed:(UIView *)view;
 - (void)cardViewNoPressed:(UIView *)view;
