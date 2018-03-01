@@ -32,9 +32,10 @@
 		7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42841FFB8DCF00FFF207 /* CurrentDevice.m */; };
 		7D3A42891FFB9AF800FFF207 /* InitResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */; };
 		7D50E20F1FF03D4F00705D06 /* CryptoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50E20E1FF03D4F00705D06 /* CryptoController.m */; };
-		7D54F10A20475267008AC566 /* RightCardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D54F10920475267008AC566 /* RightCardTrackView.m */; };
+		7D54F11420487138008AC566 /* RightCardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D54F11120487138008AC566 /* RightCardTrackView.m */; };
+		7D54F11520487138008AC566 /* CardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D54F11220487138008AC566 /* CardTrackView.m */; };
+		7D54F11620487138008AC566 /* LeftCardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D54F11320487138008AC566 /* LeftCardTrackView.m */; };
 		7D5E465A203C3C83000F8709 /* CardTrackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4658203C3C83000F8709 /* CardTrackView.xib */; };
-		7D5E465D203C3D31000F8709 /* LeftCardTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E465B203C3D31000F8709 /* LeftCardTrackView.m */; };
 		7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E4660203D5F93000F8709 /* CardCheckReport.m */; };
 		7D5E4666203EC93D000F8709 /* CardTypeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4662203EC93C000F8709 /* CardTypeCommentView.xib */; };
 		7D5E4667203EC93D000F8709 /* CardTypePanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E4664203EC93D000F8709 /* CardTypePanView.xib */; };
@@ -174,11 +175,13 @@
 		7D3A42881FFB9AF700FFF207 /* InitResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitResponseModel.m; sourceTree = "<group>"; };
 		7D50E20D1FF03D4F00705D06 /* CryptoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoController.h; sourceTree = "<group>"; };
 		7D50E20E1FF03D4F00705D06 /* CryptoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoController.m; sourceTree = "<group>"; };
-		7D54F10820475267008AC566 /* RightCardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCardTrackView.h; sourceTree = "<group>"; };
-		7D54F10920475267008AC566 /* RightCardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCardTrackView.m; sourceTree = "<group>"; };
+		7D54F10E20487138008AC566 /* CardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTrackView.h; sourceTree = "<group>"; };
+		7D54F10F20487138008AC566 /* RightCardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCardTrackView.h; sourceTree = "<group>"; };
+		7D54F11020487138008AC566 /* LeftCardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCardTrackView.h; sourceTree = "<group>"; };
+		7D54F11120487138008AC566 /* RightCardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCardTrackView.m; sourceTree = "<group>"; };
+		7D54F11220487138008AC566 /* CardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTrackView.m; sourceTree = "<group>"; };
+		7D54F11320487138008AC566 /* LeftCardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCardTrackView.m; sourceTree = "<group>"; };
 		7D5E4659203C3C83000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTrackView.xib; sourceTree = "<group>"; };
-		7D5E465B203C3D31000F8709 /* LeftCardTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCardTrackView.m; sourceTree = "<group>"; };
-		7D5E465C203C3D31000F8709 /* LeftCardTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCardTrackView.h; sourceTree = "<group>"; };
 		7D5E465F203D5F93000F8709 /* CardCheckReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCheckReport.h; sourceTree = "<group>"; };
 		7D5E4660203D5F93000F8709 /* CardCheckReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCheckReport.m; sourceTree = "<group>"; };
 		7D5E4663203EC93C000F8709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CardTypeCommentView.xib; sourceTree = "<group>"; };
@@ -436,8 +439,7 @@
 		7D0E412F202B34880026F7B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7D54F10820475267008AC566 /* RightCardTrackView.h */,
-				7D54F10920475267008AC566 /* RightCardTrackView.m */,
+				7D54F10D20487138008AC566 /* CardTrackView */,
 				7D5E4671203ED148000F8709 /* CardTypeCommentView.h */,
 				7D5E4672203ED148000F8709 /* CardTypeCommentView.m */,
 				7D5E4669203ECA7D000F8709 /* CardTypePanView.h */,
@@ -446,8 +448,6 @@
 				7D0E4131202B89200026F7B0 /* CardDefaultView.m */,
 				7D0E412C202A34E80026F7B0 /* CardCheckedView.h */,
 				7D0E412D202A34E90026F7B0 /* CardCheckedView.m */,
-				7D5E465C203C3D31000F8709 /* LeftCardTrackView.h */,
-				7D5E465B203C3D31000F8709 /* LeftCardTrackView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -539,6 +539,19 @@
 				7D50E20E1FF03D4F00705D06 /* CryptoController.m */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		7D54F10D20487138008AC566 /* CardTrackView */ = {
+			isa = PBXGroup;
+			children = (
+				7D54F10E20487138008AC566 /* CardTrackView.h */,
+				7D54F11220487138008AC566 /* CardTrackView.m */,
+				7D54F10F20487138008AC566 /* RightCardTrackView.h */,
+				7D54F11120487138008AC566 /* RightCardTrackView.m */,
+				7D54F11020487138008AC566 /* LeftCardTrackView.h */,
+				7D54F11320487138008AC566 /* LeftCardTrackView.m */,
+			);
+			path = CardTrackView;
 			sourceTree = "<group>";
 		};
 		7D5E465E203D5F93000F8709 /* CardCheckReport */ = {
@@ -1430,7 +1443,6 @@
 				7DE168062002BC0200F4A417 /* HexCvtr.m in Sources */,
 				7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */,
 				7DACA34A2031734400D31166 /* AlertViewController.m in Sources */,
-				7D54F10A20475267008AC566 /* RightCardTrackView.m in Sources */,
 				7D7E2BED20187AD900BE6950 /* NSObject+ITKVO.m in Sources */,
 				7D13E6A720122BD7002B2625 /* CFinishCheckRequestModel.m in Sources */,
 				7D0F5EC82004B05F00780CE8 /* CCheckRequestModel.m in Sources */,
@@ -1473,7 +1485,6 @@
 				7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */,
 				7D0105D3201751790080E63A /* BaseViewController.m in Sources */,
 				7D7E2BD3201879D100BE6950 /* SFLoginIDTextField.m in Sources */,
-				7D5E465D203C3D31000F8709 /* LeftCardTrackView.m in Sources */,
 				7DDE2C6B1FF2E90100058FD4 /* CardReader.m in Sources */,
 				7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */,
 				7D3A42861FFB8DCF00FFF207 /* CurrentDevice.m in Sources */,
@@ -1493,6 +1504,7 @@
 				7DB705B22013AAF500782CF1 /* CUploadRequestModel.m in Sources */,
 				7D5E4679203ED2FA000F8709 /* ITCommentIDTextField.m in Sources */,
 				7D5E466D203ECAD7000F8709 /* SFPanIDTextField.m in Sources */,
+				7D54F11520487138008AC566 /* CardTrackView.m in Sources */,
 				7D5E4661203D5F93000F8709 /* CardCheckReport.m in Sources */,
 				7DDE2C721FF37A4B00058FD4 /* AuthRequestModel.m in Sources */,
 				7D5E466A203ECA7D000F8709 /* CardTypePanView.m in Sources */,
@@ -1502,6 +1514,8 @@
 				7DC4FBD61FEA4EC200CFB4FE /* JSONKit.m in Sources */,
 				7DC4FBCC1FEA492300CFB4FE /* KLBaseController.m in Sources */,
 				7D0D572E2013A9F000CC250C /* CardPickerController.m in Sources */,
+				7D54F11420487138008AC566 /* RightCardTrackView.m in Sources */,
+				7D54F11620487138008AC566 /* LeftCardTrackView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

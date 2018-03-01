@@ -78,6 +78,7 @@
     
     __weak CardPickerController *weakSelf = self;
     [vc presentViewController: self.picker animated: YES completion:^{
+        [weakSelf.overlayView prepareFrontSide];
         weakSelf.picker.cameraOverlayView = weakSelf.overlayView;
     }];
 }

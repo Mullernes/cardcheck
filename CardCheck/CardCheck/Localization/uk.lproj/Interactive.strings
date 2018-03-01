@@ -7,12 +7,14 @@
 "add_pan_info_default_text"        = "Номер картки на лицьовій стороні (13-19 цифр)";
 "add_comment_info_default_text"    = "Введення коментарів";
 
+"card_checked_info_question_text"  = "Надана інформація відповідає картці?";
+"card_checked_info_fake_text"      = "Магнітна смуга має ознаки підробки. Зробіть фото обох сторін картки.";
+
 /* Input View */
 "login_default_validation_text"         = "Логін повинен містити 3-20 символів (латинські літери, цифри, крапка)";
 "password_default_validation_text"      = "Невірний пароль. Пароль повинен містити 6 цифр";
 "password_equality_validation_text"     = "Паролі повинні бути однаковими";
 "password_invalid_validation_text"      = "Невірний пароль. Будь ласка спробуйте ще раз";
-
 
 "pan_default_validation_text"         = "Номер картки повинен бути 13-19 цифр";
 "comment_default_validation_text"     = "Введіть коментар";

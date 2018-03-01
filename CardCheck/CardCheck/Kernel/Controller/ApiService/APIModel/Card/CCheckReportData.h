@@ -21,4 +21,7 @@
 
 - (instancetype)initWithRawData:(NSDictionary *)data;
 
+- (BOOL)hasBlackList;
+- (NSString *)blackListName:(NSUInteger)index;
+
 @end

@@ -2,7 +2,10 @@
 #import "LeftCardTrackView.h"
 #import "RightCardTrackView.h"
 
-#define lInfoText                   NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Interactive", @"Info View")
+#define lInfoText           NSLocalizedStringFromTable(@"card_checked_info_default_text", @"Interactive", @"Info View")
+#define lFakeText           NSLocalizedStringFromTable(@"card_checked_info_fake_text", @"Interactive", @"Info View")
+#define lQuestionText       NSLocalizedStringFromTable(@"card_checked_info_question_text", @"Interactive", @"Info View")
+
 
 @interface CardCheckedView ()
 
@@ -14,10 +17,13 @@
 @property (weak, nonatomic) IBOutlet RightCardTrackView *rightCardView;
 
 @property (weak, nonatomic) IBOutlet UIView *extraInfo;
+@property (weak, nonatomic) IBOutlet UILabel *extraInfoLbl;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
+
+@property (nonatomic) BOOL isFake;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDefault;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidthConstraintDouble;
@@ -68,14 +74,20 @@
 
 - (void)resetActionView:(BOOL)stage
 {
-    [self.extraInfo setHidden: !stage];
     [self.yesButton setHidden: !stage];
     [self.noButton setHidden: !stage];
+    
+    [self.extraInfo setHidden: !stage];
     [self.nextButton setHidden: stage];
 }
 
 - (void)resetWithReports:(NSArray<CCheckReportData *> *)reports
 {
+    self.isFake = ([reports count] == 2)?YES:NO;
+    
+    [self.leftCardView reset];
+    [self.rightCardView reset];
+    
     //left
     CCheckReportData *report = [reports firstObject];
     if (report) {
@@ -84,25 +96,39 @@
     }
     
     //right
-    BOOL isDblWidth = NO;
-    if (reports.count == 2) {
+    if (self.isFake) {
         report = [reports lastObject];
         [self.rightCardView setupWith: report];
         [self.rightCardView setHidden: NO];
-        
-        isDblWidth = YES;
+    }
+    else {
+        [self.rightCardView setHidden: YES];
     }
     
     //constraints
-    [self.contentWidthConstraintDouble setActive: isDblWidth];
-    [self.contentWidthConstraintDefault setActive: !isDblWidth];
+    [self.contentWidthConstraintDouble setActive: self.isFake];
+    [self.contentWidthConstraintDefault setActive: !self.isFake];
+    
+    //Extra info
+    if (self.isFake) {
+        [self.yesButton setHidden: YES];
+        [self.noButton setHidden: YES];
+        
+        [self.extraInfo setHidden: NO];
+        [self.extraInfoLbl setText: lFakeText];
+        
+        [self.nextButton setHidden: NO];
+    }
+    else {
+        [self.extraInfoLbl setText: lQuestionText];
+    }
 
     [self layoutIfNeeded];
 }
 
 - (IBAction)next:(id)sender
 {
-    [self.delegate cardViewContinuePressed: self];
+    [self.delegate cardViewContinuePressed: self isFake: self.isFake];
 }
 
 - (IBAction)yes:(id)sender

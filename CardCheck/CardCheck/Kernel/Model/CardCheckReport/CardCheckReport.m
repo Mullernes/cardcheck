@@ -42,6 +42,8 @@
         
         self.notes = @"";
         self.reports = response.reports.copy;
+        
+        [self setupPan3: nil manual: NO];
     }
     return self;
 }
