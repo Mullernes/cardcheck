@@ -41,6 +41,8 @@
         if (name) {
             UILabel *lbl = [obj viewWithTag: 99];
             [lbl setText: name];
+            
+             [obj setHidden: NO];
         }
         else {
             [obj setHidden: YES];
