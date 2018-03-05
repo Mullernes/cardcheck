@@ -18,6 +18,8 @@
 
 @interface ReaderController()
 
+@property (nonatomic) ReaderState currentState;
+
 @property (nonatomic) BOOL resultReady;
 @property (nonatomic, strong) ACRResult *result;
 
@@ -219,6 +221,11 @@
     [self didReceiveTrackData: [TrackData demoTrack]];
 }
 
+- (BOOL)isReceivedData
+{
+    return (self.currentState == ReaderStateSentData)?YES:NO;
+}
+
 #pragma mark - Working methods
 
 - (void)tryRequestPrimaryDataIdNeeded:(BOOL)shouldReset
@@ -380,6 +387,10 @@
 {
     __weak ReaderController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        weakSelf.currentState = state;
+        if (weakSelf.currentState == ReaderStateSentData) return;
+        
         if ([weakSelf.delegate respondsToSelector:@selector(readerController:didUpdateWithState:)])
         {
             [weakSelf.delegate readerController: weakSelf didUpdateWithState: state];
@@ -439,6 +450,9 @@
     
     //3
     [self didReceiveTrackData: cTrackData];
+    
+    //4
+    [self didUpdateState: ReaderStateSentData];
 }
 
 - (void)reader:(ACRAudioJackReader *)reader didSendRawData:(const uint8_t *)rawData length:(NSUInteger)length

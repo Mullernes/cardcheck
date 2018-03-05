@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, ReaderState) {
     
     ReaderStatePreparing,
     ReaderStateReady,
-    ReaderStateGettingData
+    ReaderStateGettingData,
+    ReaderStateSentData
 };
 
 @protocol ReaderControllerDelegate;
@@ -23,6 +24,7 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 
 
 @property (nonatomic, getter=isStaging) BOOL stage;
+
 @property (nonatomic) ReaderPluggedHandler pluggedHandler;
 @property (nonatomic, weak) id<ReaderControllerDelegate>delegate;
 
@@ -33,6 +35,8 @@ typedef void(^ReaderPluggedHandler)(CardReader *reader);
 - (void)startStageMode;
 - (void)startDemoMode;
 - (void)generateDemoTrack;
+
+- (BOOL)isReceivedData;
 
 @end
 

@@ -158,6 +158,8 @@
 
 - (void)showInitializationIfNeeded:(id)sender
 {
+    if ([[ReaderController sharedInstance] isReceivedData]) return;
+    
     if ([self.presentedViewController isKindOfClass: [LoadingViewController class]] == YES) return;
     if ([[self.childViewControllers firstObject] isKindOfClass: [LoadingViewController class]] == YES) return;
     

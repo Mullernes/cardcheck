@@ -78,10 +78,10 @@ static dispatch_once_t onceToken;
 
 - (void)setPlugged:(BOOL)plugged
 {
-    if (_plugged && !plugged) {
-        [self setDeviceID: nil];
-        [self setCustomID: nil];
-    }
+//    if (_plugged && !plugged) {
+//        [self setDeviceID: nil];
+//        [self setCustomID: nil];
+//    }
     
     _plugged = plugged;
 }

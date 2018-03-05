@@ -77,6 +77,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    [self.readerController setDelegate: self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,7 +93,6 @@
 
 - (void)baseSetup
 {
-    [self.readerController setDelegate: self];
     [self.readerController resetReaderController];
     
     self.cardImagePickerController = [[CardPickerController alloc] initWithDelegate: self];
