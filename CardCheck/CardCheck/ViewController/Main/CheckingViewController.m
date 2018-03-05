@@ -403,8 +403,7 @@
                                                                             message: lCompleteCheck];
     
     [controller addAction:[AlertAction actionWithTitle: lCloseApp style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app performSelector:@selector(suspend)];
+        [self.rootViewController closeApp];
     }]];
     
     [controller addAction:[AlertAction actionWithTitle: lContinue style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
@@ -420,8 +419,7 @@
                                                                             message: lExtraInfo];
     
     [controller addAction:[AlertAction actionWithTitle: lExtraInfoNo style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app performSelector:@selector(suspend)];
+        [self.rootViewController closeApp];
     }]];
     
     [controller addAction:[AlertAction actionWithTitle: lExtraInfoYes style:UIAlertActionStyleDefault handler:^(AlertAction *action) {

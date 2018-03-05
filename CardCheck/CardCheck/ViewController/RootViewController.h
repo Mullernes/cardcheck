@@ -15,6 +15,7 @@
 - (void)showAuth:(id)sender;
 - (void)showMain:(id)sender;
 
+- (void)closeApp;
 - (void)checkReaderCompatibility:(CardReader *)reader;
 
 @end

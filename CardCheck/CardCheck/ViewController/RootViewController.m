@@ -127,6 +127,10 @@
 
 #pragma mark - ViewController
 
+- (void)closeApp {
+    exit(5);
+}
+
 - (void)showAuth:(id)sender
 {
     [self showViewController:[[UIStoryboard storyboardWithName: STORYBOARD_AUTH bundle:nil] instantiateInitialViewController] sender:sender];
@@ -142,8 +146,7 @@
     AlertViewController *controller = [AlertViewController alertControllerWithTitle: lAlertRecoveryTitle
                                                                             message: lAlertRecoveryMessage];
     [controller addAction:[AlertAction actionWithTitle: lAlertRecoveryCancel style:UIAlertActionStyleCancel handler:^(AlertAction *action) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app performSelector:@selector(suspend)];
+        [self closeApp];
     }]];
     [controller addAction:[AlertAction actionWithTitle: lAlertRecoveryOk style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
         [[MandatoryData sharedInstance] clean];
