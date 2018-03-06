@@ -38,7 +38,7 @@
 
 - (BOOL)isGeneralComment:(NSString *)value
 {
-    return value.length;
+    return YES;
 }
 
 @end

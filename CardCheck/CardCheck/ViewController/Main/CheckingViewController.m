@@ -420,7 +420,8 @@
                                                                             message: lExtraInfo];
     
     [controller addAction:[AlertAction actionWithTitle: lExtraInfoNo style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
-        [self.rootViewController closeApp];
+        [self showCardDefaultView];
+        [self sendCompleteCheckCard];
     }]];
     
     [controller addAction:[AlertAction actionWithTitle: lExtraInfoYes style:UIAlertActionStyleDefault handler:^(AlertAction *action) {

@@ -38,6 +38,8 @@
 
 - (BOOL)isGeneralPan:(NSString *)value
 {
+    if (self.text.length == 0) return YES;
+    
     NSString *regex = @"^([0-9]{13,19})$";
     NSPredicate *predTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isValid = [predTest evaluateWithObject: [value lowercaseString]];

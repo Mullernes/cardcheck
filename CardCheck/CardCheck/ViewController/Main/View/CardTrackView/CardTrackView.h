@@ -16,7 +16,7 @@
 + (instancetype)trackView;
 
 - (void)reset;
-- (void)setupWith:(CCheckReportData *)report;
+- (void)setupWith:(CCheckReportData *)report andFakeCount:(NSUInteger)fcount;
 
 @end
 
