@@ -175,14 +175,8 @@
 
 - (void)showCardCheckedView:(CardCheckReport *)report
 {
-    BOOL stage = self.readerController.isStaging;
-    
-    if (NO == stage) {
-        [self.readerController startStageMode];
-    }
-    
     [self.cardCheckedView prepareUi];
-    [self.cardCheckedView setupWith: report andStage: stage];
+    [self.cardCheckedView setupWith: report];
     
     [self showView: self.cardCheckedView reverse: NO];
 }
@@ -511,12 +505,19 @@
 
 - (void)cardViewContinuePressed:(UIView *)view isFake:(BOOL)fake
 {
-    if (fake) {
-        [self uploadCardImage];
+    if (self.readerController.isStaging)
+    {
+        if (fake) {
+            [self uploadCardImage];
+        }
+        else {
+            [self showCardDefaultView];
+            [self.readerController resetReaderController];
+        }
     }
     else {
         [self showCardDefaultView];
-        
+        [self.readerController startStageMode];
         [self.readerController resetReaderController];
     }
 }

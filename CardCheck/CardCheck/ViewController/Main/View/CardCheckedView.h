@@ -2,7 +2,7 @@
 
 @interface CardCheckedView : AuthView
 
-- (void)setupWith:(CardCheckReport *)report andStage:(BOOL)stage;
+- (void)setupWith:(CardCheckReport *)report;
     
 @end
 

@@ -67,14 +67,16 @@
     [self.infoView setState: InfoStateCard withText: lInfoText animated: NO];
 }
 
-- (void)setupWith:(CardCheckReport *)report andStage:(BOOL)stage
+- (void)setupWith:(CardCheckReport *)report
 {
-    [self resetActionView: stage];
+    [self resetActionView];
     [self resetWithReports: report.reports];
 }
 
-- (void)resetActionView:(BOOL)stage
+- (void)resetActionView
 {
+    BOOL stage = [[ReaderController sharedInstance] isStaging];
+    
     [self.yesButton setHidden: !stage];
     [self.noButton setHidden: !stage];
     
