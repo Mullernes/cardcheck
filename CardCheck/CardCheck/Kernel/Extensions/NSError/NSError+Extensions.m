@@ -41,4 +41,24 @@
     return [[NSError prefixStore] objectForKey: @(code)];
 }
 
+- (NSString *)readableDescription
+{
+    NSString *string = self.localizedDescription;
+    
+    if ([self.localizedDescription hasPrefix: @"Prefix:"]) {
+        NSRange searchFromRange = [string rangeOfString: @"Prefix:"];
+        NSRange searchToRange = [string rangeOfString: @"Method:"];
+        
+        NSUInteger location = searchFromRange.location+searchFromRange.length;
+        NSUInteger length = searchToRange.location - location;
+        
+        NSString *substring = [string substringWithRange:NSMakeRange(location, length)];
+        
+        return [[substring componentsSeparatedByString:@" | "] lastObject];
+    }
+    else {
+        return self.localizedDescription;
+    }
+}
+
 @end

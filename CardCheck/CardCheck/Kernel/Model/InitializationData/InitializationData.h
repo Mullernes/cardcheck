@@ -20,6 +20,8 @@
 - (void)setupWithAuthResponse:(AuthResponseModel *)response;
 - (void)setupWithInitResponse:(InitResponseModel *)response;
 
+- (BOOL)isValidTypedOTP:(NSString *)otp;
+
 - (long)authRequestID;
 - (long long)authRequestTime;
 - (long long)authResponseTime;

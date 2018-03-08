@@ -34,7 +34,8 @@
 - (void)failedStateWithError:(NSError *)error
 {
     [self setCorrect: NO];
-    [self.infoView setState: InfoStateWaring withText: error.localizedDescription animated: NO];
+    
+    [self.infoView setState: InfoStateWaring withText: [error readableDescription] animated: NO];
 }
 
 - (void)failedStateWithText:(NSString *)text

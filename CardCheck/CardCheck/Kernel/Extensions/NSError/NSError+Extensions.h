@@ -11,5 +11,6 @@
 @interface NSError (Extensions)
 
 + (NSString *)prefixWithCode:(NSInteger)code;
+- (NSString *)readableDescription;
 
 @end
