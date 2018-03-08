@@ -81,7 +81,12 @@
 
 - (NSString *)cCheckUrl
 {
-    return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_TARGET];
+    if ([[ReaderController sharedInstance] isStaging]) {
+        return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_CHECK_TARGET];
+    }
+    else {
+        return [NSString stringWithFormat:@"%@%@", API_BASE_URL, API_CARD_TEST_TARGET];
+    }
 }
 
 - (NSString *)cFinishCheckUrl

@@ -8,7 +8,7 @@
 
 #import "UIImage+Extensions.h"
 
-CGFloat const ImagePhotoCompression = 0.85f;
+CGFloat const ImagePhotoCompression = 0.65f;
 
 CGSize  const ImagePhotoSize1280x960 = (CGSize) { .width = 1280, .height = 960 };
 CGSize  const ImagePhotoSize960x720  = (CGSize) { .width = 960,  .height = 720 };

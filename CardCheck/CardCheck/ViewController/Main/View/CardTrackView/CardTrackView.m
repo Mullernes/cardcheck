@@ -24,7 +24,7 @@
     }];
 }
 
-- (void)setupWith:(CCheckReportData *)report
+- (void)setupWith:(CCheckReportData *)report andFakeCount:(NSUInteger)fcount
 {
     [self.trackStatus setText: report.title];
     
@@ -38,14 +38,15 @@
     
     [self.blackListViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *name = [report blackListName: idx];
+        UILabel *lbl = [obj viewWithTag: 99];
+        [obj setHidden: (idx>=fcount)];
+        
         if (name) {
-            UILabel *lbl = [obj viewWithTag: 99];
             [lbl setText: name];
-            
-             [obj setHidden: NO];
+            [lbl setHidden: NO];
         }
         else {
-            [obj setHidden: YES];
+            [lbl setHidden: YES];
         }
     }];
 }

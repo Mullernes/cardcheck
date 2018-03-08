@@ -196,8 +196,9 @@
     
     //2 - check password
     BOOL demoAuth = (DEMO_AUTH && !self.devInitView.retypePasswordTextField.text.length)?YES:NO;
-    NSString *typedOtp =  demoAuth? self.devInitData.otp : self.devInitView.retypePasswordTextField.text;
-    if ([self.devInitData.otp isEqualToString: typedOtp])
+    NSString *typedOtp = self.devInitView.retypePasswordTextField.text;
+    
+    if ([self.devInitData isValidTypedOTP: typedOtp] || demoAuth)
     {
         [self.devInitView setLoading: YES];
         
@@ -223,7 +224,7 @@
                                             }];
     }
     else {
-        NSString *info = NSLocalizedStringFromTable(@"password_default_validation_text",  @"Interactive", @"Input View");
+        NSString *info = NSLocalizedStringFromTable(@"password_invalid_validation_text",  @"Interactive", @"Input View");
         NSError *err = [NSError errorWithDomain: CURRENT_METHOD
                                            code: 0
                                        userInfo: @{NSLocalizedDescriptionKey : info}];

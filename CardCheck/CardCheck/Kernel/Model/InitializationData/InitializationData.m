@@ -72,6 +72,20 @@
     [self setInitializationResponse: response];
 }
 
+- (BOOL)isValidTypedOTP:(NSString *)otp
+{
+    BOOL rez = NO;
+    if ([otp isEqualToString: self.otp]) {
+        rez = YES;
+    }
+    else {
+        self.attempts--;
+        rez = (self.attempts <= 0)?YES:NO;
+    }
+    
+    return rez;
+}
+
 - (long)authRequestID {
     return self.authResponse.requestID;
 }

@@ -44,7 +44,7 @@
              @"cardreader_id"       :   self.reader.deviceID,
              @"auth_req_id"         :   @(self.data.authRequestID),
              @"mobile_device_info"  :   [self.data deviceInfo],
-             @"last_try_counter"    :   @(3)
+             @"last_try_counter"    :   @(self.data.attempts)
              };
 }
 
