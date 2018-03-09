@@ -34,6 +34,7 @@
 #define lRepeatReading              NSLocalizedStringFromTable(@"handle_track_button_repeat_reading", @"Common", @"Alert View")
 #define lSendRequest                NSLocalizedStringFromTable(@"handle_track_button_send_request",   @"Common", @"Alert View")
 
+#define lAbortCheck                 NSLocalizedStringFromTable(@"card_check_abort_message",    @"Common", @"Alert View")
 #define lCompleteCheck              NSLocalizedStringFromTable(@"card_check_complete_message",    @"Common", @"Alert View")
 #define lCloseApp                   NSLocalizedStringFromTable(@"card_check_button_close",        @"Common", @"Alert View")
 #define lContinue                   NSLocalizedStringFromTable(@"card_check_button_continue",     @"Common", @"Alert View")
@@ -295,7 +296,7 @@
              [weakSelf showCardCheckedView: weakSelf.cardCheckReport];
          }
          else {
-             [weakSelf showAlertWithError: error];
+             [weakSelf showCardCheckAlert: error];
          }
          
          NSLog(@" response = %@", [model debugDescription]);
@@ -325,11 +326,13 @@
      {
          if (model.isCorrect) {
              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                 [weakSelf showCardCheckCompleteAlert];
+                 [weakSelf showCardCheckCompleteAlert: nil];
              });
          }
          else {
-             [weakSelf showAlertWithError: error];
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 [weakSelf showCardCheckCompleteAlert: error];
+             });
          }
 
          NSLog(@" response = %@", [model debugDescription]);
@@ -365,15 +368,6 @@
      }];
 }
 
-- (void)showAlertWithError:(NSError *)error
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"ERROR"
-                                                    message: error.localizedDescription
-                                                   delegate:nil
-                                          cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-    [alert show];
-}
-
 #pragma mark - AlertView
 
 - (void)showTrackAlertWithMessage:(NSString *)message
@@ -392,10 +386,10 @@
     [self.notifyManager showAlert: controller];
 }
 
-- (void)showCardCheckCompleteAlert
+- (void)showCardCheckAlert:(NSError *)error
 {
-    AlertViewController *controller = [AlertViewController alertControllerWithTitle: lInfo
-                                                                            message: lCompleteCheck];
+    AlertViewController *controller = [AlertViewController alertControllerWithTitle: lAbortCheck
+                                                                            message: [error readableDescription]];
     
     [controller addAction:[AlertAction actionWithTitle: lCloseApp style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
         [self.rootViewController closeApp];
@@ -404,6 +398,30 @@
     [controller addAction:[AlertAction actionWithTitle: lContinue style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
         [self.readerController resetReaderController];
     }]];
+    
+    [self.notifyManager showAlert: controller];
+}
+
+- (void)showCardCheckCompleteAlert:(NSError *)error
+{
+    AlertViewController *controller = [AlertViewController alertControllerWithTitle: lInfo
+                                                                            message: error? [error readableDescription] : lCompleteCheck];
+    
+    [controller addAction:[AlertAction actionWithTitle: lCloseApp style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
+        [self.rootViewController closeApp];
+    }]];
+    
+    if (error && (error.code != 17)) {
+        [controller addAction:[AlertAction actionWithTitle: lContinue style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
+            [self sendCompleteCheckCard];
+        }]];
+
+    }
+    else if (!error || (error.code == 17)) {
+        [controller addAction:[AlertAction actionWithTitle: lContinue style:UIAlertActionStyleDefault handler:^(AlertAction *action) {
+            [self.readerController resetReaderController];
+        }]];
+    }
     
     [self.notifyManager showAlert: controller];
 }

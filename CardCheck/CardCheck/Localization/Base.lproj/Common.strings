@@ -22,6 +22,7 @@
 "handle_track_button_send_request"      = "Відправити запит";
 
 "card_check_complete_message"         = "Перевірку завершено.";
+"card_check_abort_message"            = "Перевірку скасовано.";
 "card_check_button_close"             = "Закрити додаток";
 "card_check_button_continue"          = "Перевірити наступну картку";
 
