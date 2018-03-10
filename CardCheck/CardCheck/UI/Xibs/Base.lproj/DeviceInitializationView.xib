@@ -200,6 +200,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="infoView" destination="aZQ-nx-3aR" id="9yg-Yr-wa6"/>
+                <outlet property="nextButton" destination="Lor-7h-OGz" id="IbW-gz-aGF"/>
                 <outlet property="passwordTextField" destination="nNt-nI-IHc" id="u9T-FM-X0p"/>
                 <outlet property="retypePasswordTextField" destination="mtr-wo-eDD" id="NCN-aj-4o1"/>
             </connections>

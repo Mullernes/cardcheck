@@ -70,7 +70,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWF-E9-PeS" userLabel="Card View">
                     <rect key="frame" x="32" y="33.5" width="256" height="315"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-Dy-snk">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-Dy-snk">
                             <rect key="frame" x="0.0" y="0.0" width="256.5" height="315"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RyP-RA-Ht7" userLabel="Content View">

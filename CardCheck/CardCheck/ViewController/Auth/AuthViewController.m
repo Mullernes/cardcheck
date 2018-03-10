@@ -220,6 +220,10 @@
                                                     NSLog(@"response = %@", model);
                                                     
                                                     [weakSelf.devInitView failedStateWithError: error];
+                                                    
+                                                    if ((error.code == 18) && (weakSelf.devInitData.attempts == 0)) {
+                                                        [weakSelf.devInitView setEnable: NO];
+                                                    }
                                                 }
                                             }];
     }

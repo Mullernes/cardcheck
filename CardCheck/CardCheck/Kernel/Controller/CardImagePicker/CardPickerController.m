@@ -100,10 +100,10 @@
     
     //1
     UIImage *originImg = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImage *orientedImg = [UIImage imageWithCGImage: originImg.CGImage scale: originImg.scale orientation: UIImageOrientationUp];
+    //UIImage *orientedImg = [UIImage imageWithCGImage: originImg.CGImage scale: originImg.scale orientation: UIImageOrientationUp];
     
     //2
-    self.currentCardImage = [[CardImage alloc] initWithImage: orientedImg];
+    self.currentCardImage = [[CardImage alloc] initWithImage: originImg];
     
     //3
     [self.overlayView updateWithImage: self.currentCardImage.image];

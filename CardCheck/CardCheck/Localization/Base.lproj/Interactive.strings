@@ -12,9 +12,9 @@
 
 
 /* Input View */
-"login_default_validation_text"         = "Login must be at least 4 characters (latin letters, numbers)";
-"password_invalid_validation_text"      = "Invalid password. please, try again";
-"password_default_validation_text"      = "Password must contain at least 4 symbols";
+"login_default_validation_text"         = "Логін повинен містити 3-20 символів";
+"password_default_validation_text"      = "Невірний пароль. Пароль повинен містити 6 цифр";
+"password_invalid_validation_text"      = "Невірний пароль. Будь ласка спробуйте ще раз";
 
 "pan_default_validation_text"         = "Номер картки повинен бути 13-19 цифр";
 "comment_default_validation_text"     = "Введіть коментар";

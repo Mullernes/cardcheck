@@ -526,7 +526,7 @@
     if (self.readerController.isStaging)
     {
         if (fake) {
-            [self uploadCardImage];
+            [self showAddExtraInfoAlert];
         }
         else {
             [self showCardDefaultView];
