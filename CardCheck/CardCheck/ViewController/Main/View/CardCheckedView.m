@@ -58,6 +58,8 @@
 - (void)prepareUi
 {
     [super prepareUi];
+    
+    [self.infoView setHidden: !IS_IPHONE_GREATER_THAN_5];
 }
 
 - (void)resetState
