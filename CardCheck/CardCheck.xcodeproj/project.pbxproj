@@ -67,6 +67,7 @@
 		7D7E2BEE20187AD900BE6950 /* ITKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEB20187AD900BE6950 /* ITKeyboardObserver.m */; };
 		7D7E2BF120187B7100BE6950 /* AuthInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E2BEF20187B7000BE6950 /* AuthInfoView.m */; };
 		7D7E2C1B2018953500BE6950 /* Interactive.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7E2BF32018953500BE6950 /* Interactive.strings */; };
+		7D925F4D2057E87400E9D87F /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D925F4C2057E87400E9D87F /* PickerViewController.m */; };
 		7DACA3432031723400D31166 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3412031723300D31166 /* NotificationManager.m */; };
 		7DACA3462031728D00D31166 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DACA3442031728D00D31166 /* AlertViewController.xib */; };
 		7DACA34A2031734400D31166 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DACA3482031734300D31166 /* AlertViewController.m */; };
@@ -240,6 +241,8 @@
 		7D7E2BF42018953500BE6950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Interactive.strings; sourceTree = "<group>"; };
 		7D7E2C112018953500BE6950 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Interactive.strings; sourceTree = "<group>"; };
 		7D7E2C162018953500BE6950 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Interactive.strings; sourceTree = "<group>"; };
+		7D925F4B2057E87400E9D87F /* PickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
+		7D925F4C2057E87400E9D87F /* PickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
 		7DACA3412031723300D31166 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		7DACA3422031723300D31166 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		7DACA3452031728D00D31166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertViewController.xib; sourceTree = "<group>"; };
@@ -482,6 +485,8 @@
 				7D210D862044A86B005BBD46 /* CameraViewController.m */,
 				7D210D892044B487005BBD46 /* CameraOverlayView.h */,
 				7D210D8A2044B487005BBD46 /* CameraOverlayView.m */,
+				7D925F4B2057E87400E9D87F /* PickerViewController.h */,
+				7D925F4C2057E87400E9D87F /* PickerViewController.m */,
 			);
 			path = CameraViewController;
 			sourceTree = "<group>";
@@ -1480,6 +1485,7 @@
 				7D7E2BDE201879D100BE6950 /* ITTextFieldValidator.m in Sources */,
 				7DDE2C711FF37A4B00058FD4 /* APIBaseModel.m in Sources */,
 				7DBC744E201CD27700D925CB /* CheckingViewController.m in Sources */,
+				7D925F4D2057E87400E9D87F /* PickerViewController.m in Sources */,
 				7DDE2CC21FF4CFF300058FD4 /* AuthResponseModel.m in Sources */,
 				7DACA3582031741900D31166 /* NSDictionary+ApiKeys.m in Sources */,
 				7D7E2BDB201879D100BE6950 /* ITPasswordTextField.m in Sources */,

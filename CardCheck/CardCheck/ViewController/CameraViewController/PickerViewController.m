@@ -1,18 +1,18 @@
 //
-//  CameraViewController.m
+//  PickerViewController.m
 //  CardCheck
 //
-//  Created by itnesPro on 2/26/18.
+//  Created by itnesPro on 3/13/18.
 //  Copyright © 2018 itnesPro. All rights reserved.
 //
 
-#import "CameraViewController.h"
+#import "PickerViewController.h"
 
-@interface CameraViewController ()
+@interface PickerViewController ()
 
 @end
 
-@implementation CameraViewController
+@implementation PickerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,12 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Ui
-
-- (void)viewWillLayoutSubviews
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    [super viewWillLayoutSubviews];
-    [self.view setNeedsDisplay];
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 /*
@@ -41,8 +38,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)shot2:(id)sender {
-    NSLog(@"");
-}
 
 @end

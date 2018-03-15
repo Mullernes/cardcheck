@@ -60,14 +60,9 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    if ([self respondsToSelector:@selector(traitCollection)])
-    {
-        return self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
-    }
-    else
-    {
-        return [UIScreen mainScreen].bounds.size.width > SIZE_REGULAR ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
-    }
+    NSLog(@"===>> %@ - %@", CURRENT_METHOD, CURRENT_CLASS);
+    
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - Accessors

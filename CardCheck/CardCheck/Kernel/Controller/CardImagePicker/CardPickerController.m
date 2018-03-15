@@ -11,11 +11,13 @@
 #import "CameraOverlayView.h"
 #import "CameraViewController.h"
 
+#import "PickerViewController.h"
+
 @interface CardPickerController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, CameraOverlayViewDelegate>
 
 @property (nonatomic, strong) CardImage *currentCardImage;
 
-@property (nonatomic, strong) UIImagePickerController *picker;
+@property (nonatomic, strong) PickerViewController *picker;
 
 @property (nonatomic, strong) CameraOverlayView *overlayView;
 @property (nonatomic, strong) CameraViewController *cameraController;
@@ -44,7 +46,7 @@
         [self.overlayView setDelegate: self];
         
         //2
-        self.picker = [UIImagePickerController new];
+        self.picker = [PickerViewController new];
         self.picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
         self.picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
         self.picker.videoMaximumDuration = 30.0;
@@ -52,13 +54,6 @@
         
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.picker.showsCameraControls = NO;
-        
-//        float cameraAspectRatio = 5.0 / 8.0;
-//        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-//        float imageWidth = floorf(screenSize.width * cameraAspectRatio);
-//        float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
-//
-//        self.picker.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
     }
 }
 
@@ -99,14 +94,29 @@
     if (NO == [mediaType isEqualToString: (NSString *)kUTTypeImage]) return;
     
     //1
+    UIImage *finalImg = nil;
     UIImage *originImg = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImage *orientedImg = [UIImage imageWithCGImage: originImg.CGImage scale: originImg.scale orientation: UIImageOrientationUp];
+    UIImage *wideImg = [UIImage imageWithCGImage: originImg.CGImage scale: originImg.scale orientation: UIImageOrientationUp];
+    UIImage *narrowImg = [UIImage imageWithCGImage: originImg.CGImage scale: originImg.scale orientation: UIImageOrientationRight];
     
     //2
-    self.currentCardImage = [[CardImage alloc] initWithImage: orientedImg];
+    switch (UIApplication.sharedApplication.statusBarOrientation) {
+        case UIInterfaceOrientationUnknown:
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+            finalImg = narrowImg;
+            break;
+            
+        default:
+            finalImg = wideImg;
+            break;
+    }
     
     //3
-    [self.overlayView updateWithImage: self.currentCardImage.image];
+    [self.overlayView updateWithImage: finalImg];
+    
+    //4
+    self.currentCardImage = [[CardImage alloc] initWithImage: finalImg];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

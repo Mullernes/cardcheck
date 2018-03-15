@@ -64,14 +64,9 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    if ([self respondsToSelector:@selector(traitCollection)])
-    {
-        return self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
-    }
-    else
-    {
-        return [UIScreen mainScreen].bounds.size.width > 600.0 ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
-    }
+    NSLog(@"===>> %@ - %@", CURRENT_METHOD, CURRENT_CLASS);
+    
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

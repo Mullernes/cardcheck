@@ -33,7 +33,12 @@
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
 {
-    return YES;
+    NSString *newText = [self.text stringByReplacingCharactersInRange: range withString: string];
+    BOOL isValid = (newText.length <= 20);
+    
+    self.validationWarning = (!isValid)? lValidationWarning : nil;
+    
+    return isValid;
 }
 
 - (BOOL)isGeneralLogin:(NSString *)login

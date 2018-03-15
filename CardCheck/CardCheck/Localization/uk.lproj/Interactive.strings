@@ -11,10 +11,9 @@
 "card_checked_info_fake_text"      = "Магнітна смуга має ознаки підробки. Зробіть фото обох сторін картки.";
 
 /* Input View */
-"login_default_validation_text"         = "Логін повинен містити 3-20 символів (латинські літери, цифри, крапка)";
-"password_default_validation_text"      = "Невірний пароль. Пароль повинен містити 6 цифр";
-"password_equality_validation_text"     = "Паролі повинні бути однаковими";
-"password_invalid_validation_text"      = "Невірний пароль. Будь ласка спробуйте ще раз";
+"login_default_validation_text"         = "Логин должен содержать 3-20 символов";
+"password_default_validation_text"      = "Неверный пароль. Пароль должен содержать 6 цифр";
+"password_invalid_validation_text"      = "Неверный пароль. Пожалуйста попробуйте еще раз";
 
 "pan_default_validation_text"         = "Номер картки повинен бути 13-19 цифр";
 "comment_default_validation_text"     = "Введіть коментар";

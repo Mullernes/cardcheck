@@ -10,7 +10,6 @@
 #define MIN_LEN                 1
 
 #define lValidationWarning      NSLocalizedStringFromTable(@"password_default_validation_text",  @"Interactive", @"Input View")
-#define lEqualityWarning        NSLocalizedStringFromTable(@"password_equality_validation_text", @"Interactive", @"Input View")
 
 
 #import "ITPasswordTextField.h"
@@ -37,7 +36,12 @@
 
 - (BOOL)isValidInRange:(NSRange)range replacementString:(NSString *)string
 {
-    return YES;
+    NSString *newText = [self.text stringByReplacingCharactersInRange: range withString: string];
+    BOOL isValid = (newText.length <= 6);
+    
+    self.validationWarning = (!isValid)? lValidationWarning : nil;
+    
+    return isValid;
 }
 
 - (BOOL)isGeneralPassword:(NSString *)password
@@ -51,23 +55,6 @@
 
 - (BOOL)isDependencyEqual
 {
-    for (ITTextField *tTextField in self.dependencyEqual)
-    {
-        if (![tTextField.text isEqualToString: self.text])
-        {
-            if (self.text.length)
-            {
-                self.validationWarning = lEqualityWarning;
-                tTextField.validationWarning = lEqualityWarning;
-                self.showsError = YES;
-            }
-            else
-                [self becomeFirstResponder];
-            
-            return NO;
-        }
-    }
-    
     return YES;
 }
 

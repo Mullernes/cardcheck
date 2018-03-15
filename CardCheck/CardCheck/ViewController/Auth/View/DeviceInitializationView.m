@@ -5,6 +5,8 @@
 
 @interface DeviceInitializationView ()
 
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+
 - (IBAction)next:(id)sender;
     
 @end
@@ -35,6 +37,16 @@
     [self.retypePasswordTextField setLoading: loading];
 }
 
+- (void)setEnable:(BOOL)enable
+{
+    _enable = enable;
+    
+    if (!_enable) {
+        [self.retypePasswordTextField setEnabled: NO];
+        [self.nextButton setTitle: @"Завершити" forState: UIControlStateNormal];
+    }
+}
+
 #pragma mark - Working
 
 - (void)prepareUi
@@ -48,6 +60,8 @@
 - (void)resetState
 {
     [super resetState];
+    
+    [self setEnable: YES];
     
     self.passwordTextField.loading = NO;
     self.retypePasswordTextField.loading = NO;
@@ -63,12 +77,17 @@
 
 - (IBAction)next:(id)sender
 {
-    if ([self.retypePasswordTextField validate]) {
-        [self.retypePasswordTextField resignFirstResponder];
-        [self.delegate authView: self checkPasswordDidEnter: self.retypePasswordTextField];
+    if (self.isEnabled) {
+        if ([self.retypePasswordTextField validate]) {
+            [self.retypePasswordTextField resignFirstResponder];
+            [self.delegate authView: self checkPasswordDidEnter: self.retypePasswordTextField];
+        }
+        else {
+            [self failedStateWithText: self.retypePasswordTextField.validationWarning];
+        }
     }
     else {
-        [self failedStateWithText: self.retypePasswordTextField.validationWarning];
+        exit(5);
     }
 }
     

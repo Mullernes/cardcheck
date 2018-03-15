@@ -58,6 +58,8 @@
 - (void)prepareUi
 {
     [super prepareUi];
+    
+    [self.infoView setHidden: !IS_IPHONE_GREATER_THAN_5];
 }
 
 - (void)resetState
@@ -116,6 +118,7 @@
         [self.contentWidthConstraintDefault setActive: YES];
         
         [self.scrollContentView setScrollEnabled: NO];
+        [self layoutIfNeeded];
     }
     else {
         [self.contentWidthConstraintDouble setActive: YES];
@@ -123,8 +126,11 @@
         
         [self.scrollContentView setScrollEnabled: YES];
         
-        UIEdgeInsets insets = self.scrollContentView.contentInset;
-        [self.scrollContentView setScrollIndicatorInsets: insets];
+        [self layoutIfNeeded];
+        
+        CGPoint offset = self.scrollContentView.contentOffset;
+        offset.x = self.scrollContentView.frame.size.width/2;
+        [self.scrollContentView setContentOffset: offset];
     }
     
     //Extra info
@@ -140,8 +146,6 @@
     else {
         [self.extraInfoLbl setText: lQuestionText];
     }
-
-    [self layoutIfNeeded];
 }
 
 - (IBAction)next:(id)sender
